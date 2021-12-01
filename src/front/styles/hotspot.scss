@@ -1,0 +1,55 @@
+/* *{
+    border: 1px solid #ff00004f;
+} */
+.container{
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+    align-content: space-between;
+}
+
+.top_body{
+    display: flex;
+}
+
+.hotspots{
+    display: flex;
+    flex-direction: column;
+    width: 474px;
+    height: 881px;
+    border: 1px solid black;
+    align-items: center;
+}
+.species{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+.leaflet-container {
+    height: 870px;
+    width: 970px;
+    display: grid;
+}
+
+.species_title{
+    font-size: 36px;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+}
+
+.photos{
+    display: flex;
+    flex-direction: column;
+}
+
+.photo_file{
+    display: flex;
+    flex-direction: row;
+}
+
+img{
+    width: 398px;
+    height: 320px;
+}
