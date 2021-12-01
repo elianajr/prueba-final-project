@@ -91,7 +91,7 @@ class Waterdropper(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     account_id = db.Column(db.Integer, db.ForeignKey("account.id"), nullable=False)
-    level = db.Column(db.Enum("Beginner", "Intermediate", "Advanced", "Professional"), nullable=False)
+    level = db.Column(db.Enum("Beginner", "Intermediate", "Advanced", "Professional", name="level"))
     location = db.Column(db.String(), unique=False, nullable=False)
 
     def __repr__(self):
