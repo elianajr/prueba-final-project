@@ -1,12 +1,18 @@
 import React, { useContext } from "react";
-import "../../styles/home.scss";
+import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
+
+import "../../styles/home.scss";
 
 const Home = () => {
 	const { store, actions } = useContext(Context);
 
 	return (
-		<div></div>
+		<div><div className="ml-auto">
+		<Link to="/hotspot">
+			<button className="btn btn-primary">HotSpot</button>
+		</Link>
+	</div></div>
 	);
 };
 

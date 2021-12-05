@@ -1,11 +1,10 @@
 const webpack = require('webpack');
-const { merge } = require('webpack-merge');
+const merge = require('webpack-merge');
 const common = require('./webpack.common.js');
-
 
 const port = 3000;
 const [_, host] = process.env.GITPOD_WORKSPACE_URL.split('://') ?? null;
-const publicUrl = host ? `${port}-${host}` : `http://localhost:${port}`;
+const publicUrl = host ? `${port}-${host}`  : `http://localhost:${port}`;
 
 
 module.exports = merge(common, {
@@ -13,10 +12,9 @@ module.exports = merge(common, {
     devtool: 'cheap-module-source-map',
     devServer: {
         allowedHosts: 'all',
+        hot: true,
         compress: true,
+        historyApiFallback: true,
         port: port
-    },
-    plugins: [
-        new webpack.HotModuleReplacementPlugin()
-    ]
+    }
 });

@@ -1,8 +1,11 @@
 import React, { Fragment } from "react";
 import { Navbar } from "./component/navbar.js";
 import { Footer } from "./component/footer.js";
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
-
+import {
+  BrowserRouter,
+  Routes,
+  Route
+} from "react-router-dom";
 import Home from "./pages/home.js";
 import HotSpot from "./pages/hotspot.jsx";
 import injectContext from "./store/appContext";
@@ -15,14 +18,12 @@ const Layout = () => {
 	const basename = process.env.BASENAME || "";
 
 	return (
-		<div>
-				<Navbar/>
-				<Routes>
-					<Route path="/" element={<Home />} />
-					<Route path="/hotspot" element={<HotSpot />} />
-				</Routes>
-				<Footer/>
-		</div>
+		<BrowserRouter className="index">
+			<Routes>
+				<Route path="/" element={<Home />} />
+				<Route path="/hotspot" element={<HotSpot />} />
+			</Routes>
+		</BrowserRouter>
 	);
 };
 

@@ -1,3 +1,33 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Sacramento&display=swap');
+
 .navbar{
-    display: flex;
+    position: relative;
+    justify-content: space-around;
+    width: 100vw;
+    height: 7rem;
+    background: linear-gradient(0deg, rgba(251,251,251,0.19371498599439774) 0%, rgba(252,252,252,0.19) 11%, rgba(252,252,252,0.45) 12%, rgba(252,252,252,0.45) 24%, rgba(252,252,252,0.6867121848739496) 25%, rgba(253,253,253,0.69) 41%, rgba(253,253,253,1) 43%, rgba(255,255,255,1) 100%);
 }
+
+
+
+.members{
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.navbar_links{
+    border-bottom: 1px solid black;
+    font-family: 'Amatic SC', cursive;
+    font-family: 'Righteous', cursive;
+    font-family: 'Sacramento', cursive;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 25px;
+    letter-spacing: 0em;
+    text-align: center;
+    
+}
+
