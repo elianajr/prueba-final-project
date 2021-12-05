@@ -182,7 +182,7 @@ class Specie(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(), unique=False, nullable=False)
-    photo = db.Column(db.String(), unique=False, nullable=False)
+    photo = db.Column(db.Text(), unique=False, nullable=False)
     description = db.Column(db.String(), unique=False, nullable=False)
     is_reported = db.Column(db.Boolean(), unique=False, nullable=False)
 
@@ -224,13 +224,17 @@ class News(db.Model):
     __tablename__: "news"
 
     id = db.Column(db.Integer, primary_key=True)
+    photo = db.Column(db.Text(), unique=False, nullable=False)
+    description = db.Column(db.String(), unique=False, nullable=False)
     
     def __repr__(self):
-        return f'New {self.id}' 
+        return f'News {self.id}, photo: {self.photo}, description: {self.description}' 
 
     def to_dict(self):
         return {
-            "id": self.id
+            "id": self.id,
+            "photo": self.photo,
+            "description": self.description
         }
 
 
@@ -283,3 +287,4 @@ class Review_Hotspot(db.Model):
             "date": self.date,
             "puntuation": self.puntuation
         }
+
