@@ -1,9 +1,8 @@
 import React, { useEffect, useState, useContext } from "react";
 import { Context } from "../store/appContext";
-import { SeachBar } from "../component/searchBar.jsx";
 
 import "../../styles/forecast.scss";
-import { set } from "react-hook-form";
+
 
 const Forecast = () =>{
     const { store, actions } = useContext(Context);
@@ -17,9 +16,8 @@ const Forecast = () =>{
     const  minTemp = <img src="https://i.ibb.co/QCP690z/carbon-temperature-min.png" alt="Minimal temperature" />
     const  sunrise = <img src="https://i.ibb.co/Bw8XxwV/mdi-weather-sunset-up.png" alt="sunrise" />
     const  sunset = <img src="https://i.ibb.co/30r3Bpt/Vector.png" alt="Sunset" />
-    const  lvlSea = <img src="https://i.ibb.co/FV0kQNz/openmoji-sea-level-rise.png" alt="level of the sea" />
     const sun = <img src="https://i.ibb.co/HVqvqL9/emojione-sun.png" alt="sun" />
-    const seachIcon = <i class="fas fa-search"></i>
+    const seachIcon = <i className="fas fa-search"></i>
 
 // Get forecast from city and country
 
@@ -32,37 +30,6 @@ const Forecast = () =>{
     })
 
     const[myCity,setMyCity] = useState("");
-
-    // INFO in DOM
-    const[myCountry, setMyCountry] = useState([]);
-    const[myTemperature, setMyTemperature] = useState([]);
-    const[myHumidity, setMyHumidity] = useState([]);
-    const[myWind, setMyWind] = useState([]);
-    const[mySunrise, setMySunrise] = useState([]);
-    const[mySunset, setMySunset] = useState([]);
-    const[myMaxTemp, setMyMaxTem] = useState([]);
-    const[myMinTemp, setMyMinTem] = useState([]);
-   
-
-    /* useEffect ( () =>{
-            
-            setMyWeather([...store.weather]);
-            setMyCity(store.weather.name);
-            setMyCountry(store.weather.sys.country);
-            setMyTemperature(store.weather.main.temp);
-            setMyMaxTem(store.weather.main.temp_max);
-            setMyMinTem(store.weather.main.temp_min);
-            setMyHumidity(store.weather.main.humidity);
-            setMyWind()
-            setMySunrise();
-            setMySunset();
-            setMyLvlSea();
-            console.log("myweather",myWeather);
-        },
-        [store.weather]
-    ) */
-        
-        
 
         const handleChange = (e) =>{
             let name = e.target.name;
@@ -108,7 +75,6 @@ const Forecast = () =>{
                             onClick={ () =>{
                                 actions.getWeatherData(form.city,form.country,APYKEY);
                                 console.log("SUBMIT",form.city,form.country,APYKEY)
-                                /* weatherData_fourdays(e) */
                             }}
                         >{seachIcon}</button>
                     </div>
@@ -116,32 +82,31 @@ const Forecast = () =>{
             </div>
             <div className="forecast-forecastbody">
                 <div className="forecast-forecastbody__today">
-                    <p>4 Days Weather, {myCity}, {myCountry}</p>
+                    <p>4 Days Weather, {store.weather.name},{/* {store.weather.sys.country}  */}</p>
                     <div className="forecast-forecastbody__today__primaryDates">
                         <div className="primaryDates__temp">
-                            <span>{myTemperature}°</span>
+                            <span>°</span>
                             {sun}
                         </div>
                         <div className="primaryDates__windHum">
                             <div className="primaryDates__windHum__Humidity">
                                 {humidity}
-                                <span>{myHumidity}%</span>
+                                <span>%</span>
                             </div>
                             <div className="primaryDates__winHum__Wind">
                                 {wind}
-                                <span>WNW 10 mph</span>
+                                <span>WNW 10 m/s</span>
                             </div>
                         </div>
                     </div>
                     <div className="forecast-forecastbody__today__secondaryDates">
                         <div className="forecast-forecastbody__today__maxTempRiseLvl">
                             <div>{sunrise} <span>7:42 am</span></div>
-                            <div>{maxTemp} <span>{myMaxTemp}°</span></div>
-                           {/*  <div>{lvlSea} <span>0.4m</span></div> */}
+                            <div>{maxTemp} <span>°</span></div>
                         </div>
                         <div className="forecast-forecastbody__today__minTempSet">
                             <div>{sunset} <span>8:52 pm</span></div>
-                            <div>{minTemp} <span>{myMinTemp}°</span></div>
+                            <div>{minTemp} <span>°</span></div>
                             
                         </div>
                     </div>  
@@ -156,7 +121,7 @@ const Forecast = () =>{
                         </div>
                         <div className="secondaryDates__secondPart">
                             {humidityDetail} <span>72%</span>
-                            {windDetail} <span>WNW 13 mph</span>
+                            {windDetail} <span>WNW 13 m/s</span>
                         </div>
                     </div>
                     <div className="forecast-forecastbody__afterTomorrow">
@@ -168,7 +133,7 @@ const Forecast = () =>{
                         </div>
                         <div className="secondaryDates__secondPart">
                             {humidityDetail} <span>72%</span>
-                            {windDetail} <span>WNW 13 mph</span>
+                            {windDetail} <span>WNW 13 m/s</span>
                         </div>
                     </div>
                     <div className="forecast-forecastbody__afterAfterTomorrow">
@@ -180,7 +145,7 @@ const Forecast = () =>{
                         </div>
                         <div className="secondaryDates__secondPart">
                             {humidityDetail} <span>72%</span>
-                            {windDetail} <span>WNW 13 mph</span>
+                            {windDetail} <span>WNW 13 m/s</span>
                         </div>
                     </div>
                 </div>

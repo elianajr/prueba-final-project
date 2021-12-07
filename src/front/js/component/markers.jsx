@@ -65,7 +65,7 @@ const Markers = () => {
         <div> 
             <Marker position ={{lat:"36.69607184118358", lng:"-4.443754371312125"}} icon={iconRed}>
                 <Popup>
-				    Mi CASA <br /> <i class="fas fa-tint"></i>!!!
+				    Mi CASA <br /> <i className="fas fa-tint"></i>!!!
 				</Popup>
             </Marker>
             <Marker position ={{lat:"36.68429561734708", lng:"-4.4438159139463345"}} icon={iconDarkblue}>
