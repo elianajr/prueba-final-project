@@ -9,6 +9,7 @@ import {
 import { Home } from "./pages/home";
 import injectContext from "./store/appContext";
 import ChatForm from "./component/ChatForm.jsx";
+import News from "./pages/News.jsx";
 
 //create your first component
 const Layout = () => {
@@ -21,6 +22,7 @@ const Layout = () => {
 			<Routes>
 				<Route path="/" element={<Home />} />
 				<Route path="/chat" element={<ChatForm />} />
+				<Route path="/news" element={<News />} />
 			</Routes>
 		</BrowserRouter>
 	);
