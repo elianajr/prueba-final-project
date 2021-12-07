@@ -1,8 +1,7 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			weather: {},
-			main: []
+			weather: {}
 		},
 		actions: {
 			
