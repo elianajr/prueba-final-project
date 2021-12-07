@@ -1,6 +1,8 @@
 /* *{
     border: 1px solid rgba(255, 0, 0, 0.164);
 } */
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Righteous&family=Sacramento&display=swap');
+
 .hotspot-container{
     display: flex;
     flex-direction: column;
@@ -86,15 +88,6 @@
     border-radius: 9px;
 }
 
-.species{
-    display: flex;
-    flex-direction: column;
-    width: 90rem;
-    height: 43rem;
-    top: 62.5rem;
-
-}
-
 .leaflet-container {
     width: 60.3rem;
     height: 55.2rem;
@@ -107,30 +100,21 @@
     border: none !important;
 }
 
-.species_title{
+.hotspot-bottonbody{
+    display: flex;
+    flex-direction: column;
+    width: 90rem;
+    height: 43rem;
+    top: 62.5rem;
+    background: linear-gradient(180deg, #E4FAFF 0%, rgba(228, 250, 255, 0.87) 70.31%, rgba(229, 250, 255, 0.57) 100%);
+    box-shadow: 0px -1px 1px rgba(0, 0, 0, 0.5);
+}
+
+.hotspot-bottonbody_title{
     font-size: 36px;
     height: 80px;
     display: flex;
     justify-content: center;
-}
-
-.species_title{
-    width: 90rem;
-    height: 68px;
-    top: 62.5rem;
-    z-index: 2;
-    background: linear-gradient(180deg, #E4FAFF 0%, rgba(228, 250, 255, 0.87) 70.31%, rgba(229, 250, 255, 0.57) 100%);
-    box-shadow: 0px -1px 1px rgba(0, 0, 0, 0.5);
     font-family: Righteous;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 36px;
-    line-height: 45px;
-    display: flex;
-    align-items: center;
-    text-align: center;
-
-    color: #000000;
-
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
 }

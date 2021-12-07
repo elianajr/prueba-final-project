@@ -8,6 +8,7 @@ import {
 } from "react-router-dom";
 import Home from "./pages/home.js";
 import HotSpot from "./pages/hotspot.jsx";
+import Forecast from "./pages/forecast.jsx";
 import injectContext from "./store/appContext";
 
 
@@ -22,6 +23,7 @@ const Layout = () => {
 			<Routes>
 				<Route path="/" element={<Home />} />
 				<Route path="/hotspot" element={<HotSpot />} />
+				<Route path="/forecast" element={<Forecast />} />
 			</Routes>
 		</BrowserRouter>
 	);

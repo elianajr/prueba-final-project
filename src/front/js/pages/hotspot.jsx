@@ -39,8 +39,10 @@ const HotSpot = () =>{
             </div>
             <Map className="map"/>
         </div>
-        <div className="species">
-            <div className="species_title">Here you can find</div>
+        <div className="hotspot-bottonbody">
+            <div className="hotspot-bottonbody_title">
+                <p>HERE YOU CAN FIND!</p> 
+            </div>
             <div className="photos">
                 <div className="photo_file">
                     <div className="img"/>
