@@ -2,7 +2,7 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, User
+from api.models import db, Account, Waterdropper, Center, Hotspot, Specie, Sport, News
 from api.utils import generate_sitemap, APIException
 
 api = Blueprint('api', __name__)
@@ -16,5 +16,15 @@ def handle_hello():
     }
 
     return jsonify(response_body), 200
+
+@api.route('/account', methods=[ 'GET'])
+def get_accounts():
+
+  accounts= Account.get_all()
+  all_accounts=[account.to_dict() for account in accounts]
+  return jsonify(all_accounts), 200
+
+
+    
 
 

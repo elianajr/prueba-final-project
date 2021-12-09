@@ -79,3 +79,15 @@
 .chatuser{
     font-weight: bold;
 }
+
+.chat__userimg{
+    height:5rem ;
+    border-radius: 100%;
+    width: 5rem;
+    margin: 2rem 1rem 1rem 2rem;
+}
+
+.chat__username{
+    font-weight: bold;
+    border:1px solid rgba(0, 0, 0,0.1);
+}

@@ -3,93 +3,111 @@ import "../../styles/chatform.scss";
 import { db } from "./firebase";
 import { app } from "./firebase";
 import { doc, setDoc } from "firebase/firestore";
-import { collection, addDoc, serverTimestamp, onSnapshot, query, getDocs, orderBy, limit } from "firebase/firestore";
+import { Context } from "../store/appContext.js";
+import { collection, addDoc, serverTimestamp, onSnapshot, query, getDocs, orderBy, where } from "firebase/firestore";
+import Card from '@mui/material/Card'
+
 
 const ChatForm = () => {
+
+	const { store, actions } = useContext(Context);
 	const [message, setMessage] = useState("");
 	const [dialog, setDialog] = useState("");
 	const [dialogmap, setDialogmap] = useState("");
+	const [userschat, setUserschat] = useState("");
+	const [userdestiny,setUserdestiny]=useState("")
+	const [usersender,setUsersender]=useState(2)
 	
 
-	const updatedata=()=>{
-		const messagesref = collection(db, "messages");
-		const q = query(messagesref, orderBy("time"));
-		
-		const unsubscribe = onSnapshot(q, querySnapshot => {
-			const chat=[]
-			querySnapshot.forEach(doc => {
-				chat.push(doc.data().text);
-			});
-			console.log(chat);
-			setDialog(chat)
-		});
-		
-	} 
 
-
-
-	const getdata= async()=>{
-		const info = collection(db, "messages");
-		const q = query(info, orderBy("time"));
-		const querySnapshot = await getDocs(q);
-		console.log(querySnapshot)
-		const messages=[]
-		querySnapshot.forEach((doc) => {
-			// doc.data() is never undefined for query doc snapshots
-			messages.push(doc.data().text)
-		  });
-		setDialog(messages)
-		console.log(messages)
-		
-	}
-
-	const add_data=()=>{
+	const add_data=(userdestiny)=>{
 		if (message!="") {
 			const docRef = addDoc(collection(db, "messages"), {
 				text: message,
-				time: serverTimestamp()
+				id_user: usersender,
+				time: serverTimestamp(),
+				id_receiver: userdestiny,
+				chatusers:[usersender,userdestiny]
 			});
 		}
 	}
 
-	
-	
+	const getdata=()=>{
+		const info = query(collection(db, "messages"), where("chatusers", "array-contains", usersender),orderBy("time"))
+
+		console.log(info)
 		
+		
+	
+		const unsubscribe = onSnapshot(info, (querySnapshot) => {
+			const chat = [];
+			querySnapshot.forEach((doc) => {
+				chat.push(doc.data());
+			});
+			const result = chat.filter(doc=>(doc.id_user==usersender && doc.id_receiver==userdestiny)||(doc.id_user==userdestiny && doc.id_receiver==usersender))
+			const conversation= result.map(doc=>doc.text)
+			console.log(conversation)
+			if (conversation.length>0) {
+				setDialog(conversation)
+			} else{
+				setDialog("")
+			}
+		  });
+		
+	}
+    
+	useEffect(()=>{
+		actions.getUsers()
+
+	},[])
 	
 
-	useEffect(() => {
+	useEffect(()=>{
 		
-	   getdata()
-	}, []);
+		getdata()
+	},[userdestiny])
+
+	useEffect(
+		() => {
+			let otherusers=store.users.filter(element=>element.id!=usersender)
+			setUserschat(
+				otherusers.map((element, index) => {
+					return (
+						<Card variant="outlined" key={index.toString()} className="chat__username">
+							<img className="chat__userimg" src={element.photo} />
+							<span onClick={()=>{setUserdestiny((element.id))}}> {element.username}</span>
+						</Card>
+					);
+				})
+			);
+		},
+		[store.users]
+	);
 
 	useEffect(() => {
 	    
-		add_data()
-		updatedata()
+		add_data(userdestiny)
+		
 	}, [message]);
 
-  let fecha= new Date()
-  console.log(fecha)
 
 	useEffect(() => {
 		if (dialog.length > 0) {
 			setDialogmap(
 				dialog.map((element, index) => {
 					return (
-						<div className="chat__message" key={index.toString()}>
+						<div
+						 className="chat__message" key={index.toString()}>
 							{element}
 						</div>
 					);
 				})
 			);
+		} else{
+			setDialogmap("")
 		}
 	}, [dialog]);
-
-	console.log(dialog);
-
 	
-
-
 
 	return (
 		<div className="chatback">
@@ -99,6 +117,7 @@ const ChatForm = () => {
 			</div>
 			<div className="chat__section">
 				<div className="chat__users">
+					<div>{userschat}</div>
 					
 				</div>
 				<div className="chat__messages">
