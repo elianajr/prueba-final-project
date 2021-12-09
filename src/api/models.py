@@ -1,26 +1,11 @@
-from enum import Enum
-
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.dialects import postgresql
 from sqlalchemy.ext.hybrid import hybrid_property
 from werkzeug.security import generate_password_hash
 
-# import os
-# import sys
-# from sqlalchemy.ext.declarative import declarative_base
-# from sqlalchemy.dialects.postgresql import VARCHAR
-# from sqlalchemy.orm import relationship
-# from sqlalchemy import Column, ForeignKey, Integer, String, Enum, Boolean, Table, Text
-# #Import del cifrado de la password
 from werkzeug.security import check_password_hash
 
 db = SQLAlchemy()
-
-# class Level(Enum):
-#     beginner = "Beginner"
-#     intermediate = "Intermediate"
-#     advanced = "Advanced"
-#     professional = "Professional"
 
 species_hotspot = db.Table('species_hotspot',
     db.Column('specie_id', db.Integer, db.ForeignKey('specie.id'), primary_key=True),
@@ -128,8 +113,7 @@ class Waterdropper(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     first_name = db.Column(db.String(), unique=False, nullable=False)
     last_name = db.Column(db.String(), unique=False, nullable=False)
-    # level = db.Column(db.Enum(Level, name="levels"), nullable=False)
-    level = db.Column(db.Enum(Level, name="levels"), nullable=False)
+    level = db.Column(db.String(), unique=False, nullable=False)
     location = db.Column(db.String(), unique=False, nullable=False)
     account_id = db.Column(db.Integer, db.ForeignKey("account.id"), nullable=False)
 
@@ -177,33 +161,33 @@ class Hotspot(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(), unique=False, nullable=False)
     photo = db.Column(db.Text(), unique=False, nullable=False)
-    level = db.Column(db.Enum(Level, name="levels"), nullable=False)
+    level = db.Column(db.String(), unique=False, nullable=False)
     description = db.Column(db.String(), unique=False, nullable=False)
-    latitud = db.Column(db.Float(), unique=False, nullable=False)
-    longitud = db.Column(db.Float(), unique=False, nullable=False)
-    category = db.Column(db.String(), unique=False, nullable=False)
+    latitude = db.Column(db.String(), unique=False, nullable=True)
+    longitude = db.Column(db.String(), unique=False, nullable=True)
+    category = db.Column(db.String(), unique=False, nullable=True)
     account_id = db.Column(db.Integer, db.ForeignKey("account.id"), nullable=False)
-    sport_id = db.Column(db.Integer, db.ForeignKey("sport.id"), nullable=True) 
-    
+    sport_id = db.Column(db.Integer, db.ForeignKey("sport.id"), nullable=True)
+
     have_favspot_waterdropper = db.relationship('Waterdropper', secondary=waterdropper_fav_spot, back_populates="have_waterdropper_favspot")
     have_hotspot_specie = db.relationship('Specie', secondary=species_hotspot, back_populates="have_specie_hotspot")
     has_reviews_spot = db.relationship("Review_Hotspot")
 
     def __repr__(self):
-        return f'Hotstop {self.id}, specie_id: {self.specie_id}, account_id: {self.account_id}, sport_id: {self.sport_id}, name: {self.name},  level: {self.level}, despcription: {self.despcription}, photo: {self.photo}, location: {self.location}, geometry: {self.geometry}' 
+        return f'Hotstop {self.id}, specie_id: {self.specie_id}, account_id: {self.account_id}, sport_id: {self.sport_id}, name: {self.name},  level: {self.level}, despcription: {self.despcription}, photo: {self.photo}, geometry: {self.geometry}'
 
     def to_dict(self):
         return {
             "id": self.id,
-            "sport_id": self.sport_id, 
-            "specie_id": self.specie_id, 
+            "sport_id": self.sport_id,
+            "specie_id": self.specie_id,
             "account_id": self.account_id,
             "name": self.name,
-            "photo": self.photo, 
+            "photo": self.photo,
             "level": self.level,
             "despcription": self.despcription,
-            "latitud": self.latitud,
-            "longitud": self.longitud,
+            "latitude": self.latitude,
+            "longitude": self.longitude,
             "category": self.category
         }
 
@@ -318,3 +302,4 @@ class Review_Hotspot(db.Model):
             "date": self.date,
             "puntuation": self.puntuation
         }
+

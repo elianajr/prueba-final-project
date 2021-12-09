@@ -50,7 +50,7 @@
 }
 
 .forecast-forecastbody__today>p{
-    margin-left: -42rem;
+    margin-left: -38rem;
 }
 
 .forecast-forecastbody__today__primaryDates{
@@ -62,7 +62,10 @@
 }
 
 .primaryDates__temp{
+    display: flex;
+    align-items: center;
     font-size: 48px;
+    margin-top: -29px;
 }
 
 .primaryDates__windHum{
@@ -119,7 +122,14 @@
 }
 
 .secondaryDates__firstpart,.secondaryDates__secondPart{
+    display: flex;
+    width: 28.5rem;
     margin-top: 1rem;
+    align-items: center;
+    justify-content: center;
+}
+.secondaryDates__firstpart>img{
+    width: 5rem;
 }
 .secondaryDates__firstpart>span,.secondaryDates__secondPart>span{
     margin-left: 1rem;
