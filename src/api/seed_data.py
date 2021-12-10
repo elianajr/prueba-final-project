@@ -1,5 +1,100 @@
 data = {
-    "HotSpot":[ 
+
+         "Sport":[
+        {
+			"id": 1,
+            "name": "scuba"
+		},
+        {
+			"id": 2,
+            "name": "surf"
+		},
+        {
+			"id": 3,
+            "name": "kitesurf"
+		},
+        {
+			"id": 4,
+            "name": "snorkel"
+		}
+    ],
+        "Account":[
+        {
+			"id": 1,
+            "email": "elianajr1@gmail.com",
+            "_password": "123456",
+            "username": "elianajr",
+            "photo": "photo",
+            "_is_active": True,
+            "_is_waterdropper": True
+		},
+        {
+            "id": 2,
+            "email": "puravida@gmail.com",
+            "_password": "123456",
+            "username": "Pura vida diving",
+            "photo": "photo",
+            "_is_active": True,
+            "_is_waterdropper": False
+        },
+        {
+            "id": 3,
+            "email": "folken@gmail.com",
+            "_password": "123456",
+            "username": "folkencillo",
+            "photo": "photo",
+            "_is_active": True,
+            "_is_waterdropper": True
+        },
+        {
+            "id": 4,
+            "email": "indrasurf@gmail.com",
+            "_password": "123456",
+            "username": "Indra Surf Bali",
+            "photo": "photo",
+            "_is_active": True,
+            "_is_waterdropper": False
+        }
+    ], 
+
+    "Waterdropper": [
+        {
+			"id": 1,
+            "first_name": "Eliana",
+            "last_name": "Jordan",
+            "level": "Professional",
+            "location": "Madrid",
+            "account_id": 1
+		},
+        {
+			"id": 2,
+            "first_name": "Juan",
+            "last_name": "Guerrero",
+            "level": "Intermediate",
+            "location": "Malaga",
+            "account_id": 3
+		}
+    ],
+
+    "Center":[
+        {
+			"id": 1,
+            "address": "9/24, Koh Tao, Surat Thani 84360, Thailand",
+            "phone": "111111111",
+            "web": "https://www.puravida.com",
+            "account_id": 2
+		},
+        {
+			"id": 2,
+            "address": "Jl.Pantai Batu Bolong #32A, Canggu, Kec. Kuta Utara, Kabupaten Badung, Bali 80361, Indonesia",
+            "phone": "111111112",
+            "web": "https://www.surf.com",
+            "account_id": 4
+		}
+    ],
+
+
+    "Hotspot":[ 
         {
             "id": 1,
             "sport_id": "", 
@@ -1260,4 +1355,49 @@ data = {
         }
 
     ],
-},
+
+    "Species":[
+        {
+            "id":1,
+            "name": "bonito",
+            "photo": "wwww.bonitoalaplancha.es/feocuando/sequema.jpg",
+            "description": "un pescao más un pescao menos",
+            "is_reported": ""
+        }
+    ]
+
+    "Center":[
+        {
+            "id": 1,
+            "address": "9/24, Koh Tao, Surat Thani 84360, Thailand",
+            "account_id": ""
+        },
+        {
+            "id": 2,
+            "address": "Jl.Pantai Batu Bolong #32A, Canggu, Kec. Kuta Utara, Kabupaten Badung, Bali 80361, Indonesia",
+            "account_id": ""
+        }
+    ],
+
+    "Review_Center":[
+        {
+            "id": 1,
+            "center_id": "",
+            "waterdropper_id": "",
+            "message": "por los loles y las distracciones a mi me gustan los barcos y lo harcore sin olores de colores con distracciones y lleno de vividores como paco",
+            "date": "09/14/2009 9:00",
+            "puntuation": 2.0,
+        }
+    ],
+
+    "Review_Hotspot":[
+        {
+             "id": 1,
+            "hotspot_id": "",
+            "waterdropper_id": "",
+            "message": "hasta del deporte se sale, asiq no desistáis en creer que no, ir más a la calle menos al agua cabrones",
+            "date": "09/14/2009 9:00",
+            "puntuation": 2.0
+        }
+    ]
+}
