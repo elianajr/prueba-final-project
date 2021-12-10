@@ -1,18 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "../../styles/navbar.scss";
-import WDS_logo from "../../img/WDS_logo.png"
-
-
 
 export const Navbar = () => {
+	const logo = <img src="https://i.ibb.co/WkjzmB3/LOGO.png"/>
 	return (
 		<nav className="navbar">
-			<img src={WDS_logo}/>
-			<div className="navbar_links" onClick={()=>{}}><span>PROFILE</span></div>
-			<div className="navbar_links" onClick={()=>{}}><span>FORECAST</span></div>
-			<div className="navbar_links" onClick={()=>{}}><span>NEWS</span></div>
-			<div className="navbar_links" onClick={()=>{}}><span>ABOUT US</span></div>
+			<Link to="/">{logo}</Link>
+			<div className="navbar__links"><Link to="/profile">PROFILE</Link ></div>
+			<div className="navbar__links"><Link to="/forecast" >FORECAST</Link ></div>
+			<div className="navbar__links"><Link to="/news" >NEWS</Link ></div>
+			<div className="navbar__links"><Link to="/aboutus" >ABOUT US</Link ></div>
 			<div className="member">
 				<p>Are you a member?</p>
 				<div>
