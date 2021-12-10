@@ -10,6 +10,7 @@ import Home from "./pages/home.js";
 import HotSpot from "./pages/hotspot.jsx";
 import Forecast from "./pages/forecast.jsx";
 import injectContext from "./store/appContext";
+import { AboutUs } from "./pages/aboutus.jsx";
 
 
 //create your first component
@@ -24,6 +25,7 @@ const Layout = () => {
 				<Route path="/" element={<Home />} />
 				<Route path="/hotspot" element={<HotSpot />} />
 				<Route path="/forecast" element={<Forecast />} />
+				<Route path="/aboutus" element={<AboutUs />} />
 			</Routes>
 		</BrowserRouter>
 	);
