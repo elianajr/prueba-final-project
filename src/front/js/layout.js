@@ -9,6 +9,7 @@ import {
 import { Home } from "./pages/home";
 import injectContext from "./store/appContext";
 import ChatForm from "./component/ChatForm.jsx";
+import Chatdropdown from "./component/Chatdropdown.jsx"
 
 
 //create your first component
@@ -23,6 +24,7 @@ const Layout = () => {
 				<Route path="/" element={<Home />} />
 				<Route path="/chat" element={<ChatForm />} />
 			</Routes>
+			<Chatdropdown></Chatdropdown>
 		</BrowserRouter>
 	);
 };

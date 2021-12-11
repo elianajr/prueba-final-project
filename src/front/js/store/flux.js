@@ -2,7 +2,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 			message: null,
-			users:[]
+			url: 'https://3001-blue-possum-td8j7tcj.ws-eu23.gitpod.io/',
+			users:[],
+			user:{}
 		},
 		actions: {
 			// Use getActions to call a function within a fuctio
@@ -14,7 +16,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.catch(error => console.log("Error loading message from backend", error));
 			},
 			getUsers:()=>{
-				fetch('https://3001-blue-possum-td8j7tcj.ws-eu23.gitpod.io/api/account')
+				fetch(getStore().url.concat('api/account'))
 	        .then(function(response) {
 		          if (!response.ok) {
 	              throw Error(response.statusText);
@@ -29,13 +31,31 @@ const getState = ({ getStore, getActions, setStore }) => {
                 .catch(function(error) {
 	             console.log('Looks like there was a problem: \n', error);
                  });
-			}
+			},
+			getUser:(id)=>{
+				fetch(getStore().url.concat('api/account/',id))
+	        .then(function(response) {
+		          if (!response.ok) {
+	              throw Error(response.statusText);
+	        }
+    // Read the response as json.
+	              return response.json();
+	        })
+	            .then(function(responseAsJson) {
+					setStore({ user: responseAsJson });
+	                console.log(responseAsJson);
+	        })
+                .catch(function(error) {
+	             console.log('Looks like there was a problem: \n', error);
+                 });
+			}		
 			
+		},
 			
-			
-			
-		}
-	};
+	}	
+		
+
+	
 };
 
 export default getState;

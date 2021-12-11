@@ -16,9 +16,9 @@ const ChatForm = () => {
 	const [dialogmap, setDialogmap] = useState("");
 	const [userschat, setUserschat] = useState("");
 	const [userdestiny,setUserdestiny]=useState("")
-	const [usersender,setUsersender]=useState(2)
+	const [usersender,setUsersender]=useState(store.user.id)
 	
-
+    console.log(store.user)
 
 	const add_data=(userdestiny)=>{
 		if (message!="") {
@@ -57,14 +57,16 @@ const ChatForm = () => {
 	}
     
 	useEffect(()=>{
-		actions.getUsers()
+		
 
+		return getdata()
+       
 	},[])
 	
 
 	useEffect(()=>{
-		
 		getdata()
+		
 	},[userdestiny])
 
 	useEffect(

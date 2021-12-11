@@ -24,6 +24,19 @@ def get_accounts():
   all_accounts=[account.to_dict() for account in accounts]
   return jsonify(all_accounts), 200
 
+@api.route('/account/<int:id>', methods=[ 'GET'])
+def get_account(id):
+
+  account= Account.get_account_by_id(id)
+
+  if account:
+      account= account.to_dict()
+      return jsonify(account), 200
+  
+  
+
+  
+
 
     
 
