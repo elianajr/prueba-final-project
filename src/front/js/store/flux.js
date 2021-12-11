@@ -14,7 +14,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.catch(error => console.log("Error loading message from backend", error));
 			},
 			getUsers:()=>{
-				fetch('https://3001-blue-possum-td8j7tcj.ws-eu21.gitpod.io/api/account')
+				fetch('https://3001-blue-possum-td8j7tcj.ws-eu23.gitpod.io/api/account')
 	        .then(function(response) {
 		          if (!response.ok) {
 	              throw Error(response.statusText);
