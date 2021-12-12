@@ -41,11 +41,13 @@ const getState = ({ getStore, getActions, setStore }) => {
     // Read the response as json.
 	              return response.json();
 	        })
-	            .then(function(responseAsJson) {
+	        .then(function(responseAsJson) {
+				if (id){
 					setStore({ user: responseAsJson });
 	                console.log(responseAsJson);
+				}		
 	        })
-                .catch(function(error) {
+            .catch(function(error) {
 	             console.log('Looks like there was a problem: \n', error);
                  });
 			}		

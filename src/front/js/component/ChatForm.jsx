@@ -16,9 +16,10 @@ const ChatForm = () => {
 	const [dialogmap, setDialogmap] = useState("");
 	const [userschat, setUserschat] = useState("");
 	const [userdestiny,setUserdestiny]=useState("")
-	const [usersender,setUsersender]=useState(store.user.id)
+	const [usersender,setUsersender]=useState("")
+	const [currentuser,setCurrentuser]=useState('')
 	
-    console.log(store.user)
+    
 
 	const add_data=(userdestiny)=>{
 		if (message!="") {
@@ -55,13 +56,19 @@ const ChatForm = () => {
 		  });
 		
 	}
-    
-	useEffect(()=>{
-		
 
+	useEffect( async()=>{
+        await actions.getUser(2)
+        await actions.getUsers()
+        
 		return getdata()
-       
-	},[])
+    },[])
+
+	useEffect(()=>{
+		setCurrentuser(store.user)
+		setUsersender(store.user.id)
+	},[store.user])
+    
 	
 
 	useEffect(()=>{
@@ -114,7 +121,10 @@ const ChatForm = () => {
 	return (
 		<div className="chatback">
 			<div className="chat__header">
-				<div className="leftchatheader" />
+				<div className="chat__sender">
+					<span>
+					</span>
+				</div>
 				<div className="chat__receiver" />
 			</div>
 			<div className="chat__section">

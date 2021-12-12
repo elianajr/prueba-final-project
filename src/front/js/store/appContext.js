@@ -29,8 +29,10 @@ const injectContext = PassedComponent => {
 			 * store, instead use actions, like this:
 			 **/
 			state.actions.getMessage();
-			state.actions.getUsers();
-			state.actions.getUser(2)
+			
+			
+			
+			
 			 
 		}, []);
 

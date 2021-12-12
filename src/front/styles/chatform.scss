@@ -1,7 +1,11 @@
-.leftchatheader{
+.chat__sender{
     width: 20rem;
     background:white;
     border: 1px solid rgba(0, 0, 0,0.1);
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
    
 }
 
@@ -73,7 +77,26 @@
     -webkit-border-radius: 10px;
     border-radius: 10px;
     border: 1px solid rgba(0, 0, 0,0.1);
-   background-color: rgba($color: #000000, $alpha: 0.1);
+   background-color: #EDF5F5
+}
+
+.chat__message .recieved{
+    border:1px solid rgba(0, 0, 0,0.1); 
+    margin-bottom: 0.75rem;
+    width: 5rem;
+    height: 3.5rem;
+    display: table;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    margin-left: 1rem;
+    padding: 1em 1em 1em 1em;
+    -moz-border-radius: 8%;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    border: 1px solid rgba(0, 0, 0,0.1);
+   background-color: #f1edf5
+
 }
 
 .chatuser{
