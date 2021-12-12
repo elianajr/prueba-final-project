@@ -11,6 +11,10 @@ import HotSpot from "./pages/hotspot.jsx";
 import Forecast from "./pages/forecast.jsx";
 import injectContext from "./store/appContext";
 import { AboutUs } from "./pages/aboutus.jsx";
+import { Surf } from "./pages/surf.jsx";
+import { Kitesurf } from "./pages/kitesurf.jsx";
+import { Snorkel } from "./pages/snorkel.jsx";
+import { Scuba } from "./pages/scuba.jsx";
 
 
 //create your first component
@@ -26,6 +30,10 @@ const Layout = () => {
 				<Route path="/hotspot" element={<HotSpot />} />
 				<Route path="/forecast" element={<Forecast />} />
 				<Route path="/aboutus" element={<AboutUs />} />
+				<Route path="/surf" element={<Surf/>}/>
+				<Route path="/kitesurf" element={<Kitesurf/>}/>
+				<Route path="/snorkel" element={<Snorkel/>}/>
+				<Route path="/diving" element={<Scuba/>}/>
 			</Routes>
 		</BrowserRouter>
 	);
