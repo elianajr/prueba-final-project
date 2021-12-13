@@ -15,6 +15,7 @@
     width: 80%;
     border: none;
     font-size: 18px;
+    display: block;
 }
 
 .searchBar-container__button{
@@ -33,4 +34,24 @@
     border: none;
     color: #006184;
     font-size: 1.5rem;
+}
+
+.dataresult{
+    height: 3rem;
+    overflow: hidden;
+    overflow-y: auto;
+    background: white;
+    display: inline-block;
+    position: absolute;
+    left: 3rem;
+}
+
+.filterlink{
+
+    color: black;
+}
+
+.SearchBar__wrapper{
+    position: relative;
+    top: 1rem;
 }
