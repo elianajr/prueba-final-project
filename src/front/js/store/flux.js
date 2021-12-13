@@ -2,18 +2,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 			message: null,
-			demo: [
-				{
-					title: "FIRST",
-					background: "white",
-					initial: "white"
-				},
-				{
-					title: "SECOND",
-					background: "white",
-					initial: "white"
-				}
-			]
+			url:'https://3001-blue-possum-td8j7tcj.ws-eu23.gitpod.io/api/account'
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -28,20 +17,24 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(data => setStore({ message: data.message }))
 					.catch(error => console.log("Error loading message from backend", error));
 			},
-			changeColor: (index, color) => {
-				//get the store
-				const store = getStore();
-
-				//we have to loop the entire demo array to look for the respective index
-				//and change its color
-				const demo = store.demo.map((elm, i) => {
-					if (i === index) elm.background = color;
-					return elm;
-				});
-
-				//reset the global store
-				setStore({ demo: demo });
+			getUsers:()=>{
+				fetch(getStore().url)
+	        .then(function(response) {
+		          if (!response.ok) {
+	              throw Error(response.statusText);
+	        }
+    // Read the response as json.
+	              return response.json();
+	        })
+	            .then(function(responseAsJson) {
+					setStore({ users: responseAsJson });
+	                console.log(responseAsJson);
+	        })
+                .catch(function(error) {
+	             console.log('Looks like there was a problem: \n', error);
+                 });
 			}
+			
 		}
 	};
 };

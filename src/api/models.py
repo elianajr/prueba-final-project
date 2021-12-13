@@ -1,15 +1,20 @@
-from enum import Enum 
+from enum import Enum
 
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.dialects import postgresql
 
+# import os
+# import sys
+# from sqlalchemy.ext.declarative import declarative_base
+# from sqlalchemy.dialects.postgresql import VARCHAR
+# from sqlalchemy.orm import relationship
+# from sqlalchemy import Column, ForeignKey, Integer, String, Enum, Boolean, Table, Text
+# #Import del cifrado de la password
+from werkzeug.security import check_password_hash
+
 db = SQLAlchemy()
 
-class Level(Enum):
-    beginner = "Beginner"
-    intermediate = "Intermediate"
-    advanced = "Advanced"
-    professional = "Professional"
+
 
 species_hotspot = db.Table('species_hotspot',
     db.Column('specie_id', db.Integer, db.ForeignKey('specie.id'), primary_key=True),
@@ -52,56 +57,51 @@ class Account(db.Model):
 
 
     def __repr__(self):
-        return f'Account {self.email}, id: {self.id}, username: {self.username}, sport_id: {self.sport_id}, level: {self.level}, photo: {self.photo}, chat_id: {self.chat_id}' 
+        return f'Account {self.email}, id: {self.id}, username: {self.username}, sport_id: {self.sport_id}, photo: {self.photo}'
 
     def to_dict(self):
         return {
             "id": self.id,
             "email": self.email,
-            "username": self.username, 
-            "sport_id": self.sport_id, 
-            "level": self.level, 
-            "chat_id": self.chat_id,
+            "username": self.username,
+            "sport_id": self.sport_id,
             "photo": self.photo,
-            "waterdropper": [waterdropper.to_dict() for waterdropper in has_waterdropper]
         }
 
-    # @classmethod
-    # def get_by_email(cls,email):
-    #     account = cls.query.filter_by(email=email).one_or_none()
-    #     return account
+    @classmethod
+    def get_by_email(cls,email):
+        account = cls.query.filter_by(email=email).one_or_none()
+        return account
+
+    @classmethod
+    def get_account_by_id(cls,id):
+        account = cls.query.get(id)
+        return account
     
-    # @classmethod
-    # def get_account_by_id(cls,id):
-    #     account = cls.query.get(id)
-    #     return account
+    @classmethod
+    def get_all(cls):
+        all_accounts=cls.query.all()
+        return all_accounts
 
-    # def create(self):
-    #     db.session.add(self)
-    #     db.session.commit()
-    #     return self
+    def create(self):
+        db.session.add(self)
+        db.session.commit()
+        return self
 
-    # def update_account(self, **kwargs):
-    #     print(kwargs)
-    #     for key, value in kwargs.items():
-    #         setattr(self, key, value)
-    #     db.session.commit()
-    #     return self
+    def soft_delete(self):
+        self._is_active = False
+        db.session.commit()
+        return self
 
-    # def soft_delete(self):
-    #     self._is_active = False
-    #     db.session.commit()
-    #     return self
 
-    
-    
+
 class Waterdropper(db.Model):
     __tablename__: "waterdropper"
 
     id = db.Column(db.Integer, primary_key=True)
     first_name = db.Column(db.String(), unique=False, nullable=False)
     last_name = db.Column(db.String(), unique=False, nullable=False)
-    level = db.Column(db.Enum(Level, name="levels"), nullable=False)
+    level = db.Column(db.Enum('Beginner', 'Intermediate', 'Advanced', 'Professional', name='levels'), nullable=False)
     location = db.Column(db.String(), unique=False, nullable=False)
     account_id = db.Column(db.Integer, db.ForeignKey("account.id"), nullable=False)
 
@@ -109,14 +109,14 @@ class Waterdropper(db.Model):
     have_waterdropper_favspot = db.relationship('Hotspot', secondary=waterdropper_fav_spot, back_populates="have_favspot_waterdropper")
 
     def __repr__(self):
-        return f'Waterdropper is first_name: {self.first_name}, last_name: {self.last_name}, account_id: {self.account_id}, level: {self.level}, location: {self.location}' 
+        return f'Waterdropper is first_name: {self.first_name}, last_name: {self.last_name}, account_id: {self.account_id}, level: {self.level}, location: {self.location}'
 
     def to_dict(self):
         return {
             "id": self.id,
             "account_id": self.account_id,
-            "first_name": self.first_name, 
-            "last_name": self.last_name, 
+            "first_name": self.first_name,
+            "last_name": self.last_name,
             "level": self.level,
             "location": self.location
         }
@@ -131,9 +131,9 @@ class Center(db.Model):
 
     have_favcenter_waterdropper = db.relationship('Waterdropper', secondary=waterdropper_fav_center, back_populates="have_waterdropper_favcenter")
     has_reviews = db.relationship("Review_Center")
-    
+
     def __repr__(self):
-        return f'Center is account_id: {self.account_id}, address: {self.address}' 
+        return f'Center is account_id: {self.account_id}, address: {self.address}'
 
     def to_dict(self):
         return {
@@ -149,30 +149,29 @@ class Hotspot(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(), unique=False, nullable=False)
     photo = db.Column(db.Text(), unique=False, nullable=False)
-    level = db.Column(db.Enum(Level, name="levels"), nullable=False)
+    level = db.Column(db.Enum('Beginner', 'Intermediate', 'Advanced', "Professional", name='levels'), nullable=False)
     description = db.Column(db.String(), unique=False, nullable=False)
     geometry = db.Column(postgresql.ARRAY(db.Float(), dimensions=2), unique=False, nullable=True)
     account_id = db.Column(db.Integer, db.ForeignKey("account.id"), nullable=False)
-    sport_id = db.Column(db.Integer, db.ForeignKey("sport.id"), nullable=True) 
-    
+    sport_id = db.Column(db.Integer, db.ForeignKey("sport.id"), nullable=True)
+
     have_favspot_waterdropper = db.relationship('Waterdropper', secondary=waterdropper_fav_spot, back_populates="have_waterdropper_favspot")
     have_hotspot_specie = db.relationship('Specie', secondary=species_hotspot, back_populates="have_specie_hotspot")
     has_reviews_spot = db.relationship("Review_Hotspot")
 
     def __repr__(self):
-        return f'Hotstop {self.id}, specie_id: {self.specie_id}, account_id: {self.account_id}, sport_id: {self.sport_id}, name: {self.name},  level: {self.level}, despcription: {self.despcription}, photo: {self.photo}, location: {self.location}, geometry: {self.geometry}' 
+        return f'Hotstop {self.id}, specie_id: {self.specie_id}, account_id: {self.account_id}, sport_id: {self.sport_id}, name: {self.name},  level: {self.level}, despcription: {self.despcription}, photo: {self.photo}, geometry: {self.geometry}'
 
     def to_dict(self):
         return {
             "id": self.id,
-            "sport_id": self.sport_id, 
-            "specie_id": self.specie_id, 
+            "sport_id": self.sport_id,
+            "specie_id": self.specie_id,
             "account_id": self.account_id,
             "name": self.name,
-            "photo": self.photo, 
+            "photo": self.photo,
             "level": self.level,
             "despcription": self.despcription,
-            "location": self.location,
             "geometry": self.geometry
         }
 
@@ -189,15 +188,15 @@ class Specie(db.Model):
     have_specie_hotspot = db.relationship('Hotspot', secondary=species_hotspot, back_populates="have_hotspot_specie")
 
     def __repr__(self):
-        return f'Specie {self.id}, name: {self.name}, photo: {self.photo}, description: {self.description}, is_reported: {self.is_reported}' 
+        return f'Specie {self.id}, name: {self.name}, photo: {self.photo}, description: {self.description}, is_reported: {self.is_reported}'
 
     def to_dict(self):
         return {
             "id": self.id,
             "name": self.name,
-            "photo": self.photo, 
-            "description": self.description, 
-            "is_reported": self.is_reported 
+            "photo": self.photo,
+            "description": self.description,
+            "is_reported": self.is_reported
         }
 
 
@@ -208,10 +207,10 @@ class Sport(db.Model):
     name = db.Column(db.String(), unique=False, nullable=False)
 
     have_sport_account = db.relationship('Account', secondary=account_sport, back_populates="have_account_sport")
-    
+
 
     def __repr__(self):
-        return f'Sport {self.id}, name: {self.name}' 
+        return f'Sport {self.id}, name: {self.name}'
 
     def to_dict(self):
         return {
@@ -226,13 +225,13 @@ class News(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     photo = db.Column(db.Text(), unique=False, nullable=False)
     description = db.Column(db.String(), unique=False, nullable=False)
-    
+
     def __repr__(self):
-        return f'New {self.id}, photo: {self.photo}, description: {self.description}' 
+        return f'News {self.id}, photo: {self.photo}, description: {self.description}'
 
     def to_dict(self):
         return {
-            "id": self.id
+            "id": self.id,
             "photo": self.photo,
             "description": self.description
         }
@@ -248,17 +247,17 @@ class Review_Center(db.Model):
     center_id = db.Column(db.Integer, db.ForeignKey("center.id"), primary_key=True)
 
     written_by_waterdropper = db.relationship("Waterdropper")
-    
+
 
     def __repr__(self):
-        return f'Review_Center is center_id: {self.center_id}, waterdropper_id: {self.waterdropper_id}, message: {self.message}, date: {self.date}, puntuation: {self.puntuation}' 
+        return f'Review_Center is center_id: {self.center_id}, waterdropper_id: {self.waterdropper_id}, message: {self.message}, date: {self.date}, puntuation: {self.puntuation}'
 
     def to_dict(self):
         return {
             "id": self.id,
             "center_id": self.center_id,
             "waterdropper_id": self.waterdropper_id,
-            "message": self.message, 
+            "message": self.message,
             "date": self.date,
             "puntuation": self.puntuation
         }
@@ -273,17 +272,17 @@ class Review_Hotspot(db.Model):
     hotspot_id = db.Column(db.Integer, db.ForeignKey("hotspot.id"), primary_key=True)
 
     written_by_waterdropper = db.relationship("Waterdropper")
-    
+
 
     def __repr__(self):
-        return f'Review_Hotspot is hotspot_id: {self.hotspot_id}, waterdropper_id: {self.waterdropper_id}, message: {self.message}, date: {self.date}, puntuation: {self.puntuation}' 
+        return f'Review_Hotspot is hotspot_id: {self.hotspot_id}, waterdropper_id: {self.waterdropper_id}, message: {self.message}, date: {self.date}, puntuation: {self.puntuation}'
 
     def to_dict(self):
         return {
             "id": self.id,
             "hotspot_id": self.hotspot_id,
             "waterdropper_id": self.waterdropper_id,
-            "message": self.message, 
+            "message": self.message,
             "date": self.date,
             "puntuation": self.puntuation
         }
