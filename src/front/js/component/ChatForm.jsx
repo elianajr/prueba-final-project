@@ -45,9 +45,8 @@ const ChatForm = () => {
 			querySnapshot.forEach((doc) => {
 				chat.push(doc.data());
 			});
-			const result = chat.filter(doc=>(doc.id_user==usersender && doc.id_receiver==userdestiny)||(doc.id_user==userdestiny && doc.id_receiver==usersender))
-			const conversation= result.map(doc=>doc.text)
-			console.log(conversation)
+			const conversation = chat.filter(doc=>(doc.id_user==usersender && doc.id_receiver==userdestiny)||(doc.id_user==userdestiny && doc.id_receiver==usersender))
+			
 			if (conversation.length>0) {
 				setDialog(conversation)
 			} else{
@@ -106,8 +105,8 @@ const ChatForm = () => {
 				dialog.map((element, index) => {
 					return (
 						<div
-						 className="chat__message" key={index.toString()}>
-							{element}
+						 className={`chat__message ${element.id_user!=currentuser.id? 'received':''}`}  key={index.toString()}>
+							{element.text}
 						</div>
 					);
 				})

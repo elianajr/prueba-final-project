@@ -71,7 +71,7 @@
     justify-content: center;
     align-items: center;
     align-content: center;
-    margin-left: 1rem;
+    margin-left: 17rem;
     padding: 1em 1em 1em 1em;
     -moz-border-radius: 8%;
     -webkit-border-radius: 10px;
@@ -80,10 +80,10 @@
    background-color: #EDF5F5
 }
 
-.chat__message .recieved{
+.received{
     border:1px solid rgba(0, 0, 0,0.1); 
     margin-bottom: 0.75rem;
-    width: 5rem;
+    width: 10rem;
     height: 3.5rem;
     display: table;
     justify-content: center;
@@ -95,7 +95,8 @@
     -webkit-border-radius: 10px;
     border-radius: 10px;
     border: 1px solid rgba(0, 0, 0,0.1);
-   background-color: #f1edf5
+   background-color: rgba(#FFFFFF, 0.9)
+    
 
 }
 
