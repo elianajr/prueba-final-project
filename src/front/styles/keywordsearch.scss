@@ -37,18 +37,21 @@
 }
 
 .dataresult{
-    height: 3rem;
+    height: 3.5rem;
+    top: 4.5rem;
+    position: absolute;
+    width: 26rem;
     overflow: hidden;
     overflow-y: auto;
-    background: white;
-    display: inline-block;
-    position: absolute;
-    left: 3rem;
+    background: rgba(44, 177, 170, 0.5);
 }
 
 .filterlink{
 
     color: black;
+    width: 100%;
+    margin-top: 1rem;
+    
 }
 
 .SearchBar__wrapper{

@@ -3,7 +3,7 @@ import { Context } from "../store/appContext";
 import '../../styles/keywordsearch.scss'
 
 
-
+//Está hecha para los usuarios, cuando tengamos los Hotspot lo adaptaremos.
 
 const Keywordsearch= ()=>{
 
@@ -31,9 +31,7 @@ const Keywordsearch= ()=>{
 		}
 	};
 
-
-       
-      
+   
 
     return(
         <div className="SearchBar__wrapper">
@@ -50,7 +48,7 @@ const Keywordsearch= ()=>{
             <div className="dataresult">
                 {filterdata.map((value, key) => {
                     return (
-                        <div className="filterlink" key={value.id} onClick={lookfor}>
+                        <div className="filterlink" key={value.id} onClick={()=>location.replace(store.fronturl.concat(`hotspot/${value.id}`))}> 
                             {value.username}
                         </div>
                     );
