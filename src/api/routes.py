@@ -21,21 +21,7 @@ api = Blueprint('api', __name__)
 
 @api.route('/login', methods=['POST'])
 def login():
-    # email = request.json.get("email", None)
-    # password = request.json.get("password", None)
-
-    # if email and password:
-    #     account = Account.get_by_email(email)
-
-    #     if account:
-    #         '''check password'''
-    #         access_token = create_access_token(identity=account.to_dict(), expires_delta=timedelta(hours=12))
-    #         return jsonify({'token': access_token}), 200
-
-    #     return jsonify({'error':'Not found'}), 200
-
-    # return jsonify({"msg": "Wrong username or password"}), 401
-
+    
     email = request.json.get('email', None)
     password = request.json.get('password', None)
 
@@ -57,50 +43,78 @@ def create_account():
     email = request.json.get("email", None)
     password = request.json.get("password", None)
     username = request.json.get("username", None)
-    sport_id = request.json.get("sport", None)
+    photo = request.json.get("photo", None)
+    is_waterdropper = request.json.get("userType", None)
+    sports = request.json.get("sports", None)
 
-    if not (email and username and sport_id and password):
+    if not (email or password or username or is_waterdropper):
         return {'error': 'Missing info'}, 400
 
     account = Account.get_by_email(email)
-    if account and not account.is_active:
-        account.reactive_account(username, sport_id, password)
+    if account and not account._is_active:
+        account.reactive_account(username, photo, is_waterdropper, password)
         return jsonify(account.to_dict()), 200
-     
+    
+    if is_waterdropper == "waterdropper": 
+        is_waterdropper = True
+    else:
+        is_waterdropper = False
+        
     new_account = Account(
-                email=email, 
-                password=password, 
-                username=username, 
-                sport_id=sport_id
-            )
+        email=email, 
+        _is_active=True,
+        _password=generate_password_hash(password, method='pbkdf2:sha256', salt_length=16),
+        username=username, 
+        _is_waterdropper=is_waterdropper
+    )
+    
     try:
-        new_account.create()
-        return jsonify(new_account.to_dict()), 201
+        new_account.create(sports) 
+        print("aquiii", new_account)
+        if is_waterdropper:
+            first_name = request.json.get("firstname", None)
+            last_name = request.json.get("lastname", None)
+            level = request.json.get("level", None)
+            location = request.json.get("location", None)
+            
+            new_waterdropper = Waterdropper(
+                account_id=new_account.id,
+                first_name=first_name,
+                last_name=last_name,
+                level=level,
+                location=location
+            )
+            try:
+                new_waterdropper.create_waterdropper()
+                token = create_access_token(identity=new_waterdropper.to_dict(), expires_delta=timedelta(minutes=100))
+                return jsonify({'token': token, 'account': new_waterdropper.to_dict()}), 201
 
-    except exc.IntegrityError:
+            except exc.IntegrityError as err:
+                print(f"Unexpected {err=}, {type(err)=}")
+                return {'error': 'Something went wrong waterdropper'}, 401
+        else:
+            address = request.json.get("address", None)
+            phone = request.json.get("phone", None)
+            web = request.json.get("web", None)
+            new_center = Center(
+                account_id=new_account.id,
+                address=address,
+                phone=phone,
+                web=web
+            )
+            print(new_center)
+            try:
+                new_center.create_center()
+                token = create_access_token(identity=new_center.to_dict(), expires_delta=timedelta(minutes=100))
+                return jsonify({'token': token, 'account': new_center.to_dict()}), 201
+
+            except exc.IntegrityError as err:
+                print(f"Unexpected {err=}, {type(err)=}")
+                return {'error': 'Something went wrong center'}, 401
+    
+    except exc.IntegrityError as err:
+        print(f"Unexpected {err=}, {type(err)=}")
         return {'error': 'Something went wrong'}, 401
-
-
-    # if not (email and password and username and name and sport_id):
-    #     return {"error":"Missing info"}, 400
-
-    # new_user = Account(
-    #     email=email,
-    #     _password = generate_password_hash(password, method='pbkdf2:sha256', salt_length=16),
-    #     username=username,
-    #     sport_id=sport_id
-    # )
-
-    # try:
-    #     new_user.create()
-    # except exc.IntegrityError: 
-    #     return {"error":"something went wrong"}, 409
-
-    # account = Account.get_by_email(email)
-
-    # if account :
-    #     token = create_access_token(identity=account.to_dict(), expires_delta=timedelta(minutes=100))
-    #     return({'token' : token}), 200
 
 
 @api.route('/account/<int:id>', methods=["GET"])
@@ -115,40 +129,4 @@ def get_account_profile(id):
 
 
 
-@api.route('/account/<int:id>', methods = ['PUT', 'PATCH'])
-@jwt_required()
-def update_account_info(id):
-    current_account = get_jwt_identity()
 
-    if current_account != id:
-        return {'error': 'Invalid action'}, 400
-
-    update_info = {
-        'email': request.json.get('email', None),
-        'username': request.json.get('username', None),
-        'sport_id': request.json.get('sport_id', None),
-        'password': request.json.get('password', None),
-    }
-
-    account = Account.get_by_id(id)
-
-    if account:
-        updated_account =  account.update(**{
-                            key:value for key, value in update_info.items() 
-                            if value is not None
-                        })
-        return jsonify(updated_account.to_dict()), 200
-
-    return {'error': 'User not found'}, 400
-
-
-@api.route('/account/<int:id>', methods = ['PATCH'])
-@jwt_required
-def update_account_status(id):
-    account_inactive = Account.get_account_by_id(id)
-
-    if account_inactive:
-        account_inactive.soft_delete()
-        return jsonify(account_inactive.to_dict()), 200
-
-    return jsonify({'error' : 'Account not found'}), 404

@@ -6,27 +6,28 @@ const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 			baseUrl: `${PROTOCOL}://${PORT}-${HOST}/api/`,
+			frontUrl: "https://3000-cyan-lobster-g63lf7ls.ws-eu21.gitpod.io/",
 			currentUser: "",
-			token: ""
+			token: "",
+			favourites: [],
 		},
 
 		actions: {
-			// login: data => {
-			// 	// const redirect = () => {
-			// 	// 	if (localStorage.getItem("token") != null) {
-			// 	// 		window.location = getStore().domainURL.concat("controlpage");
-			// 	// 	}
-			// 	// };
+			// register: data => {
+			// 	const redirect = () => {
+			// 		if (localStorage.getItem("token") != null) {
+			// 			window.location = getStore().frontUrl;
+			// 		}
+			// 	};
 			// 	const tokenDecode = token => {
 			// 		let decoded = jwt_decode(token);
 			// 		return decoded;
 			// 	};
 			// 	const setUserFromToken = token => {
 			// 		localStorage.setItem("Id", token.sub.id);
-			// 		localStorage.setItem("Name", token.sub.first_name);
 			// 	};
 
-			// 	fetch(getStore().baseURL.concat("login"), {
+			// 	fetch(getStore().baseUrl.concat("account"), {
 			// 		method: "POST",
 			// 		headers: new Headers({
 			// 			"Content-Type": "application/json"
@@ -34,7 +35,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			// 		body: JSON.stringify(data)
 			// 	})
 			// 		.then(resp => {
-			// 			if (resp.status === 200) {
+			// 			if (resp.status === 201) {
 			// 				console.log(resp);
 			// 				return resp.json();
 			// 			} else if (resp.status === 401) {
@@ -48,8 +49,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 			// 			const tokenDecoded = tokenDecode(data.token);
 			// 			setUserFromToken(tokenDecoded);
 			// 			redirect();
-			//		console.log("this came from the backend", data);
-			//		setStore({ token : data.token });
+			// 			console.log("this came from", data);
+			// 			setStore({ token : data.token });
+						
+			// 			// localStorage.setItem("token", data.token);
+			// 			// setStore({ token : data.token });
+
+			// 			localStorage.setItem("currentUser", JSON.stringify(data.account));
+			// 			setStore({ currentUser : data.account});
 			// 		})
 			// 		.catch(error => {
 			// 			alert("hey");
@@ -58,7 +65,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			// },
 
 			syncTokenFromSessionStore: () => {
-				const token = sessionStorage.getItem("token");
+				const token = localStorage.getItem("token");
 				console.log("App loaded, store token");
 				if(token && token != 0 && token != null) {
 					setStore({ token : token })
@@ -67,7 +74,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			
 			logout: () => {
 				// if (sessionStorage.getIem("token")) {
-					sessionStorage.removeItem("token");
+					localStorage.removeItem("token");
 					console.log("loging out");
 					setStore({ token : null });
 				// }
@@ -79,12 +86,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					headers: new Headers({
 						'Content-Type': 'application/json'
 					}),
-					body: JSON.stringify(data
-						// {
-						// 	email: email,
-						// 	password: password
-						// }
-						)
+					body: JSON.stringify(data)
 				};
 
 				try{
@@ -96,7 +98,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 					const data = await resp.json();
 					console.log("this came from the backend", data);
-					sessionStorage.setItem("token", data.token);
+					localStorage.setItem("token", data.token);
 					setStore({ token : data.token });
 					return true;
 				}
@@ -106,53 +108,61 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			},
 
-			// 	try {
-			// 		let response = await fetch(getStore().baseUrl.concat("login"),{
-			// 				method: 'POST',
-			// 				headers: new Headers({
-			// 					'Content-Type': 'application/json'
-			// 				}),
-			// 				body: JSON.stringify(data
-			// 					// {
-			// 					// 	email: email,
-			// 					// 	password: password
-			// 					// }
-			// 					)
-			// 			});
-			// 		console.log(response);
-
-			// 		if (response.ok) {
-			// 			let newUser = await response.json();
-			// 			setStore({ currentUser: newUser });
-			// 		}
-			// 	} catch (error) {
-			// 		console.log(error);
-			// 	}
-			// },
-
 			register: async data => {
-				try {
-					let response = await fetch(getStore().baseUrl.concat("account"),{
-							method: 'POST',
-							mode: 'cors',
-							redirect: 'follow',
-							headers: new Headers({
-								'Content-Type': 'application/json'
-							}),
-							body: JSON.stringify(data)
-						});
-					console.log(response);
+				const opt = {
+					method: 'POST',
+					headers: new Headers({
+						'Content-Type': 'application/json'
+					}),
+					body: JSON.stringify(data)
+				};
 
-					if (response.ok) {
-						let newUser = await response.json();
-						setStore({ currentUser: newUser });
+				try{
+					const resp = await fetch(getStore().baseUrl.concat("account"), opt)
+					if (resp.status !== 201) {
+						alert("There has been some error");
+						return false;
 					}
-				} catch (error) {
-					console.log(error);
+
+					const data = await resp.json();
+
+					localStorage.setItem("token", data.token);
+					setStore({ token : data.token });
+
+					localStorage.setItem("currentUser", JSON.stringify(data.account));
+					setStore({ currentUser : data.account});
+
+					return true;
 				}
+				catch(error){
+					console.error("There was an error!!", error);
+					}
+
+			},
+			
+
+			
+			addFavourites: name => {
+				if (
+					!getStore().favourites.find(favourite => {
+						return favourite == name;
+					})
+				) {
+					setStore({ favourites: [...getStore().favourites, name] });
+				}
+			},
+
+			deleteFavourites: deleted => {
+				setStore({
+					favourites: getStore().favourites.filter(item => item != deleted)
+				});
 			}
+
 		}
 	};
+
+
+
 	// return {
 	// 	store: {
 	// 		message: null,

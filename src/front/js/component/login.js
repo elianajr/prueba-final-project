@@ -1,6 +1,6 @@
 import React , { useState, useContext } from "react";
 import { useForm } from "react-hook-form";
-import { Link, useNavigate, useHistory } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Context } from "../store/appContext.js";
 import "../../styles/registerlogin.scss";
 
@@ -26,21 +26,22 @@ const Login = () => {
 		// })
 	};
 
-	if(store.token && store.token !="" && store.token != null) {navigate("/")};
+	// if(store.token && store.token !="" && store.token != null) {navigate("/")};
 
 
 	return (
-		<div className="register-login">
-			<form onSubmit={handleSubmit(onSubmit)}>
+		<div className="register-login-form">
+			<form className="register-login" onSubmit={handleSubmit(onSubmit)}>
 				<h2 className="tittle-logreg">SIGN IN TO WDS</h2>
 
 				<div className="form-group">
-					<label htmlFor="email">Email</label>
+					<label htmlFor="email" className="label-relog">Email</label>
 					<input
 						type="text"
 						name="email"
 						id="email"
 						placeholder="example@gmail.com"
+						className="input-reglog"
 						{...register("email", { required: true, pattern: /[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/ })}
 					/>
 					{errors.email && errors.email.type === "required" && (
@@ -51,10 +52,10 @@ const Login = () => {
 					)}
 				</div>
 				<div className="form-group">
-					<label htmlFor="password">Password</label>
+					<label htmlFor="password" className="label-relog">Password</label>
 					<div className="right-inner-addon input-container">
 					<input
-						className="input-password"
+						className="input-password input-reglog"
 						type={isRevealPwd ? "text" : "password"}
 						name="password"
 						id="password"

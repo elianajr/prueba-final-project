@@ -5,14 +5,6 @@ from sqlalchemy.dialects import postgresql
 from sqlalchemy.ext.hybrid import hybrid_property
 from werkzeug.security import generate_password_hash
 
-# import os
-# import sys
-# from sqlalchemy.ext.declarative import declarative_base
-# from sqlalchemy.dialects.postgresql import VARCHAR
-# from sqlalchemy.orm import relationship
-# from sqlalchemy import Column, ForeignKey, Integer, String, Enum, Boolean, Table, Text
-# #Import del cifrado de la password
-from werkzeug.security import check_password_hash
 
 db = SQLAlchemy()
 
@@ -55,37 +47,24 @@ class Account(db.Model):
     photo = db.Column(db.Text(), unique=False, nullable=True)
     _is_active = db.Column(db.Boolean(), unique=False, nullable=False, default=True)
     _is_waterdropper = db.Column(db.Boolean(), unique=False, nullable=False)
-    sport_id = db.Column(db.Integer, db.ForeignKey("sport.id"), nullable=False)
 
     has_waterdropper = db.relationship('Waterdropper', backref="account")
     has_center = db.relationship('Center', backref="account")
-    have_account_sport = db.relationship('Sport', secondary=account_sport, back_populates="have_sport_account")
+    have_account_sport = db.relationship('Sport', secondary=account_sport, back_populates="have_sport_account", lazy='dynamic')
 
 
     def __repr__(self):
-        return f'Account {self.email}, id: {self.id}, username: {self.username}, sport_id: {self.sport_id}, photo: {self.photo}, waterdropper: {self._is_waterdropper}'
+        return f'Account is email: {self.email}, id: {self.id}, password: {self._password}, username: {self.username}, photo: {self.photo}, waterdropper: {self._is_waterdropper}'
 
     def to_dict(self):
         return {
-            "id": self.id,
-            "email": self.email,
-            "username": self.username,
-            "sport_id": self.sport_id,
-            "photo": self.photo,
-            "waterdropper": [waterdropper.to_dict() for waterdropper in self.has_waterdropper]
+            "id": self.id
+            # "email": self.email,
+            # "username": self.username,
+            # "photo": self.photo,
+            # "waterdropper": [waterdropper.to_dict() for waterdropper in self.has_waterdropper]
         }
 
-    @hybrid_property
-    def password(self):
-        return self._password
-
-    @password.setter
-    def password(self, password):
-        self._password = generate_password_hash(
-                password, 
-                method='pbkdf2:sha256', 
-                salt_length=16
-            )
 
     @classmethod
     def get_by_email(cls,email):
@@ -97,7 +76,12 @@ class Account(db.Model):
         account = cls.query.get(id)
         return account
 
-    def create(self):
+    def create(self, sports):
+        for sport in sports:
+            table_sport = Sport.get_sport_by_name(sport)
+            if table_sport:
+                self.have_account_sport.append(table_sport)
+
         db.session.add(self)
         db.session.commit()
         return self
@@ -117,8 +101,13 @@ class Account(db.Model):
     def reactive_account(self, username, sport_id, password):
         self.username = username
         self.sport_id = sport_id
+        self.photo = photo
         self.password = password
-        self.is_active = True
+        self._is_active = True
+        db.session.commit()
+
+    def delete(self):
+        db.session.delete(self)
         db.session.commit()
 
 
@@ -128,8 +117,9 @@ class Waterdropper(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     first_name = db.Column(db.String(), unique=False, nullable=False)
     last_name = db.Column(db.String(), unique=False, nullable=False)
+    level = db.Column(db.String(), unique=False, nullable=False)
     # level = db.Column(db.Enum(Level, name="levels"), nullable=False)
-    level = db.Column(db.Enum("Beginner", "Intermediate", "Advanced", "Professional", name="levels"), nullable=False)
+    # level = db.Column(db.Enum("Beginner", "Intermediate", "Advanced", "Professional", name="levels"), nullable=False)
     location = db.Column(db.String(), unique=False, nullable=False)
     account_id = db.Column(db.Integer, db.ForeignKey("account.id"), nullable=False)
 
@@ -140,35 +130,96 @@ class Waterdropper(db.Model):
         return f'Waterdropper is first_name: {self.first_name}, last_name: {self.last_name}, account_id: {self.account_id}, level: {self.level}, location: {self.location}'
 
     def to_dict(self):
+        account = Account.get_account_by_id(self.account_id)
         return {
             "id": self.id,
             "account_id": self.account_id,
+            "email": account.email,
+            "username": account.username,
+            "photo": account.photo,
+            # "waterdropper": [waterdropper.to_dict() for waterdropper in account.has_waterdropper],
             "first_name": self.first_name,
             "last_name": self.last_name,
             "level": self.level,
             "location": self.location
         }
 
+    @classmethod
+    def get_waterdropper_by_id(cls,id):
+        waterdropper = cls.query.get(id)
+        return waterdropper
+
+    def create_waterdropper(self):
+        db.session.add(self)
+        db.session.commit()
+        return self
+
+    def update_account_waterdropper(self, **kwargs):
+        print(kwargs)
+        for key, value in kwargs.items():
+            setattr(self, key, value)
+        db.session.commit()
+        return self
+
+    def add_fav_center(self,center):
+        self.have_waterdropper_favcenter.append(center)
+        db.session.commit()
+        return self.have_waterdropper_favcenter
+
+    def add_fav_hotspot(self,hotspot):
+        self.have_waterdropper_favspot.append(hotspot)
+        db.session.commit()
+        return self.have_waterdropper_favspot
+
+    def delete(self):
+        db.session.delete(self)
+        db.session.commit()
 
 class Center(db.Model):
     __tablename__: "center"
 
     id = db.Column(db.Integer, primary_key=True)
     address = db.Column(db.String(), unique=False, nullable=True)
+    phone = db.Column(db.String(), unique=False, nullable=True)
+    web = db.Column(db.String(), unique=False, nullable=True)
     account_id = db.Column(db.Integer, db.ForeignKey("account.id"), nullable=False)
 
     have_favcenter_waterdropper = db.relationship('Waterdropper', secondary=waterdropper_fav_center, back_populates="have_waterdropper_favcenter")
     has_reviews = db.relationship("Review_Center")
 
     def __repr__(self):
-        return f'Center is account_id: {self.account_id}, address: {self.address}'
+        return f'Center is account_id: {self.account_id}, address: {self.address}, phone: {self.phone}, web: {self.web}'
 
     def to_dict(self):
+        account = Account.get_account_by_id(self.account_id)
         return {
             "id": self.id,
             "account_id": self.account_id,
-            "address": self.address
+            "email": account.email,
+            "username": account.username,
+            "photo": account.photo,
+            "waterdropper": [waterdropper.to_dict() for waterdropper in account.has_waterdropper],
+            "address": self.address,
+            "phone": self.phone,
+            "web": self.web
         }
+
+    @classmethod
+    def get_center_by_id(cls,id):
+        center = cls.query.get(id)
+        return center
+
+    def create_center(self):
+        db.session.add(self)
+        db.session.commit()
+        return self
+
+    def update_account_center(self, **kwargs):
+        print(kwargs)
+        for key, value in kwargs.items():
+            setattr(self, key, value)
+        db.session.commit()
+        return self
 
 
 class Hotspot(db.Model):
@@ -204,6 +255,15 @@ class Hotspot(db.Model):
             "geometry": self.geometry
         }
 
+    @classmethod
+    def get_hotspot_by_id(cls,id):
+        hotspot = cls.query.get(id)
+        return hotspot
+
+    def delete(self):
+        db.session.delete(self)
+        db.session.commit()
+
 
 class Specie(db.Model):
     __tablename__: "specie"
@@ -229,6 +289,7 @@ class Specie(db.Model):
         }
 
 
+
 class Sport(db.Model):
     __tablename__: "sport"
 
@@ -247,6 +308,10 @@ class Sport(db.Model):
             "name": self.name
         }
 
+    @classmethod
+    def get_sport_by_name(cls,name):
+        sport = cls.query.filter_by(name=name).one_or_none()
+        return sport
 
 class News(db.Model):
     __tablename__: "news"
