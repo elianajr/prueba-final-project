@@ -4,8 +4,9 @@ import { db } from "./firebase";
 import { app } from "./firebase";
 import { doc, setDoc } from "firebase/firestore";
 import { Context } from "../store/appContext.js";
-import { collection, addDoc, serverTimestamp, onSnapshot, query, getDocs, orderBy, where } from "firebase/firestore";
+import { collection, addDoc, Timestamp, onSnapshot, query, getDocs, orderBy, where } from "firebase/firestore";
 import Card from '@mui/material/Card'
+import Moment from 'react-moment';
 
 
 const ChatForm = () => {
@@ -26,7 +27,7 @@ const ChatForm = () => {
 			const docRef = addDoc(collection(db, "messages"), {
 				text: message,
 				id_user: usersender,
-				time: serverTimestamp(),
+				time: Timestamp.fromDate(new Date()),
 				id_receiver: userdestiny,
 				chatusers:[usersender,userdestiny]
 			});
@@ -107,6 +108,7 @@ const ChatForm = () => {
 						<div
 						 className={`chat__message ${element.id_user!=currentuser.id? 'received':''}`}  key={index.toString()}>
 							{element.text}
+							<span><Moment fromNow>{element.time.toDate()}</Moment></span>
 						</div>
 					);
 				})
@@ -122,9 +124,11 @@ const ChatForm = () => {
 			<div className="chat__header">
 				<div className="chat__sender">
 					<span>
+						{currentuser.username}
 					</span>
 				</div>
 				<div className="chat__receiver" />
+				<span></span>
 			</div>
 			<div className="chat__section">
 				<div className="chat__users">
