@@ -84,7 +84,7 @@ const ChatForm = () => {
 					return (
 						<Card variant="outlined" key={index.toString()} className="chat__username">
 							<img className="chat__userimg" src={element.photo} />
-							<span onClick={()=>{setUserdestiny((element.id))}}> {element.username}</span>
+							<span className="chat__userselected" onClick={()=>{setUserdestiny((element.id))}}> {element.username}</span>
 						</Card>
 					);
 				})
@@ -105,11 +105,14 @@ const ChatForm = () => {
 			setDialogmap(
 				dialog.map((element, index) => {
 					return (
-						<div
-						 className={`chat__message ${element.id_user!=currentuser.id? 'received':''}`}  key={index.toString()}>
+						<div className="chat__messagewrapper" >
+							<div className={`chat__message ${element.id_user!=currentuser.id? 'received':''}`}
+						   key={index.toString()}>
 							{element.text}
-							<span><Moment fromNow>{element.time.toDate()}</Moment></span>
+						    </div>
+							<small className="chat__time"><Moment fromNow>{element.time.toDate()}</Moment></small>
 						</div>
+						
 					);
 				})
 			);
@@ -135,13 +138,14 @@ const ChatForm = () => {
 					<div>{userschat}</div>
 					
 				</div>
+				
 				<div className="chat__messages">
-					<div>{dialogmap}
+				{userdestiny? <div>{dialogmap}
 						<input
 							id="inputtext"
 							className="chat__inputmessage"
 							type="text"
-							placeholder="Send a message"
+							placeholder="Send a message ..."
 							onKeyPress={(event) => {
 								if (event.key == "Enter") {
 									if (event.target.value != "") {
@@ -152,7 +156,8 @@ const ChatForm = () => {
 								}
 							}}
 						/>
-					</div>
+					</div> :<p className="chat__introductiontext">Select a user to send a message</p>}
+					
 						
 				</div>
 			</div>

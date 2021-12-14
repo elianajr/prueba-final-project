@@ -1,18 +1,20 @@
 .chat__sender{
     width: 20rem;
     background:white;
-    border: 1px solid rgba(0, 0, 0,0.1);
+    border: 0.1rem solid rgba(0, 0, 0,0.1);
     font-weight: bold;
     display: flex;
     justify-content: center;
     align-items: center;
+    font-size: 1.25rem;
+    font-family: 'Roboto';
    
 }
 
 .chat__receiver{
-    width: 50rem;
+    width: 53.6rem;
     background:white;
-    border: 1px solid rgba(0, 0, 0,0.1);
+    border: 0.1rem solid rgba(0, 0, 0,0.1);
 
 }
 
@@ -31,73 +33,82 @@
 
 .chat__users{
     width: 20rem;
-    border: 1px solid rgba(0, 0, 0,0.1);
+    border: 0.1rem solid rgba(0, 0, 0,0.1);
     margin-left: 3rem;
     overflow-y: scroll;
+    font-family: 'Roboto Condensed';
+    font-weight: bold;
+    font-size: 700
     
 }
 
 .chat__messages{
-  width: 50rem;
+  width: 53.6rem;
   display: flex;
   align-items: flex-end;
-  border: 1px solid rgba(0, 0, 0,0.1);
+  border: 0.1rem solid rgba(0, 0, 0,0.1);
   overflow: hidden;
   overflow-y: scroll;
   position: relative;
+  height: auto;
 
 }
+
+
 
 .chat__inputmessage{
     margin: 0.5rem 1rem 1rem 1rem;
     height: 3rem;
-    width: 20rem;
+    width: 51.1rem;
     display: flex;
     align-items: flex-end;
     -moz-border-radius: 5%;
-        -webkit-border-radius: 10px;
-        border-radius: 10px;
-        border: 1px solid rgba(0, 0, 0,0.1);
-        padding: 0 4px 0 4px;
+        -webkit-border-radius: 0.6rem;
+        border-radius: 0.6rem;
+        border: 0.1rem solid rgba(0, 0, 0,0.1);
+        padding: 0 1rem 0 1rem;
      
 }
 
+.chat__inputmessage::placeholder{
+    font-family: 'Roboto Condensed';
+}
+
 .chat__message{
-    border:1px solid rgba(0, 0, 0,0.1); 
-    margin-bottom: 0.75rem;
-    width: 10rem;
-    height: 3.5rem;
+    border:0.1rem solid rgba(0, 0, 0,0.1); 
     display: table;
-    justify-content: center;
-    align-items: center;
-    align-content: center;
-    margin-left: 17rem;
+    
+    margin-bottom: 1.25rem;
+    width: 13rem;
+    height: 4rem;
+    margin-left: 29rem;
     padding: 1em 1em 1em 1em;
     -moz-border-radius: 8%;
     -webkit-border-radius: 10px;
     border-radius: 10px;
-    border: 1px solid rgba(0, 0, 0,0.1);
-   background-color: #EDF5F5
+    border: 0.1rem solid rgba(0, 0, 0,0.1);
+   background-color: #EDF5F5;
+   font-family: 'Roboto Condensed';
 }
 
 .received{
-    border:1px solid rgba(0, 0, 0,0.1); 
-    margin-bottom: 0.75rem;
-    width: 10rem;
-    height: 3.5rem;
-    display: table;
-    justify-content: center;
-    align-items: center;
-    align-content: center;
-    margin-left: 1rem;
+    border:0.1rem solid rgba(0, 0, 0,0.1); 
+    margin-bottom: 1.25rem;
+    width: 13rem;
+    height: 4rem;
+    margin-left: 5.6rem;
     padding: 1em 1em 1em 1em;
     -moz-border-radius: 8%;
     -webkit-border-radius: 10px;
     border-radius: 10px;
     border: 1px solid rgba(0, 0, 0,0.1);
-   background-color: rgba(#FFFFFF, 0.9)
-    
+   background-color: rgba(#FFFFFF, 0.9);
+   display: table;
+   flex-direction: row;
+}
 
+.chat__messagewrapper{
+    display: flex;
 }
 
 .chatuser{
@@ -113,6 +124,31 @@
 
 .chat__username{
     font-weight: bold;
-    border:1px solid rgba(0, 0, 0,0.1);
+    border:0.1rem solid rgba(0, 0, 0,0.1);
+    font-size: 1.25rem;
+    font-family: 'Roboto Condensed'; 
+}
+
+.chat__username:hover{
+    background-color:#EDF5F5; ;
+}
+
+.chat__userselected{
+    cursor: pointer;
+}
+
+.chat__time{
+    font-family: 'Roboto Condensed'; 
+    margin-left: 1rem;
+    display: flex;
+    align-self: center;
+}
+
+
+.chat__introductiontext{
+    margin: auto;
+    font-family: 'Roboto Condensed';
+    font-weight: bold;
+    font-size: 1.25rem;
 }
 
