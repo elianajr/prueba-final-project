@@ -11,6 +11,7 @@ def load_seed_data():
     for table, rows in data.items():
         ModelClass = getattr(models, table)
         for row in rows:
+            #print(row)
             inserted = insert(ModelClass).values(**row)
             try:
                 models.db.session.execute(inserted)
@@ -18,3 +19,4 @@ def load_seed_data():
             except IntegrityError as e:
                 print(f'ERROR: inserting row {row} in "{table}". IGNORING')
                 print(e)
+load_seed_data()

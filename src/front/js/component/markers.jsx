@@ -61,6 +61,8 @@ const Markers = () => {
         ShadowAnchor:null,
         iconSize:(45,45),
     })
+
+    
     return(
         <div> 
             <Marker position ={{lat:"36.69607184118358", lng:"-4.443754371312125"}} icon={iconRed}>
