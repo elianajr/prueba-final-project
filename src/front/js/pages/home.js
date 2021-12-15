@@ -1,7 +1,8 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
-import { SearchBar } from "../component/searchBar.jsx";
+import { Navbar } from "../component/navbar";
+import { Footer } from "../component/footer";
 
 import "../../styles/home.scss";
 
@@ -16,6 +17,7 @@ const Home = () => {
 
 	return (
 		<div className="home">
+			<Navbar/>
 			<div className="home-topbody">
 				<div className="home-topbody__sports">
 					<button>{surf}SURF</button>
@@ -56,12 +58,11 @@ const Home = () => {
 							<p>Do you like to share your adventure? Or know which species can you find? Or maybe share a nice sunset? This is your place!</p>
 						</div>
 					</div>
-					<div className="home-bottonbody__services__photos"></div>
-					<div className="home-bottonbody__services__searchbar"><SearchBar/></div>
-					
+					<div className="home-bottonbody__services__photos"></div>					
 				</div>
 				<div className="home-bottonbody__newsBox"></div>
 			</div>
+			<Footer/>
 		</div>
 	);
 };
