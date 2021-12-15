@@ -60,6 +60,11 @@ class Account(db.Model):
             "username": self.username,
             "sport_id": self.sport_id,
             "photo": self.photo,
+            "cover_photo": self.cover_photo,
+            "instagram": self.instagram,
+            "facebook": self.facebook,
+            "_is_waterdropper": self._is_waterdropper,
+            "user": user[0].to_dict()
         }
 
     @classmethod
@@ -76,15 +81,6 @@ class Account(db.Model):
     def get_all(cls):
         all_accounts=cls.query.all()
         return all_accounts
-
-    def create(self):
-            "photo": self.photo,
-            "cover_photo": self.cover_photo,
-            "instagram": self.instagram,
-            "facebook": self.facebook,
-            "_is_waterdropper": self._is_waterdropper,
-            "user": user[0].to_dict()
-        }
 
 
     @classmethod

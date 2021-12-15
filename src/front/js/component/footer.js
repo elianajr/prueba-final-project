@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import "../../styles/footer.scss"
+import Chatdropdown from "./Chatdropdown.jsx";
 
 export const Footer = () => { 
 

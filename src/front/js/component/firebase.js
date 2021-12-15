@@ -14,13 +14,13 @@ import "firebase/database";
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 
 const firebaseConfig = {
-	apiKey: "AIzaSyDq7NWmATJzpPyJYDXpQgI2FINYJJt6HTg",
-	authDomain: "my-aquachat.firebaseapp.com",
-	projectId: "my-aquachat",
-	storageBucket: "my-aquachat.appspot.com",
-	messagingSenderId: "200451972610",
-	appId: "1:200451972610:web:d21e359b03ad5d9aa2911b",
-	measurementId: "G-C6E03FEXSH"
+	apiKey: process.env.CHAT_API_KEY,
+	authDomain: process.env.CHAT_AUTH,
+	projectId: process.env.CHAT_PROJECTID,
+	storageBucket: process.env.CHAT_STORAGE,
+	messagingSenderId: process.env.CHAT_MESSAGINGID,
+	appId: process.env.CHAT_APPID,
+	measurementId: process.env.CHAT_MEASUREMENTID
 };
 
 // Initialize Firebase
