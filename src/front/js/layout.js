@@ -15,6 +15,10 @@ import { Surf } from "./pages/surf.jsx";
 import { Kitesurf } from "./pages/kitesurf.jsx";
 import { Snorkel } from "./pages/snorkel.jsx";
 import { Scuba } from "./pages/scuba.jsx";
+import Login from "./component/login.js";
+import Register from "./component/register.js";
+import RegisterWaterdropper from "./component/registerWaterdropper";
+import RegisterCenter from "./component/registerCenter";
 
 
 //create your first component
@@ -34,7 +38,11 @@ const Layout = () => {
 				<Route path="/kitesurf" element={<Kitesurf/>}/>
 				<Route path="/snorkel" element={<Snorkel/>}/>
 				<Route path="/diving" element={<Scuba/>}/>
-			</Routes>
+				<Route path="/login" element={<Login />} />
+				<Route path="/register" element={<Register />} />
+				<Route path="/registerwaterdropper" element={<RegisterWaterdropper />} />
+				<Route path="/registercenter" element={<RegisterCenter />} />
+			</Routes>		
 		</BrowserRouter>
 	);
 };
