@@ -19,10 +19,10 @@ const Register = () => {
 		<div className="form-input">
 			<span className="label-reg">What kind of waterdropper are you?</span>
 			
-			<button>
+			<button className="button-logreg">
 				<Link className="button-home-reg" to="/registerWaterdropper">Athlete</Link>
 			</button>
-			<button>
+			<button className="button-logreg">
 				<Link className="button-home-reg" to="/registerCenter">Center or school</Link>
 			</button>
 		</div>

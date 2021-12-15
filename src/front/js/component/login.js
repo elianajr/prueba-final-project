@@ -26,7 +26,7 @@ const Login = () => {
 		// })
 	};
 
-	// if(store.token && store.token !="" && store.token != null) {navigate("/")};
+	if(store.token && store.token !="" && store.token != null) {navigate("/")};
 
 
 	return (

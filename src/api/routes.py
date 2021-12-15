@@ -37,7 +37,6 @@ def login():
     return {'error': 'Some parameter is wrong'}, 401
 
 
-
 @api.route('/account', methods=['POST'])
 def create_account(): 
     email = request.json.get("email", None)
@@ -86,8 +85,8 @@ def create_account():
             )
             try:
                 new_waterdropper.create_waterdropper()
-                token = create_access_token(identity=new_waterdropper.to_dict(), expires_delta=timedelta(minutes=100))
-                return jsonify({'token': token, 'account': new_waterdropper.to_dict()}), 201
+                token = create_access_token(identity=new_account.to_dict(), expires_delta=timedelta(minutes=100))
+                return jsonify({'token': token, 'account': new_account.to_dict()}), 201
 
             except exc.IntegrityError as err:
                 print(f"Unexpected {err=}, {type(err)=}")
@@ -105,8 +104,8 @@ def create_account():
             print(new_center)
             try:
                 new_center.create_center()
-                token = create_access_token(identity=new_center.to_dict(), expires_delta=timedelta(minutes=100))
-                return jsonify({'token': token, 'account': new_center.to_dict()}), 201
+                token = create_access_token(identity=new_account.to_dict(), expires_delta=timedelta(minutes=100))
+                return jsonify({'token': token, 'account': new_account.to_dict()}), 201
 
             except exc.IntegrityError as err:
                 print(f"Unexpected {err=}, {type(err)=}")
@@ -123,9 +122,134 @@ def get_account_profile(id):
     account = Account.get_account_by_id(id)
 
     if account and account._is_active:
-        return jsonify(account.to_dict()), 200
+        return jsonify({'getaccount': account.to_dict()}), 200
     
     return({"error": "Account not found"}), 404
+
+
+@api.route('/account/<int:id>', methods = ['PUT', 'PATCH'])
+@jwt_required()
+def update_account_info(id):
+    token_id = get_jwt_identity()
+    print("token",token_id)
+
+    if token_id.get("id", None) != id:
+        return {'error': 'Invalid action'}, 400
+
+    update_info = {
+        'email': request.json.get('email', None),
+        'password': request.json.get('password', None),
+        'username': request.json.get('username', None),
+        'photo': request.json.get('photo', None),
+        'sports' : request.json.get("sports", None),
+        'is_waterdropper': True if request.json.get('userType', None) == "waterdropper" else False
+    }
+
+    account = Account.get_account_by_id(id)
+    print("aquiii account", account)
+    if account:
+            updated_account =  account.update_account(**{
+                            key:value for key, value in update_info.items() 
+                            if value is not None
+                        })
+            print("aquiii actualizaaaa", updated_account)
+
+            if updated_account._is_waterdropper: 
+                update_info_waterdropper = {
+                    'first_name': request.json.get('firstname', None),
+                    'last_name': request.json.get('lastname', None),
+                    'level': request.json.get('level', None),
+                    'location': request.json.get('location', None)
+                }
+        
+                waterdropper = Waterdropper.get_waterdropper_by_account_id(id)
+                print("aquiii waterdropper", waterdropper)
+                if waterdropper:
+                        updated_waterdropper =  waterdropper.update_account_waterdropper(**{
+                                        key:value for key, value in update_info_waterdropper.items() 
+                                        if value is not None
+                                    })
+                        print("aquiii actualizaaaa", updated_waterdropper)
+                        return jsonify(updated_account.to_dict()), 200
+                return {'error': 'Waterdropper not found'}, 400
+
+            else:
+                update_info_center = {
+                    'address': request.json.get('address', None),
+                    'phone': request.json.get('phone', None),
+                    'web': request.json.get('web', None)
+                }
+                
+                center = Center.get_center_by_account_id(id)
+                print("aquiii center", center)
+                if center:
+                    updated_center =  center.update_account_center(**{
+                                    key:value for key, value in update_info_center.items() 
+                                    if value is not None
+                                })
+                    return jsonify(updated_account.to_dict()), 200
+                return {'error': 'Center not found'}, 400
+
+    return {'error': 'Account not found'}, 400
+
+
+@api.route('/account/<int:id>', methods = ['DELETE'])
+@jwt_required()
+def update_account_status(id):
+    user = get_jwt_identity()
+
+    if user.get('id', None) == id:
+        account_inactive = Account.get_account_by_id(id)
+
+        if account_inactive:
+            account_inactive.soft_delete()
+            return jsonify(account_inactive.to_dict()), 200
+
+        return jsonify({'error' : 'Account not found'}), 404
+
+
+# @api.route('/waterdropper/<int:id_waterdropper>/favourite-centers/<int:id_center>', methods=['POST'])
+# @jwt_required()
+# def add_favcenter(id_waterdropper,id_center):
+#     token_id = get_jwt_identity()
+#     print("token",token_id)
+
+#     if token_id.get("id") == id_waterdropper:
+#         waterdropper = Waterdropper.get_waterdropper_by_id(id_waterdropper)
+#         center = Center.get_center_by_id(id_center)
+#         print("waterdropper",waterdropper)
+#         print("center",center)
+
+#         if waterdropper and center:
+#             fav_center = waterdropper.add_fav_center(center)
+#             print(fav_center)
+#             fav_centers = [center.to_dict() for center in fav_center]
+#             return jsonify(fav_centers), 200
+
+#     return jsonify({'error': 'Favourite center not found'}), 404
+
+
+# @api.route('/waterdropper/<int:id_waterdropper>/favourite-hotspots/<int:id_hotspot>', methods=['POST'])
+# @jwt_required()
+# def add_favhotspot(id_waterdropper,id_hotspot):
+#     token_id = get_jwt_identity()
+#     print("token",token_id)
+
+#     if token_id.get("id") == id_waterdropper:
+#         waterdropper = Waterdropper.get_waterdropper_by_id(id_waterdropper)
+#         hotspot = Hotspot.get_hotspot_by_id(id_hotspot)
+#         print("waterdropper",waterdropper)
+#         print("hotspot",hotspot)
+
+#         if waterdropper and hotspot:
+#             fav_hotspot = waterdropper.add_fav_hotspot(hotspot)
+#             print(fav_hotspot)
+#             fav_hotspots = [hotspot.to_dict() for hotspot in fav_hotspot]
+#             return jsonify(fav_hotspots), 200
+
+#     return jsonify({'error': 'Favourite hotspot not found'}), 404
+
+
 
 
 

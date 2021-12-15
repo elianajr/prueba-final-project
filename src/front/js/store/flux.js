@@ -9,60 +9,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 			frontUrl: "https://3000-cyan-lobster-g63lf7ls.ws-eu21.gitpod.io/",
 			currentUser: "",
 			token: "",
+			getUser: "",
 			favourites: [],
 		},
 
 		actions: {
-			// register: data => {
-			// 	const redirect = () => {
-			// 		if (localStorage.getItem("token") != null) {
-			// 			window.location = getStore().frontUrl;
-			// 		}
-			// 	};
-			// 	const tokenDecode = token => {
-			// 		let decoded = jwt_decode(token);
-			// 		return decoded;
-			// 	};
-			// 	const setUserFromToken = token => {
-			// 		localStorage.setItem("Id", token.sub.id);
-			// 	};
-
-			// 	fetch(getStore().baseUrl.concat("account"), {
-			// 		method: "POST",
-			// 		headers: new Headers({
-			// 			"Content-Type": "application/json"
-			// 		}),
-			// 		body: JSON.stringify(data)
-			// 	})
-			// 		.then(resp => {
-			// 			if (resp.status === 201) {
-			// 				console.log(resp);
-			// 				return resp.json();
-			// 			} else if (resp.status === 401) {
-			// 				console.log("Invalid credentials");
-			// 			} else if (resp.status === 400) {
-			// 				console.log("Invalid email or password format");
-			// 			} else throw Error("Unknown error");
-			// 		})
-			// 		.then(data => {
-			// 			localStorage.setItem("token", data.token);
-			// 			const tokenDecoded = tokenDecode(data.token);
-			// 			setUserFromToken(tokenDecoded);
-			// 			redirect();
-			// 			console.log("this came from", data);
-			// 			setStore({ token : data.token });
-						
-			// 			// localStorage.setItem("token", data.token);
-			// 			// setStore({ token : data.token });
-
-			// 			localStorage.setItem("currentUser", JSON.stringify(data.account));
-			// 			setStore({ currentUser : data.account});
-			// 		})
-			// 		.catch(error => {
-			// 			alert("hey");
-			// 			localStorage.removeItem("token");
-			// 		});
-			// },
 
 			syncTokenFromSessionStore: () => {
 				const token = localStorage.getItem("token");
@@ -139,6 +90,104 @@ const getState = ({ getStore, getActions, setStore }) => {
 					}
 
 			},
+			
+			getProfile: async data => {
+				const opt = {
+					method: 'GET',
+					headers: new Headers({
+						'Content-Type': 'application/json'
+					}),
+					body: JSON.stringify(data)
+				};
+
+				try{
+					const resp = await fetch(getStore().baseUrl.concat("account/", id), opt)
+					if (resp.status !== 201) {
+						alert("There has been some error");
+						return false;
+					}
+
+					const data = await resp.json();
+
+					localStorage.setItem("currentUser", JSON.stringify(data.getaccount));
+					setStore({ getUser : data.getaccount});
+
+					return true;
+				}
+				catch(error){
+					console.error("There was an error!!", error);
+					}
+
+			},
+
+			editProfile: async data => {
+				const opt = {
+					method: 'PUT',
+					headers: new Headers({
+						'Content-Type': 'application/json'
+					}),
+					body: JSON.stringify(data)
+				};
+
+				try{
+					const resp = await fetch(getStore().baseUrl.concat("account"), opt)
+					if (resp.status !== 201) {
+						alert("There has been some error");
+						return false;
+					}
+
+					const data = await resp.json();
+
+					localStorage.setItem("token", data.token);
+					setStore({ token : data.token });
+
+					localStorage.setItem("currentUser", JSON.stringify(data.account));
+					setStore({ currentUser : data.account});
+
+					return true;
+				}
+				catch(error){
+					console.error("There was an error!!", error);
+					}
+
+			},
+
+			deleteProfile: async data => {
+				// getActions().logout();
+				// let token = localStorage.getItem("access_token");
+				const opt = {
+					method: 'DELETE',
+					headers: new Headers({
+						'Content-Type': 'application/json',
+						Authorization: `Bearer ${token}`
+					}),
+					body: JSON.stringify(data)
+				};
+
+				try{
+					const resp = await fetch(getStore().baseUrl.concat("account/", id), opt)
+					if (resp.status !== 201) {
+						alert("There has been some error");
+						return false;
+					}
+
+					const data = await resp.json();
+
+					// localStorage.setItem("token", data.token);
+					// setStore({ token : data.token });
+
+					// localStorage.setItem("currentUser", JSON.stringify(data.account));
+					// setStore({ currentUser : data.account});
+
+					return true;
+				}
+				catch(error){
+					console.error("There was an error!!", error);
+					}
+
+			},
+			
+			
 			
 
 			

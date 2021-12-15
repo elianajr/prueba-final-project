@@ -45,6 +45,10 @@ class Account(db.Model):
     _password = db.Column(db.String(), unique=False, nullable=False)
     username = db.Column(db.String(), unique=True, nullable=False)
     photo = db.Column(db.Text(), unique=False, nullable=True)
+    cover_photo = db.Column(db.Text(), unique=False, nullable=True)
+    about = db.Column(db.Text(), unique=False, nullable=True)
+    instagram = db.Column(db.String(), unique=False, nullable=True)
+    facebook =db.Column(db.String(), unique=False, nullable=True)
     _is_active = db.Column(db.Boolean(), unique=False, nullable=False, default=True)
     _is_waterdropper = db.Column(db.Boolean(), unique=False, nullable=False)
 
@@ -54,15 +58,21 @@ class Account(db.Model):
 
 
     def __repr__(self):
-        return f'Account is email: {self.email}, id: {self.id}, password: {self._password}, username: {self.username}, photo: {self.photo}, waterdropper: {self._is_waterdropper}'
+        return f'Account is email: {self.email}, id: {self.id}, password: {self._password}, username: {self.username}, photo: {self.photo}, cover_photo: {self.cover_photo}, instagram: {self.instagram}, facebook: {self.facebook}, waterdropper: {self._is_waterdropper}'
 
     def to_dict(self):
+        user = self.has_waterdropper if self._is_waterdropper else self.has_center
+
         return {
-            "id": self.id
-            # "email": self.email,
-            # "username": self.username,
-            # "photo": self.photo,
-            # "waterdropper": [waterdropper.to_dict() for waterdropper in self.has_waterdropper]
+            "id": self.id,
+            "email": self.email,
+            "username": self.username,
+            "photo": self.photo,
+            "cover_photo": self.cover_photo,
+            "instagram": self.instagram,
+            "facebook": self.facebook,
+            "_is_waterdropper": self._is_waterdropper,
+            "user": user[0].to_dict()
         }
 
 
@@ -98,10 +108,10 @@ class Account(db.Model):
         db.session.commit()
         return self
 
-    def reactive_account(self, username, sport_id, password):
+    def reactive_account(self, username, photo, is_waterdropper, password):
         self.username = username
-        self.sport_id = sport_id
         self.photo = photo
+        self._is_waterdropper = is_waterdropper
         self.password = password
         self._is_active = True
         db.session.commit()
@@ -130,18 +140,14 @@ class Waterdropper(db.Model):
         return f'Waterdropper is first_name: {self.first_name}, last_name: {self.last_name}, account_id: {self.account_id}, level: {self.level}, location: {self.location}'
 
     def to_dict(self):
-        account = Account.get_account_by_id(self.account_id)
         return {
             "id": self.id,
-            "account_id": self.account_id,
-            "email": account.email,
-            "username": account.username,
-            "photo": account.photo,
-            # "waterdropper": [waterdropper.to_dict() for waterdropper in account.has_waterdropper],
             "first_name": self.first_name,
             "last_name": self.last_name,
             "level": self.level,
-            "location": self.location
+            "location": self.location,
+            "favourite_centers": self.have_waterdropper_favcenter,
+            "favourite_spot": self.have_waterdropper_favspot
         }
 
     @classmethod
@@ -149,6 +155,11 @@ class Waterdropper(db.Model):
         waterdropper = cls.query.get(id)
         return waterdropper
 
+    @classmethod
+    def get_waterdropper_by_account_id(cls,account_id):
+        account_waterdropper = cls.query.filter_by(account_id=account_id).one_or_none()
+        return account_waterdropper
+    
     def create_waterdropper(self):
         db.session.add(self)
         db.session.commit()
@@ -171,9 +182,6 @@ class Waterdropper(db.Model):
         db.session.commit()
         return self.have_waterdropper_favspot
 
-    def delete(self):
-        db.session.delete(self)
-        db.session.commit()
 
 class Center(db.Model):
     __tablename__: "center"
@@ -191,23 +199,23 @@ class Center(db.Model):
         return f'Center is account_id: {self.account_id}, address: {self.address}, phone: {self.phone}, web: {self.web}'
 
     def to_dict(self):
-        account = Account.get_account_by_id(self.account_id)
         return {
             "id": self.id,
-            "account_id": self.account_id,
-            "email": account.email,
-            "username": account.username,
-            "photo": account.photo,
-            "waterdropper": [waterdropper.to_dict() for waterdropper in account.has_waterdropper],
             "address": self.address,
             "phone": self.phone,
-            "web": self.web
+            "web": self.web,
+            "favourite_count": len(self.have_favcenter_waterdropper),
         }
 
     @classmethod
     def get_center_by_id(cls,id):
         center = cls.query.get(id)
         return center
+
+    @classmethod
+    def get_center_by_account_id(cls,account_id):
+        account_center = cls.query.filter_by(account_id=account_id).one_or_none()
+        return account_center
 
     def create_center(self):
         db.session.add(self)
@@ -259,10 +267,6 @@ class Hotspot(db.Model):
     def get_hotspot_by_id(cls,id):
         hotspot = cls.query.get(id)
         return hotspot
-
-    def delete(self):
-        db.session.delete(self)
-        db.session.commit()
 
 
 class Specie(db.Model):
