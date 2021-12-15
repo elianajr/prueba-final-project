@@ -1,7 +1,18 @@
+
+.register-login-form{
+    margin-top: 2rem; 
+    font-family: 'Roboto', sans-serif;
+    font-size: 0.8rem;
+}
+
+.progressbar-regform {
+    color: #006184;
+}
+
 .register-login {
     width: 15rem;
-    height: 25rem;
-    margin-top: 2px;
+    height: 29rem;
+    margin-top: 2rem;
     margin: 0 auto;
     padding: 0.8rem;
     text-align: center;
@@ -10,12 +21,26 @@
     box-shadow:0 2px 5px #438ba163, 0 2px 2px #4196af5d;
 }
 
-input, select {
+.label-relog {
+    font-weight: bold;
+}
+
+.form-check-reglog {
+    margin-left: 0.8rem;
+    align-items:left;
+}
+
+.label-reg {
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.input-reglog {
     display: inline-block;
     justify-content: center;
     box-sizing: border-box;
     width: 12rem;
-    height: 2.5rem;
+    height: 2.2rem;
     border: 1px solid black;
     border-radius: 4px;
     background-color: white;
@@ -24,8 +49,40 @@ input, select {
     font-size: 14px;
     margin-left: 0.3rem;
 }
+
+.profile-photo {
+    width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+
+.profile-photo-label {
+    display: inline-block;
+    -webkit-box-sizing: border-box;
+    margin-top: 0.6rem;
+    width: 12rem;
+    height: 2rem;
+    background-color: #55AAC9;
+    box-sizing: border-box;
+    position: relative;
+    padding-top: 0.5rem;
+    margin-left: 0.3rem;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    line-height: 100%;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+    -webkit-transition: 70ms cubic-bezier(0.75, 0, 0.25, 1);
+    -o-transition: 70ms cubic-bezier(0.75, 0, 0.25, 1);
+    transition: 70ms cubic-bezier(0.75, 0, 0.25, 1);
+}
   
-label {
+.label-relog {
     line-height: 2;
     text-align: left;
     display: block;
@@ -33,15 +90,19 @@ label {
     margin-top: 0.4rem;
     margin-left: 0.6rem;
     color: black;
-    // font-size: 14px;
-    // font-weight: 200;
 }
 
-.span-logreg{
+.span-logreg {
     margin-top: 0.8rem;
     margin-bottom: 0.6rem;
     font-size: 0.8rem;
     color: rgb(80, 80, 80);
+}
+
+.span-tittle-logreg {
+    margin-top: 1.8rem;
+    padding-top: 1.8rem;
+    margin-bottom: 0.6rem;
 }
 
 .link-logreg {
@@ -49,12 +110,22 @@ label {
     color: #55AAC9;
 }
 
-.link-logreg :hover {
+.link-logreg:hover {
     text-decoration: none;
     color: #006184;
 }
 
-.button {
+.link-logreg-role {
+    text-decoration: none;
+    color: #000000;
+}
+
+.link-logreg-role:hover {
+    text-decoration: none;
+    color: #535353;
+}
+
+.button-logreg {
     display: inline-block;
     -webkit-box-sizing: border-box;
     margin-top: 0.6rem;
@@ -85,20 +156,6 @@ label {
     margin-left: 0.6rem;
 }
 
-.congratulations {
-    margin: 6rem 1rem;
-    color: #006184;
-}
-
-// i {
-//     color: grey;
-//     font-size: 0.8rem;
-//     position: relative;
-//     top: 38%;
-//     right: 18%;
-    
-//   }
-
 .right-inner-addon {
     position: relative;
 }
@@ -113,11 +170,11 @@ label {
     
 }
 
-// .button-icon-password {
-//     position: absolute;
-//     right: 2px;
-//     padding: 12px 12px;
-//     pointer-events: none;
-// border: none;
-// background: none;
-// }
+.button-home-reg {
+    color: black;
+    text-decoration: none;
+}
+
+.button-home-reg:hover {
+    color:#006184;
+}
