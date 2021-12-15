@@ -1,10 +1,15 @@
-import React from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-
-import { Home } from "./pages/home";
+import React, { Fragment } from "react";
+import { Navbar } from "./component/navbar.js";
+import { Footer } from "./component/footer.js";
+import {
+  BrowserRouter,
+  Routes,
+  Route
+} from "react-router-dom";
+import Home from "./pages/home.js";
+import HotSpot from "./pages/hotspot.jsx";
+import Forecast from "./pages/forecast.jsx";
 import injectContext from "./store/appContext";
-
-
 import Login from "./component/login.js";
 import Register from "./component/register.js";
 import RegisterWaterdropper from "./component/registerWaterdropper";
@@ -18,6 +23,7 @@ const Layout = () => {
 	const basename = process.env.BASENAME || "";
 
 	return (
+				
 		<div>
 			<BrowserRouter basename={basename}>
 				

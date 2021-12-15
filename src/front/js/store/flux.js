@@ -7,11 +7,15 @@ const getState = ({ getStore, getActions, setStore }) => {
 		store: {
 			baseUrl: `${PROTOCOL}://${PORT}-${HOST}/api/`,
 			currentUser: "",
-			token: ""
+			token: "",
+			position: {
+				latitude: null,
+				longitude: null
+			},
+			weather: {}
 		},
 
 		actions: {
-
 
 			login: async data => {
 				const opts = {
@@ -77,5 +81,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 	};
 
 };
+
 
 export default getState;

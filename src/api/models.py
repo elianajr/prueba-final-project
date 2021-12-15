@@ -1,13 +1,9 @@
-from enum import Enum
-
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.dialects import postgresql
-from sqlalchemy.ext.hybrid import hybrid_property
-from werkzeug.security import generate_password_hash
+from werkzeug.security import generate_password_hash, check_password_hash
 
 
 db = SQLAlchemy()
-
 
 species_hotspot = db.Table('species_hotspot',
     db.Column('specie_id', db.Integer, db.ForeignKey('specie.id'), primary_key=True),
@@ -230,8 +226,9 @@ class Hotspot(db.Model):
     name = db.Column(db.String(), unique=False, nullable=False)
     photo = db.Column(db.Text(), unique=False, nullable=False)
     level = db.Column(db.String(), unique=False, nullable=False)
-    description = db.Column(db.String(), unique=False, nullable=False)
-    geometry = db.Column(postgresql.ARRAY(db.Float(), dimensions=2), unique=False, nullable=True)
+    description = db.Column(db.Text(), unique=False, nullable=True)
+    latitude = db.Column(db.String(), unique=False, nullable=True)
+    longitude = db.Column(db.String(), unique=False, nullable=True)
     account_id = db.Column(db.Integer, db.ForeignKey("account.id"), nullable=False)
     sport_id = db.Column(db.Integer, db.ForeignKey("sport.id"), nullable=True)
 
@@ -252,7 +249,9 @@ class Hotspot(db.Model):
             "photo": self.photo,
             "level": self.level,
             "despcription": self.despcription,
-            "geometry": self.geometry
+            "latitude": self.latitude,
+            "longitude": self.longitude,
+            "category": self.category
         }
 
     @classmethod
