@@ -8,11 +8,6 @@ from werkzeug.security import generate_password_hash
 
 db = SQLAlchemy()
 
-# class Level(Enum):
-#     beginner = "Beginner"
-#     intermediate = "Intermediate"
-#     advanced = "Advanced"
-#     professional = "Professional"
 
 species_hotspot = db.Table('species_hotspot',
     db.Column('specie_id', db.Integer, db.ForeignKey('specie.id'), primary_key=True),
@@ -128,8 +123,6 @@ class Waterdropper(db.Model):
     first_name = db.Column(db.String(), unique=False, nullable=False)
     last_name = db.Column(db.String(), unique=False, nullable=False)
     level = db.Column(db.String(), unique=False, nullable=False)
-    # level = db.Column(db.Enum(Level, name="levels"), nullable=False)
-    # level = db.Column(db.Enum("Beginner", "Intermediate", "Advanced", "Professional", name="levels"), nullable=False)
     location = db.Column(db.String(), unique=False, nullable=False)
     account_id = db.Column(db.Integer, db.ForeignKey("account.id"), nullable=False)
 
@@ -236,8 +229,7 @@ class Hotspot(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(), unique=False, nullable=False)
     photo = db.Column(db.Text(), unique=False, nullable=False)
-    # level = db.Column(db.Enum(Level, name="levels"), nullable=False)
-    level = db.Column(db.Enum("Beginner", "Intermediate", "Advanced", "Professional", name="levels"), nullable=False)
+    level = db.Column(db.String(), unique=False, nullable=False)
     description = db.Column(db.String(), unique=False, nullable=False)
     geometry = db.Column(postgresql.ARRAY(db.Float(), dimensions=2), unique=False, nullable=True)
     account_id = db.Column(db.Integer, db.ForeignKey("account.id"), nullable=False)

@@ -2,14 +2,14 @@ import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import { Home } from "./pages/home";
-import { Demo } from "./pages/demo";
-import { Single } from "./pages/single";
 import injectContext from "./store/appContext";
 
-import { Navbar } from "./component/navbar";
-import { Footer } from "./component/footer";
+
 import Login from "./component/login.js";
 import Register from "./component/register.js";
+import RegisterWaterdropper from "./component/registerWaterdropper";
+import RegisterCenter from "./component/registerCenter";
+
 
 //create your first component
 const Layout = () => {
@@ -20,11 +20,13 @@ const Layout = () => {
 	return (
 		<div>
 			<BrowserRouter basename={basename}>
-				<Navbar />
+				
 				<Routes>
 					<Route path="/" element={<Home />} />
 					<Route path="/login" element={<Login />} />
 					<Route path="/register" element={<Register />} />
+					<Route path="/registerwaterdropper" element={<RegisterWaterdropper />} />
+					<Route path="/registercenter" element={<RegisterCenter />} />
 				</Routes>
 				
 			</BrowserRouter>
