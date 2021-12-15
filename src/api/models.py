@@ -232,7 +232,7 @@ class News(db.Model):
 
     def to_dict(self):
         return {
-            "id": self.id
+            "id": self.id,
             "photo": self.photo,
             "description": self.description
         }

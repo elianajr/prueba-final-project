@@ -1,0 +1,58 @@
+.Landingpage__header{
+    display: flex;
+    flex-direction: row;
+    margin-left: 16.25rem;
+    margin-top: 2rem;
+}
+
+.Landingpage__title{
+    margin-left: 7.1rem;
+    align-content: center;
+    align-self: center;
+    font-family: 'Righteous';
+    font-size: 5rem;
+    
+}
+
+.Landingpage__buttons{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 6.1rem;
+}
+
+.Landingpage__button{
+    background-color: rgba( #6991AF, 0.3);
+    width: 13rem;
+    height: 6rem;
+}
+
+.Landingpage__mainimg{
+    width: 95%;
+    height: 95%;
+    margin: 0.75rem 1.6rem 0.75rem 1.7rem;
+}
+
+.Landingpage__main{
+    background-color: rgba( #92E2C8,  0.2);
+    width: 66rem;
+    height: 32.1rem;
+    margin-left: 8.6rem;
+    border-radius: 1.25rem;
+    margin-top: -1rem;
+}
+
+.Landingpage__startbutton{
+    background-color: rgba( #2CB1AA, 0.5);
+    margin: 2rem 0rem 2rem 30rem;
+    height: 4rem;
+    width: 25rem;
+}
+
+.Landingpage__Card{
+    margin-left: 2rem;
+}
+
+.Laindingpage__Cards{
+    margin-left: 10rem;
+}
