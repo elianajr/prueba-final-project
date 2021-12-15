@@ -6,11 +6,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 			baseUrl: `${PROTOCOL}://${PORT}-${HOST}/api/`,
-			frontUrl: "https://3000-cyan-lobster-g63lf7ls.ws-eu21.gitpod.io/",
 			currentUser: "",
-			token: "",
-			getUser: "",
-			favourites: [],
+			token: ""
 		},
 
 		actions: {
