@@ -76,6 +76,11 @@ class Account(db.Model):
     def get_account_by_id(cls,id):
         account = cls.query.get(id)
         return account
+    
+    @classmethod
+    def get_all(cls):
+        accounts= cls.query.all()
+        return accounts
 
     def create(self, sports):
         for sport in sports:

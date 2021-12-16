@@ -83,7 +83,7 @@ const ChatForm = () => {
 				otherusers.map((element, index) => {
 					return (
 						<Card variant="outlined" key={index.toString()} className="chat__username">
-							<img className="chat__userimg" src={element.photo} />
+							<img className="chat__userimg" src={element.cover_photo} />
 							<span className="chat__userselected" onClick={()=>{setUserdestiny((element.id))}}> {element.username}</span>
 						</Card>
 					);
