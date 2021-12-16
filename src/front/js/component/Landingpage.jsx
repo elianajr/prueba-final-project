@@ -57,9 +57,8 @@ const Landingpage=()=>{
                                <Card.Body className="Landingpage__Cardbody">
                                  <Card.Title className="Landingpage__Cardtitle">Your people</Card.Title>
                                  <Card.Text className="Landingpage__Cardtext">
-                                 You don´t find any one to go tomorrow to have an amazing day of Scuba Dive...
-
-Don´t worry! Here you will find lots of people with the same likes and also you can check the level of your partner. 
+                                    You don´t find any one to go tomorrow to have an amazing day of Scuba Dive...
+                                    Don´t worry! Here you will find lots of people with the same likes and also you can check the level of your partner. 
                                  </Card.Text>
                                </Card.Body>
                           </Card>
@@ -71,8 +70,8 @@ Don´t worry! Here you will find lots of people with the same likes and also you
                                <Card.Body className="Landingpage__Cardbody">
                                  <Card.Title className="Landingpage__Cardtitle">Your centers</Card.Title>
                                  <Card.Text className="Landingpage__Cardtext">
-                                 All the School Centers and Business dedicated to this amazing world have a places here too.
-We offer you a acurated description about thoses places. 
+                                   All the School Centers and Business dedicated to this amazing world have a places here too.
+                                   We offer you a acurated description about thoses places. 
                                  </Card.Text>
                                </Card.Body>
                          </Card>
