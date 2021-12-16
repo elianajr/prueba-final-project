@@ -58,7 +58,6 @@ class Account(db.Model):
             "id": self.id,
             "email": self.email,
             "username": self.username,
-            "sport_id": self.sport_id,
             "photo": self.photo,
             "cover_photo": self.cover_photo,
             "instagram": self.instagram,
@@ -66,21 +65,6 @@ class Account(db.Model):
             "_is_waterdropper": self._is_waterdropper,
             "user": user[0].to_dict()
         }
-
-    @classmethod
-    def get_by_email(cls,email):
-        account = cls.query.filter_by(email=email).one_or_none()
-        return account
-
-    @classmethod
-    def get_account_by_id(cls,id):
-        account = cls.query.get(id)
-        return account
-    
-    @classmethod
-    def get_all(cls):
-        all_accounts=cls.query.all()
-        return all_accounts
 
 
     @classmethod
@@ -391,4 +375,3 @@ class Review_Hotspot(db.Model):
             "date": self.date,
             "puntuation": self.puntuation
         }
-
