@@ -15,7 +15,7 @@ export const Footer = () => {
 					{help}
 				</Link>
 				</div>
-			<p>COMPONENTE CHAT</p>
+			<Chatdropdown></Chatdropdown>
 		</footer>
 	)
 };
