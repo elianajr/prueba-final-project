@@ -10,6 +10,7 @@ import Container from 'react-bootstrap/Container'
 import image2 from '../../img/img2landingpage.png'
 import image3 from '../../img/img3landingpage.png'
 import image4 from '../../img/img4landingpage.png'
+import { Link } from "react-router-dom";
 import { Icon } from '@iconify/react';
 import Aos from "aos";
 import 'aos/dist/aos.css'
@@ -81,7 +82,7 @@ const Landingpage=()=>{
                </Container>
                
               
-               <button className="Landingpage__startbutton">GET STARTED</button>
+               <button className="Landingpage__startbutton"><Link className="Landingpage__startbuttonlink" to="/">GET STARTED</Link></button>
  
               
         </div>)

@@ -69,6 +69,7 @@
     font-family: 'Righteous';
     box-shadow: 0rem 0.25rem 0.37rem rgba(0, 0, 0, 0.25);
     border: none;
+    text-decoration: none;
 }
 
 .Landingpage__Card{
@@ -99,4 +100,9 @@
 .Landingpage__Cardbody{
     height: 17rem;
     background-image: linear-gradient(to bottom, rgba(0,97,132,1) 0%, rgba(0,97,132,0.5) 50%, rgba(0,97,132,0.05) 100%);
+}
+
+.Landingpage__startbuttonlink{
+    text-decoration: none;
+    color: black;
 }
