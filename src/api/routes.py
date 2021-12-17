@@ -15,6 +15,9 @@ import jwt
 import json
 import itertools
 
+import cloudinary
+import cloudinary.uploader
+
 api = Blueprint('api', __name__)
 
 
@@ -34,6 +37,15 @@ def login():
         return jsonify({'error':'Not found'}), 200
 
     return {'error': 'Some parameter is wrong'}, 401
+
+@api.route('/account/<int:id>', methods=[ 'GET'])
+def get_account(id):
+
+  account= Account.get_account_by_id(id)
+
+  if account:
+      account= account.to_dict()
+      return jsonify(account), 200
 
 
 @api.route('/account', methods=['POST'])
@@ -208,6 +220,25 @@ def update_account_status(id):
 
 
 
+@api.route('/photo/<int:id>', methods=['POST'])
+def handle_upload(id):
+
+    # validate that the front-end request was built correctly
+    if 'profile_image' in request.files:
+        # upload file to uploadcare
+        result = cloudinary.uploader.upload(request.files['profile_image'])
+
+        # fetch for the user
+        account1 = Account.get_account_by_id(id)
+        # update the user with the given cloudinary image URL
+        account1.cover_photo = result['secure_url']
+
+        db.session.add(account1)
+        db.session.commit()
+
+        return jsonify(account1.to_dict()), 200
+    else:
+        raise APIException('Missing profile_image on the FormData')
 
 
 

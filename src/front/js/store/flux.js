@@ -12,7 +12,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 				latitude: null,
 				longitude: null
 			},
-			weather: {}
+			weather: {},
+			user:{}
 		},
 
 		actions: {
@@ -76,8 +77,29 @@ const getState = ({ getStore, getActions, setStore }) => {
 					}
 
 			},
+			getUser:(id)=>{
+				fetch(getStore().baseUrl.concat('/account/',id))
+	        .then(function(response) {
+		          if (!response.ok) {
+	              throw Error(response.statusText);
+	        }
+    // Read the response as json.
+	              return response.json();
+	        })
+	        .then(function(responseAsJson) {
+				if (id){
+					setStore({ user: responseAsJson });
+	                console.log(responseAsJson);
+				}		
+	        })
+            .catch(function(error) {
+	             console.log('Looks like there was a problem: \n', error);
+                 });
+			}		
 			
-		}
+		},
+			
+		
 	};
 
 };

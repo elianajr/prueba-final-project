@@ -15,7 +15,7 @@ import Login from "./component/login.js";
 import Register from "./component/register.js";
 import RegisterWaterdropper from "./component/registerWaterdropper";
 import RegisterCenter from "./component/registerCenter";
-
+import Upload from "./component/upload.jsx";
 
 //create your first component
 const Layout = () => {
@@ -34,6 +34,7 @@ const Layout = () => {
 				<Route path="/register" element={<Register />} />
 				<Route path="/registerwaterdropper" element={<RegisterWaterdropper />} />
 				<Route path="/registercenter" element={<RegisterCenter />} />
+				<Route path="/photo" element={<Upload></Upload>}></Route>
 				</Routes>		
 		</BrowserRouter>
 	);
