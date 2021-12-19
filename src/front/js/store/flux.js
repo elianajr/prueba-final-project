@@ -1,6 +1,6 @@
 const PORT = 3001;
 const [PROTOCOL, HOST] = process.env.GITPOD_WORKSPACE_URL.split("://");
-
+import jwt_decode from "jwt-decode";
 
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
@@ -11,7 +11,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			user:{},
 			baseUrl: `${PROTOCOL}://${PORT}-${HOST}/api/`,
 			currentUser: "",
-			token: "",
+			token: {},
 			position: {
 				latitude: null,
 				longitude: null
@@ -45,28 +45,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 	             console.log('Looks like there was a problem: \n', error);
                  });
 			},
-			getUser:(id)=>{
-				fetch(getStore().url.concat('api/account/',id))
-	        .then(function(response) {
-		          if (!response.ok) {
-	              throw Error(response.statusText);
-	        }
-    // Read the response as json.
-	              return response.json();
-	        })
-	        .then(function(responseAsJson) {
-				if (id){
-					setStore({ user: responseAsJson });
-	                console.log(responseAsJson);
-				}		
-	        })
-            .catch(function(error) {
-	             console.log('Looks like there was a problem: \n', error);
-                 });
-			}		
-			
-		},
-		login: async data => {
+			login: async (data) => {
+				const tokenDecode = token => {
+					let decoded = jwt_decode(token);
+					return decoded;
+				};
 				const opts = {
 					method: 'POST',
 					headers: new Headers({
@@ -85,6 +68,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					const data = await resp.json();
 					console.log("this came from the backend", data);
 					localStorage.setItem("token", data.token);
+					const tokenDecoded = tokenDecode(responseAsJson);
+					console.log(tokenDecoded)
 					setStore({ token : data.token });
 					return true;
 				}
@@ -93,8 +78,30 @@ const getState = ({ getStore, getActions, setStore }) => {
 					}
 
 			},
+			getUser:(id)=>{
+				fetch(getStore().url.concat('api/account/',id))
+	        .then(function(response) {
+		          if (!response.ok) {
+	              throw Error(response.statusText);
+	        }
+    // Read the response as json.
+	              return response.json();
+	        })
+	        .then(function(responseAsJson) {
+				if (id){
+					setStore({ user: responseAsJson });
+	                console.log(responseAsJson);
+				}		
+	        })
+            .catch(function(error) {
+	             console.log('Looks like there was a problem: \n', error);
+                 });
+			},
+			
+			
+			
 
-		register: async data => {
+		    register: async data => {
 				const opt = {
 					method: 'POST',
 					headers: new Headers({
@@ -129,7 +136,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 		}
     };
 
-
+}
 
 
 export default getState;

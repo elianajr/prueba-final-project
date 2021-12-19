@@ -7,6 +7,7 @@ import { Context } from "../store/appContext.js";
 import { collection, addDoc, Timestamp, onSnapshot, query, getDocs, orderBy, where } from "firebase/firestore";
 import Card from '@mui/material/Card'
 import Moment from 'react-moment';
+import jwt_decode from "jwt-decode";
 
 
 const ChatForm = () => {
@@ -19,6 +20,8 @@ const ChatForm = () => {
 	const [userdestiny,setUserdestiny]=useState("")
 	const [usersender,setUsersender]=useState("")
 	const [currentuser,setCurrentuser]=useState('')
+	const [selecteduser,setSelecteduser]=useState('')
+	
 	
     
 
@@ -58,11 +61,16 @@ const ChatForm = () => {
 	}
 
 	useEffect( async()=>{
-        await actions.getUser(2)
+		const decoded=(jwt_decode(localStorage.getItem('token')))
+		
+        await actions.getUser(decoded.sub.id)
         await actions.getUsers()
+		
         
 		return getdata()
     },[])
+
+
 
 	useEffect(()=>{
 		setCurrentuser(store.user)
@@ -73,6 +81,18 @@ const ChatForm = () => {
 
 	useEffect(()=>{
 		getdata()
+
+		let otheruser=store.users.filter(item=>item.id==userdestiny)
+		setSelecteduser(
+			otheruser.map((element)=>{
+				return (
+					<div>
+						<span className="userdestiny">{element.username}</span>
+						<img className="chat__userimg"  src={element.cover_photo}></img>
+					</div>
+				)
+			
+		}))
 		
 	},[userdestiny])
 
@@ -130,8 +150,10 @@ const ChatForm = () => {
 						{currentuser.username}
 					</span>
 				</div>
-				<div className="chat__receiver" />
-				<span></span>
+				<div className="chat__receiver">
+				<span>{selecteduser}</span>
+				</div>
+				
 			</div>
 			<div className="chat__section">
 				<div className="chat__users">

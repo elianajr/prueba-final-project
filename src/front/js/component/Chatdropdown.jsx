@@ -20,7 +20,7 @@ const Chatdropdown=()=>{
 
   
     useEffect( async()=>{
-        await actions.getUser(2)
+       // await actions.getUser(2)
         await actions.getUsers()
         
     },[])
@@ -34,7 +34,7 @@ const Chatdropdown=()=>{
         setUsers(
             otherusers.map((element,index)=>{
                 return <div key={index.toString()}>
-                    <img className="chatdropdown__usersimg" src={element.photo}></img>
+                    <img className="chatdropdown__usersimg" src={element.cover_photo}></img>
                     <span>{element.username}</span>
                     <hr></hr>
                     </div>
@@ -46,7 +46,7 @@ const Chatdropdown=()=>{
     
 
     return (<div className="chatdropdown__box">
-        <img className="chatdropdown__userimg" src={currentuser.photo}></img>
+        <img className="chatdropdown__userimg" src={currentuser.cover_photo}></img>
         <span > <Link to='/chat' className="chatdropdown__text">Messages</Link></span>
         
         <Popup trigger={<Icon className="chatdropdown__popup__chat" icon="bi:chat-dots" />} >
