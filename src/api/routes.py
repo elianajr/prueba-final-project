@@ -220,7 +220,7 @@ def update_account_status(id):
 
 
 
-@api.route('/photo/<int:id>', methods=['POST'])
+@api.route('/accountphoto/<int:id>', methods=['POST'])
 def handle_upload(id):
 
     # validate that the front-end request was built correctly
@@ -237,6 +237,26 @@ def handle_upload(id):
         db.session.commit()
 
         return jsonify(account1.to_dict()), 200
+    else:
+        raise APIException('Missing profile_image on the FormData')
+
+@api.route('/hotspotphoto/<int:id>', methods=['POST'])
+def handle_uploadhotspot(id):
+
+    # validate that the front-end request was built correctly
+    if 'profile_image' in request.files:
+        # upload file to uploadcare
+        result = cloudinary.uploader.upload(request.files['profile_image'])
+
+        # fetch for the user
+        hotspot1 = Hotspot.get_hotspot_by_id(id)
+        # update the user with the given cloudinary image URL
+        hotspot1.photo = result['secure_url']
+
+        db.session.add(hotspot1)
+        db.session.commit()
+
+        return jsonify(hotspot1.to_dict()), 200
     else:
         raise APIException('Missing profile_image on the FormData')
 
