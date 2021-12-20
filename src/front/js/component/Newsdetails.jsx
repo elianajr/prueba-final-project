@@ -19,12 +19,12 @@ const Newsdetail=()=>{
 
     useEffect(()=>{
 
-      actions.getUser(1)
+      
     },[])
 
-    console.log(store.user)
+    
 
-     const[currentuser,setCurrentuser]=useState(1)
+    
      const [counter,setCounter]=useState(0)
      const sendicon= <Icon icon="grommet-icons:send" color="#2cb1aa" width="50" height="50" />
 
@@ -58,7 +58,7 @@ const Newsdetail=()=>{
         <Logo></Logo>
         <form>
         <div className="comments__wrapper">
-        <img className="user__img" src={store.user.photo}>{}</img>
+        <img className="user__img" ></img>
         
         <div className="comments__container">
             <input type="text" placeholder="Start the discussion..." className="comments__input" />

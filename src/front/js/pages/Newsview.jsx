@@ -1,4 +1,5 @@
 import Row from 'react-bootstrap/Row'
+import React, { useContext, useEffect, useState } from "react";
 import Col from 'react-bootstrap/Col'
 import Container from 'react-bootstrap/Container'
 import Aos from "aos";
@@ -6,7 +7,10 @@ import 'aos/dist/aos.css'
 import { Link } from "react-router-dom";
 import News from "../component/News.jsx";
 import Logo from "../component/Logo.jsx";
+import '../../styles/news.scss'
 
+import img from '../../img/imgnews.jpg'
+import img2 from '../../img/img2news.jpg'
 
 
 const Newsview=()=>{

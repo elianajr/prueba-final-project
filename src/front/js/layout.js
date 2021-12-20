@@ -18,7 +18,7 @@ import RegisterCenter from "./component/registerCenter";
 
 
 import Newsview from "./pages/Newsview.jsx";
-import Newsdetail from "./component/Newsdetail.jsx";
+import Newsdetail from "./component/Newsdetails.jsx";
 
 
 //create your first component

@@ -17,6 +17,7 @@ import img5 from '../../img/img5news.jpg'
 import img6 from '../../img/img6news.jpg'
 import img7 from '../../img/img7news.jpg'
 import img8 from '../../img/img8news.jpg'
+import '../../styles/news.scss'
 
 
 const News=()=>{
