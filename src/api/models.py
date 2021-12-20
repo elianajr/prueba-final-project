@@ -237,21 +237,19 @@ class Hotspot(db.Model):
     has_reviews_spot = db.relationship("Review_Hotspot")
 
     def __repr__(self):
-        return f'Hotstop {self.id}, specie_id: {self.specie_id}, account_id: {self.account_id}, sport_id: {self.sport_id}, name: {self.name},  level: {self.level}, despcription: {self.despcription}, photo: {self.photo}, geometry: {self.geometry}'
+        return f'Hotstop {self.id}, account_id: {self.account_id}, sport_id: {self.sport_id}, name: {self.name},  level: {self.level}, description: {self.description}, photo: {self.photo}'
 
     def to_dict(self):
         return {
             "id": self.id,
             "sport_id": self.sport_id,
-            "specie_id": self.specie_id,
             "account_id": self.account_id,
             "name": self.name,
             "photo": self.photo,
             "level": self.level,
-            "despcription": self.despcription,
+            "description": self.description,
             "latitude": self.latitude,
             "longitude": self.longitude,
-            "category": self.category
         }
 
     @classmethod

@@ -1,25 +1,15 @@
 import React, { useContext, useState,useEffect } from "react";
 import { Context } from "../store/appContext";
 import '../../styles/upload.scss'
+import PropTypes from "prop-types";
 
 
 
-const upload= () =>{
+const upload= props =>{
     const { store, actions } = useContext(Context);
-    const [currentuser,setCurrentuser]=useState('')
-   
-    useEffect( async ()=>{
-        await actions.getUser(4)
-
-    },[])
-
-    useEffect(()=>{
-        setCurrentuser(store.user)
-    },[store.user])
-   
     
+   
     const [files, setFiles] = useState(null);
-    
 
     const uploadImage = event => {
         event.preventDefault();
@@ -31,7 +21,7 @@ const upload= () =>{
             method: "POST"
         };
 
-        fetch(store.baseUrl.concat('accountphoto/',currentuser.id),options)
+        fetch(store.baseUrl.concat(props.element,props.num),options)
         .then(resp=>resp.json())
         .then(data=>console.log('Succes',data))
         .catch(error=>console.log('Error',error))
@@ -46,15 +36,18 @@ const upload= () =>{
         <form onSubmit={uploadImage}> 
             
             <input id="inputfile" className="uploadinput" type="file" onChange={e => setFiles(e.target.files)} />
-            <label for="inputfile" className="uploadinput__label">Add your photo</label>
-            <button>Upload</button>
-            <img src={currentuser.cover_photo}></img>
+            <label htmlFor="inputfile" className="uploadinput__label">Add your photo</label>
+            <button className="uploadinput__button">Upload</button>
             
         </form>
         </div>
     )
 }
 
-
+upload.propTypes= {
+	element: PropTypes.string,
+    num:PropTypes.string
+	
+}
 
 export default upload

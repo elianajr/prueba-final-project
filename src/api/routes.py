@@ -221,7 +221,7 @@ def update_account_status(id):
 
 
 @api.route('/accountphoto/<int:id>', methods=['POST'])
-def handle_upload(id):
+def handle_uploadaccount(id):
 
     # validate that the front-end request was built correctly
     if 'profile_image' in request.files:
@@ -261,8 +261,10 @@ def handle_uploadhotspot(id):
         raise APIException('Missing profile_image on the FormData')
 
 
+
+
 @api.route('/speciephoto/<int:id>', methods=['POST'])
-def handle_uploadhotspot(id):
+def handle_uploadspecie(id):
 
     # validate that the front-end request was built correctly
     if 'profile_image' in request.files:
