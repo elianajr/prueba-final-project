@@ -35,6 +35,17 @@ def login():
 
     return {'error': 'Some parameter is wrong'}, 401
 
+@api.route('/account/<int:id>', methods=['GET'])
+def get_account(id):
+    
+    account= Account.get_account_by_id(id)
+   
+
+    if account:
+        return jsonify(account.to_dict()),200
+
+    return {'error': 'Account not found'}, 404
+
 
 @api.route('/account', methods=['POST'])
 def create_account(): 
