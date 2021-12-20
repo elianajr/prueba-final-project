@@ -67,7 +67,7 @@ const ChatForm = () => {
         await actions.getUsers()
 		
         
-		return getdata()
+		
     },[])
 
 
