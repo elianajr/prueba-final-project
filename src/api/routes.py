@@ -261,6 +261,27 @@ def handle_uploadhotspot(id):
         raise APIException('Missing profile_image on the FormData')
 
 
+@api.route('/speciephoto/<int:id>', methods=['POST'])
+def handle_uploadhotspot(id):
+
+    # validate that the front-end request was built correctly
+    if 'profile_image' in request.files:
+        # upload file to uploadcare
+        result = cloudinary.uploader.upload(request.files['profile_image'])
+
+        # fetch for the user
+        specie1 = Specie.get_specie_by_id(id)
+        # update the user with the given cloudinary image URL
+        specie1.photo = result['secure_url']
+
+        db.session.add(specie1)
+        db.session.commit()
+
+        return jsonify(specie1.to_dict()), 200
+    else:
+        raise APIException('Missing profile_image on the FormData')
+
+
 
 
 

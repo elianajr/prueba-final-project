@@ -282,6 +282,11 @@ class Specie(db.Model):
             "description": self.description,
             "is_reported": self.is_reported
         }
+    
+    @classmethod
+    def get_specie_by_id(cls,id):
+        specie = cls.query.get(id)
+        return specie
 
 
 
