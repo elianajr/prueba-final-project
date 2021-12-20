@@ -58,7 +58,7 @@ class Account(db.Model):
 
 
     def __repr__(self):
-        return f'Account is email: {self.email}, id: {self.id}, password: {self._password}, username: {self.username}, photo: {self.photo}, cover_photo: {self.cover_photo}, instagram: {self.instagram}, facebook: {self.facebook}, waterdropper: {self._is_waterdropper}'
+        return f'Account is email: {self.email}, id: {self.id}, password: {self._password}, username: {self.username}, photo: {self.photo}, cover_photo: {self.cover_photo}, instagram: {self.instagram}, facebook: {self.facebook}, about: {self.about}, waterdropper: {self._is_waterdropper}'
 
     def to_dict(self):
         user = self.has_waterdropper if self._is_waterdropper else self.has_center
@@ -71,8 +71,11 @@ class Account(db.Model):
             "cover_photo": self.cover_photo,
             "instagram": self.instagram,
             "facebook": self.facebook,
+            "about": self.about,
             "_is_waterdropper": self._is_waterdropper,
-            "user": user[0].to_dict()
+            # "user": list(map(lambda x: x.to_dict(), user)),
+            "user": user[0].to_dict(),
+            "sports": list(map(lambda sport: sport.to_dict(), self.have_account_sport))
         }
 
 

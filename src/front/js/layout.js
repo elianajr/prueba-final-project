@@ -10,6 +10,11 @@ import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
 import Login from "./component/login.js";
 import Register from "./component/register.js";
+import RegisterWaterdropper from "./component/registerWaterdropper.js";
+import RegisterCenter from "./component/registerCenter.js";
+import EditProfileWaterdropper from "./component/editProfileWaterdropper.js";
+import EditProfileCenter from "./component/editProfileCenter.js";
+import Profile from "./component/profile.js";
 
 //create your first component
 const Layout = () => {
@@ -25,6 +30,11 @@ const Layout = () => {
 					<Route path="/" element={<Home />} />
 					<Route path="/login" element={<Login />} />
 					<Route path="/register" element={<Register />} />
+					<Route path="/register-waterdropper" element={<RegisterWaterdropper />} />
+					<Route path="/register-center" element={<RegisterCenter />} />
+					<Route path="/profile/:id" element={<Profile />} />
+					<Route path="/profile-waterdropper/:id" element={<EditProfileWaterdropper />} />
+					<Route path="/profile-center" element={<EditProfileCenter />} />
 				</Routes>
 				
 			</BrowserRouter>

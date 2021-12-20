@@ -17,15 +17,16 @@ const Login = () => {
 	const showPwdImg = "fas fa-eye";
 
 
-	const token = sessionStorage.getItem("token");
+	
 	const onSubmit = data => {
-		// console.log(data);
+		console.log(data);
 		actions.login(data);
 		// .then(() => {
 		// 	history.pushState("/")
 		// })
 	};
 
+	const token = localStorage.getItem("token");
 	if(store.token && store.token !="" && store.token != null) {navigate("/")};
 
 
@@ -84,9 +85,8 @@ const Login = () => {
 				</span>
 				</div>
 				
-                <input className="button" type="submit" value="Continue" />
-
-				{/* <pre>{JSON.stringify(watch(), null, 2)}</pre> */}
+                <input className="button-logreg" type="submit" value="Continue" />
+				
 			</form>
 		</div>
 	);

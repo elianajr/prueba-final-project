@@ -218,34 +218,13 @@ const RegisterCenter = () => {
 
 
 			
-				{formStep !== 2 && <button disabled={!isValid} onClick={completeFormStep}>Continue</button>}
+				{formStep !== 2 && <button className="button-logreg" disabled={!isValid} onClick={completeFormStep}>Continue</button>}
 				{formStep === 2 && (
-					<button disabled={!isValid} type="submit">
+					<button className="button-logreg" disabled={!isValid} type="submit">
 					Submit
 					</button>
 				)}
-
-				{/* {formStep !== 2 && <button disabled={!isValid} onClick={() => {
-					completeFormStep;
-					getValues();
-				}
-				}>Continue</button>}
-				{formStep === 2 && (
-					<button disabled={!isValid} type="submit">
-					Submit
-					</button>
-				)} */}
-
-				{/* <input className="button" type="submit" value="Create account" />  */}
-				{/* <input className="button" type="submit" disabled={!isValid} onClick={completeFormStep} value="Create account" /> */}
-
-				{/* {formStep === 3 && (
-					<h5 className="congratulations">Congratulations your account has been created!</h5>
-				)} 
-
-				{renderButton()} */}
-
-				{/* <pre>{JSON.stringify(watch(), null, 2)}</pre> */}
+				
 			</form>
 		</div>
 	);

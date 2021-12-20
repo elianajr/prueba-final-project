@@ -1,3 +1,6 @@
+import { set } from "react-hook-form";
+import jwt_decode from "jwt-decode";
+
 const PORT = 3001;
 const [PROTOCOL, HOST] = process.env.GITPOD_WORKSPACE_URL.split("://");
 
@@ -6,10 +9,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 			baseUrl: `${PROTOCOL}://${PORT}-${HOST}/api/`,
-			frontUrl: "https://3000-cyan-lobster-g63lf7ls.ws-eu21.gitpod.io/",
 			currentUser: "",
+			loggedUser: "",
+			getUserProfile: {},
+			editUserPRofile: {},
 			token: "",
-			getUser: "",
+			mytoken: "",
+			userId: "",
 			favourites: [],
 		},
 
@@ -30,7 +36,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					setStore({ token : null });
 				// }
 			},
-
+			
 			login: async data => {
 				const opts = {
 					method: 'POST',
@@ -39,6 +45,15 @@ const getState = ({ getStore, getActions, setStore }) => {
 					}),
 					body: JSON.stringify(data)
 				};
+				
+				const tokenDecode = token => {
+					let decoded = jwt_decode(token);
+					return decoded;
+				};
+
+				const setUserFromToken = token => {
+					localStorage.setItem("Id", token.sub.id);
+				};
 
 				try{
 					const resp = await fetch(getStore().baseUrl.concat("login"), opts)
@@ -46,11 +61,18 @@ const getState = ({ getStore, getActions, setStore }) => {
 						alert("There has been some error");
 						return false;
 					}
-
+					
 					const data = await resp.json();
 					console.log("this came from the backend", data);
+					localStorage.setItem("jwt-token", data.token);
+					const tokenDecoded = tokenDecode(data.token);
+					console.log(tokenDecoded);
+					setStore({userId : tokenDecoded});
+					setUserFromToken(tokenDecoded);
+				
 					localStorage.setItem("token", data.token);
 					setStore({ token : data.token });
+
 					return true;
 				}
 				catch(error){
@@ -91,65 +113,57 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			},
 			
-			getProfile: async data => {
-				const opt = {
-					method: 'GET',
-					headers: new Headers({
-						'Content-Type': 'application/json'
-					}),
-					body: JSON.stringify(data)
+			getProfile: async (id) => {
+				let token = localStorage.getItem("token");
+				var myHeaders = new Headers();
+				myHeaders.append("Authorization", "Bearer " + token);
+
+				var requestOptions = {
+				method: 'GET',
+				headers: myHeaders,
+				redirect: 'follow'
 				};
 
-				try{
-					const resp = await fetch(getStore().baseUrl.concat("account/", id), opt)
-					if (resp.status !== 201) {
-						alert("There has been some error");
-						return false;
-					}
+				await fetch("https://3001-cyan-lobster-g63lf7ls.ws-eu23.gitpod.io/api/account/" + String(id), requestOptions)
+				.then(response => response.json())
+				.then(result => {
+					console.log(result),
+					setStore({getUserProfile: {
+						result: result,
+						user: result.user
+					}}),
+					setStore({mytoken: token})
+				})
+				.catch(error => console.log('error', error));
 
-					const data = await resp.json();
-
-					localStorage.setItem("currentUser", JSON.stringify(data.getaccount));
-					setStore({ getUser : data.getaccount});
-
-					return true;
-				}
-				catch(error){
-					console.error("There was an error!!", error);
-					}
+				let store = getStore()
+				console.log(store.getUserProfile);
 
 			},
 
-			editProfile: async data => {
-				const opt = {
-					method: 'PUT',
-					headers: new Headers({
-						'Content-Type': 'application/json'
-					}),
-					body: JSON.stringify(data)
+			editProfile: async (id) => {
+				let token = localStorage.getItem("token");
+				var myHeaders = new Headers();
+				myHeaders.append("Authorization", `Bearer ${token}`);
+				myHeaders.append("Content-Type", "application/json");
+
+				var requestOptions = {
+				method: 'PUT',
+				headers: myHeaders,
+				redirect: 'follow'
 				};
 
-				try{
-					const resp = await fetch(getStore().baseUrl.concat("account"), opt)
-					if (resp.status !== 201) {
-						alert("There has been some error");
-						return false;
-					}
+				await fetch("https://3001-cyan-lobster-g63lf7ls.ws-eu23.gitpod.io/api/account/" + String(id), requestOptions)
+				.then(response => response.json())
+				.then(result => {
+					console.log(result)
+					// setStore({currentUser: result}),
+					// setStore({mytoken: token})
+				})
+				.catch(error => console.log('error', error));
 
-					const data = await resp.json();
-
-					localStorage.setItem("token", data.token);
-					setStore({ token : data.token });
-
-					localStorage.setItem("currentUser", JSON.stringify(data.account));
-					setStore({ currentUser : data.account});
-
-					return true;
-				}
-				catch(error){
-					console.error("There was an error!!", error);
-					}
-
+				// let store = getStore()
+				// console.log(store.currentUser);
 			},
 
 			deleteProfile: async data => {

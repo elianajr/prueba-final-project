@@ -21,7 +21,6 @@ api = Blueprint('api', __name__)
 
 @api.route('/login', methods=['POST'])
 def login():
-    
     email = request.json.get('email', None)
     password = request.json.get('password', None)
 
@@ -122,7 +121,7 @@ def get_account_profile(id):
     account = Account.get_account_by_id(id)
 
     if account and account._is_active:
-        return jsonify({'getaccount': account.to_dict()}), 200
+        return jsonify(account.to_dict()), 200
     
     return({"error": "Account not found"}), 404
 
@@ -208,46 +207,46 @@ def update_account_status(id):
         return jsonify({'error' : 'Account not found'}), 404
 
 
-# @api.route('/waterdropper/<int:id_waterdropper>/favourite-centers/<int:id_center>', methods=['POST'])
-# @jwt_required()
-# def add_favcenter(id_waterdropper,id_center):
-#     token_id = get_jwt_identity()
-#     print("token",token_id)
+@api.route('/waterdropper/<int:id_waterdropper>/favourite-centers/<int:id_center>', methods=['POST'])
+@jwt_required()
+def add_favcenter(id_waterdropper,id_center):
+    token_id = get_jwt_identity()
+    print("token",token_id)
 
-#     if token_id.get("id") == id_waterdropper:
-#         waterdropper = Waterdropper.get_waterdropper_by_id(id_waterdropper)
-#         center = Center.get_center_by_id(id_center)
-#         print("waterdropper",waterdropper)
-#         print("center",center)
+    if token_id.get("id") == id_waterdropper:
+        waterdropper = Waterdropper.get_waterdropper_by_id(id_waterdropper)
+        center = Center.get_center_by_id(id_center)
+        print("waterdropper",waterdropper)
+        print("center",center)
 
-#         if waterdropper and center:
-#             fav_center = waterdropper.add_fav_center(center)
-#             print(fav_center)
-#             fav_centers = [center.to_dict() for center in fav_center]
-#             return jsonify(fav_centers), 200
+        if waterdropper and center:
+            fav_center = waterdropper.add_fav_center(center)
+            print(fav_center)
+            fav_centers = [center.to_dict() for center in fav_center]
+            return jsonify(fav_centers), 200
 
-#     return jsonify({'error': 'Favourite center not found'}), 404
+    return jsonify({'error': 'Favourite center not found'}), 404
 
 
-# @api.route('/waterdropper/<int:id_waterdropper>/favourite-hotspots/<int:id_hotspot>', methods=['POST'])
-# @jwt_required()
-# def add_favhotspot(id_waterdropper,id_hotspot):
-#     token_id = get_jwt_identity()
-#     print("token",token_id)
+@api.route('/waterdropper/<int:id_waterdropper>/favourite-hotspots/<int:id_hotspot>', methods=['POST'])
+@jwt_required()
+def add_favhotspot(id_waterdropper,id_hotspot):
+    token_id = get_jwt_identity()
+    print("token",token_id)
 
-#     if token_id.get("id") == id_waterdropper:
-#         waterdropper = Waterdropper.get_waterdropper_by_id(id_waterdropper)
-#         hotspot = Hotspot.get_hotspot_by_id(id_hotspot)
-#         print("waterdropper",waterdropper)
-#         print("hotspot",hotspot)
+    if token_id.get("id") == id_waterdropper:
+        waterdropper = Waterdropper.get_waterdropper_by_id(id_waterdropper)
+        hotspot = Hotspot.get_hotspot_by_id(id_hotspot)
+        print("waterdropper",waterdropper)
+        print("hotspot",hotspot)
 
-#         if waterdropper and hotspot:
-#             fav_hotspot = waterdropper.add_fav_hotspot(hotspot)
-#             print(fav_hotspot)
-#             fav_hotspots = [hotspot.to_dict() for hotspot in fav_hotspot]
-#             return jsonify(fav_hotspots), 200
+        if waterdropper and hotspot:
+            fav_hotspot = waterdropper.add_fav_hotspot(hotspot)
+            print(fav_hotspot)
+            fav_hotspots = [hotspot.to_dict() for hotspot in fav_hotspot]
+            return jsonify(fav_hotspots), 200
 
-#     return jsonify({'error': 'Favourite hotspot not found'}), 404
+    return jsonify({'error': 'Favourite hotspot not found'}), 404
 
 
 
