@@ -17,13 +17,6 @@ const Newsdetail=()=>{
 
   const { store, actions } = useContext(Context);
 
-    useEffect(()=>{
-
-      
-    },[])
-
-    
-
     
      const [counter,setCounter]=useState(0)
      const sendicon= <Icon icon="grommet-icons:send" color="#2cb1aa" width="50" height="50" />
