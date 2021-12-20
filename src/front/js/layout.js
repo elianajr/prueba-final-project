@@ -15,8 +15,10 @@ import Login from "./component/login.js";
 import Register from "./component/register.js";
 import RegisterWaterdropper from "./component/registerWaterdropper";
 import RegisterCenter from "./component/registerCenter";
-import News from "./component/News.jsx";
-import Newsdetail from "./component/Newsdetails.jsx";
+
+
+import Newsview from "./pages/Newsview.jsx";
+import Newsdetail from "./component/Newsdetail.jsx";
 
 
 //create your first component
@@ -36,7 +38,7 @@ const Layout = () => {
 				<Route path="/register" element={<Register />} />
 				<Route path="/registerwaterdropper" element={<RegisterWaterdropper />} />
 				<Route path="/registercenter" element={<RegisterCenter />} />
-				<Route path="/news" element={<News />} />
+				<Route path="/news" element={<Newsview />} />
 				<Route path="/newsdetail" element={<Newsdetail />} />
 				</Routes>		
 		</BrowserRouter>
