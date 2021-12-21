@@ -9,6 +9,7 @@ import { Icon } from '@iconify/react';
 import { Link } from "react-router-dom";
 import Aos from "aos";
 import 'aos/dist/aos.css'
+import jwt_decode from "jwt-decode";
 
 
 
@@ -16,10 +17,26 @@ import 'aos/dist/aos.css'
 const Newsdetail=()=>{
 
   const { store, actions } = useContext(Context);
+  const [currentUser,setCurrentuser]=useState('')
 
     
      const [counter,setCounter]=useState(0)
      const sendicon= <Icon icon="grommet-icons:send" color="#2cb1aa" width="50" height="50" />
+
+     useEffect( async()=>{
+		const decoded=(jwt_decode(localStorage.getItem('token')))
+		
+        await actions.getUser(decoded.sub.id)
+        
+		
+        
+		
+    },[])
+
+    useEffect(()=>{
+		setCurrentuser(store.user)
+		
+	},[store.user])
 
 
     return (
@@ -27,13 +44,13 @@ const Newsdetail=()=>{
       
          <div  className='player__wrapper'>
             <div><img  className="player__backgroundimg" src={img}></img></div>
-            <ReactPlayer 
-                  className='reactplayer'
-                  url='https://vimeo.com/116135968'
-                  controls
-                  width='70%'
-                  height='70%'
-             />
+            <ReactPlayer  className='reactplayer'
+             url='https://vimeo.com/116135968'
+             controls
+             width='70%'
+             height='70%'>
+
+            </ReactPlayer>
           </div>
            <div className='detailnews__main'>
               <h1 className='detailsnews__title'>CrazyFly Pure</h1>
@@ -51,7 +68,7 @@ const Newsdetail=()=>{
         <Logo></Logo>
         <form>
         <div className="comments__wrapper">
-        <img className="user__img" ></img>
+        <img className="user__img" src={currentUser.cover_photo} ></img>
         
         <div className="comments__container">
             <input type="text" placeholder="Start the discussion..." className="comments__input" />

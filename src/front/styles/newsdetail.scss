@@ -2,10 +2,11 @@
     width: 80%;
     display: block;
     margin: auto;
-    margin-top: 3rem;
     border:1.5rem solid rgba(#92E2C8, 0.3); ;
     border-bottom-right-radius: 15%;
     border-bottom-left-radius: 15%;
+    
+    
 }
 
 .detailsnews__title{
@@ -22,12 +23,16 @@
 .detailnews__main{
     margin-left: 11.3rem;
     margin-right: 5.75rem;
-    margin-top: 4rem;
+    margin-top: 10rem;
+    margin-bottom: 2rem;
 }
 
 
 .player__wrapper {
     position: relative;
+    top: 6rem;
+    
+    
 }
   
 .reactplayer {
@@ -124,7 +129,7 @@ svg{
     margin-left: 2rem; 
     position: absolute;
     left: 8rem;
-    top: 73rem;
+    top: 76rem;
 }
 
 .backbutton{

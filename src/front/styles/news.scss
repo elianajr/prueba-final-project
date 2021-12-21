@@ -27,11 +27,12 @@
 .news__image{
    width: 35rem;
    height: 30rem;
-   margin-top: 4.5rem;
+   margin-top: 5rem;
    position: relative;
    margin-left: 8rem;
    border-radius: 2%;
    float: right;
+   z-index: -1
 }
 
 .news__subimage{

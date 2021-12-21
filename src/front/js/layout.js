@@ -1,11 +1,11 @@
-import React, { Fragment } from "react";
-import { Navbar } from "./component/navbar.js";
-import { Footer } from "./component/footer.js";
+import React from "react";
 import {
-  BrowserRouter,
-  Routes,
-  Route
-} from "react-router-dom";
+	BrowserRouter,
+	Routes,
+	Route
+  } from "react-router-dom";
+import Navbar from "./component/navbar.js";
+import Landingpage from "./component/Landingpage.jsx";
 import Home from "./pages/home.js";
 import HotSpot from "./pages/hotspot.jsx";
 import Forecast from "./pages/forecast.jsx";
@@ -13,10 +13,10 @@ import injectContext from "./store/appContext";
 import { AboutUs } from "./pages/aboutus.jsx";
 import Login from "./component/login.js";
 import Register from "./component/register.js";
-import RegisterWaterdropper from "./component/registerWaterdropper";
-import RegisterCenter from "./component/registerCenter";
-
-
+import RegisterWaterdropper from "./component/registerWaterdropper.js";
+import RegisterCenter from "./component/registerCenter.js";
+import ChatForm from "./component/ChatForm.jsx"
+import Chatdropdown from "./component/Chatdropdown.jsx"
 import Newsview from "./pages/Newsview.jsx";
 import Newsdetail from "./component/Newsdetails.jsx";
 
@@ -28,9 +28,12 @@ const Layout = () => {
 	const basename = process.env.BASENAME || "";
 
 	return (
+		
+			
 		<BrowserRouter className="index">
+			<Navbar></Navbar>
 			<Routes>
-				<Route path="/" element={<Home />} />
+				<Route path="/" element={<Landingpage />} />
 				<Route path="/hotspot" element={<HotSpot />} />
 				<Route path="/forecast" element={<Forecast />} />
 				<Route path="/aboutus" element={<AboutUs />} />
@@ -39,10 +42,15 @@ const Layout = () => {
 				<Route path="/registerwaterdropper" element={<RegisterWaterdropper />} />
 				<Route path="/registercenter" element={<RegisterCenter />} />
 				<Route path="/news" element={<Newsview />} />
-				<Route path="/newsdetail" element={<Newsdetail />} />
-				</Routes>		
+				<Route path="/newsdetail" element={<Newsdetail />} />		
+				<Route path="/chat" element={<ChatForm />} />
+				<Route path="/home" element={<Home></Home>}></Route>
+			</Routes>	
+	
 		</BrowserRouter>
+		
 	);
 };
 
 export default injectContext(Layout);
+
