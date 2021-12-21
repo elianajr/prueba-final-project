@@ -25,8 +25,8 @@ const Chatdropdown=()=>{
         const decoded=(jwt_decode(localStorage.getItem('token')))
 		
         await actions.getUser(decoded.sub.id)
-       // await actions.getUser(2)
-      //  await actions.getUsers()
+      
+       await actions.getUsers()
         
     },[])
 

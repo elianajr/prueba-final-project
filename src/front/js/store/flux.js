@@ -10,13 +10,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 			users:[],
 			user:{},
 			baseUrl: `${PROTOCOL}://${PORT}-${HOST}/api/`,
-			currentUser: "",
+			currentUser: {},
 			token: {},
 			position: {
 				latitude: null,
 				longitude: null
 			},
-			weather: {}
+			weather: {},
 		},
 
 		actions: {
@@ -97,9 +97,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 	             console.log('Looks like there was a problem: \n', error);
                  });
 			},
-			
-			
-			
 
 		    register: async data => {
 				const opt = {
@@ -131,10 +128,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.error("There was an error!!", error);
 					}
 
-			},
+			},	
 			
-		}
-    };
+		},
+			
+		
+	};
 
 }
 

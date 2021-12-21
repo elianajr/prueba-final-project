@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 import { Navbar } from "../component/navbar";
 import { Footer } from "../component/footer";
+import Upload from '../component/upload.jsx'
 
 import "../../styles/home.scss";
 
@@ -64,6 +65,8 @@ const Home = () => {
 			</div>
 			<Footer/>
 		</div>
+		
+		
 	);
 };
 

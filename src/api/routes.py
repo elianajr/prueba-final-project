@@ -15,6 +15,9 @@ import jwt
 import json
 import itertools
 
+import cloudinary
+import cloudinary.uploader
+
 api = Blueprint('api', __name__)
 
 
@@ -234,6 +237,66 @@ def update_account_status(id):
 
 
 
+@api.route('/accountphoto/<int:id>', methods=['POST'])
+def handle_uploadaccount(id):
+
+    # validate that the front-end request was built correctly
+    if 'profile_image' in request.files:
+        # upload file to uploadcare
+        result = cloudinary.uploader.upload(request.files['profile_image'])
+
+        # fetch for the user
+        account1 = Account.get_account_by_id(id)
+        # update the user with the given cloudinary image URL
+        if account1:
+             account1.cover_photo = result['secure_url']
+             account1.update_photoaccount()
+             return jsonify(account1.to_dict()), 200
+             
+    else:
+        raise APIException('Missing profile_image on the FormData')
+
+@api.route('/hotspotphoto/<int:id>', methods=['POST'])
+def handle_uploadhotspot(id):
+
+    # validate that the front-end request was built correctly
+    if 'profile_image' in request.files:
+        # upload file to uploadcare
+        result = cloudinary.uploader.upload(request.files['profile_image'])
+
+        # fetch for the user
+        hotspot1 = Hotspot.get_hotspot_by_id(id)
+        # update the user with the given cloudinary image URL
+        hotspot1.photo = result['secure_url']
+
+        hotspot1.update_photohotspot()
+
+        return jsonify(hotspot1.to_dict()), 200
+    else:
+        raise APIException('Missing profile_image on the FormData')
+
+
+
+
+@api.route('/speciephoto/<int:id>', methods=['POST'])
+def handle_uploadspecie(id):
+
+    # validate that the front-end request was built correctly
+    if 'profile_image' in request.files:
+        # upload file to uploadcare
+        result = cloudinary.uploader.upload(request.files['profile_image'])
+
+        # fetch for the user
+        specie1 = Specie.get_specie_by_id(id)
+        # update the user with the given cloudinary image URL
+        specie1.photo = result['secure_url']
+
+        db.session.add(specie1)
+        db.session.commit()
+
+        return jsonify(specie1.to_dict()), 200
+    else:
+        raise APIException('Missing profile_image on the FormData')
 
 
 

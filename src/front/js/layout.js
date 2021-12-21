@@ -13,6 +13,10 @@ import injectContext from "./store/appContext";
 import { AboutUs } from "./pages/aboutus.jsx";
 import Login from "./component/login.js";
 import Register from "./component/register.js";
+
+
+import Upload from "./component/upload.jsx";
+import Uploadingphotos from "./pages/uploadingphotos.jsx";
 import RegisterWaterdropper from "./component/registerWaterdropper.js";
 import RegisterCenter from "./component/registerCenter.js";
 import ChatForm from "./component/ChatForm.jsx"
@@ -41,6 +45,7 @@ const Layout = () => {
 				<Route path="/register" element={<Register />} />
 				<Route path="/registerwaterdropper" element={<RegisterWaterdropper />} />
 				<Route path="/registercenter" element={<RegisterCenter />} />
+				<Route path="/photo" element={<Uploadingphotos></Uploadingphotos>}></Route>	
 				<Route path="/news" element={<Newsview />} />
 				<Route path="/newsdetail" element={<Newsdetail />} />		
 				<Route path="/chat" element={<ChatForm />} />

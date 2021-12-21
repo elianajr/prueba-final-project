@@ -116,6 +116,12 @@ class Account(db.Model):
         db.session.delete(self)
         db.session.commit()
 
+    def update_photoaccount(self):
+        db.session.add(self)
+        db.session.commit()
+        return self
+
+
 
 class Waterdropper(db.Model):
     __tablename__: "waterdropper"
@@ -242,27 +248,30 @@ class Hotspot(db.Model):
     has_reviews_spot = db.relationship("Review_Hotspot")
 
     def __repr__(self):
-        return f'Hotstop {self.id}, specie_id: {self.specie_id}, account_id: {self.account_id}, sport_id: {self.sport_id}, name: {self.name},  level: {self.level}, despcription: {self.despcription}, photo: {self.photo}, geometry: {self.geometry}'
+        return f'Hotstop {self.id}, account_id: {self.account_id}, sport_id: {self.sport_id}, name: {self.name},  level: {self.level}, description: {self.description}, photo: {self.photo}'
 
     def to_dict(self):
         return {
             "id": self.id,
             "sport_id": self.sport_id,
-            "specie_id": self.specie_id,
             "account_id": self.account_id,
             "name": self.name,
             "photo": self.photo,
             "level": self.level,
-            "despcription": self.despcription,
+            "description": self.description,
             "latitude": self.latitude,
             "longitude": self.longitude,
-            "category": self.category
         }
 
     @classmethod
     def get_hotspot_by_id(cls,id):
         hotspot = cls.query.get(id)
         return hotspot
+    
+    def update_photohotspot(self):
+        db.session.add(self)
+        db.session.commit()
+        return self
 
 
 class Specie(db.Model):
@@ -287,6 +296,11 @@ class Specie(db.Model):
             "description": self.description,
             "is_reported": self.is_reported
         }
+    
+    @classmethod
+    def get_specie_by_id(cls,id):
+        specie = cls.query.get(id)
+        return specie
 
 
 
