@@ -13,8 +13,10 @@ import injectContext from "./store/appContext";
 import { AboutUs } from "./pages/aboutus.jsx";
 import Login from "./component/login.js";
 import Register from "./component/register.js";
-import RegisterWaterdropper from "./component/registerWaterdropper";
-import RegisterCenter from "./component/registerCenter";
+import RegisterWaterdropper from "./component/registerWaterdropper.js";
+import RegisterCenter from "./component/registerCenter.js";
+import ChatForm from "./component/ChatForm.jsx"
+import Chatdropdown from "./component/Chatdropdown.jsx"
 
 
 //create your first component
@@ -24,6 +26,8 @@ const Layout = () => {
 	const basename = process.env.BASENAME || "";
 
 	return (
+		
+			
 		<BrowserRouter className="index">
 			<Routes>
 				<Route path="/" element={<Home />} />
@@ -34,9 +38,13 @@ const Layout = () => {
 				<Route path="/register" element={<Register />} />
 				<Route path="/registerwaterdropper" element={<RegisterWaterdropper />} />
 				<Route path="/registercenter" element={<RegisterCenter />} />
-				</Routes>		
+				<Route path="/chat" element={<ChatForm />} />
+			</Routes>	
+	
 		</BrowserRouter>
+		
 	);
 };
 
 export default injectContext(Layout);
+
