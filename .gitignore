@@ -6,6 +6,7 @@
 !.github
 php_errorlog
 .log
+!.babelrc
 
 # do not ignore gitpod files
 !.gitpod.Dockerfile
