@@ -76,6 +76,11 @@ class Account(db.Model):
     def get_account_by_id(cls,id):
         account = cls.query.get(id)
         return account
+    
+    @classmethod
+    def get_all(cls):
+        accounts= cls.query.all()
+        return accounts
 
     def create(self, sports):
         for sport in sports:
@@ -110,6 +115,12 @@ class Account(db.Model):
     def delete(self):
         db.session.delete(self)
         db.session.commit()
+
+    def update_photoaccount(self):
+        db.session.add(self)
+        db.session.commit()
+        return self
+
 
 
 class Waterdropper(db.Model):
@@ -256,6 +267,11 @@ class Hotspot(db.Model):
     def get_hotspot_by_id(cls,id):
         hotspot = cls.query.get(id)
         return hotspot
+    
+    def update_photohotspot(self):
+        db.session.add(self)
+        db.session.commit()
+        return self
 
 
 class Specie(db.Model):
@@ -378,4 +394,3 @@ class Review_Hotspot(db.Model):
             "date": self.date,
             "puntuation": self.puntuation
         }
-

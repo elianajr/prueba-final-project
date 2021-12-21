@@ -5,6 +5,7 @@
 .uploadinput__label{
    
     width: 12rem;
+    position: relative;
     height: 3rem;
     margin: 1rem 1rem 1rem 1rem;
     display: flex;
@@ -16,6 +17,7 @@
     font-weight: bold;
     font-family: 'Righteous';
     box-shadow: 0rem 0.25rem 0.3rem rgba(0, 0, 0, 0.25);
+    top: 8rem;
    
 }
 
@@ -28,4 +30,5 @@
     height: 3rem;
     width: 6rem;
     font-weight: bold;
+    margin-top: 10rem;
 }

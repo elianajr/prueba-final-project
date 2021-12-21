@@ -21,6 +21,30 @@ import cloudinary.uploader
 api = Blueprint('api', __name__)
 
 
+
+
+@api.route('/account', methods=[ 'GET'])
+def get_accounts():
+
+  accounts= Account.get_all()
+  all_accounts=[account.to_dict() for account in accounts]
+  return jsonify(all_accounts), 200
+
+@api.route('/account/<int:id>', methods=[ 'GET'])
+def get_account(id):
+
+  account= Account.get_account_by_id(id)
+
+  if account:
+      account= account.to_dict()
+      return jsonify(account), 200
+  
+  
+
+  
+
+
+    
 @api.route('/login', methods=['POST'])
 def login():
     
@@ -38,14 +62,7 @@ def login():
 
     return {'error': 'Some parameter is wrong'}, 401
 
-@api.route('/account/<int:id>', methods=[ 'GET'])
-def get_account(id):
 
-  account= Account.get_account_by_id(id)
-
-  if account:
-      account= account.to_dict()
-      return jsonify(account), 200
 
 
 @api.route('/account', methods=['POST'])
@@ -231,12 +248,11 @@ def handle_uploadaccount(id):
         # fetch for the user
         account1 = Account.get_account_by_id(id)
         # update the user with the given cloudinary image URL
-        account1.cover_photo = result['secure_url']
-
-        db.session.add(account1)
-        db.session.commit()
-
-        return jsonify(account1.to_dict()), 200
+        if account1:
+             account1.cover_photo = result['secure_url']
+             account1.update_photoaccount()
+             return jsonify(account1.to_dict()), 200
+             
     else:
         raise APIException('Missing profile_image on the FormData')
 
@@ -253,8 +269,7 @@ def handle_uploadhotspot(id):
         # update the user with the given cloudinary image URL
         hotspot1.photo = result['secure_url']
 
-        db.session.add(hotspot1)
-        db.session.commit()
+        hotspot1.update_photohotspot()
 
         return jsonify(hotspot1.to_dict()), 200
     else:

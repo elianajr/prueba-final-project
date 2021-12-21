@@ -4,6 +4,8 @@
 # track this file .gitignore (i.e. do NOT ignore it)
 !.gitignore
 !.github
+php_errorlog
+.log
 !.babelrc
 
 # do not ignore gitpod files
