@@ -9,18 +9,20 @@ const DeleteProfile = () => {
 	const { store, actions } = useContext(Context);
 	const { watch, register, formState: { errors }, handleSubmit } = useForm({mode:"all"});
 	const navigate = useNavigate();
-    let params = useParams();
+	const result = {...store.currentUser.result};
+    // let params = useParams();
 
 
 	// useEffect(() => {
+	// 	console.log(params.id);
     //     actions.getProfile(params.id);
-    //     console.log(params.id);
     //   }, []);
 
 
 	const onSubmit = data => {
 		console.log(data);
-		actions.deleteProfile(data);
+		console.log('Este es el siguiente log', result.id)
+		actions.deleteProfile(data, result.id);
 	};
 
 

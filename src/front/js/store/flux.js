@@ -118,17 +118,16 @@ const getState = ({ getStore, getActions, setStore }) => {
 				try{
 					const resp = await fetch(getStore().baseUrl.concat('account/', id), opt)
 					if (resp.status !== 201) {
-						alert("There has been some error");
+						// alert("There has been some error");
 					}
 
-					const data = await resp.json();
-
-					console.log(data);
-
-					// localStorage.setItem("token", data.token);
-					// const tokenDecoded = jwt_decode(data.token);
-					// setStore({"loggedUser": tokenDecoded});
-
+					const result = await resp.json();
+					setStore({currentUser: {
+						result: result,
+						user: result.user
+					}}),
+					setStore({token: token})
+					console.log(result)
 				}
 				catch(error){
 					console.error("There was an error!!", error);
@@ -144,15 +143,15 @@ const getState = ({ getStore, getActions, setStore }) => {
 				// redirect: 'follow'
 				// };
 
-				// await fetch(getStore().baseUrl.concat("https://3001-cyan-lobster-g63lf7ls.ws-eu23.gitpod.io/api/account/1"), requestOptions)
+				// await fetch(getStore().baseUrl.concat(`account/${id}`), requestOptions)
 				// .then(response => response.json(data))
 				// .then(result => {
 				// 	console.log(JSON.stringify(result))
-				// 	// setStore({currentUser: {
-				// 	// 	result: result,
-				// 	// 	user: result.user
-				// 	// }}),
-				// 	// setStore({token: token})
+				// 	setStore({currentUser: {
+				// 		result: result,
+				// 		user: result.user
+				// 	}}),
+				// 	setStore({token: token})
 				// })
 				// .catch(error => console.log('error', error));
 

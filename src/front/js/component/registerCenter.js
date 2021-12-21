@@ -149,19 +149,19 @@ const RegisterCenter = () => {
 						<span className="label-relog">Sports (check all that apply)</span>
 						<div>
 							<div className="form-check form-switch form-check-reglog">
-							<input className="form-check-input" type="checkbox" id="scuba" name="sports" value="scuba" {...register("sports")}/>
+							<input className="form-check-input" type="checkbox" id="scuba" name="sports" value="scuba" {...register("sports", { required: true })}/>
 							<label className="form-check-label" htmlFor="scuba">Scuba diving</label>
 							</div>
 							<div className="form-check form-switch form-check-reglog">
-							<input className="form-check-input" type="checkbox" id="surf" name="sports" value="surf" {...register("sports")}/>
+							<input className="form-check-input" type="checkbox" id="surf" name="sports" value="surf" {...register("sports", { required: true })}/>
 							<label className="form-check-label" htmlFor="surf">Surf</label>
 							</div>
 							<div className="form-check form-switch form-check-reglog">
-							<input className="form-check-input" type="checkbox" id="kitesurf" name="sports" value="kitesurf" {...register("sports")}/>
+							<input className="form-check-input" type="checkbox" id="kitesurf" name="sports" value="kitesurf" {...register("sports", { required: true })}/>
 							<label className="form-check-label" htmlFor="kitesurf">Kitesurf</label>
 							</div>
 							<div className="form-check form-switch form-check-reglog">
-							<input className="form-check-input" type="checkbox" id="snorkel" name="sports" value="snorkel" {...register("sports")}/>
+							<input className="form-check-input" type="checkbox" id="snorkel" name="sports" value="snorkel" {...register("sports", { required: true })}/>
 							<label className="form-check-label" htmlFor="snorkel">Snorkel</label>
 							</div>
 							{errors.sports && errors.sports.type === "required" && (

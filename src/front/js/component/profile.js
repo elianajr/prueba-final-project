@@ -1,56 +1,54 @@
 import React , { useState, useContext, useEffect, Fragment } from "react";
-import { useParams } from "react-router-dom";
-import { Link } from "react-router-dom";
-import { Context } from "../store/appContext.js";
-import "../../styles/profile.scss";
-import elianaSeaDragon from "../../img/eliana-sea-dragons.png";
-import elianaTurtle from "../../img/eliana-turtle.png";
+import { useForm } from "react-hook-form";
+import { useParams, useNavigate, Link } from "react-router-dom";
+
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
+import TextField from '@mui/material/TextField';
 
-const style = {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: 400,
-    bgcolor: 'background.paper',
-    border: '2px solid #0c82a644',
-    borderRadius: '5px',
-    boxShadow: 24,
-    p: 4,
-  };
+import { Context } from "../store/appContext.js";
+import "../../styles/profile.scss";
+
 
 
 const Profile = () => {
 	const { store, actions } = useContext(Context);
     const [profile, setProfile] = useState([]);
     const [isWaterdropper, setIsWaterdropper] = useState(null);
-    let params = useParams();
     const [editButton, setEditButton] = useState();
-    const [open, setOpen] = useState(false);
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
+    // const [open, setOpen] = useState(false);
+    const navigate = useNavigate();
+    // const handleOpen = () => setOpen(true);
+    // const handleClose = () => setOpen(false);
+    let params = useParams();
     
     const result = {...store.currentUser.result};
     const user = {...store.currentUser.user};
+    //const favcenters = [...user.favourite_centers];
 
-   
-    // const favouritesSpots = [...user.favourite_spot];
+	// useEffect(() => {
+    //     actions.getProfile(params.id);
+    //     console.log(params.id);
+	// }, []);
 
-
-	useEffect(() => {
-        actions.getProfile(params.id);
-        // actions.login(params.id);
-        console.log(params.id);
-	}, []);
+    useEffect(() => {
+        localStorage.getItem("token") ? actions.getProfile(params.id) : navigate("/login");
+    }, [])
 
 
     useEffect(()=>{
-        setIsWaterdropper(result._is_waterdropper)
-        console.log("waterdropper",result._is_waterdropper);
+        // console.log("resu", result._is_waterdropper)
+        setIsWaterdropper(result._is_waterdropper);
+        // console.log("result.id", result.id);
+        // console.log("id", store.loggedUser.id);
+        // console.log("fav centers", favcenters);
+        if(result.id == store.loggedUser.id) {
+            setEditButton(<Button><i className="fas fa-pen"></i> Edit profile</Button>)
+        } else {
+            setEditButton("")
+        }
     }
     ,[store.currentUser])
 
@@ -94,14 +92,17 @@ const Profile = () => {
                                     </div>
                                 </div>
 
-                                <p className="profile-sports"> Este es el parrafo de PS
+                                <div className="profile-sports">
                                     <ul>
                                         {result.sports.map(sport => (
                                             <li key={sport.id}>{sport.name}</li>
                                         ))}
                                     </ul>
-                                </p>
-                                <p className="profile-level">{user.level}</p>
+                                </div>
+                                <div>
+                                    <p className="profile-level">{user.level}</p>
+                                </div>
+                               
 
                                 <button className="buttonWTD_stylee">Add spot</button>
                                 <a href={result.instagram} target="_blank" className="profile-instagram"><i className="fab fa-instagram"></i></a>
@@ -111,13 +112,14 @@ const Profile = () => {
                                     <h5 className="profile-about-title">About</h5>
                                     <p className="profile-about-text">{result.about}</p>
                                 </div>
+                                <Link className="link-profile" to='/profile-waterdropper'>{editButton}</Link>
                                 {/* <Button>{editButton}</Button> */}
-                                {
+                                {/* {
                                     result.id = store.loggedUser.id
                                     // ? (<Button onClick={handleOpen}><i className="fas fa-pen"></i> Edit profile</Button>)
                                     ? <Link to='/profile-waterdropper'>Edit profile</Link>
                                     : (<span></span>)
-                                }
+                                } */}
                             </div>
                         </div>
                     </div>
@@ -162,12 +164,17 @@ const Profile = () => {
                                         <span className="profile-name">{result.username}</span>
                                     </div>
                                     <div className="col-4">
-                                        <span className="profile-location"><i className="fas fa-map-marker-alt"></i> {user.address}</span>
-                                        
+                                        <p className="profile-location"><i className="fas fa-mobile-alt"></i> {user.phone}</p>
                                     </div>
                                 </div>
     
-                                <p className="profile-sports">{result.sports}</p>
+                                {/* <div className="profile-sports">
+                                    <ul>
+                                        {result.sports.map(sport => (
+                                            <li key={sport.id}>{sport.name}</li>
+                                        ))}
+                                    </ul>
+                                </div> */}
     
                                 <button className="buttonWTD_stylee">Add spot</button>
                                 <a href={result.instagram} target="_blank" className="profile-instagram"><i className="fab fa-instagram"></i></a>
@@ -178,15 +185,9 @@ const Profile = () => {
                                     <p className="profile-about-text">{result.about}</p>
                                     
                                     <a href={user.web} target="_blank" className="profile-link-center">{user.web}</a>
-                                    <p className="profile-location"><i className="fas fa-mobile-alt"></i> {user.phone}</p>
+                                    <p className="profile-location"><i className="fas fa-map-marker-alt"></i> {user.address}</p>
                                 </div>
-                                {/* <Button>{editButton}</Button> */}
-                                {/* <Button onClick={handleOpen}><i className="fas fa-pen"></i> Edit profile</Button> */}
-                                {
-                                    result.id = store.loggedUser.id
-                                    ? (<Button onClick={handleOpen}><i className="fas fa-pen"></i> Edit profile</Button>)
-                                    : (<span></span>)
-                                }
+                                <Link className="link-profile" to='/profile-center'>{editButton}</Link>
                             </div>
                         </div>
                     </div>
@@ -208,39 +209,11 @@ const Profile = () => {
         [isWaterdropper]
     );
 
-     // map((index) => {
-            //     return (
-            //         <div key={index.id}>
-            //             <h5>{index.username}</h5>
-            //         </div>
-            //         );
-            //     })
-
-
 
 	return (
         <Fragment>
         <div>{profile}</div>
-
-        <div>
-        <Modal
-            open={open}
-            onClose={handleClose}
-            aria-labelledby="modal-modal-title"
-            aria-describedby="modal-modal-description"
-        >
-            <Box sx={style}>
-            <Typography id="modal-modal-title" variant="h6" component="h2">
-                Text in a modal
-            </Typography>
-            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-            </Typography>
-            </Box>
-        </Modal>
-    </div>
-
-    </Fragment>
+        </Fragment>
 	);
 };
 

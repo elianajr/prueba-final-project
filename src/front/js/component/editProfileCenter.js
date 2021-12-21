@@ -22,13 +22,13 @@ const style = {
 };
 
 const EditProfileCenter = () => {
-    const { store, actions } = useContext(Context);
+  const { store, actions } = useContext(Context);
 	const [form, setForm] = useState()
 	const { watch, register, getValues, formState: { errors, isValid }, handleSubmit, setValue } = useForm();
-    const [open, setOpen] = React.useState(false);
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
-    let params = useParams();
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+  let params = useParams();
 
 	const [passwordShown, setPasswordShown] = useState('');
 	const [isRevealPwd, setIsRevealPwd] = useState(false);
@@ -38,35 +38,25 @@ const EditProfileCenter = () => {
   const result = {...store.currentUser.result};
   const user = {...store.currentUser.user};
   const sports = {...result.sports};
-	
+
+
 	const onSubmit = (data) => {
     console.log(data);	
-		actions.editProfile(data);	
+    console.log('Este es el siguiente log', result.id)
+		actions.editProfile(data, result.id);	
 	};
 
   useEffect(() => {
-    actions.getProfile(params.id);
-    console.log(params.id);
-  }, []);
+    localStorage.getItem("token") ? actions.getProfile(params.id) : navigate("/login");
+  }, [])
+ 
 
-
-	// useEffect(() => {
-  //   console.log("aquii", result)
-  //   console.log("user", user)
-  //   console.log("sports", sports.name)
-	// 	setForm(
-			
-  //   )
-		
-	// }, [store.currentUser]);
-
-	
 
 	return (
 		<div className="edit-profile-form">
 		<form className="edit-profile" onSubmit={handleSubmit(onSubmit)}>
 				<div className="row justify-content-center edit-profile-form">
-          <div className="col-3">
+          <div className="col">
             <div className="form-input">
               <label htmlFor="email" className="label-relog">Email*</label>
               <input
@@ -138,19 +128,19 @@ const EditProfileCenter = () => {
               <span className="label-relog">Sports* (check all that apply)</span>
               <div>
                 <div className="form-check form-switch form-check-reglog">
-                <input className="form-check-input" type="checkbox" id="scuba" name="sports" value="scuba" {...register("sports")}/>
+                <input className="form-check-input" type="checkbox" id="scuba" name="sports" value="scuba" {...register("sports", { required: true })}/>
                 <label className="form-check-label" htmlFor="scuba">Scuba diving</label>
                 </div>
                 <div className="form-check form-switch form-check-reglog">
-                <input className="form-check-input" type="checkbox" id="surf" name="sports" value="surf" {...register("sports")}/>
+                <input className="form-check-input" type="checkbox" id="surf" name="sports" value="surf" {...register("sports", { required: true })}/>
                 <label className="form-check-label" htmlFor="surf">Surf</label>
                 </div>
                 <div className="form-check form-switch form-check-reglog">
-                <input className="form-check-input" type="checkbox" id="kitesurf" name="sports" value="kitesurf" {...register("sports")}/>
+                <input className="form-check-input" type="checkbox" id="kitesurf" name="sports" value="kitesurf" {...register("sports", { required: true })}/>
                 <label className="form-check-label" htmlFor="kitesurf">Kitesurf</label>
                 </div>
                 <div className="form-check form-switch form-check-reglog">
-                <input className="form-check-input" type="checkbox" id="snorkel" name="sports" value="snorkel" {...register("sports")}/>
+                <input className="form-check-input" type="checkbox" id="snorkel" name="sports" value="snorkel" {...register("sports", { required: true })}/>
                 <label className="form-check-label" htmlFor="snorkel">Snorkel</label>
                 </div>
                 {errors.sports && errors.sports.type === "required" && (
@@ -159,22 +149,9 @@ const EditProfileCenter = () => {
               </div>
             </div>
 
-            <div className="form-input">
-              <label htmlFor="role" className="label-relog">Level*</label>
-              <select className="input-reglog" defaultValue={user.level} {...register("level")}>
-                <option value="">Choose an option...</option> 
-                <option value="beginner">Beginner</option>
-                <option value="intermediate">Intermediate</option>
-                <option value="advanced">Advanced</option>
-                <option value="professional">Professional</option>
-              </select>
-              {errors.role && errors.role.type === "required" && (
-                  <span className="error">Role is required</span>
-                )}
-            </div>
           </div>
 
-          <div className="col-3">
+          <div className="col">
             <div className="form-input">
               <label htmlFor="address" className="label-relog">Address*</label>
               <input
@@ -217,31 +194,12 @@ const EditProfileCenter = () => {
               />
             </div> 
 
-            <div className="form-input" className="profile-photo-label">
-              <label htmlFor="photo"><i className="fas fa-upload"></i>Choose a profile photo</label>
-              <input type="file"
-                id="photo" name="photo"
-                accept="image/png, image/jpeg" className="profile-photo"
-                // defaultValue={result.photo}
-                {...register("photo", { required: false })}
-              />
-            </div>
-
-            <div className="form-input" className="profile-photo-label">
-              <label htmlFor="cover-photo"><i className="fas fa-upload"></i>Choose a cover photo</label>
-              <input type="file"
-                id="cover-photo" name="cover-photo"
-                accept="image/png, image/jpeg" className="profile-photo"
-                // defaultValue={result.cover_photo}
-                {...register("photo", { required: false })}
-              />
-            </div>
 
             <div className="form-input">
               <label htmlFor="about" className="label-relog">About</label>
               <textarea
-                rows="3"
-                cols="24"
+                rows="5"
+                cols="25"
                 name="about"
                 id="about"
                 placeholder="about"
@@ -285,9 +243,8 @@ const EditProfileCenter = () => {
 					</div>
           </div>
 
-          <div className="row justify-content-center">
-          <button className="button-logreg" type="submit">Update info</button>
-          </div>
+          <button className="button-logreg-edit" type="submit">Update info</button>
+          <Link className="link-profile" to='/delete-profile'>delete account</Link>
         </div>
     
     

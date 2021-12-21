@@ -15,6 +15,7 @@ import RegisterCenter from "./component/registerCenter.js";
 import EditProfileWaterdropper from "./component/editProfileWaterdropper.js";
 import EditProfileCenter from "./component/editProfileCenter.js";
 import Profile from "./component/profile.js";
+import DeleteProfile from "./component/deleteProfile.js";
 
 //create your first component
 const Layout = () => {
@@ -34,8 +35,8 @@ const Layout = () => {
 					<Route path="/register-center" element={<RegisterCenter />} />
 					<Route path="/profile/:id" element={<Profile />} />
 					<Route path="/profile-waterdropper" element={<EditProfileWaterdropper />} />
-					<Route path="/profile-center/:id" element={<EditProfileCenter />} /> 
-					<Route path="/delete-profile/:id" element={<EditProfileCenter />} /> 
+					<Route path="/profile-center" element={<EditProfileCenter />} /> 
+					<Route path="/delete-profile" element={<DeleteProfile />} /> 
 				</Routes>
 				
 			</BrowserRouter>
