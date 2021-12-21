@@ -6,8 +6,8 @@ import { doc, setDoc } from "firebase/firestore";
 import { Context } from "../store/appContext.js";
 import { collection, addDoc, Timestamp, onSnapshot, query, getDocs, orderBy, where } from "firebase/firestore";
 import Card from '@mui/material/Card'
-import Moment from 'react-moment';
 import jwt_decode from "jwt-decode";
+import {formatDistanceToNow} from 'date-fns'
 
 
 const ChatForm = () => {
@@ -98,7 +98,7 @@ const ChatForm = () => {
 
 	useEffect(
 		() => {
-			let otherusers=store.users.filter(element=>element.id!=usersender)
+			let otherusers=store.users.filter(element=>element.id!=currentuser.id)
 			setUserschat(
 				otherusers.map((element, index) => {
 					return (
@@ -130,7 +130,7 @@ const ChatForm = () => {
 						   key={index.toString()}>
 							{element.text}
 						    </div>
-							<small className="chat__time"><Moment fromNow>{element.time.toDate()}</Moment></small>
+							<small className="chat__time">{formatDistanceToNow(element.time.toDate())}</small>
 						</div>
 						
 					);

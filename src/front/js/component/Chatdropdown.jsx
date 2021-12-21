@@ -6,6 +6,7 @@ import 'reactjs-popup/dist/index.css'
 
 import { Icon } from '@iconify/react';
 import { Link } from "react-router-dom";
+import jwt_decode from "jwt-decode";
 
 
 
@@ -20,8 +21,12 @@ const Chatdropdown=()=>{
 
   
     useEffect( async()=>{
+
+        const decoded=(jwt_decode(localStorage.getItem('token')))
+		
+        await actions.getUser(decoded.sub.id)
        // await actions.getUser(2)
-        await actions.getUsers()
+      //  await actions.getUsers()
         
     },[])
 
