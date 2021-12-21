@@ -33,7 +33,7 @@ const Layout = () => {
 					<Route path="/register-waterdropper" element={<RegisterWaterdropper />} />
 					<Route path="/register-center" element={<RegisterCenter />} />
 					<Route path="/profile/:id" element={<Profile />} />
-					<Route path="/profile-waterdropper/:id" element={<EditProfileWaterdropper />} />
+					<Route path="/profile-waterdropper" element={<EditProfileWaterdropper />} />
 					<Route path="/profile-center/:id" element={<EditProfileCenter />} /> 
 					<Route path="/delete-profile/:id" element={<EditProfileCenter />} /> 
 				</Routes>

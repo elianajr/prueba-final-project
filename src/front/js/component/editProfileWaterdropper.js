@@ -38,10 +38,13 @@ const EditProfileWaterdropper = () => {
   const result = {...store.currentUser.result};
   const user = {...store.currentUser.user};
   const sports = {...result.sports};
+
+  const [email, setEmail] = useState(result.email)
 	
 	const onSubmit = (data) => {
     console.log(data);	
-		actions.editProfile(data);	
+    console.log('Este es el siguiente log')
+		actions.editProfile(data, user.id);	
 	};
 
   useEffect(() => {
@@ -60,6 +63,7 @@ const EditProfileWaterdropper = () => {
 		
 	// }, [store.currentUser]);
 
+
 	
 
 	return (
@@ -74,8 +78,9 @@ const EditProfileWaterdropper = () => {
                 name="email"
                 id="email"
                 placeholder="example@gmail.com"
-                defaultValue={result.email}
+                defaultValue={email}
                 className="input-reglog"
+                onChange={(e) => setEmail(e.target.value)}
                 {...register("email", { required: true, pattern: /[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/ })}
               />
               {errors.email && errors.email.type === "required" && (
@@ -217,12 +222,13 @@ const EditProfileWaterdropper = () => {
               />
             </div> 
 
-            <div className="form-input" className="profile-photo-label">
+            {/* <div className="form-input" className="profile-photo-label">
               <label htmlFor="photo"><i className="fas fa-upload"></i>Choose a profile photo</label>
               <input type="file"
                 id="photo" name="photo"
-                accept="image/png, image/jpeg" className="profile-photo"
-                // defaultValue={result.photo}
+                // accept="image/png, image/jpeg" 
+                className="profile-photo"
+                defaultValue={result.photo}
                 {...register("photo", { required: false })}
               />
             </div>
@@ -231,11 +237,12 @@ const EditProfileWaterdropper = () => {
               <label htmlFor="cover-photo"><i className="fas fa-upload"></i>Choose a cover photo</label>
               <input type="file"
                 id="cover-photo" name="cover-photo"
-                accept="image/png, image/jpeg" className="profile-photo"
+                // accept="image/png, image/jpeg" 
+                className="cover-photo"
                 // defaultValue={result.cover_photo}
-                {...register("photo", { required: false })}
+                {...register("cover_photo", { required: false })}
               />
-            </div>
+            </div> */}
 
             <div className="form-input">
               <label htmlFor="about" className="label-relog">About</label>

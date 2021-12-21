@@ -139,6 +139,7 @@ def update_account_info(id):
         'email': request.json.get('email', None),
         'password': request.json.get('password', None),
         'username': request.json.get('username', None),
+        # TODO obteber URL de almacenaje de foto y dar valor a la propiedad photo con ella
         'photo': request.json.get('photo', None),
         'sports' : request.json.get("sports", None),
         'is_waterdropper': True if request.json.get('userType', None) == "waterdropper" else False
