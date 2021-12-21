@@ -31,77 +31,100 @@ const Profile = () => {
 	const { store, actions } = useContext(Context);
     const [profile, setProfile] = useState([]);
     const [isWaterdropper, setIsWaterdropper] = useState(null);
-    const [userSports, setUserSports] = useState(null);
+    const [userSports, setUserSports] = useState("");
+    const [sports, setSports] = useState("");
     const [editForm, setEditForm] = useState();
     const [form, setForm] = useState();
     const { watch, register, getValues, formState: { errors, isValid }, handleSubmit } = useForm();
-   
+
     let params = useParams();
     const [editButton, setEditButton] = useState();
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
     const navigate = useNavigate();
-    
-    const result = {...store.getUserProfile.result};
-    const user = {...store.getUserProfile.user};
-    // const sports = [...result.sports]
-    
-   
+
+    const result = {...store.currentUser.result};
+    const user = {...store.currentUser.user};
+    const mysports = {...result.sports};
+
     // const favouritesSpots = [...user.favourite_spot];
 
-    // if(!store.token && store.token === "" && store.token === null) {navigate("/")};
+    useEffect(() => {
+        const token = localStorage.getItem("token");
+        if(!token) {navigate("/login")};
+        // if(!store.loggedUser) {navigate("/login")};
+    }, [])
 
-    const onSubmit = data => {
-		console.log(data);
-		actions.editProfile(data);
-	};
+    console.log(store.currentUser)
+
+
+    // const onSubmit = data => {
+	// 	console.log(data);
+	// 	actions.editProfile(data);
+	// };
 
 	useEffect(() => {
         actions.getProfile(params.id);
+        console.log(params.id);
 	}, []);
 
 
     useEffect(()=>{
-        setIsWaterdropper(result._is_waterdropper)
-        console.log("waterdropper",result._is_waterdropper);
-        // if((result._is_waterdropper) == undefined) {navigate("/")};
-    }
-    ,[store.getUserProfile])
-
-    // useEffect(()=>{
-    //     setUserSports(sports);
+        setIsWaterdropper(result._is_waterdropper);
+        // console.log("waterdropper",result._is_waterdropper);
+        // console.log("user", user);
+        // console.log("result", result);
+        // console.log("pepeee", sports)
+        setSports(store.currentUser.result)
         
-    //     console.log("peppeee",sports);
-    // }
-    // ,[store.getUserProfile])
+    }
+    ,[store.currentUser])
+
+    console.log(sports)
+
+
+    useEffect(()=> {
+        console.log(result.sports);
+        
+    }
+    ,[store.currentUser])
 
 
 
-    // useEffect(()=> {
-    //     console.log("peppeee",sports);
-    //     setProfile(
-    //         sports.map((index) => {
-    //             return (
-    //                 <div key={index.id}>{index.name}</div>
+    useEffect(()=>{
+    //    // setSports(userSports.map((value, i) =>{
+    //         return (
+    //                 <div>
+    //                 <div key={i.toString()}>
+    //                     <div>{value.name}</div>
+    //                 </div>
+    //                 </div>
     //             )
-    //         })
-    //     )
-    // }
-    // ,[userSports])
+    //     })
+    //     //)
+    if (userSports!="") {
+        
+    }
+   
+    
+    }, [userSports])
+
+
+   
 
 
     useEffect(() => {
-        // console.log("login", result.id);
-        // console.log("logggg", localStorage.getItem("Id"));
-		result.id != localStorage.getItem("Id")
+        console.log("login", result.id);
+        console.log("logggg", store.loggedUser.id);
+		result.id != store.loggedUser.id
 			? setEditButton("")
 			: setEditButton(
                 <Button onClick={handleOpen}><i className="fas fa-pen"></i> Edit profile</Button>
 			  );
-	}, [store.getUserProfile]);
+	}, [store.currentUser]);
 
-    
+
     useEffect(
         () => {
         if(isWaterdropper == true) {
@@ -127,7 +150,7 @@ const Profile = () => {
                                     </div>
                                     <div className="col-4">
                                         <span className="profile-location"><i className="fas fa-map-marker-alt"></i> {user.location}</span>
-                                        
+
                                     </div>
                                 </div>
 
@@ -143,7 +166,7 @@ const Profile = () => {
                                     <p className="profile-about-text">{result.about}</p>
                                 </div>
                                 <Link to={"/profile-waterdropper/" + params.id}>
-                                <Button 
+                                <Button
                                 // onClick={() => {setEditForm(true)}}
                                 >{editButton}</Button>
                                 </Link>
@@ -183,7 +206,7 @@ const Profile = () => {
                                     <img src={result.photo} alt="profile-photo" />
                                 </div>
                             </div>
-    
+
                             <div className="profile-body">
                                 <div className="row">
                                     <div className="col-8">
@@ -192,28 +215,32 @@ const Profile = () => {
                                     </div>
                                     <div className="col-4">
                                         <span className="profile-location"><i className="fas fa-map-marker-alt"></i> {user.address}</span>
-                                        
+
                                     </div>
                                 </div>
-    
+
                                 {/* <p className="profile-sports">{result.sports}</p> */}
-    
+
                                 <button className="buttonWTD_stylee">Add spot</button>
                                 <a href={result.instagram} target="_blank" className="profile-instagram"><i className="fab fa-instagram"></i></a>
                                 <a href={result.facebook} target="_blank" className="profile-facebook"><i className="fab fa-facebook-square"></i></a>
-    
+
                                 <div className="profile-about">
                                     <h5 className="profile-about-title">About</h5>
                                     <p className="profile-about-text">{result.about}</p>
-                                    
+
                                     <a href={user.web} target="_blank" className="profile-link-center">{user.web}</a>
                                     <p className="profile-location"><i className="fas fa-mobile-alt"></i> {user.phone}</p>
                                 </div>
-                                <Button>{editButton}</Button>
+                                <Link to={"/profile-center/" + params.id}>
+                                <Button
+                                // onClick={() => {setEditForm(true)}}
+                                >{editButton}</Button>
+                                </Link>
                             </div>
                         </div>
                     </div>
-    
+
                     <div className="col-4">
                         <div className="profile-fav">
                             <h5 className="fav-title">Spots where we go</h5>
@@ -221,7 +248,7 @@ const Profile = () => {
                                 <li>lista</li>
                             </ul>
                         </div>
-                        
+
                     </div>
                 </div>
             </Fragment>
@@ -243,7 +270,7 @@ const Profile = () => {
     //             >
     //                 <Box sx={style}>
 
-            
+
     //         <Typography id="modal-modal-title" variant="h6" component="h2">
     //             Edit profile
     //         </Typography>
@@ -273,7 +300,7 @@ const Profile = () => {
     //             >
     //                 <Box sx={style}>
 
-            
+
     //         <Typography id="modal-modal-title" variant="h6" component="h2">
     //             Edit profile
     //         </Typography>
@@ -302,7 +329,7 @@ const Profile = () => {
         {/* <Button>{editButton}</Button> */}
         {/* <form onSubmit={handleSubmit(onSubmit)}>
 		{form}
-		
+
         <div>
         <Modal
             open={open}
@@ -312,7 +339,7 @@ const Profile = () => {
         >
             <Box sx={style}>
 
-            
+
             <Typography id="modal-modal-title" variant="h6" component="h2">
                 Edit profile
             </Typography>
@@ -349,7 +376,7 @@ const Profile = () => {
             </Box>
         </Modal>
     </div> */}
-    {/* </form>  */} 
+    {/* </form>  */}
 
     </Fragment>
 	);

@@ -34,7 +34,8 @@ const Layout = () => {
 					<Route path="/register-center" element={<RegisterCenter />} />
 					<Route path="/profile/:id" element={<Profile />} />
 					<Route path="/profile-waterdropper/:id" element={<EditProfileWaterdropper />} />
-					<Route path="/profile-center" element={<EditProfileCenter />} />
+					<Route path="/profile-center/:id" element={<EditProfileCenter />} /> 
+					<Route path="/delete-profile/:id" element={<EditProfileCenter />} /> 
 				</Routes>
 				
 			</BrowserRouter>

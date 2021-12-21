@@ -1,8 +1,5 @@
-from enum import Enum
-
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.dialects import postgresql
-from sqlalchemy.ext.hybrid import hybrid_property
 from werkzeug.security import generate_password_hash
 
 
@@ -76,6 +73,7 @@ class Account(db.Model):
             # "user": list(map(lambda x: x.to_dict(), user)),
             "user": user[0].to_dict(),
             "sports": list(map(lambda sport: sport.to_dict(), self.have_account_sport))
+            # "sports": [sport.to_dict() for sport in self.have_account_sport]
         }
 
 
@@ -149,7 +147,8 @@ class Waterdropper(db.Model):
             "last_name": self.last_name,
             "level": self.level,
             "location": self.location,
-            "favourite_centers": self.have_waterdropper_favcenter,
+            "favourite_centers": list(map(lambda center: center.to_dict(), self.have_waterdropper_favcenter)),
+            # "favourite_centers": self.have_waterdropper_favcenter,
             "favourite_spot": self.have_waterdropper_favspot
         }
 
@@ -206,8 +205,8 @@ class Center(db.Model):
             "id": self.id,
             "address": self.address,
             "phone": self.phone,
-            "web": self.web,
-            "favourite_count": len(self.have_favcenter_waterdropper),
+            "web": self.web
+            # "favourite_count": len(self.have_favcenter_waterdropper)
         }
 
     @classmethod

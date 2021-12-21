@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { Link, useParams } from "react-router-dom";
 import { Context } from "../store/appContext.js";
 import "../../styles/registerlogin.scss";
+import "../../styles/editform.scss";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
@@ -23,7 +24,7 @@ const style = {
 const EditProfileWaterdropper = () => {
 	const { store, actions } = useContext(Context);
 	const [form, setForm] = useState()
-	const { watch, register, getValues, formState: { errors, isValid }, handleSubmit } = useForm();
+	const { watch, register, getValues, formState: { errors, isValid }, handleSubmit, setValue } = useForm();
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -33,26 +34,41 @@ const EditProfileWaterdropper = () => {
 	const [isRevealPwd, setIsRevealPwd] = useState(false);
 	const hidePwdImg = "fas fa-eye-slash";
 	const showPwdImg = "fas fa-eye";
-  const result = {...store.getUserProfile.result};
-  const user = {...store.getUserProfile.user};
-  const sports = {...store.getUserProfile.sports}
+
+  const result = {...store.currentUser.result};
+  const user = {...store.currentUser.user};
+  const sports = {...result.sports};
 	
 	const onSubmit = (data) => {
     console.log(data);	
 		actions.editProfile(data);	
 	};
 
-	useEffect(() => {
-    console.log("aquii", result)
-    console.log("user", user)
-    console.log("sports", sports.name)
-		setForm(
-			<Fragment>
-      <div className="container">
-				<div className="row">
-          <div className="col">
+  useEffect(() => {
+    actions.getProfile(params.id);
+    console.log(params.id);
+  }, []);
+
+
+	// useEffect(() => {
+  //   console.log("aquii", result)
+  //   console.log("user", user)
+  //   console.log("sports", sports.name)
+	// 	setForm(
+			
+  //   )
+		
+	// }, [store.currentUser]);
+
+	
+
+	return (
+		<div className="edit-profile-form">
+		<form className="edit-profile" onSubmit={handleSubmit(onSubmit)}>
+				<div className="row justify-content-center edit-profile-form">
+          <div className="col-3">
             <div className="form-input">
-              <label htmlFor="email" className="label-relog">Email</label>
+              <label htmlFor="email" className="label-relog">Email*</label>
               <input
                 type="text"
                 name="email"
@@ -69,40 +85,9 @@ const EditProfileWaterdropper = () => {
                 <span className="error">Format invalid</span>
               )}
             </div>
-				
+  
             <div className="form-input">
-						<label htmlFor="password" className="label-relog">Password</label>
-						<div className="form-group"></div>
-						<div className="right-inner-addon input-container">
-						<input
-							type={isRevealPwd ? "text" : "password"}
-							name="password"
-							id="password"
-							placeholder="password"
-							autoComplete="current-password"
-							className="input-reglog"
-							onChange={e => setPasswordShown(e.target.value)}
-							{...register("password", { required: true, minLength: 6 })}
-							
-						/>
-						<i
-						title={isRevealPwd ? "Hide password" : "Show password"}
-						className={isRevealPwd ? hidePwdImg : showPwdImg}
-						onClick={() => setIsRevealPwd(prevState => !prevState)}
-						/>
-						</div>
-						
-						{errors.password && errors.password.type === "required" && (
-							<span className="error">Password is required</span>
-						)}
-						{errors.password && errors.password.type === "minLength" && (
-							<span className="error">Password is too short</span>
-						)}
-					</div>
-          
-
-            <div className="form-input">
-              <label htmlFor="username" className="label-relog">Username</label>
+              <label htmlFor="username" className="label-relog">Username*</label>
               <input
                 type="text"
                 name="username"
@@ -116,9 +101,41 @@ const EditProfileWaterdropper = () => {
                 <span className="error">Username is required</span>
               )}
             </div>
+            
+            <div className="form-input"> 
+              <label htmlFor="firstname" className="label-relog">Name*</label>
+              <input
+                type="text"
+                name="firstname"
+                id="firstname"
+                defaultValue={user.first_name}
+                className="input-reglog"
+                {...register("firstname", { required: true })}
+              />
+              {errors.firstname && errors.firstname.type === "required" && (
+                <span className="error">Name is required</span>
+              )}
+				    </div>
+
+            <div className="form-input">
+              <label htmlFor="lastname" className="label-relog">Last name*</label>
+              <input
+                type="text"
+                name="lastname"
+                id="lastame"
+                placeholder="Last name"
+                className="input-reglog"
+                defaultValue={user.last_name}
+                {...register("lastname", { required: true })}
+              />
+              {errors.lastname && errors.lastname.type === "required" && (
+                <span className="error">Last name is required</span>
+              )}
+            </div> 
+
 
             <div className="form-input" >
-              <span className="label-relog">Sports (check all that apply)</span>
+              <span className="label-relog">Sports* (check all that apply)</span>
               <div>
                 <div className="form-check form-switch form-check-reglog">
                 <input className="form-check-input" type="checkbox" id="scuba" name="sports" value="scuba" {...register("sports")}/>
@@ -141,42 +158,9 @@ const EditProfileWaterdropper = () => {
                 )}
               </div>
             </div>
-          </div>
-
-          <div className="col">
-					  <div className="form-input"> 
-              <label htmlFor="firstname" className="label-relog">Name</label>
-              <input
-                type="text"
-                name="firstname"
-                id="firstname"
-                defaultValue={user.first_name}
-                className="input-reglog"
-                {...register("firstname", { required: true })}
-              />
-              {errors.firstname && errors.firstname.type === "required" && (
-                <span className="error">Name is required</span>
-              )}
-				    </div>
 
             <div className="form-input">
-              <label htmlFor="lastname" className="label-relog">Last name</label>
-              <input
-                type="text"
-                name="lastname"
-                id="lastame"
-                placeholder="Last name"
-                className="input-reglog"
-                defaultValue={user.last_name}
-                {...register("lastname", { required: true })}
-              />
-              {errors.lastname && errors.lastname.type === "required" && (
-                <span className="error">Last name is required</span>
-              )}
-            </div> 
-
-            <div className="form-input">
-              <label htmlFor="role" className="label-relog">Level</label>
+              <label htmlFor="role" className="label-relog">Level*</label>
               <select className="input-reglog" defaultValue={user.level} {...register("level")}>
                 <option value="">Choose an option...</option> 
                 <option value="beginner">Beginner</option>
@@ -188,9 +172,11 @@ const EditProfileWaterdropper = () => {
                   <span className="error">Role is required</span>
                 )}
             </div>
+          </div>
 
+          <div className="col-3">
             <div className="form-input">
-              <label htmlFor="location" className="label-relog">Location</label>
+              <label htmlFor="location" className="label-relog">Location*</label>
               <input
                 type="text"
                 name="location"
@@ -253,32 +239,59 @@ const EditProfileWaterdropper = () => {
 
             <div className="form-input">
               <label htmlFor="about" className="label-relog">About</label>
-              <input
-                type="text"
+              <textarea
+                rows="3"
+                cols="24"
                 name="about"
                 id="about"
                 placeholder="about"
-                className="input-reglog"
+                className="input-reglog-about"
                 defaultValue={result.about}
                 {...register("about", { required: false })}
-              />
+              ></textarea>
             </div> 
+
+
+            <div className="form-input">
+						<label htmlFor="password" className="label-relog">Confirm password*</label>
+						<div className="form-group">
+						<div className="right-inner-addon input-container">
+						<input
+							type={isRevealPwd ? "text" : "password"}
+							name="password"
+							id="password"
+							placeholder="password"
+							autoComplete="current-password"
+							className="input-reglog"
+							onChange={e => setPasswordShown(e.target.value)}
+							{...register("password", { required: true, minLength: 6 })}
+							
+						/>
+            <div className="input-group-append">
+						<i
+						title={isRevealPwd ? "Hide password" : "Show password"}
+						className={isRevealPwd ? hidePwdImg : showPwdImg}
+						onClick={() => setIsRevealPwd(prevState => !prevState)}
+						/>
+            </div>
+						</div>
+						</div>
+						{errors.password && errors.password.type === "required" && (
+							<span className="error">Password is required</span>
+						)}
+						{errors.password && errors.password.type === "minLength" && (
+							<span className="error">Password is too short</span>
+						)}
+					</div>
+          </div>
+
+          <div className="row justify-content-center">
+          <button className="button-logreg" type="submit">Update info</button>
           </div>
         </div>
-      </div>
-    <button className="button-logreg" type="submit">Update info</button>
-    </Fragment>
-    )
-		
-	}, [store.getUserProfile]);
-
-	
-
-	return (
-		<div className="register-login-form">
-		<form  onSubmit={handleSubmit(onSubmit)} className="register-login">
-		{form}
 		</form>
+
+
     <div>
         <Button onClick={handleOpen}>Delete account</Button>
         <Modal
@@ -290,16 +303,18 @@ const EditProfileWaterdropper = () => {
             <Box sx={style}>
 
             
-            <Typography id="modal-modal-title" variant="h6" component="h2">
+            {/* <Typography id="modal-modal-title" variant="h6" component="h2">
                 Edit profile
-            </Typography>
+            </Typography> */}
+            <form onSubmit={()=> actions.deleteProfile()}>
             <Typography id="modal-modal-description" >
                 Are you sure do you want to delete your account?
                 <Button type="submit">YES</Button>
             </Typography>
+            </form>
             </Box>
         </Modal>
-    </div> 
+    </div>  
     </div>
   );
 

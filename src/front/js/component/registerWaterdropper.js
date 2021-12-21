@@ -226,7 +226,7 @@ const RegisterWaterdropper = () => {
 						<input
 							type="text"
 							name="location"
-							id="lastame"
+							id="location"
 							placeholder="Location"
 							className="input-reglog"
 							{...register("location", { required: true })}

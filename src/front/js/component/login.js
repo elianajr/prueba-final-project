@@ -8,7 +8,6 @@ import "../../styles/registerlogin.scss";
 const Login = () => {
 	const { store, actions } = useContext(Context);
 	const { watch, register, formState: { errors }, handleSubmit } = useForm({mode:"all"});
-	// const history = useHistory();
 	const navigate = useNavigate();
 
 	const [passwordShown, setPasswordShown] = useState('');
@@ -21,14 +20,11 @@ const Login = () => {
 	const onSubmit = data => {
 		console.log(data);
 		actions.login(data);
-		// .then(() => {
-		// 	history.pushState("/")
-		// })
+		
 	};
 
 	const token = localStorage.getItem("token");
-	if(store.token && store.token !="" && store.token != null) {navigate("/")};
-
+	if(token) {navigate("/")};
 
 	return (
 		<div className="register-login-form">

@@ -213,7 +213,7 @@ def add_favcenter(id_waterdropper,id_center):
     token_id = get_jwt_identity()
     print("token",token_id)
 
-    if token_id.get("id") == id_waterdropper:
+    if token_id.get("id"):
         waterdropper = Waterdropper.get_waterdropper_by_id(id_waterdropper)
         center = Center.get_center_by_id(id_center)
         print("waterdropper",waterdropper)
@@ -234,7 +234,7 @@ def add_favhotspot(id_waterdropper,id_hotspot):
     token_id = get_jwt_identity()
     print("token",token_id)
 
-    if token_id.get("id") == id_waterdropper:
+    if token_id.get("id"):
         waterdropper = Waterdropper.get_waterdropper_by_id(id_waterdropper)
         hotspot = Hotspot.get_hotspot_by_id(id_hotspot)
         print("waterdropper",waterdropper)

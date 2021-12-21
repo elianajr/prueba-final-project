@@ -54,9 +54,9 @@ data = {
         },
         {
             "id": 4,
-            "email": "indrasurf@gmail.com",
+            "email": "indasurf@gmail.com",
             "_password": generate_password_hash("123456", method='pbkdf2:sha256', salt_length=16),
-            "username": "Indra Surf Bali",
+            "username": "In Da Surf Bali",
             "photo": "photo",
             "_is_active": True,
             "_is_waterdropper": False
