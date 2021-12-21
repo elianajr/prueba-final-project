@@ -1,11 +1,11 @@
-import React, { Fragment } from "react";
-import { Navbar } from "./component/navbar.js";
-import { Footer } from "./component/footer.js";
+import React from "react";
 import {
-  BrowserRouter,
-  Routes,
-  Route
-} from "react-router-dom";
+	BrowserRouter,
+	Routes,
+	Route
+  } from "react-router-dom";
+
+import Landingpage from "./component/Landingpage.jsx";
 import Home from "./pages/home.js";
 import HotSpot from "./pages/hotspot.jsx";
 import Forecast from "./pages/forecast.jsx";
@@ -30,7 +30,7 @@ const Layout = () => {
 			
 		<BrowserRouter className="index">
 			<Routes>
-				<Route path="/" element={<Home />} />
+				<Route path="/" element={<Landingpage />} />
 				<Route path="/hotspot" element={<HotSpot />} />
 				<Route path="/forecast" element={<Forecast />} />
 				<Route path="/aboutus" element={<AboutUs />} />
