@@ -21,8 +21,8 @@ const Layout = () => {
 	return (
 		<BrowserRouter>
 			<Routes>
-				<Route path="/landing" element={<Landingpage></Landingpage>}></Route>
-				<Route path="/" element={<Home></Home>}></Route>
+			
+				<Route path="/" element={<Landingpage/>}></Route>
 				
 			</Routes>
 			
