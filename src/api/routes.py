@@ -60,6 +60,8 @@ def login():
     return {'error': 'Some parameter is wrong'}, 401
 
 
+
+
 @api.route('/account', methods=['POST'])
 def create_account(): 
     email = request.json.get("email", None)

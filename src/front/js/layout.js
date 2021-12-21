@@ -4,7 +4,7 @@ import {
 	Routes,
 	Route
   } from "react-router-dom";
-
+import Navbar from "./component/navbar.js";
 import Landingpage from "./component/Landingpage.jsx";
 import Home from "./pages/home.js";
 import HotSpot from "./pages/hotspot.jsx";
@@ -17,6 +17,8 @@ import RegisterWaterdropper from "./component/registerWaterdropper.js";
 import RegisterCenter from "./component/registerCenter.js";
 import ChatForm from "./component/ChatForm.jsx"
 import Chatdropdown from "./component/Chatdropdown.jsx"
+import Newsview from "./pages/Newsview.jsx";
+import Newsdetail from "./component/Newsdetails.jsx";
 
 
 //create your first component
@@ -29,6 +31,7 @@ const Layout = () => {
 		
 			
 		<BrowserRouter className="index">
+			<Navbar></Navbar>
 			<Routes>
 				<Route path="/" element={<Landingpage />} />
 				<Route path="/hotspot" element={<HotSpot />} />
@@ -38,7 +41,10 @@ const Layout = () => {
 				<Route path="/register" element={<Register />} />
 				<Route path="/registerwaterdropper" element={<RegisterWaterdropper />} />
 				<Route path="/registercenter" element={<RegisterCenter />} />
+				<Route path="/news" element={<Newsview />} />
+				<Route path="/newsdetail" element={<Newsdetail />} />		
 				<Route path="/chat" element={<ChatForm />} />
+				<Route path="/home" element={<Home></Home>}></Route>
 			</Routes>	
 	
 		</BrowserRouter>
