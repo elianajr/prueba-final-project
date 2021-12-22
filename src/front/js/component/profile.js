@@ -11,6 +11,17 @@ import TextField from '@mui/material/TextField';
 import { Context } from "../store/appContext.js";
 import "../../styles/profile.scss";
 
+const style = {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: 400,
+    bgcolor: "background.paper",
+    border: "2px solid #000",
+    boxShadow: 24,
+    p: 4
+  };
 
 
 const Profile = () => {
@@ -18,10 +29,10 @@ const Profile = () => {
     const [profile, setProfile] = useState([]);
     const [isWaterdropper, setIsWaterdropper] = useState(null);
     const [editButton, setEditButton] = useState();
-    // const [open, setOpen] = useState(false);
+    const [open, setOpen] = useState(false);
     const navigate = useNavigate();
-    // const handleOpen = () => setOpen(true);
-    // const handleClose = () => setOpen(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
     let params = useParams();
     
     const result = {...store.currentUser.result};
@@ -39,10 +50,7 @@ const Profile = () => {
 
 
     useEffect(()=>{
-        // console.log("resu", result._is_waterdropper)
         setIsWaterdropper(result._is_waterdropper);
-        // console.log("result.id", result.id);
-        // console.log("id", store.loggedUser.id);
         // console.log("fav centers", favcenters);
         if(result.id == store.loggedUser.id) {
             setEditButton(<Button><i className="fas fa-pen"></i> Edit profile</Button>)
@@ -113,13 +121,7 @@ const Profile = () => {
                                     <p className="profile-about-text">{result.about}</p>
                                 </div>
                                 <Link className="link-profile" to='/profile-waterdropper'>{editButton}</Link>
-                                {/* <Button>{editButton}</Button> */}
-                                {/* {
-                                    result.id = store.loggedUser.id
-                                    // ? (<Button onClick={handleOpen}><i className="fas fa-pen"></i> Edit profile</Button>)
-                                    ? <Link to='/profile-waterdropper'>Edit profile</Link>
-                                    : (<span></span>)
-                                } */}
+                                <Link className="link-profile-delete" to='/delete-profile'><i className="far fa-trash-alt"></i>delete account</Link>
                             </div>
                         </div>
                     </div>
@@ -188,6 +190,7 @@ const Profile = () => {
                                     <p className="profile-location"><i className="fas fa-map-marker-alt"></i> {user.address}</p>
                                 </div>
                                 <Link className="link-profile" to='/profile-center'>{editButton}</Link>
+                                <Link className="link-profile-delete" to='/delete-profile'><i className="far fa-trash-alt"></i>delete account</Link>
                             </div>
                         </div>
                     </div>

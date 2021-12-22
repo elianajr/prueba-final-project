@@ -264,32 +264,7 @@ const EditProfileWaterdropper = () => {
           <button className="button-logreg-edit" type="submit">Update info</button>
         
         </div>
-		</form>
-
-
-    <div>
-        <Button onClick={handleOpen}>Delete account</Button>
-        <Modal
-            open={open}
-            onClose={handleClose}
-            aria-labelledby="modal-modal-title"
-            aria-describedby="modal-modal-description"
-        >
-            <Box sx={style}>
-
-            
-            {/* <Typography id="modal-modal-title" variant="h6" component="h2">
-                Edit profile
-            </Typography> */}
-            <form onSubmit={()=> actions.deleteProfile()}>
-            <Typography id="modal-modal-description" >
-                Are you sure do you want to delete your account?
-                <Button type="submit">YES</Button>
-            </Typography>
-            </form>
-            </Box>
-        </Modal>
-    </div>  
+		</form> 
     </div>
   );
 

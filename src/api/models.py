@@ -109,10 +109,11 @@ class Account(db.Model):
         db.session.commit()
         return self
 
-    def reactive_account(self, username, photo, is_waterdropper, password):
-        self.username = username
-        self.photo = photo
-        self._is_waterdropper = is_waterdropper
+    def reactive_account(self, email, password):
+        self.email = email
+        # self.username = username
+        # self.photo = photo
+        # self._is_waterdropper = is_waterdropper
         self.password = password
         self._is_active = True
         db.session.commit()

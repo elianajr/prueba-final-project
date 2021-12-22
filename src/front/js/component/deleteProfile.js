@@ -1,6 +1,7 @@
 import React , { useState, useContext } from "react";
 import { useForm, useParams } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
+import Button from 'react-bootstrap/Button';
 import { Context } from "../store/appContext.js";
 import "../../styles/registerlogin.scss";
 
@@ -10,13 +11,7 @@ const DeleteProfile = () => {
 	const { watch, register, formState: { errors }, handleSubmit } = useForm({mode:"all"});
 	const navigate = useNavigate();
 	const result = {...store.currentUser.result};
-    // let params = useParams();
-
-
-	// useEffect(() => {
-	// 	console.log(params.id);
-    //     actions.getProfile(params.id);
-    //   }, []);
+    
 
 
 	const onSubmit = data => {
@@ -29,9 +24,13 @@ const DeleteProfile = () => {
 	return (
 		<div className="register-login-form">
 			<form className="register-login" onSubmit={handleSubmit(onSubmit)}>
-				<span>Sorry to hear you are leaving... Are you sure you wanna continue?</span>
+				<h6>Sorry to hear you are leaving... Are you sure you wanna continue?</h6>
 			
                 <input className="button-logreg" type="submit" value="YES" />
+				
+				<Button className="button-logreg">
+					<Link className="link-profile" to='/'>NO</Link>
+				</Button> 
 				
 			</form>
 		</div>

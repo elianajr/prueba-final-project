@@ -132,32 +132,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 				catch(error){
 					console.error("There was an error!!", error);
 				}
-				// let token = localStorage.getItem("token");
-				// let myHeaders = new Headers();
-				// myHeaders.append("Authorization", `Bearer ${token}`);
-				// myHeaders.append("Content-Type", "application/json");
-
-				// let requestOptions = {
-				// method: 'PATCH',
-				// headers: myHeaders,
-				// redirect: 'follow'
-				// };
-
-				// await fetch(getStore().baseUrl.concat(`account/${id}`), requestOptions)
-				// .then(response => response.json(data))
-				// .then(result => {
-				// 	console.log(JSON.stringify(result))
-				// 	setStore({currentUser: {
-				// 		result: result,
-				// 		user: result.user
-				// 	}}),
-				// 	setStore({token: token})
-				// })
-				// .catch(error => console.log('error', error));
-
-				// // let store = getStore()
-				// // console.log(store.currentUser);
-				
 			},
 
 			deleteProfile: async (data, id) => {
@@ -176,7 +150,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					const resp = await fetch(getStore().baseUrl.concat(`account/${id}`), opt)
 					if (resp.status !== 201) {
 						alert("There has been some error");
-						// return false;
+						return false;
 					}
 
 					const data = await resp.json();

@@ -26,6 +26,9 @@ def login():
 
     if email and password:
         account = Account.get_by_email(email)
+        if account and not account._is_active:
+            account.reactive_account(email, password)
+            return jsonify(account.to_dict()), 200
 
         if account and check_password_hash(account._password, password) and account._is_active:
             access_token = create_access_token(identity=account.to_dict(), expires_delta=timedelta(minutes=100))
@@ -50,7 +53,7 @@ def create_account():
 
     account = Account.get_by_email(email)
     if account and not account._is_active:
-        account.reactive_account(username, photo, is_waterdropper, password)
+        account.reactive_account(email, is_waterdropper, password)
         return jsonify(account.to_dict()), 200
     
     if is_waterdropper == "waterdropper": 

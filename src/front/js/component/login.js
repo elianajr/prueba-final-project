@@ -25,6 +25,8 @@ const Login = () => {
 
 	const token = localStorage.getItem("token");
 	if(token) {navigate("/")};
+	if(token == undefined) {actions.logout()};
+	
 
 	return (
 		<div className="register-login-form">
