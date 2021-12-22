@@ -135,7 +135,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 			deleteProfile: async (data, id) => {
-				// getActions().logout();
 				let token = localStorage.getItem("token");
 				const opt = {
 					method: 'DELETE',
@@ -152,33 +151,15 @@ const getState = ({ getStore, getActions, setStore }) => {
 						//alert("There has been some error");
 						// return false;
 					}
-
 					const data = await resp.json();
 					console.log(data);
-					
-
 				}
 				catch(error){
 					console.error("There was an error!!", error);
 					}
-
 			},
 			
-			addFavourites: name => {
-				if (
-					!getStore().favourites.find(favourite => {
-						return favourite == name;
-					})
-				) {
-					setStore({ favourites: [...getStore().favourites, name] });
-				}
-			},
-
-			deleteFavourites: deleted => {
-				setStore({
-					favourites: getStore().favourites.filter(item => item != deleted)
-				});
-			}
+		
 
 		}
 	};
