@@ -1,6 +1,4 @@
 import React, { Fragment } from "react";
-import { Navbar } from "./component/navbar.js";
-import { Footer } from "./component/footer.js";
 import {
   BrowserRouter,
   Routes,

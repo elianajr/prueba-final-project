@@ -1,35 +1,31 @@
 import React, { useContext, useEffect, useState } from "react";
 import { MapContainer, TileLayer, LayersControl, LayerGroup } from "react-leaflet";
 import { Context } from "../store/appContext";
-import Markers from "./markers.jsx";
 import { DraggableMarker } from "./draggableMarker.jsx";
 import PropTypes from "prop-types";
+import { KitesurfMarker } from "./kitesurfMarker.jsx";
+import { SurfMarker } from "./surfMarker.jsx";
+import { ScubaMarker } from "./scubaMarker.jsx";
+import { SnorkelMarker } from "./snorkelMarker.jsx";
+
 
 const Map = props => {
 	const { store, actions } = useContext(Context);
-	const [selfMarkerPost, setSelfMarkerPost] = useState(null)
-	const [position, setPosition] = useState(null)
 	const {callback } = props;
+	const [sport,setsport]=useState([])
+	
 
 	const getMarkerPosition = position =>{
-		console.log(position)
+		callback(position)
 	}
 
-	const iconUser = new L.icon({
-		iconUrl: "https://i.ibb.co/48Tntqx/icono-USER.png",
-		iconAnchor: null,
-		shadowUrl: null,
-		ShadowSize: null,
-		ShadowAnchor: null,
-		iconSize: (45, 45),
-	})
 	useEffect(()=>{
-		callback(position)
-	},[position])
+		setsport([...props.checked])
 
+	},[])
 
 	return (
-		<MapContainer center={{ lat: "0", lng: "0" }} zoom={3} scrollWheelZoom={true}>
+		<MapContainer center={{ lat: "0", lng: "0" }} zoom={2} minZoom={2} scrollWheelZoom={true}>
 			<LayersControl>
 				<LayersControl.BaseLayer checked name="Painted Map">
 					<TileLayer
@@ -37,7 +33,7 @@ const Map = props => {
 						url="https://stamen-tiles-{s}.a.ssl.fastly.net/watercolor/{z}/{x}/{y}.png"
 					/>
 				</LayersControl.BaseLayer>
-				<LayersControl.BaseLayer checked name="Traditional Map">
+				<LayersControl.BaseLayer  name="Traditional Map">
 					<TileLayer
 						attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 						url="https://tiles.wmflabs.org/hikebike/{z}/{x}/{y}.png"
@@ -48,9 +44,24 @@ const Map = props => {
 						<DraggableMarker callback={getMarkerPosition}/>
 					</LayerGroup>
 				</LayersControl.Overlay>
-				<LayersControl.Overlay checked name="Hotpots">
+				<LayersControl.Overlay checked={sport[0]} name="SNORKEL">
 					<LayerGroup>
-						<Markers></Markers>
+						<SnorkelMarker></SnorkelMarker>
+					</LayerGroup>
+				</LayersControl.Overlay>
+				<LayersControl.Overlay checked={sport[1]} name="SURF">
+					<LayerGroup>
+						<SurfMarker></SurfMarker>
+					</LayerGroup>
+				</LayersControl.Overlay>
+				<LayersControl.Overlay checked={sport[2]} name="SCUBA">
+					<LayerGroup>
+						<ScubaMarker></ScubaMarker>
+					</LayerGroup>
+				</LayersControl.Overlay>
+				<LayersControl.Overlay checked={sport[3]} name="KITESURF">
+					<LayerGroup>
+						<KitesurfMarker></KitesurfMarker>
 					</LayerGroup>
 				</LayersControl.Overlay>
 			</LayersControl>
@@ -59,7 +70,8 @@ const Map = props => {
 }
 
 Map.propTypes = {
-    callback: PropTypes.func
+    callback: PropTypes.func,
+	checked: PropTypes.array
 };
 
 export default Map;

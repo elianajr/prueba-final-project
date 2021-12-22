@@ -2,10 +2,16 @@ import React from "react";
 import {Navbar} from "../component/navbar.js";
 import { Footer } from "../component/footer.js";
 import Map from "../component/map.jsx"
+import  MiniForecast from "../component/miniForecast.jsx";
 
 import "../../styles/kitesurf.scss"
 
 export const Kitesurf = ()=>{
+    const check = [false,false,false,true];
+
+    const getMarkerPosition = position =>{
+		console.log("Kitesurf spot",position)
+	};
 
     return(
         <div className="bodyKitesurf">
@@ -29,10 +35,10 @@ export const Kitesurf = ()=>{
                     <img src="https://i.ibb.co/Zh696fs/wordl.png" alt="" />
                 </div>
                 <div className="bodyKitesurf-mid">
-                    <div className="bodyKitesurf-mid__map"><Map/></div>
+                    <div className="bodyKitesurf-mid__map"><Map callback={getMarkerPosition} checked={check}/></div>
                 </div>
                 <div className="bodyKitesurf-bot">
-                    <div className="bodyKitesurf-bot__forecast"></div>
+                    <div className="bodyKitesurf-bot__forecast"><MiniForecast/></div>
                     <div className="bodyKitesurf-bot__best">
                             <p>The best places in the world </p>
                             <div></div>

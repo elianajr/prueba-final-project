@@ -230,8 +230,6 @@ class Hotspot(db.Model):
     latitude = db.Column(db.String(), unique=False, nullable=True)
     longitude = db.Column(db.String(), unique=False, nullable=True)
     account_id = db.Column(db.Integer, db.ForeignKey("account.id"), nullable=False)
-    species_id= db.Column(db.Integer,db.ForeignKey("account.id"), nullable=False)
-    # RElacion true?
     sport_id = db.Column(db.Integer, db.ForeignKey("sport.id"), nullable=False)
 
     have_favspot_waterdropper = db.relationship('Waterdropper', secondary=waterdropper_fav_spot, back_populates="have_waterdropper_favspot")
@@ -239,28 +237,34 @@ class Hotspot(db.Model):
     has_reviews_spot = db.relationship("Review_Hotspot")
 
     def __repr__(self):
-        return f'Hotstop {self.id}, specie_id: {self.specie_id}, account_id: {self.account_id}, sport_id: {self.sport_id}, name: {self.name},  level: {self.level}, despcription: {self.despcription}, photo: {self.photo}, geometry: {self.geometry}'
+        return f'Hotstop {self.id}, account_id: {self.account_id}, sport_id: {self.sport_id}, name: {self.name},  level: {self.level}, description: {self.description}, photo: {self.photo}'
 
     def to_dict(self):
         return {
             "id": self.id,
             "sport_id": self.sport_id,
-            "specie_id": self.specie_id,
             "account_id": self.account_id,
             "name": self.name,
             "photo": self.photo,
             "level": self.level,
-            "despcription": self.despcription,
+            "description": self.description,
             "latitude": self.latitude,
             "longitude": self.longitude,
-            "category": self.category
         }
+
+    def create(self):
+       db.session.add(self)
+       db.session.commit()   
 
     @classmethod
     def get_hotspot_by_id(cls,id):
         hotspot = cls.query.get(id)
         return hotspot
 
+    @classmethod
+    def get_all(cls):
+        hotspot_all = cls.query.all()
+        return hotspot_all
 
 class Specie(db.Model):
     __tablename__: "specie"

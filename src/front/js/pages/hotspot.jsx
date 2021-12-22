@@ -3,6 +3,7 @@ import Map from "../component/map.jsx"
 import Rate from "../component/rating.jsx";
 import { SearchBar } from "../component/searchBar.jsx";
 import { Navbar } from "../component/navbar.js";
+import { AddSpotForm } from "../component/addSpotForm.jsx";
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
@@ -50,10 +51,7 @@ const HotSpot = () => {
         },
 
     ];
-
-    const handleChange = (event) => {
-        setSport(event.target.value);
-    };
+    const check=[true,true,true,true]
 
     const levels = [
         {
@@ -70,19 +68,8 @@ const HotSpot = () => {
         },
     ];
 
-    const handleChangeLevel = (event) => {
-        setLevel(event.target.value);
-    };
-    const handleClickOpen = () => {
-        setOpen(true);
-    };
-
-    const handleClose = () => {
-        setOpen(false);
-    };
-
     const getMarkerPosition = position =>{
-		console.log(position)
+		console.log("HOTSPOT",position)
 	}
 
     return (
@@ -113,102 +100,7 @@ const HotSpot = () => {
                             </ul>
                         </div>
                     </div>
-                    {<Map className="map" callback={getMarkerPosition} />}
-                </div>
-                <div className="hotspot-midbody">
-                    <Button variant="outlined" onClick={handleClickOpen}>
-                        Open form dialog
-                    </Button>
-                    <Dialog open={open} onClose={handleClose}>
-                        <DialogTitle>Add A HOTSPOT</DialogTitle>
-                        <DialogContent>
-                            <DialogContentText>
-                                Enter the HotSpot Name Please
-                            </DialogContentText>
-                            <TextField
-                                autoFocus
-                                margin="dense"
-                                id="outlined-basic"
-                                label="Name"
-                                type="email"
-                                fullWidth
-                                variant="outlined"
-                            />
-                            <DialogContentText>
-                                Add a photo of the place!
-                            </DialogContentText>
-                            <TextField
-                                autoFocus
-                                margin="dense"
-                                id="Photo"
-                                label="Add Photo or URL"
-                                type="email"
-                                fullWidth
-                                variant="standard"
-                            />
-                            <DialogContentText>
-                                Select a Sport from here please!
-                            </DialogContentText>
-
-                            <TextField
-                                id="outlined-select-sport"
-                                select
-                                label="sport"
-                                value={sport}
-                                onChange={handleChange}
-                                helperText="Add a Sport"
-                            >
-                                {sports.map((option) => (
-                                    <MenuItem key={option.value} value={option.value}>
-                                        {option.label}{option.name}
-                                    </MenuItem>
-                                ))}
-                            </TextField>
-                            <DialogContentText>
-                                Add a description of the places as acurate as you want
-                            </DialogContentText>
-                            <TextField
-                                id="outlined-multiline-static"
-                                label="Multiline"
-                                multiline
-                                rows={4}
-                                defaultValue="Default Value"
-                            />
-                            <DialogContentText>
-                                Select level
-                            </DialogContentText>
-                            <TextField
-                                id="outlined-select-sport"
-                                select
-                                label="sport"
-                                value={level}
-                                onChange={handleChangeLevel}
-                                helperText="Add a Sport"
-                            >
-                                {levels.map((option) => (
-                                    <MenuItem key={option.value} value={option.value}>
-                                        {option.label}
-                                    </MenuItem>
-                                ))}
-                            </TextField>
-                            <DialogContentText>
-
-                            </DialogContentText>
-                            <TextField
-                                autoFocus
-                                margin="dense"
-                                id="name"
-                                label="Email Address"
-                                type="email"
-                                fullWidth
-                                variant="standard"
-                            />
-                        </DialogContent>
-                        <DialogActions>
-                            <Button onClick={handleClose}>Cancel</Button>
-                            <Button onClick={handleClose}>Subscribe</Button>
-                        </DialogActions>
-                    </Dialog>
+                    <Map className="map" callback={getMarkerPosition} checked={check}/>
                 </div>
                 <div className="hotspot-bottonbody">
                     <div className="hotspot-bottonbody_title">

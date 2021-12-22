@@ -13,7 +13,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 				longitude: null
 			},
 			weather: {},
-			nextDaysWeather: {}
+			nextDaysWeather: {},
+			hotspots: []
 		},
 
 		actions: {
@@ -78,7 +79,15 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			},
 
+			setPosition: (coords) => {
+				setStore({position: {
+					latitude: coords.latitude,
+					longitude: coords.longitude
+				}})
+			},
+
 			getOnloadWeatherData: () => {
+				console.log(process.env.FORECAST_API_KEY)
 				console.log('position', getStore().position);
 				fetch(`${process.env.FORECAST_BASE_URL}lat=${getStore().position.latitude}&lon=${getStore().position.longitude}&appid=${process.env.FORECAST_API_KEY}&units=metric`)
 					.then(resp =>{
@@ -134,6 +143,36 @@ const getState = ({ getStore, getActions, setStore }) => {
 			 		.catch(error => {
 			 			console.log(error.message);
 			 		});
+			},
+			getAllHotspots:()=>{
+				fetch(`https://3001-pink-rook-7fv35jqw.ws-eu23.gitpod.io/api/hotspots/`)
+					.then(resp => resp.json())
+					.then(data => {
+						setStore({hotspots:[...data]})
+					})
+
+					.catch(error => {
+						console.log(error.message);
+					});
+			},
+
+			addNewHotspot:(data)=>{
+				var myHeaders = new Headers();
+				myHeaders.append("Content-Type", "application/json");
+
+				var raw = JSON.stringify(data);
+
+				var requestOptions = {
+				method: 'POST',
+				headers: myHeaders,
+				body: raw,
+				redirect: 'follow'
+				};
+
+				fetch("https://3001-pink-rook-7fv35jqw.ws-eu23.gitpod.io/api/hotspots/", requestOptions)
+				.then(response => response.json())
+				.then(result => console.log(result))
+				.catch(error => console.log('error', error));
 			}
 		}
 	};

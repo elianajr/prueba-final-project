@@ -1,11 +1,17 @@
 import React from "react";
 import {Navbar} from "../component/navbar.js";
 import { Footer } from "../component/footer.js";
-import Map from "../component/map.jsx"
+import Map from "../component/map.jsx";
+import  MiniForecast from "../component/miniForecast.jsx";
 
 import "../../styles/scuba.scss"
 
 export const Scuba = ()=>{
+    const check = [false,false,true,false];
+
+    const getMarkerPosition = position =>{
+		console.log("scuba spot",position)
+	};
 
     return(
         <div className="bodyScuba">
@@ -29,10 +35,10 @@ export const Scuba = ()=>{
                     <img src="https://i.ibb.co/Zh696fs/wordl.png" alt="" />
                 </div>
                 <div className="bodyScuba-mid">
-                    <div className="bodyScuba-mid__map"><Map/></div>
+                    <div className="bodyScuba-mid__map"><Map callback={getMarkerPosition} checked={check}/></div>
                 </div>
                 <div className="bodyScuba-bot">
-                    <div className="bodyScuba-bot__forecast"></div>
+                    <div className="bodyScuba-bot__forecast"><MiniForecast/></div>
                     <div className="bodyScuba-bot__best">
                             <p>The best places in the world </p>
                             <div></div>

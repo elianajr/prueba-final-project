@@ -1,11 +1,17 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {Navbar} from "../component/navbar.js";
 import { Footer } from "../component/footer.js";
 import Map from "../component/map.jsx"
+import  MiniForecast from "../component/miniForecast.jsx";
 
 import "../../styles/surf.scss"
 
 export const Surf = ()=>{
+    const check = [false,true,false,false]
+  
+    const getMarkerPosition = position =>{
+		console.log("surfSpot",position)
+	}
 
     return(
         <div className="bodySurf">
@@ -29,13 +35,15 @@ export const Surf = ()=>{
                     <img src="https://i.ibb.co/Zh696fs/wordl.png" alt="" />
                 </div>
                 <div className="bodySurf-mid">
-                    <div className="bodySurf-mid__map"><Map/></div>
+                    <div className="bodySurf-mid__map"><Map callback={getMarkerPosition} checked={check}/></div>
                 </div>
                 <div className="bodySurf-bot">
-                    <div className="bodySurf-bot__forecast"></div>
+                    <div className="bodySurf-bot__forecast"><MiniForecast/></div>
                     <div className="bodySurf-bot__best">
                             <p>The best places in the world </p>
-                            <div></div>
+                            <div>
+                                
+                            </div>
                     </div>
                 </div>
             <Footer/>
