@@ -159,7 +159,21 @@ const getState = ({ getStore, getActions, setStore }) => {
 					}
 			},
 			
-		
+			addFavourites: name => {
+				if (
+					!getStore().favourites.find(favourite => {
+						return favourite == name;
+					})
+				) {
+					setStore({ favourites: [...getStore().favourites, name] });
+				}
+			},
+
+			deleteFavourites: deleted => {
+				setStore({
+					favourites: getStore().favourites.filter(item => item != deleted)
+				});
+			}
 
 		}
 	};
