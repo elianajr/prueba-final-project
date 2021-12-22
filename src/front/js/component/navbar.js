@@ -1,37 +1,35 @@
-import React, { useContext }  from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { Context } from "../store/appContext.js";
+import React from "react";
+import { Link } from "react-router-dom";
+import "../../styles/navbar.scss";
 
 export const Navbar = () => {
-	const { store, actions } = useContext(Context);
-
+	const logo = <img src="https://i.ibb.co/WkjzmB3/LOGO.png"/>
 	return (
-		<nav className="navbar navbar-light bg-light">
-			<div className="container">
+		<nav className="navbar">
+			<Link to="/">{logo}</Link>
+			<div className="navbar__links"><Link to="/profile">PROFILE</Link ></div>
+			<div className="navbar__links"><Link to="/forecast" >FORECAST</Link ></div>
+			<div className="navbar__links"><Link to="/news" >NEWS</Link ></div>
+			<div className="navbar__links"><Link to="/aboutus" >ABOUT US</Link ></div>
+			<div className="member">
+				<p>Are you a member?</p>
+				<div>
+				<Link to="/register">
+						<span>Register</span>
+				</Link> 
+				{ !store.loggedUser ? (
+				<Link to="/login">
+					<span>Log in</span>
+				</Link> 
+				) : (
 				<Link to="/">
-					<span className="navbar-brand mb-0 h1">React Boilerplate</span>
+					<span onClick={() => actions.logout()}>Log out</span>
 				</Link>
-				<div className="ml-auto">
-					<Link to="/demo">
-						<button className="btn btn-primary">Check the Context in action</button>
-					</Link>
-				</div>
-				<div className="ml-auto">
-					<span>Are you a member?</span>
-					<Link to="/register">
-						<button className="btn btn-primary">Register</button>
-					</Link> 
-					{ !store.loggedUser ? (
-					<Link to="/login">
-						<button className="btn btn-primary">Log in</button>
-					</Link> 
-					) : (
-					<Link to="/">
-						<button onClick={() => actions.logout()} className="btn btn-primary">Log out</button>
-					</Link>
-					)}
+				)}
 				</div>
 			</div>
 		</nav>
 	);
 };
+
+export default Navbar;

@@ -1,3 +1,37 @@
+# ignore all files starting with .
+.*
+
+# track this file .gitignore (i.e. do NOT ignore it)
+!.gitignore
+!.github
+php_errorlog
+.log
+!.babelrc
+
+# do not ignore gitpod files
+!.gitpod.Dockerfile
+!.gitpod.yml
+
+# track webpack configs (i.e. do NOT ignore it)
+!composer.json
+!webpack.config.js
+!package.json
+!webpack.production.js
+!webpack.development.js
+
+# track readme.md in the root (i.e. do NOT ignore it)
+!README.md
+
+# ignore OS generated files
+ehthumbs.db
+Thumbs.db
+
+# ignore Editor files
+*.sublime-project
+*.sublime-workspace
+*.komodoproject
+
+# ignore log files and databases
 *.log
 *.sql
 *.sqlite

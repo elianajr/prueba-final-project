@@ -5,12 +5,6 @@ from werkzeug.security import generate_password_hash
 
 db = SQLAlchemy()
 
-# class Level(Enum):
-#     beginner = "Beginner"
-#     intermediate = "Intermediate"
-#     advanced = "Advanced"
-#     professional = "Professional"
-
 species_hotspot = db.Table('species_hotspot',
     db.Column('specie_id', db.Integer, db.ForeignKey('specie.id'), primary_key=True),
     db.Column('hotspot_id', db.Integer, db.ForeignKey('hotspot.id'), primary_key=True)
@@ -86,6 +80,11 @@ class Account(db.Model):
     def get_account_by_id(cls,id):
         account = cls.query.get(id)
         return account
+    
+    @classmethod
+    def get_all(cls):
+        accounts= cls.query.all()
+        return accounts
 
     def create(self, sports):
         for sport in sports:
@@ -122,6 +121,12 @@ class Account(db.Model):
         db.session.delete(self)
         db.session.commit()
 
+    def update_photoaccount(self):
+        db.session.add(self)
+        db.session.commit()
+        return self
+
+
 
 class Waterdropper(db.Model):
     __tablename__: "waterdropper"
@@ -130,8 +135,6 @@ class Waterdropper(db.Model):
     first_name = db.Column(db.String(), unique=False, nullable=False)
     last_name = db.Column(db.String(), unique=False, nullable=False)
     level = db.Column(db.String(), unique=False, nullable=False)
-    # level = db.Column(db.Enum(Level, name="levels"), nullable=False)
-    # level = db.Column(db.Enum("Beginner", "Intermediate", "Advanced", "Professional", name="levels"), nullable=False)
     location = db.Column(db.String(), unique=False, nullable=False)
     account_id = db.Column(db.Integer, db.ForeignKey("account.id"), nullable=False)
 
@@ -239,10 +242,10 @@ class Hotspot(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(), unique=False, nullable=False)
     photo = db.Column(db.Text(), unique=False, nullable=False)
-    # level = db.Column(db.Enum(Level, name="levels"), nullable=False)
-    level = db.Column(db.Enum("Beginner", "Intermediate", "Advanced", "Professional", name="levels"), nullable=False)
-    description = db.Column(db.String(), unique=False, nullable=False)
-    geometry = db.Column(postgresql.ARRAY(db.Float(), dimensions=2), unique=False, nullable=True)
+    level = db.Column(db.String(), unique=False, nullable=False)
+    description = db.Column(db.Text(), unique=False, nullable=True)
+    latitude = db.Column(db.String(), unique=False, nullable=True)
+    longitude = db.Column(db.String(), unique=False, nullable=True)
     account_id = db.Column(db.Integer, db.ForeignKey("account.id"), nullable=False)
     sport_id = db.Column(db.Integer, db.ForeignKey("sport.id"), nullable=True)
 
@@ -251,25 +254,30 @@ class Hotspot(db.Model):
     has_reviews_spot = db.relationship("Review_Hotspot")
 
     def __repr__(self):
-        return f'Hotstop {self.id}, specie_id: {self.specie_id}, account_id: {self.account_id}, sport_id: {self.sport_id}, name: {self.name},  level: {self.level}, despcription: {self.despcription}, photo: {self.photo}, geometry: {self.geometry}'
+        return f'Hotstop {self.id}, account_id: {self.account_id}, sport_id: {self.sport_id}, name: {self.name},  level: {self.level}, description: {self.description}, photo: {self.photo}'
 
     def to_dict(self):
         return {
             "id": self.id,
             "sport_id": self.sport_id,
-            "specie_id": self.specie_id,
             "account_id": self.account_id,
             "name": self.name,
             "photo": self.photo,
             "level": self.level,
-            "despcription": self.despcription,
-            "geometry": self.geometry
+            "description": self.description,
+            "latitude": self.latitude,
+            "longitude": self.longitude,
         }
 
     @classmethod
     def get_hotspot_by_id(cls,id):
         hotspot = cls.query.get(id)
         return hotspot
+    
+    def update_photohotspot(self):
+        db.session.add(self)
+        db.session.commit()
+        return self
 
 
 class Specie(db.Model):
@@ -294,6 +302,11 @@ class Specie(db.Model):
             "description": self.description,
             "is_reported": self.is_reported
         }
+    
+    @classmethod
+    def get_specie_by_id(cls,id):
+        specie = cls.query.get(id)
+        return specie
 
 
 
@@ -387,4 +400,3 @@ class Review_Hotspot(db.Model):
             "date": self.date,
             "puntuation": self.puntuation
         }
-

@@ -27,7 +27,7 @@ const Login = () => {
 	if(token) {navigate("/")};
 	// if(token == undefined) {actions.logout()};
 
-
+    
 	return (
 		<div className="register-login-form">
 			<form className="register-login" onSubmit={handleSubmit(onSubmit)}>
@@ -88,6 +88,7 @@ const Login = () => {
 			</form>
 		</div>
 	);
+	
 };
 
 export default Login;

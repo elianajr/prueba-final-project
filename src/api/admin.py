@@ -17,7 +17,6 @@ def setup_admin(app):
     admin.add_view(ModelView(Hotspot, db.session))
     admin.add_view(ModelView(Specie, db.session))
     admin.add_view(ModelView(Sport, db.session))
-    # admin.add_view(ModelView(Chat, db.session))
     admin.add_view(ModelView(News, db.session))
 
     # You can duplicate that line to add mew models
