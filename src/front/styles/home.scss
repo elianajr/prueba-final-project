@@ -101,8 +101,7 @@
     display: block;
     width: 43rem;
     height: 216.4;
-    background: rgb(124, 20, 20);
-    overflow-y: scroll;
+    
     scroll-behavior: smooth;
 }
 
@@ -151,4 +150,16 @@
 .home-bottonbody__services__searchbar{
     margin-top: -7rem;
     margin-bottom: 2rem;
+}
+
+.home-bottonbody__newsBoxtitle{
+    margin-top: 2rem;
+    font-family: 'Righteous';
+    font-size: 4rem;
+    margin-left: 6rem;
+}
+
+.Card__NewsHome{
+    width: 18rem;
+    margin-left: 4.1rem;
 }

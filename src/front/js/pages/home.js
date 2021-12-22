@@ -3,6 +3,9 @@ import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 import { Navbar } from "../component/navbar";
 import { Footer } from "../component/footer";
+import Card from 'react-bootstrap/Card'
+
+import img from '../../img/imgnewshome.png'
 
 import "../../styles/home.scss";
 
@@ -60,7 +63,21 @@ const Home = () => {
 					</div>
 					<div className="home-bottonbody__services__photos"></div>					
 				</div>
-				<div className="home-bottonbody__newsBox"></div>
+				<div className="home-bottonbody__newsBox">
+					<div className="home-bottonbody__newsBoxtitle">News</div>
+					<Card className="Card__NewsHome">
+                       <Card.Img variant="top" src={img} />
+                       <Card.Body>
+                      <Card.Text>
+                          Some quick example text to build on the card title and make up the bulk
+                          of the card's content.
+                  </Card.Text>
+                  </Card.Body>
+                </Card>
+                  <br />
+				</div>
+
+  
 			</div>
 			<Footer/>
 		</div>

@@ -33,7 +33,7 @@ const Layout = () => {
 		<BrowserRouter className="index">
 			<Navbar></Navbar>
 			<Routes>
-				<Route path="/" element={<Landingpage />} />
+				<Route path="/" element={<Home />} />
 				<Route path="/hotspot" element={<HotSpot />} />
 				<Route path="/forecast" element={<Forecast />} />
 				<Route path="/aboutus" element={<AboutUs />} />
@@ -44,7 +44,7 @@ const Layout = () => {
 				<Route path="/news" element={<Newsview />} />
 				<Route path="/newsdetail" element={<Newsdetail />} />		
 				<Route path="/chat" element={<ChatForm />} />
-				<Route path="/home" element={<Home></Home>}></Route>
+				
 			</Routes>	
 	
 		</BrowserRouter>
