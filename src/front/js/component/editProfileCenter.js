@@ -244,32 +244,12 @@ const EditProfileCenter = () => {
           </div>
 
           <button className="button-logreg-edit" type="submit">Update info</button>
-          <Link className="link-profile" to='/delete-profile'>delete account</Link>
+
+          <Link className="link-profile-home" to='/'>Back to home page</Link>
+  
         </div>
     
-    
 		</form>
-    {/* <div>
-        <Button onClick={handleOpen}>Delete account</Button>
-        <Modal
-            open={open}
-            onClose={handleClose}
-            aria-labelledby="modal-modal-title"
-            aria-describedby="modal-modal-description"
-        >
-            <Box sx={style}>
-
-            
-            <Typography id="modal-modal-title" variant="h6" component="h2">
-                Edit profile
-            </Typography>
-            <Typography id="modal-modal-description" >
-                Are you sure do you want to delete your account?
-                <Button type="submit" onSubmit={()=> actions.deleteProfile(data)}>YES</Button>
-            </Typography>
-            </Box>
-        </Modal>
-    </div>  */}
     </div>
   );
 

@@ -29,6 +29,7 @@ const Profile = () => {
     const [profile, setProfile] = useState([]);
     const [isWaterdropper, setIsWaterdropper] = useState(null);
     const [editButton, setEditButton] = useState();
+    const [deleteButton, setDeleteButton] = useState();
     const [open, setOpen] = useState(false);
     const navigate = useNavigate();
     const handleOpen = () => setOpen(true);
@@ -53,22 +54,14 @@ const Profile = () => {
         setIsWaterdropper(result._is_waterdropper);
         // console.log("fav centers", favcenters);
         if(result.id == store.loggedUser.id) {
-            setEditButton(<Button><i className="fas fa-pen"></i> Edit profile</Button>)
+            setEditButton(<Button><i className="fas fa-pen"></i> Edit profile</Button>);
+            setDeleteButton(<span><i className="far fa-trash-alt"></i> delete account</span>)
         } else {
-            setEditButton("")
+            setEditButton("");
+            setDeleteButton("");
         }
     }
     ,[store.currentUser])
-
-
-    // useEffect(() => {
-    //     console.log("logggg", store.loggedUser.id);
-	// 	result.id != store.loggedUser.id
-	// 		? setEditButton("")
-	// 		: setEditButton(
-    //             <Button onClick={handleOpen}><i className="fas fa-pen"></i> Edit profile</Button>
-	// 		  );
-	// }, [store.currentUser]);
 
     
     useEffect(
@@ -105,6 +98,13 @@ const Profile = () => {
                                         {result.sports.map(sport => (
                                             <li key={sport.id}>{sport.name}</li>
                                         ))}
+                                        {/* {
+                                            result.sports.name instanceof Map
+                                            ? (<li>{result.sports.name}</li>)
+                                            : esult.sports.map(sport => (
+                                                <li key={sport.id}>{sport.name}</li>
+                                            ))
+                                        } */}
                                     </ul>
                                 </div>
                                 <div>
@@ -121,7 +121,7 @@ const Profile = () => {
                                     <p className="profile-about-text">{result.about}</p>
                                 </div>
                                 <Link className="link-profile" to='/profile-waterdropper'>{editButton}</Link>
-                                <Link className="link-profile-delete" to='/delete-profile'><i className="far fa-trash-alt"></i>delete account</Link>
+                                <Link className="link-profile-delete" to='/delete-profile'>{deleteButton}</Link>
                             </div>
                         </div>
                     </div>
@@ -170,14 +170,20 @@ const Profile = () => {
                                     </div>
                                 </div>
     
-                                {/* <div className="profile-sports">
+                                <div className="profile-sports">
                                     <ul>
-                                        {result.sports.map(sport => (
-                                            <li key={sport.id}>{sport.name}</li>
-                                        ))}
+                                        {
+                                            result.sports
+                                            ? result.sports.map(sport => (
+                                                <li key={sport.id}>{sport.name}</li>
+                                            ))
+                                            : (<span></span>)
+                                        }
                                     </ul>
-                                </div> */}
-    
+                                </div>
+                                
+                                <br/>
+                                
                                 <button className="buttonWTD_stylee">Add spot</button>
                                 <a href={result.instagram} target="_blank" className="profile-instagram"><i className="fab fa-instagram"></i></a>
                                 <a href={result.facebook} target="_blank" className="profile-facebook"><i className="fab fa-facebook-square"></i></a>
@@ -187,10 +193,10 @@ const Profile = () => {
                                     <p className="profile-about-text">{result.about}</p>
                                     
                                     <a href={user.web} target="_blank" className="profile-link-center">{user.web}</a>
-                                    <p className="profile-location"><i className="fas fa-map-marker-alt"></i> {user.address}</p>
+                                    <p className="profile-location-center"><i className="fas fa-map-marker-alt"></i> {user.address}</p>
                                 </div>
                                 <Link className="link-profile" to='/profile-center'>{editButton}</Link>
-                                <Link className="link-profile-delete" to='/delete-profile'><i className="far fa-trash-alt"></i>delete account</Link>
+                                <Link className="link-profile-delete" to='/delete-profile'>{deleteButton}</Link>
                             </div>
                         </div>
                     </div>

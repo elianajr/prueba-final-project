@@ -262,6 +262,8 @@ const EditProfileWaterdropper = () => {
           </div>
 
           <button className="button-logreg-edit" type="submit">Update info</button>
+
+          <Link className="link-profile-home" to='/'>Back to home page</Link>
         
         </div>
 		</form> 

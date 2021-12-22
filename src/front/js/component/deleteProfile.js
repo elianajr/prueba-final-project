@@ -18,6 +18,7 @@ const DeleteProfile = () => {
 		console.log(data);
 		console.log('Este es el siguiente log', result.id)
 		actions.deleteProfile(data, result.id);
+		actions.logout();
 	};
 
 
@@ -31,6 +32,8 @@ const DeleteProfile = () => {
 				<Button className="button-logreg">
 					<Link className="link-profile" to='/'>NO</Link>
 				</Button> 
+
+				<Link className="link-profile-home" to='/'>Back to home page</Link>
 				
 			</form>
 		</div>

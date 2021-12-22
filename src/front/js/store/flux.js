@@ -135,7 +135,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 			deleteProfile: async (data, id) => {
-				getActions().logout();
+				// getActions().logout();
 				let token = localStorage.getItem("token");
 				const opt = {
 					method: 'DELETE',
@@ -149,19 +149,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 				try{
 					const resp = await fetch(getStore().baseUrl.concat(`account/${id}`), opt)
 					if (resp.status !== 201) {
-						alert("There has been some error");
-						return false;
+						//alert("There has been some error");
+						// return false;
 					}
 
 					const data = await resp.json();
 					console.log(data);
-					// localStorage.setItem("token", data.token);
-					// setStore({ token : data.token });
+					
 
-					// localStorage.setItem("currentUser", JSON.stringify(data.account));
-					// setStore({ currentUser : data.account});
-
-					// return true;
 				}
 				catch(error){
 					console.error("There was an error!!", error);

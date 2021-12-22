@@ -149,8 +149,8 @@ class Waterdropper(db.Model):
             "level": self.level,
             "location": self.location,
             "favourite_centers": list(map(lambda center: center.to_dict(), self.have_waterdropper_favcenter)),
-            # "favourite_centers": self.have_waterdropper_favcenter,
-            "favourite_spot": self.have_waterdropper_favspot
+            # "favourite_centers": [center.to_dict() for center in self.have_waterdropper_favcenter]
+            "favourite_spot": [hotspot.to_dict() for hotspot in self.have_waterdropper_favspot]
         }
 
     @classmethod
