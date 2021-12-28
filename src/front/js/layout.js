@@ -1,9 +1,11 @@
 import React, { Fragment } from "react";
 import {
-  BrowserRouter,
-  Routes,
-  Route
-} from "react-router-dom";
+	BrowserRouter,
+	Routes,
+	Route
+  } from "react-router-dom";
+import Navbar from "./component/navbar.js";
+import Landingpage from "./component/Landingpage.jsx";
 import Home from "./pages/home.js";
 import HotSpot from "./pages/hotspot.jsx";
 import Forecast from "./pages/forecast.jsx";
@@ -15,8 +17,14 @@ import { Snorkel } from "./pages/snorkel.jsx";
 import { Scuba } from "./pages/scuba.jsx";
 import Login from "./component/login.js";
 import Register from "./component/register.js";
-import RegisterWaterdropper from "./component/registerWaterdropper";
-import RegisterCenter from "./component/registerCenter";
+import Upload from "./component/upload.jsx";
+import Uploadingphotos from "./pages/uploadingphotos.jsx";
+import RegisterWaterdropper from "./component/registerWaterdropper.js";
+import RegisterCenter from "./component/registerCenter.js";
+import ChatForm from "./component/ChatForm.jsx"
+import Chatdropdown from "./component/Chatdropdown.jsx"
+import Newsview from "./pages/Newsview.jsx";
+import Newsdetail from "./component/Newsdetails.jsx";
 
 
 //create your first component
@@ -26,6 +34,8 @@ const Layout = () => {
 	const basename = process.env.BASENAME || "";
 
 	return (
+		
+			
 		<BrowserRouter className="index">
 			<Routes>
 				<Route path="/" element={<Home />} />
@@ -40,9 +50,14 @@ const Layout = () => {
 				<Route path="/register" element={<Register />} />
 				<Route path="/registerwaterdropper" element={<RegisterWaterdropper />} />
 				<Route path="/registercenter" element={<RegisterCenter />} />
+				<Route path="/news" element={<Newsview />} />
+				<Route path="/newsdetail" element={<Newsdetail />} />		
+				<Route path="/chat" element={<ChatForm />} />
 			</Routes>		
 		</BrowserRouter>
+		
 	);
 };
 
 export default injectContext(Layout);
+

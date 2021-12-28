@@ -5,7 +5,6 @@ import { SearchBar } from "../component/searchBar.jsx";
 import {Navbar} from "../component/navbar.js";
 import { Footer } from "../component/footer.js";
 
-
 import "../../styles/home.scss";
 
 const Home = () => {
@@ -76,6 +75,8 @@ const Home = () => {
 				</div>
 			<Footer/>
 		</div>
+		
+		
 	);
 };
 

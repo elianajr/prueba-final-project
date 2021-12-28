@@ -20,7 +20,7 @@ const Login = () => {
 	const token = sessionStorage.getItem("token");
 	const onSubmit = data => {
 		// console.log(data);
-		actions.login(data);
+		actions.login(data)
 		// .then(() => {
 		// 	history.pushState("/")
 		// })
@@ -28,7 +28,7 @@ const Login = () => {
 
 	if(store.token && store.token !="" && store.token != null) {navigate("/")};
 
-
+    
 	return (
 		<div className="register-login-form">
 			<form className="register-login" onSubmit={handleSubmit(onSubmit)}>
@@ -90,6 +90,7 @@ const Login = () => {
 			</form>
 		</div>
 	);
+	
 };
 
 export default Login;

@@ -13,9 +13,36 @@ from werkzeug.security import check_password_hash, generate_password_hash
 from api.models import db, Account, Waterdropper, Center, Hotspot, Specie, Sport
 from api.utils import generate_sitemap, APIException
 
+import cloudinary
+import cloudinary.uploader
+
 api = Blueprint('api', __name__)
 
 
+
+
+@api.route('/account', methods=[ 'GET'])
+def get_accounts():
+
+  accounts= Account.get_all()
+  all_accounts=[account.to_dict() for account in accounts]
+  return jsonify(all_accounts), 200
+
+@api.route('/account/<int:id>', methods=[ 'GET'])
+def get_account(id):
+
+  account= Account.get_account_by_id(id)
+
+  if account:
+      account= account.to_dict()
+      return jsonify(account), 200
+  
+  
+
+  
+
+
+    
 @api.route('/login', methods=['POST'])
 def login():
     
@@ -32,6 +59,8 @@ def login():
         return jsonify({'error':'Not found'}), 200
 
     return {'error': 'Some parameter is wrong'}, 401
+
+
 
 
 @api.route('/account', methods=['POST'])
@@ -205,15 +234,77 @@ def update_account_status(id):
         return jsonify({'error' : 'Account not found'}), 404
 
 
+@api.route('/accountphoto/<int:id>', methods=['POST'])
+def handle_uploadaccount(id):
+
+    # validate that the front-end request was built correctly
+    if 'profile_image' in request.files:
+        # upload file to uploadcare
+        result = cloudinary.uploader.upload(request.files['profile_image'])
+
+        # fetch for the user
+        account1 = Account.get_account_by_id(id)
+        # update the user with the given cloudinary image URL
+        if account1:
+             account1.cover_photo = result['secure_url']
+             account1.update_photoaccount()
+             return jsonify(account1.to_dict()), 200
+             
+    else:
+        raise APIException('Missing profile_image on the FormData')
+
+@api.route('/hotspotphoto/<int:id>', methods=['POST'])
+def handle_uploadhotspot(id):
+
+    # validate that the front-end request was built correctly
+    if 'profile_image' in request.files:
+        # upload file to uploadcare
+        result = cloudinary.uploader.upload(request.files['profile_image'])
+
+        # fetch for the user
+        hotspot1 = Hotspot.get_hotspot_by_id(id)
+        # update the user with the given cloudinary image URL
+        hotspot1.photo = result['secure_url']
+
+        hotspot1.update_photohotspot()
+
+        return jsonify(hotspot1.to_dict()), 200
+    else:
+        raise APIException('Missing profile_image on the FormData')
+
+
+
+
+@api.route('/speciephoto/<int:id>', methods=['POST'])
+def handle_uploadspecie(id):
+
+    # validate that the front-end request was built correctly
+    if 'profile_image' in request.files:
+        # upload file to uploadcare
+        result = cloudinary.uploader.upload(request.files['profile_image'])
+
+        # fetch for the user
+        specie1 = Specie.get_specie_by_id(id)
+        # update the user with the given cloudinary image URL
+        specie1.photo = result['secure_url']
+
+        db.session.add(specie1)
+        db.session.commit()
+
+        return jsonify(specie1.to_dict()), 200
+    else:
+        raise APIException('Missing profile_image on the FormData')
+    return jsonify({'message':'Hotspot not found'}), 400
+  
 @api.route('/hotspots/', methods=['GET'])
 def get_all_hotpot_by_id():
     hotspot_s = Hotspot.get_all()
 
+
     if hotspot_s:
         all_hotspots = [hotspot.to_dict() for hotspot in hotspot_s]
         return jsonify(all_hotspots), 200
-
-    return jsonify({'message':'Hotspot not found'}), 400
+      
 
 @api.route('/hotspots', methods=['POST'])
 def post_hotspot():
