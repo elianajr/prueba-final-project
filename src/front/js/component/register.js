@@ -13,7 +13,7 @@ const Register = () => {
 
 	return (
 
-		<div className="register-login-form">
+		<div className="register-login-form myprofile">
 			<div className="register-login">
 				<h2 className="tittle-logreg">JOIN WDS</h2> 
 				

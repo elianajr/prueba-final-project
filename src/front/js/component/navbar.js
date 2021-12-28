@@ -1,9 +1,20 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useContext, useEffect } from "react";
+import { useParams, Link } from "react-router-dom";
+import { Context } from "../store/appContext.js";
 import "../../styles/navbar.scss";
 
 export const Navbar = () => {
+	const { store, actions } = useContext(Context);
+	let params = useParams();
 	const logo = <img src="https://i.ibb.co/WkjzmB3/LOGO.png"/>
+
+	
+
+	useEffect(() => {
+        const myId = store.loggedUser.id;
+        console.log(store.loggedUser.id);
+	}, [store.currentUser]);
+
 	return (
 		<nav className="navbar">
 			<Link to="/">{logo}</Link>
@@ -15,7 +26,7 @@ export const Navbar = () => {
 				<p>Are you a member?</p>
 				<div>
 				<Link to="/register">
-						<span>Register</span>
+						<span>Register / </span>
 				</Link> 
 				{ !store.loggedUser ? (
 				<Link to="/login">

@@ -34,7 +34,7 @@ const RegisterWaterdropper = () => {
 
 
 	return (
-		<div className="register-login-form">
+		<div className="register-login-form myprofile">
 			<form className="register-login" onSubmit={handleSubmit(onSubmit)}>
 
 				<div className="progressbar-regform">

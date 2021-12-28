@@ -29,7 +29,7 @@ const Login = () => {
 
     
 	return (
-		<div className="register-login-form">
+		<div className="register-login-form myprofile">
 			<form className="register-login" onSubmit={handleSubmit(onSubmit)}>
 				<h2 className="tittle-logreg">SIGN IN TO WDS</h2>
 

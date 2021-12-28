@@ -73,6 +73,7 @@
 
 .profile-photo-waterdropper img {
     max-width:100%;
+    max-height: 100%;
     z-index:999;
     border-radius:100%;
     width:7.8rem;
@@ -256,4 +257,8 @@
     color:#006184;
     margin-top: 0.2rem;
     padding-top:0.2rem;
+}
+
+.myprofile {
+    padding-top: 7rem;
 }

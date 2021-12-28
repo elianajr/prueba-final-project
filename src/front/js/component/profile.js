@@ -69,7 +69,7 @@ const Profile = () => {
         if(isWaterdropper == true) {
             setProfile(
             <Fragment>
-                <div className="row">
+                <div className="row myprofile">
                     <div className="col-8">
                         <div className="profile-waterdropper-container">
                             <div className="main-photo-waterdropper">
@@ -147,7 +147,7 @@ const Profile = () => {
         } else {
             setProfile(
             <Fragment>
-                <div className="row">
+                <div className="row myprofile">
                     <div className="col-8">
                         <div className="profile-waterdropper-container">
                             <div className="main-photo-waterdropper">

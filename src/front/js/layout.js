@@ -23,8 +23,6 @@ import DeleteProfile from "./component/deleteProfile.js";
 
 import Upload from "./component/upload.jsx";
 import Uploadingphotos from "./pages/uploadingphotos.jsx";
-import RegisterWaterdropper from "./component/registerWaterdropper.js";
-import RegisterCenter from "./component/registerCenter.js";
 import ChatForm from "./component/ChatForm.jsx"
 import Chatdropdown from "./component/Chatdropdown.jsx"
 import Newsview from "./pages/Newsview.jsx";

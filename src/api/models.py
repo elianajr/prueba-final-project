@@ -64,8 +64,9 @@ class Account(db.Model):
             "facebook": self.facebook,
             "about": self.about,
             "_is_waterdropper": self._is_waterdropper,
-            # "user": list(map(lambda x: x.to_dict(), user)),
-            "user": user[0].to_dict(),
+            # "user": list(map(lambda x: account.to_dict(), user)),
+            # "user": user[0].to_dict(),
+            "user": [account.to_dict() for account in user],
             "sports": list(map(lambda sport: sport.to_dict(), self.have_account_sport))
             # "sports": [sport.to_dict() for sport in self.have_account_sport]
         }

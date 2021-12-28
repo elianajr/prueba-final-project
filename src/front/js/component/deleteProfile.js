@@ -23,7 +23,7 @@ const DeleteProfile = () => {
 
 
 	return (
-		<div className="register-login-form">
+		<div className="register-login-form myprofile">
 			<form className="register-login" onSubmit={handleSubmit(onSubmit)}>
 				<h6>Sorry to hear you are leaving... Are you sure you wanna continue?</h6>
 			

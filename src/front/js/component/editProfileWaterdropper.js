@@ -58,7 +58,7 @@ const EditProfileWaterdropper = () => {
 
 
 	return (
-		<div className="edit-profile-form">
+		<div className="edit-profile-form myprofile">
 		<form className="edit-profile" onSubmit={handleSubmit(onSubmit)}>
 				<div className="row justify-content-center edit-profile-form">
           <div className="col">
