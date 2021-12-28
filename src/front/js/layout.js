@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import {
 	BrowserRouter,
 	Routes,
@@ -11,10 +11,12 @@ import HotSpot from "./pages/hotspot.jsx";
 import Forecast from "./pages/forecast.jsx";
 import injectContext from "./store/appContext";
 import { AboutUs } from "./pages/aboutus.jsx";
+import { Surf } from "./pages/surf.jsx";
+import { Kitesurf } from "./pages/kitesurf.jsx";
+import { Snorkel } from "./pages/snorkel.jsx";
+import { Scuba } from "./pages/scuba.jsx";
 import Login from "./component/login.js";
 import Register from "./component/register.js";
-
-
 import Upload from "./component/upload.jsx";
 import Uploadingphotos from "./pages/uploadingphotos.jsx";
 import RegisterWaterdropper from "./component/registerWaterdropper.js";
@@ -35,23 +37,23 @@ const Layout = () => {
 		
 			
 		<BrowserRouter className="index">
-			<Navbar></Navbar>
 			<Routes>
-				<Route path="/" element={<Landingpage />} />
+				<Route path="/" element={<Home />} />
 				<Route path="/hotspot" element={<HotSpot />} />
 				<Route path="/forecast" element={<Forecast />} />
 				<Route path="/aboutus" element={<AboutUs />} />
+				<Route path="/surf" element={<Surf/>}/>
+				<Route path="/kitesurf" element={<Kitesurf/>}/>
+				<Route path="/snorkel" element={<Snorkel/>}/>
+				<Route path="/diving" element={<Scuba/>}/>
 				<Route path="/login" element={<Login />} />
 				<Route path="/register" element={<Register />} />
 				<Route path="/registerwaterdropper" element={<RegisterWaterdropper />} />
 				<Route path="/registercenter" element={<RegisterCenter />} />
-				<Route path="/photo" element={<Uploadingphotos></Uploadingphotos>}></Route>	
 				<Route path="/news" element={<Newsview />} />
 				<Route path="/newsdetail" element={<Newsdetail />} />		
 				<Route path="/chat" element={<ChatForm />} />
-				<Route path="/home" element={<Home></Home>}></Route>
-			</Routes>	
-	
+			</Routes>		
 		</BrowserRouter>
 		
 	);

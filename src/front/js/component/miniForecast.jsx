@@ -1,20 +1,18 @@
-
 import React, { useEffect, useState, useContext } from "react";
 import { Context } from "../store/appContext";
-import { Navbar } from "../component/navbar.js";
-import { Footer } from "../component/footer.js";
-
-import "../../styles/forecast.scss";
 
 
-const Forecast = () => {
+import "../../styles/miniforecast.scss";
+
+
+const MiniForecast = () => {
     const { store, actions } = useContext(Context);
     //  Const & UseStates    
     const [form, setForm] = useState({
         city: "",
         country: ""
     });
-    const [weatherIcon, setWeatherIcon] = useState([]);
+    const [weatherIcon, setWeatherIcon] = useState("");
     const [textIcon, setTextIcon] = useState("");
 
 
@@ -26,15 +24,7 @@ const Forecast = () => {
     const weatherTomorrow = { ...store.nextDaysWeather.weatherTomorrow };
     const weatherNextDay = { ...store.nextDaysWeather.weatherNextDay };
     const weatherNextNextDay = { ...store.nextDaysWeather.weatherNextNextDay };
-    const weatherTomorrowTemp = { ...weatherTomorrow.temp };
-    const weatherNextDayTemp = { ...weatherNextDay.temp };
-    const weatherNextNextDayTemp = { ...weatherNextNextDay.temp };
-
-
-    const [weatherIconT, setWeatherIconT] = useState("");
-    const [weatherIconN, setWeatherIconN] = useState("");
-    const [weatherIconNN, setWeatherIconNN] = useState("");
-
+  
     // Icons
     const humidity = <img src="https://i.ibb.co/fpTwnrz/carbon-humidity-alt.png" alt="humidity" />
     const wind = <img src="https://i.ibb.co/FbCXsPQ/fontisto-wind.png" alt="wind" />
@@ -75,7 +65,7 @@ const Forecast = () => {
 
     //      Call three days Fetch
     useEffect(() => {
-        console.log("Buscar Country", store.weather )
+
         if (Object.keys(store.weather).length) {
             actions.getThreeDaysWeatherData()
         }
@@ -140,9 +130,13 @@ const Forecast = () => {
     let NNdate = nextNextDay.getDate() + 3 + '/' + nextNextDay.getMonth();
 
 
+    useEffect(() => {
+        console.log("weather LOKO", store.nextDaysWeather)
+    }, [store.nextDaysWeather])
+
+
     return (
         <div className="forecast-body">
-            <Navbar />
             <div className="forecast-topbody">
                 <p>WHERE?</p>
                 <div className="forecast-searchBar__Box">
@@ -168,15 +162,17 @@ const Forecast = () => {
                             className="forecast-seachBar__button"
                             onClick={(e) => {
                                 weatherData(e)
+                                console.log("SUBMIT", form.city, form.country)
                             }}
                         >{seachIcon}</button>
                     </div>
                 </div>
             </div>
-            <div className="forecast-forecastbody">
-                <div className="forecast-forecastbody__today">
-                    <p>4 Days Weather, {store.weather.city}   {date}</p>
-                    <div className="forecast-forecastbody__today__primaryDates">
+            <div className="miniforecast-miniforecastbody">
+                <div className="miniforecast-miniforecastbody__today">
+                    <p>4 Days Weather, {store.weather.city} ,  {date}</p>
+
+                    <div className="miniforecast-miniforecastbody__today__primaryDates">
                         <div className="primaryDates__temp">
                             <span >{weatherMain.temp}°</span>
 
@@ -201,50 +197,12 @@ const Forecast = () => {
                         <div className="forecast-forecastbody__today__minTempSet">
                             <div>{sunsetIcon} <span>{sunset}</span></div>
                             <div>{minTemp} <span>{weatherMain.temp_min}°</span></div>
-
                         </div>
                     </div>
                 </div>
-                <div className="forecast-forecastbody__nextDays">
-                    <div className="forecast-forecastbody__tomorrow">
-                        <div className="secondaryDates__firstpart">
-                            <span>{Tdate}</span>
-                            <span>{weatherTomorrowTemp.max}°/{weatherTomorrowTemp.min}°</span>
-                            <span className="forecast-weatherICON">{weatherIcon[1]}</span>
-                        </div>
-                        <div className="secondaryDates__secondPart">
-                            {humidityDetail} <span>{weatherTomorrow.humidity}%</span>
-                            {windDetail} <span> {weatherTomorrow.wind_speed}m/s</span>
-                        </div>
-                    </div>
-                    <div className="forecast-forecastbody__afterTomorrow">
-                        <div className="secondaryDates__firstpart">
-                            <span>{Ndate}</span>
-                            <span>{weatherNextDayTemp.max}°/{weatherNextDayTemp.min}°</span>
-                            <span className="forecast-weatherICON">{weatherIcon[2]}</span>
-                        </div>
-                        <div className="secondaryDates__secondPart">
-                            {humidityDetail} <span>{weatherNextDay.humidity}%</span>
-                            {windDetail} <span> {weatherNextDay.wind_speed}m/s</span>
-                        </div>
-                    </div>
-                    <div className="forecast-forecastbody__afterAfterTomorrow">
-                        <div className="secondaryDates__firstpart">
-                            <span>{NNdate}</span>
-                            <span>{weatherNextNextDayTemp.max}°/{weatherNextNextDayTemp.min}°</span>
-                            <span className="forecast-weatherICON">{weatherIcon[3]}</span>
-                        </div>
-                        <div className="secondaryDates__secondPart">
-                            {humidityDetail} <span>{weatherNextNextDay.humidity}%</span>
-                            {windDetail} <span> {weatherNextNextDay.wind_speed}m/s</span>
-                        </div>
-                    </div>
-                </div>
-                <div className="WARRADA"></div>
             </div>
-            <Footer />
         </div>
     )
 }
 
-export default Forecast;
+export default MiniForecast;

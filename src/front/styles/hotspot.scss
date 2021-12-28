@@ -3,6 +3,14 @@
 } */
 @import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Righteous&family=Sacramento&display=swap');
 
+.hotspot{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-items: center;
+}
+
+
 .hotspot-container{
     display: flex;
     flex-direction: column;
