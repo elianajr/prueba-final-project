@@ -17,6 +17,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 				longitude: null
 			},
 			weather: {},
+			nextDaysWeather: {},
+			hotspots: []
 		},
 
 		actions: {
@@ -128,11 +130,110 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.error("There was an error!!", error);
 					}
 
+
 			},	
 			
 		},
-			
-		
+
+			},
+
+			setPosition: (coords) => {
+				setStore({position: {
+					latitude: coords.latitude,
+					longitude: coords.longitude
+				}})
+			},
+
+			getOnloadWeatherData: () => {
+				console.log(process.env.FORECAST_API_KEY)
+				console.log('position', getStore().position);
+				fetch(`${process.env.FORECAST_BASE_URL}lat=${getStore().position.latitude}&lon=${getStore().position.longitude}&appid=${process.env.FORECAST_API_KEY}&units=metric`)
+					.then(resp =>{
+						if(resp.ok) {
+							return resp.json();
+						}
+						
+						throw new Error("Fail loading weather");
+					})
+					.then(data =>{
+						setStore({ weather: {
+							city: data.name,
+							weatherMain: data.main,
+							weatherCoord: data.coord,
+							weatherSys: data.sys,
+							weatherWeather: data.weather[0],
+							weatherWind: data.wind,
+						}});					
+					})
+					.catch(error => {
+						console.log(error.message);
+					});
+			},
+			getThreeDaysWeatherData: ()=>{
+				fetch(`${process.env.FORECAST_THREE_DAYS}lat=${getStore().position.latitude}&lon=${getStore().position.longitude}&exclude=minutely,hourly&appid=${process.env.FORECAST_API_KEY}&units=metric`)
+				.then(resp => resp.json())
+				.then(data =>{
+					console.log("THREE DAYS AFTER",data)
+					setStore({nextDaysWeather: {
+						weatherToday: data.daily[0],
+						weatherTomorrow: data.daily[1],
+						weatherNextDay: data.daily[2],
+						weatherNextNextDay: data.daily[3]
+					}})													
+				})
+				.catch(error => {
+					console.log(error.message);
+				});
+			},
+			getWeatherData:(city,country,APYKEY)=>{
+			 	fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${process.env.FORECAST_API_KEY}&units=metric`)
+			 		.then(resp => resp.json())
+			 		.then(data =>{
+			 			setStore({ weather: {
+							city: data.name,
+							weatherMain: data.main,
+							weatherCoord: data.coord,
+							weatherSys: data.sys,
+							weatherWeather: data.weather[0],
+							weatherWind: data.wind,
+						}});						
+			 		})
+			 		.catch(error => {
+			 			console.log(error.message);
+			 		});
+			},
+			getAllHotspots:()=>{
+				fetch(`https://3001-pink-rook-7fv35jqw.ws-eu23.gitpod.io/api/hotspots/`)
+					.then(resp => resp.json())
+					.then(data => {
+						setStore({hotspots:[...data]})
+					})
+
+					.catch(error => {
+						console.log(error.message);
+					});
+			},
+
+			addNewHotspot:(data)=>{
+				var myHeaders = new Headers();
+				myHeaders.append("Content-Type", "application/json");
+
+				var raw = JSON.stringify(data);
+
+				var requestOptions = {
+				method: 'POST',
+				headers: myHeaders,
+				body: raw,
+				redirect: 'follow'
+				};
+
+				fetch("https://3001-pink-rook-7fv35jqw.ws-eu23.gitpod.io/api/hotspots/", requestOptions)
+				.then(response => response.json())
+				.then(result => console.log(result))
+				.catch(error => console.log('error', error));
+			}
+		}
+
 	};
 
 }

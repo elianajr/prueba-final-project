@@ -235,13 +235,13 @@ class Hotspot(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(), unique=False, nullable=False)
-    photo = db.Column(db.Text(), unique=False, nullable=False)
+    photo = db.Column(db.Text, unique=False, nullable=False)
     level = db.Column(db.String(), unique=False, nullable=False)
     description = db.Column(db.Text(), unique=False, nullable=True)
     latitude = db.Column(db.String(), unique=False, nullable=True)
     longitude = db.Column(db.String(), unique=False, nullable=True)
     account_id = db.Column(db.Integer, db.ForeignKey("account.id"), nullable=False)
-    sport_id = db.Column(db.Integer, db.ForeignKey("sport.id"), nullable=True)
+    sport_id = db.Column(db.Integer, db.ForeignKey("sport.id"), nullable=False)
 
     have_favspot_waterdropper = db.relationship('Waterdropper', secondary=waterdropper_fav_spot, back_populates="have_waterdropper_favspot")
     have_hotspot_specie = db.relationship('Specie', secondary=species_hotspot, back_populates="have_specie_hotspot")
@@ -263,6 +263,10 @@ class Hotspot(db.Model):
             "longitude": self.longitude,
         }
 
+    def create(self):
+       db.session.add(self)
+       db.session.commit()   
+
     @classmethod
     def get_hotspot_by_id(cls,id):
         hotspot = cls.query.get(id)
@@ -273,6 +277,10 @@ class Hotspot(db.Model):
         db.session.commit()
         return self
 
+    @classmethod
+    def get_all(cls):
+        hotspot_all = cls.query.all()
+        return hotspot_all
 
 class Specie(db.Model):
     __tablename__: "specie"
@@ -321,29 +329,6 @@ class Sport(db.Model):
             "id": self.id,
             "name": self.name
         }
-
-    @classmethod
-    def get_sport_by_name(cls,name):
-        sport = cls.query.filter_by(name=name).one_or_none()
-        return sport
-
-class News(db.Model):
-    __tablename__: "news"
-
-    id = db.Column(db.Integer, primary_key=True)
-    photo = db.Column(db.Text(), unique=False, nullable=False)
-    description = db.Column(db.String(), unique=False, nullable=False)
-
-    def __repr__(self):
-        return f'News {self.id}, photo: {self.photo}, description: {self.description}'
-
-    def to_dict(self):
-        return {
-            "id": self.id,
-            "photo": self.photo,
-            "description": self.description
-        }
-
 
 class Review_Center(db.Model):
     __tablename__ = "review_centre"
