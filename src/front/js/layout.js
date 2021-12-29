@@ -15,8 +15,8 @@ import Login from "./component/login.js";
 import Register from "./component/register.js";
 import RegisterWaterdropper from "./component/registerWaterdropper.js";
 import RegisterCenter from "./component/registerCenter.js";
-import ChatForm from "./component/ChatForm.jsx"
-import Chatdropdown from "./component/Chatdropdown.jsx"
+import ChatForm from "./component/chatForm.jsx"
+import Chatdropdown from "./component/chatdropdown.jsx"
 
 
 //create your first component
