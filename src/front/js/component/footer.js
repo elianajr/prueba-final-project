@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import "../../styles/footer.scss"
-import Chatdropdown from "./Chatdropdown.jsx";
+import Chatdropdown from "./chatdropdown.jsx";
 
 export const Footer = () => { 
 
@@ -11,11 +11,12 @@ export const Footer = () => {
 		<footer className="footer mt-auto py-3 text-center">
 			<div className="footer-help">
 				<Link to="/help">
-					<p>Need any help?</p>
+					<p className="footer-help__text">Need any help?</p>
 					{help}
 				</Link>
+				<Chatdropdown></Chatdropdown>
 				</div>
-			<Chatdropdown></Chatdropdown>
+			
 		</footer>
 	)
 };

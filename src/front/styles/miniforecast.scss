@@ -28,11 +28,11 @@
 }
 
 
-.forecast-forecastbody{
+.miniforecast-miniforecastbody{
     display: flex;
     flex-direction: column;
-    width: 55rem;
-    height: 40rem;
+    width: 531.43px;
+    height: 350.65px;
     background: #FFFFFF;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
     margin-top: 2rem;
@@ -40,7 +40,7 @@
     align-items: center;
 }
 
-.forecast-forecastbody__today{
+.miniforecast-miniforecastbody__today{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -49,14 +49,14 @@
     height: 12.5;
 }
 
-.forecast-forecastbody__today>p{
-    margin-left: -38rem;
+.miniforecast-miniforecastbody__today>p{
+    margin-left: -18rem;
 }
 
-.forecast-forecastbody__today__primaryDates{
+.miniforecast-miniforecastbody__today__primaryDates{
     display: flex;
     flex-direction: row;   
-    width: 42rem;
+    width: 34rem;
     height: 6.6rem;
     justify-content: space-around;
 }
@@ -84,7 +84,7 @@
 }
 
 .forecast-forecastbody__today__secondaryDates{
-    width: 42rem;
+    width: 28rem;
     height: 5.6rem;
     border: 1px solid rgba(0, 0, 0, 0.1);
     box-sizing: border-box;
@@ -127,10 +127,6 @@
     margin-top: 1rem;
     align-items: center;
     justify-content: center;
-}
-.forecast-weatherICON>img{
-    width: 50%; 
-    height: 50%;
 }
 .secondaryDates__firstpart>img{
     width: 5rem;
@@ -176,8 +172,4 @@
     border: none;
     color: #006184;
     font-size: 1.5rem;
-}
-
-.WARRADA{
-    height: 5rem;
 }

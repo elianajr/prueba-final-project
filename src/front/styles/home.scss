@@ -9,7 +9,7 @@
 
 .home-topbody{
     display: flex;
-    width: 90rem;
+    width: 100vw;
     height: 47.8rem;
     background-image: url("https://i.ibb.co/jRsbvtf/whale.png");
     align-items: flex-end;
@@ -24,7 +24,11 @@
     height: 6.8rem;
 }
 
-.home-topbody__sports>button{
+.home-topbody__sports>a{
+   color: transparent;
+}
+
+.home-topbody__sports__buttons{
     width: 14.45rem;
     height: 6.8rem;
     background: rgba(146, 226, 200, 0.2);
@@ -40,7 +44,7 @@
     justify-content:space-around;
 }
 
-.home-topbody__sports>button:hover {
+.home-topbody__sports__buttons:hover {
     background: rgba(53, 83, 74, 0.2);
     background: linear-gradient(0deg, rgba(146, 226, 201, 0.411) 0%rgba(146, 226, 201, 0.596) 100%);
  }
@@ -50,6 +54,7 @@
     align-items: flex-start;
     justify-items: center;
     flex-direction: row;
+    width: 100vw;
 }
 
 .home-bottonbody__services{
