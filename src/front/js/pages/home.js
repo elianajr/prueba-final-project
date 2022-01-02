@@ -5,8 +5,14 @@ import { Navbar } from "../component/navbar";
 import { Footer } from "../component/footer";
 import Card from 'react-bootstrap/Card'
 
-import img from '../../img/imgnewshome.png'
+
 import { SearchBar } from "../component/searchBar.jsx";
+
+import imgnewshome from '../../img/imgnewshome.png'
+import img2newshome from '../../img/imgnewshome2.png'
+import img3newshome from '../../img/imgnewshome3.png'
+import img4newshome from '../../img/imgnewshome4.png'
+import img5newshome from '../../img/imgnewshome5.png'
 
 
 import "../../styles/home.scss";
@@ -75,7 +81,84 @@ const Home = () => {
 						<div className="home-bottonbody__services__photos"></div>
 						<div className="home-bottonbody__services__searchbar"><SearchBar/></div>
 					</div>
-					<div className="home-bottonbody__newsBox"></div>
+					<div className="home-bottonbody__newsBox">
+					<div className="home-bottonbody__newsleftbox">
+					<div className="home-bottonbody__newsBoxtitle">News</div>
+					
+					<Card className="Card__NewsHome">
+                       <Card.Img variant="top" src={imgnewshome} className="Card__NewsHomeimg"/>
+                       <Card.Body>
+                      <Card.Text>
+					  <p className="Card__NewsHometext">100 Days Summer: Sunsets</p>
+					  <div className="Card__NewsHomefooter">
+					  <p className="Card__NewsHomefooter__category">PHOTOGRAPHY</p>
+					  <span className="Card__NewsHomefooter__date">1 Month ago</span>
+					  </div>
+					 
+                  </Card.Text>
+                  </Card.Body>
+                </Card>
+                  <br />
+				  <Card className="Card__NewsHome">
+                  <Card.Img variant="top" src={img2newshome} className="Card__NewsHomeimg" />
+            <Card.Body>
+             <Card.Text>
+                   <p className="Card__NewsHometext">How to check forecast for your holydays</p>
+				   <div className="Card__NewsHomefooter">
+				   <p className="Card__NewsHomefooter__category">SCIENCE</p> 
+				   <span className="Card__NewsHomefooter__date">1 Month ago</span>
+					  </div>
+                
+               </Card.Text>
+              </Card.Body>
+             </Card>
+             <br />
+					</div>
+					
+  <div className="home-bottonbody__newsrightbox">
+  <Card className="Card__NewsHome">
+    <Card.Img variant="top" src={img3newshome} className="Card__NewsHomeimg" />
+    <Card.Body>
+      <Card.Text>
+        <p className="Card__NewsHometext">Kitesurf Wolrd Cup</p>
+		<div className="Card__NewsHomefooter">
+		   <p className="Card__NewsHomefooter__category">COMPETITION</p> 
+		   <span className="Card__NewsHomefooter__date">1 Month ago</span>
+		</div>
+		
+      </Card.Text>
+    </Card.Body>
+  </Card>
+  <br />
+  <Card className="Card__NewsHome">
+    <Card.Img variant="top" src={img4newshome} className="Card__NewsHomeimg" />
+    <Card.Body>
+      <Card.Text>
+        <p className="Card__NewsHometext">Photoshop your memories</p>
+		<div className="Card__NewsHomefooter">
+		    <p className="Card__NewsHomefooter__category">TRAVEL</p>
+		    <span className="Card__NewsHomefooter__date" >1 Month ago</span>
+		</div>
+      </Card.Text>
+    </Card.Body>
+  </Card>
+  <br />
+  <Card className="Card__NewsHome">
+    <Card.Img variant="top" src={img5newshome} className="Card__NewsHomeimg" />
+    <Card.Body>
+      <Card.Text>
+        <p className="Card__NewsHometext">Discover new places to practise surf</p>
+		<div className="Card__NewsHomefooter">
+		   <p className="Card__NewsHomefooter__category">TRAVEL</p>
+		   <span className="Card__NewsHomefooter__date">1 Month ago</span>
+		</div>
+		
+      </Card.Text>
+    </Card.Body>
+  </Card>
+  <br />
+  </div>
+					</div>
 				</div>
 			<Footer/>
 		</div>
