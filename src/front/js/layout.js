@@ -23,8 +23,8 @@ import RegisterWaterdropper from "./component/registerWaterdropper.js";
 import RegisterCenter from "./component/registerCenter.js";
 import ChatForm from "./component/chatForm.jsx"
 import Chatdropdown from "./component/chatdropdown.jsx"
-import Newsview from "./pages/Newsview.jsx";
-import Newsdetail from "./component/Newsdetails.jsx";
+import Newsview from "./pages/newsview.jsx";
+import Newsdetail from "./component/newsdetails.jsx";
 
 
 //create your first component

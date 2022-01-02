@@ -10,6 +10,8 @@ import { Link } from "react-router-dom";
 import Aos from "aos";
 import 'aos/dist/aos.css'
 import jwt_decode from "jwt-decode";
+import { Footer } from "./footer";
+import Navbar from "./navbar";
 
 
 
@@ -27,9 +29,6 @@ const Newsdetail=()=>{
 		const decoded=(jwt_decode(localStorage.getItem('token')))
 		
         await actions.getUser(decoded.sub.id)
-        
-		
-        
 		
     },[])
 
@@ -41,7 +40,7 @@ const Newsdetail=()=>{
 
     return (
     <div>
-      
+         <Navbar></Navbar>
          <div  className='player__wrapper'>
             <div><img  className="player__backgroundimg" src={img}></img></div>
             <ReactPlayer  className='reactplayer'
@@ -82,7 +81,7 @@ const Newsdetail=()=>{
       <button className="backbutton">
         <Link className="backbutton__link" to='/news'>GO BACK</Link>
        </button>
-      
+      <Footer></Footer>
     </div>
         )
 }
