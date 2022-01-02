@@ -6,7 +6,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 			message: null,
-			url: 'https://3001-blue-possum-td8j7tcj.ws-eu25.gitpod.io/',
 			users:[],
 			user:{},
 			baseUrl: `${PROTOCOL}://${PORT}-${HOST}/api/`,
@@ -29,7 +28,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.catch(error => console.log("Error loading message from backend", error));
 			},
 			getUsers:()=>{
-				fetch(getStore().url.concat('api/account'))
+				fetch(getStore().baseUrl.concat('account'))
 	        .then(function(response) {
 		          if (!response.ok) {
 	              throw Error(response.statusText);
@@ -79,7 +78,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			},
 			getUser:(id)=>{
-				fetch(getStore().url.concat('api/account/',id))
+				fetch(getStore().baseUrl.concat('account/',id))
 	        .then(function(response) {
 		          if (!response.ok) {
 	              throw Error(response.statusText);
