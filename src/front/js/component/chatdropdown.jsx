@@ -17,7 +17,6 @@ const Chatdropdown=()=>{
     const { store, actions } = useContext(Context);
 
        const [currentuser,setCurrentuser]=useState('')
-       const [users,setUsers]=useState([])
 
   
     useEffect( async()=>{
@@ -25,6 +24,7 @@ const Chatdropdown=()=>{
         const decoded=(jwt_decode(localStorage.getItem('token')))
 		
         await actions.getUser(decoded.sub.id)
+      
         
     },[])
 
@@ -32,21 +32,7 @@ const Chatdropdown=()=>{
         setCurrentuser(store.user)
     },[store.user])
 
-    useEffect(()=>{
-        let otherusers=store.users.filter(element=>element.id!=currentuser.id)
-        setUsers(
-            otherusers.map((element,index)=>{
-                return <div key={index.toString()}>
-                    <img className="chatdropdown__usersimg" src={element.cover_photo}></img>
-                    <span>{element.username}</span>
-                    <hr></hr>
-                    </div>
-            })
-        )
-    },[store.users])
-
-    
-    
+   
 
     return (<div className="chatdropdown__box">
         <img className="chatdropdown__userimg" src={currentuser.cover_photo}></img>

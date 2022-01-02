@@ -1,0 +1,34 @@
+.uploadinput{
+    display: none;
+}
+
+.uploadinput__label{
+   
+    width: 12rem;
+    position: relative;
+    height: 3rem;
+    margin: 1rem 1rem 1rem 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: rgba( #2CB1AA, 0.5);
+    padding: auto;
+    font-weight: bold;
+    font-family: 'Righteous';
+    box-shadow: 0rem 0.25rem 0.3rem rgba(0, 0, 0, 0.25);
+    top: 8rem;
+   
+}
+
+.uploadinput__button{
+    margin-left: 2rem;
+    background-color: #BEBEBE;
+    font-family: 'Roboto';
+    box-shadow: 0rem 0.25rem 0.3rem rgba(0, 0, 0, 0.25);
+    border: none;
+    height: 3rem;
+    width: 6rem;
+    font-weight: bold;
+    margin-top: 10rem;
+}

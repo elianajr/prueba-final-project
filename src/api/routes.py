@@ -2,18 +2,19 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 from datetime import timedelta
-
-from flask_cors import CORS
-from sqlalchemy import exc
-from werkzeug.security import check_password_hash, generate_password_hash
-from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required
+import json
 
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, Account, Waterdropper, Center, Hotspot, Specie, Sport, News
+from flask_cors import CORS
+from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required
+from sqlalchemy import exc
+from werkzeug.security import check_password_hash, generate_password_hash
+
+from api.models import db, Account, Waterdropper, Center, Hotspot, Specie, Sport
 from api.utils import generate_sitemap, APIException
-import jwt
-import json
-import itertools
+
+import cloudinary
+import cloudinary.uploader
 
 api = Blueprint('api', __name__)
 
@@ -58,6 +59,8 @@ def login():
         return jsonify({'error':'Not found'}), 200
 
     return {'error': 'Some parameter is wrong'}, 401
+
+
 
 
 @api.route('/account', methods=['POST'])
@@ -231,10 +234,108 @@ def update_account_status(id):
         return jsonify({'error' : 'Account not found'}), 404
 
 
+@api.route('/accountphoto/<int:id>', methods=['POST'])
+def handle_uploadaccount(id):
+
+    # validate that the front-end request was built correctly
+    if 'profile_image' in request.files:
+        # upload file to uploadcare
+        result = cloudinary.uploader.upload(request.files['profile_image'])
+
+        # fetch for the user
+        account1 = Account.get_account_by_id(id)
+        # update the user with the given cloudinary image URL
+        if account1:
+             account1.cover_photo = result['secure_url']
+             account1.update_photoaccount()
+             return jsonify(account1.to_dict()), 200
+             
+    else:
+        raise APIException('Missing profile_image on the FormData')
+
+@api.route('/hotspotphoto/<int:id>', methods=['POST'])
+def handle_uploadhotspot(id):
+
+    # validate that the front-end request was built correctly
+    if 'profile_image' in request.files:
+        # upload file to uploadcare
+        result = cloudinary.uploader.upload(request.files['profile_image'])
+
+        # fetch for the user
+        hotspot1 = Hotspot.get_hotspot_by_id(id)
+        # update the user with the given cloudinary image URL
+        hotspot1.photo = result['secure_url']
+
+        hotspot1.update_photohotspot()
+
+        return jsonify(hotspot1.to_dict()), 200
+    else:
+        raise APIException('Missing profile_image on the FormData')
 
 
 
 
+@api.route('/speciephoto/<int:id>', methods=['POST'])
+def handle_uploadspecie(id):
+
+    # validate that the front-end request was built correctly
+    if 'profile_image' in request.files:
+        # upload file to uploadcare
+        result = cloudinary.uploader.upload(request.files['profile_image'])
+
+        # fetch for the user
+        specie1 = Specie.get_specie_by_id(id)
+        # update the user with the given cloudinary image URL
+        specie1.photo = result['secure_url']
+
+        db.session.add(specie1)
+        db.session.commit()
+
+        return jsonify(specie1.to_dict()), 200
+    else:
+        raise APIException('Missing profile_image on the FormData')
+    return jsonify({'message':'Hotspot not found'}), 400
+  
+@api.route('/hotspots/', methods=['GET'])
+def get_all_hotpot_by_id():
+    hotspot_s = Hotspot.get_all()
 
 
+    if hotspot_s:
+        all_hotspots = [hotspot.to_dict() for hotspot in hotspot_s]
+        return jsonify(all_hotspots), 200
+      
 
+@api.route('/hotspots', methods=['POST'])
+def post_hotspot():
+    
+    name = request.json.get('name', None)
+    photo = request.json.get('photo', None)
+    level = request.json.get('level', None)
+    description = request.json.get('description', None)
+    latitude = request.json.get('latitude', None)
+    longitude = request.json.get('longitude', None)
+    account_id = request.json.get('account_id', None)
+    sport_id = request.json.get('sport_id', None)
+
+    if not latitude or not longitude:
+        return jsonify({'error':'Not location'}), 400
+
+    new_hotspot = Hotspot(
+        longitude=longitude,
+        latitude=latitude,
+        name=name,
+        level=level,
+        description=description,
+        account_id=account_id,
+        photo=photo,
+        sport_id=sport_id
+    )
+   
+    try:
+        new_hotspot.create()
+        print("back new hotspot",new_hotspot)
+    except exc.IntegrityError as err:
+        print(f"Unexpected {err=}, {type(err)=}")
+        return {'error': 'Something went wrong waterdropper'}, 400
+    return jsonify(new_hotspot.to_dict()), 200
