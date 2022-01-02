@@ -1,5 +1,5 @@
 .chat__sender{
-    width: 20rem;
+    width: 26rem;
     background:white;
     border: 0.1rem solid rgba(0, 0, 0,0.1);
     font-weight: bold;
@@ -27,10 +27,16 @@
 
 .chat__header{
     display: flex;
-    margin-left: 3rem;
-    margin-top: 2rem;
+    margin-left: 2.5rem;
     height: 6.8rem;
     
+    
+}
+
+.chat__container{
+    position: absolute;
+    top: 10.5rem;
+
 }
 
 .chat__section{
@@ -39,9 +45,9 @@
 }
 
 .chat__users{
-    width: 20rem;
+    width: 26rem;
     border: 0.1rem solid rgba(0, 0, 0,0.1);
-    margin-left: 3rem;
+    margin-left: 2.5rem;
     overflow-y: scroll;
     font-family: 'Roboto Condensed';
     font-weight: bold;
@@ -52,7 +58,7 @@
 .chat__messages{
   width: 53.6rem;
   display: flex;
-  align-items: flex-end;
+  flex-direction: column-reverse;
   border: 0.1rem solid rgba(0, 0, 0,0.1);
   overflow: hidden;
   overflow-y: scroll;
@@ -88,8 +94,8 @@
     margin-left: 29rem;
     padding: 1em 1em 1em 1em;
     -moz-border-radius: 8%;
-    -webkit-border-radius: 10px;
-    border-radius: 10px;
+    -webkit-border-radius: 0.625rem;
+    border-radius: 0.625rem;
     border: 0.1rem solid rgba(0, 0, 0,0.1);
    background-color: #EDF5F5;
    font-family: 'Roboto Condensed';
@@ -103,9 +109,9 @@
     margin-left: 5.6rem;
     padding: 1em 1em 1em 1em;
     -moz-border-radius: 8%;
-    -webkit-border-radius: 10px;
-    border-radius: 10px;
-    border: 1px solid rgba(0, 0, 0,0.1);
+    -webkit-border-radius: 0.625rem;
+    border-radius: 0.625rem;
+    border: 0.06rem solid rgba(0, 0, 0,0.1);
    background-color: rgba(#FFFFFF, 0.9);
    display: table;
    flex-direction: row;
@@ -124,6 +130,14 @@
     border-radius: 100%;
     width: 5rem;
     margin: 1.5rem 1rem 1.5rem 2rem;
+}
+
+.chat__userdestinyimg{
+    height:5rem ;
+    border-radius: 100%;
+    width: 5rem;
+    margin: 1.5rem 1rem 1.5rem 2rem;
+
 }
 
 .chat__username{
@@ -165,4 +179,70 @@
     50% {
       opacity: 0;
     }
-  }
+}
+
+@media(max-width:500px){
+    .chat__sender{
+    width: 7rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+    text-align: center;
+    }
+    .chat__receiver{
+        width: 14rem;
+    }
+    .chat__header{
+        height: 4rem;
+    }
+    .chat__userdestinyimg{
+        height: 2rem;
+        width: 2rem;
+    }
+
+    .chat__userimg{
+        height: 0rem;
+        width: 0rem;
+    }
+    .userdestiny{
+        align-content: center;
+        margin-right: 2rem;
+        font-size: 1rem;
+        text-align: center;
+        display: inline-block;
+        justify-content: center;
+    }
+    .chat__users{
+        width: 7rem;
+    }
+    .chat__messages{
+        width: 14rem;
+    }
+    .chat__inputmessage{
+       width: 11rem;
+       
+    }
+    .chat__userselected{
+        font-size: 1rem;
+        text-align: center;
+        margin: auto;  
+    }
+    .chat__username{
+        height: 5rem;
+        text-align: center;
+    }
+    
+    .chat__introductiontext{
+        font-size: 1rem;
+        text-align: center;
+    }
+
+    .chat__section{
+        height: 18rem;
+    }
+    .chat__message{
+        margin-left: 2rem;
+    }
+   
+}

@@ -9,7 +9,7 @@
 
 .home-topbody{
     display: flex;
-    width: 90rem;
+    width: 100vw;
     height: 47.8rem;
     background-image: url("https://i.ibb.co/jRsbvtf/whale.png");
     align-items: flex-end;
@@ -54,6 +54,7 @@
     align-items: flex-start;
     justify-items: center;
     flex-direction: row;
+    width: 100vw;
 }
 
 .home-bottonbody__services{

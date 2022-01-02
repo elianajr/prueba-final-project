@@ -14,11 +14,13 @@ box-sizing: border-box;
 box-shadow: 0rem -0.2rem 3.1 rgba(0, 0, 0, 0.1);
 border-top-left-radius: 1rem;
 border-top-right-radius: 1rem;
-width: 22rem;
+width: 14rem;
 height: 4rem;
-position: absolute;
-left: 62rem;
-margin-top: 3rem;
+margin-bottom: 0rem;
+display: flex;
+justify-content: flex-start;
+align-items: center;
+
 }
 
 .chatdropdown__text{

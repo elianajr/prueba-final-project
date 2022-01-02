@@ -2,7 +2,7 @@
     /* position: absolute; */
     display: flex;
     flex-direction: row;
-    justify-content:space-around;
+    
     font-family: "Righteous";
     font-style: normal;
     font-weight: normal;
@@ -13,8 +13,12 @@
     box-shadow: 0px -1px 67px rgba(0, 0, 0, 0.1);
 }
 .footer-help{
-    display: flex;
-    align-items: center;
-    flex-direction: row;
-    width: 50%;
+    display: grid;
+  grid-template-columns: 4fr  4fr;
+  gap: 54rem
+}
+
+.footer-help__text{
+    margin-left: 2.75rem;
+    margin-right: 1rem;
 }

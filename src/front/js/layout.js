@@ -21,8 +21,8 @@ import Upload from "./component/upload.jsx";
 import Uploadingphotos from "./pages/uploadingphotos.jsx";
 import RegisterWaterdropper from "./component/registerWaterdropper.js";
 import RegisterCenter from "./component/registerCenter.js";
-import ChatForm from "./component/ChatForm.jsx"
-import Chatdropdown from "./component/Chatdropdown.jsx"
+import ChatForm from "./component/chatForm.jsx"
+import Chatdropdown from "./component/chatdropdown.jsx"
 import Newsview from "./pages/Newsview.jsx";
 import Newsdetail from "./component/Newsdetails.jsx";
 
