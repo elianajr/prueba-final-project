@@ -208,7 +208,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					});
 			},
 
-			addNewHotspot:(data)=>{
+			addNewHotspot:(data,image)=>{
 				var myHeaders = new Headers();
 				myHeaders.append("Content-Type", "application/json");
 
@@ -221,9 +221,26 @@ const getState = ({ getStore, getActions, setStore }) => {
 				redirect: 'follow'
 				};
 
-				fetch("https://3001-pink-rook-7fv35jqw.ws-eu23.gitpod.io/api/hotspots/", requestOptions)
+				const uploadimagehotspot =(id)  => {
+					if (image!=''){
+						let body = new FormData();
+					body.append('media', image);
+					const options = {
+						body,
+						method: "POST"
+					};
+					fetch(getStore().baseUrl.concat('hotspotphoto/',id),options)
+					.then(resp => resp.json())
+					.then(data => console.log("Success!!!!", data))
+					.catch(error => console.error("ERRORRRRRR!!!", error))
+
+					}
+					
+				};
+
+				fetch(getStore().baseUrl.concat('hotspots'), requestOptions)
 				.then(response => response.json())
-				.then(result => console.log(result))
+				.then(result => uploadimagehotspot(result.id))
 				.catch(error => console.log('error', error));
 			}
 		}

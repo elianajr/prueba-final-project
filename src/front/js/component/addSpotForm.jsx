@@ -9,6 +9,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import MenuItem from '@mui/material/MenuItem';
+import '../../styles/inputphoto.scss'
 
 export const AddSpotForm = props => {
     const { store, actions } = useContext(Context);
@@ -112,6 +113,10 @@ export const AddSpotForm = props => {
         setOpen(false);
     };
 
+    const setimage=(e)=>{
+		props.files(e.target.files[0])
+	}
+
     return (
         <div className="hotspot-midbody">
             <Button variant="outlined" onClick={handleClickOpen}>
@@ -134,20 +139,11 @@ export const AddSpotForm = props => {
                         variant="outlined"
                         onChange={handleChange}
                     />
-                    <DialogContentText>
-                        Add a photo of the place!
-                    </DialogContentText>
-                    <TextField
-                        autoFocus
-                        margin="dense"
-                        id="Photo"
-                        name="photo"
-                        label="Add Photo or URL"
-                        type="email"
-                        fullWidth
-                        variant="standard"
-                        onChange={handleChange}
-                    />
+                    <div>   
+                          <input id="inputphoto" className="uploadinput__addphoto" accept=".jpg,.png" type="file" onChange={setimage}/>
+                         <label htmlFor="inputphoto" className="uploadinput__labelphoto">Add a photo of the place</label>
+                         <hr></hr>
+                   </div>
                     <DialogContentText>
                         Select a Sport from here please!
                     </DialogContentText>
@@ -212,5 +208,6 @@ export const AddSpotForm = props => {
 AddSpotForm.propTypes = {
     spotForm: PropTypes.func,
     lat: PropTypes.number,
-    lng: PropTypes.number
+    lng: PropTypes.number,
+    files:PropTypes.func
 };

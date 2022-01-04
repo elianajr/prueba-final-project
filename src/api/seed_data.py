@@ -107,7 +107,7 @@ data = {
 
 	    {
             "id": 2,
-            "sport_id": 1,  
+            "sport_id": 2,  
             "account_id": 1,
             "name": "Lofoten Isle, NORUEGA",
             "photo": "https://www.actualidadviajes.com/wp-content/uploads/2018/03/islas-lofoten.jpg", 
@@ -119,7 +119,7 @@ data = {
 
 	    {
             "id": 3,
-            "sport_id": 1,  
+            "sport_id": 3,  
             "account_id": 1,
             "name": "Isla de Chios – Mar Egeo, GRECIA",
             "photo": "https://www.grecotour.com/img/cms/grecia/islas-griegas/chios/chios-beach2.jpg", 
@@ -143,7 +143,7 @@ data = {
 	
 	    {
             "id": 5,
-            "sport_id": 1,  
+            "sport_id": 3,  
             "account_id": 1,
             "name": "Silfra – Parque Nacional de Thingvellir, ISLANDIA",
             "photo": "https://cdn2.civitatis.com/islandia/thingvellir/galeria/header/silfra-islandia.jpg", 
@@ -155,7 +155,7 @@ data = {
 	
 	    {
             "id": 6,
-            "sport_id": 1,  
+            "sport_id": 2,  
             "account_id": 1,
             "name": "Blue Hole – Gozo, MALTA",
             "photo": "https://www.descubremalta.com/wp-content/uploads/Blue-Hole-Dwejra-Gozo-scaled.jpg", 
@@ -191,7 +191,7 @@ data = {
 	
 	    {
             "id": 9,
-            "sport_id": 1,  
+            "sport_id": 3,  
             "account_id": 1,
             "name": "Layang Layang – Mar de la China meridional, MALASIA",
             "photo": "https://q-xx.bstatic.com/images/hotel/max1024x768/125/125963951.jpg", 
@@ -215,7 +215,7 @@ data = {
 
 	    {
             "id": 11,
-            "sport_id": 1,  
+            "sport_id": 2,  
             "account_id": 1,
             "name": "Lembeh Strait – isla Sulawesi, INDONESIA",
             "photo": "https://www.lembehresort.com/wp-content/uploads/East-Lembeh-768x303.jpg", 
@@ -239,7 +239,7 @@ data = {
 
 	    {
             "id": 13,
-            "sport_id": 1,  
+            "sport_id": 4,  
             "account_id": 1,
             "name": "Cape Kri – Raja Ampat, INDONESIA",
             "photo": "https://mochilerosentailandia.com/wp-content/uploads/2019/02/que-hacer-en-puerto-galera.jpg", 
@@ -263,7 +263,7 @@ data = {
 
 	    {
             "id": 15,
-            "sport_id": 1,  
+            "sport_id": 2,  
             "account_id": 1,
             "name": "Apo Reef – Mar de Sulu et Mar de China, FILIPINAS",
             "photo": "https://cdni.rt.com/actualidad/public_images/2021.04/article/r/700/90/jpeg/6066f8ae59bf5b49896e3ebc.jpg", 
@@ -275,7 +275,7 @@ data = {
 
 	    {
             "id": 16,
-            "sport_id": 1,  
+            "sport_id": 3,  
             "account_id": 1,
             "name": "Roca de Richelieu – Mar de Andaman, Oeste de Phuket, TAILANDIA",
             "photo": "https://imagenes.20minutos.es/files/article_amp/uploads/imagenes/2020/01/31/phang-nga-bay-tailandia.jpeg", 
@@ -299,7 +299,7 @@ data = {
 
 	    {
             "id": 18,
-            "sport_id": 1,  
+            "sport_id": 4,  
             "account_id": 1,
             "name": "Islas Wolf y Darwin – Archipiélago des Galapagos, ECUADOR",
             "photo": "https://1.bp.blogspot.com/-2QSutSInxpY/Wmn8am8h6RI/AAAAAAAABNg/BYSzRWfF75MdrnmOWSYmCnNH9ESIqAEyQCLcBGAs/s1600/Isla%2BDarwin.PNG", 
@@ -347,7 +347,7 @@ data = {
 	
 	    {
             "id": 22,
-            "sport_id": 1,  
+            "sport_id": 2,  
             "account_id": 1,
             "name": "Isla Malpelo, COLOMBIA",
             "photo": "https://noticias.masverdedigital.com/wp-content/uploads/2020/06/colombiaislademalpelob.jpg", 
@@ -383,7 +383,7 @@ data = {
 
 	    {
             "id": 25,
-            "sport_id": 1,  
+            "sport_id": 2,  
             "account_id": 1,
             "name": "Précontinent II Sha’ab Rumi Sud – Mar Rojo, SUDAN",
             "photo": "https://www.buscabuceo.com/data/u/62/inmersion/108/gal/precontinent-ii-arrecife-de-shaab-rumi-m-3.jpg", 
@@ -419,7 +419,7 @@ data = {
 
 	    {
             "id": 28,
-            "sport_id": 1,  
+            "sport_id": 3,  
             "account_id": 1,
             "name": "Protea Banks, SUDAFRICA",
             "photo": "https://taucher.net/media/images/w850/b0/dc/b8/b0dcb8222d901073ae17a0c40dc00f60.JPG", 
@@ -443,7 +443,7 @@ data = {
 	
 	    {
             "id": 30,
-            "sport_id": 1,  
+            "sport_id": 3,  
             "account_id": 1,
             "name": "Elphinstone Reef – Mar Rojo, EGIPTO",
             "photo": "http://www.joveneslowcost.com/contenido/uploads/2016/10/j-mar-rojo-2.jpg", 
@@ -467,7 +467,7 @@ data = {
 	
 	    {
             "id": 32,
-            "sport_id": 1,  
+            "sport_id": 2,  
             "account_id": 1,
             "name": "Shark and Yolanda Reef – Parque Nacional de Ras Mohammed, Mar Rojo, EGIPTO",
             "photo": "https://www.cairotoptours.com/uploads/pages/a89c106af5d3fd005e94c7e249bcd226.jpg", 
@@ -503,7 +503,7 @@ data = {
 
 	    {
             "id": 35,
-            "sport_id": 1,  
+            "sport_id": 2,  
             "account_id": 1,
             "name": "Fish Rock Cave – South West Rocks, AUSTRALIA",
             "photo": "https://s1.at.atcdn.net/wp-content/uploads/2012/10/fish-rock-cave-custom-fields.jpg", 
@@ -539,7 +539,7 @@ data = {
 
 	    {
             "id": 38,
-            "sport_id": 1,  
+            "sport_id": 4,  
             "account_id": 1,
             "name": "Blue Corner – Palau, MICRONESIA",
             "photo": "https://content.unops.org/photos/News-and-Stories/News/_1200x630_crop_center-center_82_none/Palau_GettyImages-949006476.jpg", 
@@ -575,7 +575,7 @@ data = {
     
         {
             "id": 41,
-            "sport_id": 1,  
+            "sport_id": 2,  
             "account_id": 1,
             "name": "Pipeline, Oahu, Hawaii",
             "photo": "https://www.coresurfingshop.com/blog/wp-content/uploads/2018/10/wpid-pipeline-.jpg", 
@@ -587,7 +587,7 @@ data = {
 
 	    {
             "id": 42,
-            "sport_id": 1,  
+            "sport_id": 3,  
             "account_id": 1,
             "name": "Supertubes, Jeffrey's Bay, South Africa",
             "photo": "https://dl.airtable.com/.attachmentThumbnails/7d20c94597ae414ea2dd004863504fbd/601f8f5b", 
@@ -611,7 +611,7 @@ data = {
 
 	    {
             "id": 44,
-            "sport_id": 1,  
+            "sport_id": 2,  
             "account_id": 1,
             "name": "Uluwatu and Kuta, Bali, Indonesia",
             "photo": "https://world-travel-guy-inboundhorizonsi.netdna-ssl.com/wp-content/uploads/2021/02/DJI_0377_1300.jpg", 
@@ -671,7 +671,7 @@ data = {
 	
 	    {
             "id": 49,
-            "sport_id": 1,  
+            "sport_id": 2,  
             "account_id": 1,
             "name": "Cloud Nine, Siargao Island, Philippines",
             "photo": "https://www.thecoastalcampaign.com/wp-content/uploads/2019/09/Cloud-9-Siargao-.jpg", 
@@ -695,7 +695,7 @@ data = {
 	
 	    {
             "id": 51,
-            "sport_id": 1,  
+            "sport_id": 3,  
             "account_id": 1,
             "name": "Sultans, North Male, Maldives",
             "photo": "https://1.bp.blogspot.com/-lFU_funiLwk/X7JPL_LqURI/AAAAAAAB4-4/lnN5sUvEZuQr7PS6lqu8qNg3EYJDeDupwCLcBGAsYHQ/w1200-h630-p-k-no-nu/sultans-Thanburudhoo.jpg", 
@@ -719,7 +719,7 @@ data = {
 
 	    {
             "id": 53,
-            "sport_id": 1,  
+            "sport_id": 4,  
             "account_id": 1,
             "name": "Honolua Bay, Maui, Hawaii",
             "photo": "https://cdn.pixabay.com/photo/2019/10/20/16/57/maui-4564227_1280.jpg", 
@@ -767,7 +767,7 @@ data = {
 	
 	    {
             "id": 57,
-            "sport_id": 1,  
+            "sport_id": 2,  
             "account_id": 1,
             "name": "Manu Bay, Raglan, New Zealand",
             "photo": "https://surfsimply.com/wp-content/uploads/2016/05/Surf_Simply_Departure_Gate_Raglan_New_Zealand_feature-1.jpg", 
@@ -791,7 +791,7 @@ data = {
 	
 	    {
             "id": 59,
-            "sport_id": 1,  
+            "sport_id": 2,  
             "account_id": 1,
             "name": "Jaws, Maui, Hawaii",
             "photo": "https://wpcdn.us-east-1.vip.tn-cloud.net/www.hawaiimagazine.com/content/uploads/2020/12/MikeCoots_Peahi_HawaiiMag-6882.jpg", 
@@ -815,7 +815,7 @@ data = {
 	
 	    {
             "id": 61,
-            "sport_id": 1,  
+            "sport_id": 2,  
             "account_id": 1,
             "name": "Surfrider Beach, Malibu, California",
             "photo": "https://www.californiabeaches.com/wp-content/uploads/2014/09/bigstock-Malibu-Lagoon-State-Beach-in-M-459615401-e1486591810993-1000x615.jpg", 
@@ -875,7 +875,7 @@ data = {
 
 	    {
             "id": 66,
-            "sport_id": 1,  
+            "sport_id": 3,  
             "account_id": 1,
             "name": "Pasta Point, Maldives",
             "photo": "https://soulridercamp.com/83/pasta-point-resort-pack/ajax/crop.php?w=800&h=600&src=scPa1G4n.jpg", 
@@ -899,7 +899,7 @@ data = {
 	
 	    {
             "id": 68,
-            "sport_id": 1,  
+            "sport_id": 2,  
             "account_id": 1,
             "name": "Bundoran Beach, County Donegal, Ireland",
             "photo": "https://i.pinimg.com/originals/1e/bf/5a/1ebf5a861dd49f8cbb8dda410a59d89c.jpg", 
@@ -935,7 +935,7 @@ data = {
 	
 	    {
             "id": 71,
-            "sport_id": 1,  
+            "sport_id": 3,  
             "account_id": 1,
             "name": "Carrapateira, Portugal",
             "photo": "https://www.shamaretreats.com/wp-content/uploads/2021/05/c61cfd74-f7bc-41fb-a514-2ddd55d0d301-istock-bordeira-1.jpg", 
@@ -959,7 +959,7 @@ data = {
 
 	    {
             "id": 73,
-            "sport_id": 1,  
+            "sport_id": 2,  
             "account_id": 1,
             "name": "Sao Francisco do Sul, Brazil",
             "photo": "https://q-xx.bstatic.com/xdata/images/hotel/max1024x768/119314913.jpg", 
@@ -1007,7 +1007,7 @@ data = {
 
 	    {
             "id": 77,
-            "sport_id": 1,  
+            "sport_id": 4,  
             "account_id": 1,
             "name": "Byron Bay, New South Wales, Australia",
             "photo": "https://www.worldbeachguide.com/photos/byron-bay-beach.jpg", 
@@ -1055,7 +1055,7 @@ data = {
 	
 	    {
             "id": 81,
-            "sport_id": 1,  
+            "sport_id": 2,  
             "account_id": 1,
             "name": "Surf pool, United Arab Emirates",
             "photo": "https://totalsurfcamp.com/sites/default/files/surfcamps/%5Btitle-raw%5D/wadi-adventure.jpg", 
@@ -1079,7 +1079,7 @@ data = {
 
         {
             "id": 83,
-            "sport_id": 1,  
+            "sport_id": 3,  
             "account_id": 1,
             "name": "Black's Beach, San Diego, California",
             "photo": "https://viewfinder.expedia.com/wp-content/uploads/2019/08/blacks-beach-header-1140x630.jpg", 
@@ -1114,7 +1114,7 @@ data = {
         },
         {
             "id": 86,
-            "sport_id": 1,  
+            "sport_id": 2,  
             "account_id": 1,
             "name": "Arugam Bay, Sri Lanka",
             "photo": "https://1001beach.com/img/posts/2122/1200/arugam_bay-1.jpg", 
