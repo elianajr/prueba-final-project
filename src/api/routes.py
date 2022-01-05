@@ -37,10 +37,6 @@ def get_account(id):
       account= account.to_dict()
       return jsonify(account), 200
   
-  
-
-  
-
 
     
 @api.route('/login', methods=['POST'])

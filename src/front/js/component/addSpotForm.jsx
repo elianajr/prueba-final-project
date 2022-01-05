@@ -9,7 +9,9 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import MenuItem from '@mui/material/MenuItem';
-import '../../styles/inputphoto.scss'
+import Upload from "./upload.jsx";
+import { set } from "date-fns/esm";
+
 
 export const AddSpotForm = props => {
     const { store, actions } = useContext(Context);
@@ -22,6 +24,7 @@ export const AddSpotForm = props => {
     const [open, setOpen] = React.useState(false);
     const [sport, setSport] = React.useState('');
     const [level, setLevel] = React.useState('');
+    const [files,setFiles]=React.useState(null)
     const [form, setForm] = React.useState({
         account_id: 1,
         sport_id:null,
@@ -113,9 +116,18 @@ export const AddSpotForm = props => {
         setOpen(false);
     };
 
-    const setimage=(e)=>{
-		props.files(e.target.files[0])
+    const uploadimage=(img)=>{
+		props.files(img)    
 	}
+
+    const changefiles= data=>{
+		setFiles(data)
+       
+	}
+
+    useEffect(()=>{
+        uploadimage(files)
+    },[files])
 
     return (
         <div className="hotspot-midbody">
@@ -139,11 +151,8 @@ export const AddSpotForm = props => {
                         variant="outlined"
                         onChange={handleChange}
                     />
-                    <div>   
-                          <input id="inputphoto" className="uploadinput__addphoto" accept=".jpg,.png" type="file" onChange={setimage}/>
-                         <label htmlFor="inputphoto" className="uploadinput__labelphoto">Add a photo of the place</label>
-                         <hr></hr>
-                   </div>
+                    <Upload changefiles={changefiles}></Upload>
+                    
                     <DialogContentText>
                         Select a Sport from here please!
                     </DialogContentText>

@@ -242,6 +242,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 				.then(response => response.json())
 				.then(result => uploadimagehotspot(result.id))
 				.catch(error => console.log('error', error));
+			},
+			verifylogin:()=>{
+				const token=localStorage.getItem('token')
+				if (token) {
+					return true
+				} else{
+					return false
+				}
 			}
 		}
 
