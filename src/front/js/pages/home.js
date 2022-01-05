@@ -89,11 +89,11 @@ const Home = () => {
                        <Card.Img variant="top" src={imgnewshome} className="Card__NewsHomeimg"/>
                        <Card.Body>
                       <Card.Text>
-					  <p className="Card__NewsHometext">100 Days Summer: Sunsets</p>
-					  <div className="Card__NewsHomefooter">
-					  <p className="Card__NewsHomefooter__category">PHOTOGRAPHY</p>
-					  <span className="Card__NewsHomefooter__date">1 Month ago</span>
-					  </div>
+					    <p className="Card__NewsHometext">100 Days Summer: Sunsets</p>
+					    <div className="Card__NewsHomefooter">
+					       <p className="Card__NewsHomefooter__category">PHOTOGRAPHY</p>
+					       <span className="Card__NewsHomefooter__date">1 Month ago</span>
+					   </div>
 					 
                   </Card.Text>
                   </Card.Body>
@@ -158,10 +158,10 @@ const Home = () => {
   </Card>
   <br />
   </div>
-					</div>
-				</div>
-			<Footer/>
-		</div>
+	</div>
+	</div>
+	<Footer/>
+</div>
 		
 		
 	);

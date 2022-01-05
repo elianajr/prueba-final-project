@@ -9,6 +9,7 @@ export const DraggableMarker = props => {
     const { store, actions } = useContext(Context);
     const [newSpot, setNewspot]= useState(null);
     const [button,setButton] = useState(null);
+    const [files,setFiles]=useState(null)
 
     const center = {
         lat: 0,
@@ -46,8 +47,12 @@ export const DraggableMarker = props => {
         setNewspot({...form});
     };
 
+    const filesForm= data=>{
+		setFiles(data)
+	}
+
     useEffect(()=>{
-        actions.addNewHotspot(newSpot)
+        actions.addNewHotspot(newSpot,files)
         console.log(newSpot)
     },[newSpot])
     
@@ -68,7 +73,7 @@ export const DraggableMarker = props => {
                     2º - Press the button bellow.
                     <br/>
                     <div>
-                        <AddSpotForm spotForm={spotForm} lat={position.lat} lng={position.lng}></AddSpotForm>
+                        <AddSpotForm spotForm={spotForm} lat={position.lat} lng={position.lng} files={filesForm}></AddSpotForm>
                     </div>
 				</Popup>
         </Marker>

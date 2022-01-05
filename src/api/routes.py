@@ -37,10 +37,6 @@ def get_account(id):
       account= account.to_dict()
       return jsonify(account), 200
   
-  
-
-  
-
 
     
 @api.route('/login', methods=['POST'])
@@ -257,9 +253,9 @@ def handle_uploadaccount(id):
 def handle_uploadhotspot(id):
 
     # validate that the front-end request was built correctly
-    if 'profile_image' in request.files:
+    if 'media' in request.files:
         # upload file to uploadcare
-        result = cloudinary.uploader.upload(request.files['profile_image'])
+        result = cloudinary.uploader.upload(request.files['media'])
 
         # fetch for the user
         hotspot1 = Hotspot.get_hotspot_by_id(id)
