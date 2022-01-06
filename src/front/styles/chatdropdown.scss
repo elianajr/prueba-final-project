@@ -1,0 +1,57 @@
+.chatdropdown__userimg{
+    height:3rem;
+    border-radius: 100%;
+    width: 3rem;
+    margin: 0.5rem 0.5rem;
+    justify-content: center;
+    padding: auto;
+}
+
+.chatdropdown__box{
+ background: #EDF5F5;
+border: 0.1rem solid #C8EEEE;
+box-sizing: border-box;
+box-shadow: 0rem -0.2rem 3.1 rgba(0, 0, 0, 0.1);
+border-top-left-radius: 1rem;
+border-top-right-radius: 1rem;
+width: 14rem;
+height: 4rem;
+margin-bottom: 0rem;
+display: flex;
+justify-content: flex-start;
+align-items: center;
+
+}
+
+.chatdropdown__text{
+    font-family: 'Roboto Condensed';
+    font-size: 1.2rem;
+    margin-left: 0.5rem;
+    text-decoration: none;
+    color: #091320
+
+}
+
+.chatdropdown__popup__chat{
+    margin-left: 6.5rem;
+    width: 1.8rem;
+    height: 1.8rem;
+}
+
+.chatdropdown__popup__arrow{
+    margin-left: 0.5rem;
+    width: 1.8rem;
+    height: 1.8rem;
+
+}
+
+.chatdropdown__usersimg{
+    height:3rem;
+    border-radius: 100%;
+    width: 3rem;
+    margin: 0.5rem 0.5rem;
+    justify-content: center;
+    padding: auto;
+
+}
+

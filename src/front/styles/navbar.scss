@@ -1,0 +1,48 @@
+
+
+.navbar{
+
+    justify-content: space-around;
+    width: 100vw;
+    height: 7rem;
+    background: linear-gradient(0deg, rgba(251,251,251,0.19371498599439774) 0%, rgba(252,252,252,0.19) 7%, rgba(252,252,252,0.45) 8%, rgba(252,252,252,0.45) 15%, rgba(252,252,252,0.6867121848739496) 16%, rgba(253,253,253,0.69) 22%, rgba(253,253,253,1) 23%, rgba(255,255,255,1) 100%);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+
+
+.members{
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.navbar__links>a{
+    border-bottom: 1px solid black;
+    color: #006184;
+    text-decoration: none;
+    font-family: 'Righteous', cursive;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 25px;
+    letter-spacing: 0em;
+    text-align: center;
+    
+}
+
+.navbar>a>img{
+    width: 4rem;
+    height: 4rem;
+}
+
+.footer-help>a{
+    
+    display: flex;
+    color: #0d6efd;
+    text-decoration: underline;
+    align-items: center;
+    justify-content: flex-start;
+    align-content: center;
+}
+

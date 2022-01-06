@@ -1,0 +1,128 @@
+/* *{
+    border: 1px solid rgba(255, 0, 0, 0.164);
+} */
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Righteous&family=Sacramento&display=swap');
+
+.hotspot{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-items: center;
+}
+
+
+.hotspot-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.hotspot-topbody{
+    display: flex;
+    width: 90rem;
+    height: 55rem;
+    top: 7.5rem;
+    align-items: flex-start;
+    justify-content: space-evenly;
+}
+
+.hotspot-topbody__recomendation{
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    width: 29.5rem;
+    height: 55rem;
+    top: 7.4rem;
+    background: linear-gradient(180deg, #FFFFFF 0%, #E3F9FF 100%);
+    box-shadow: 1px 0px 4px rgba(0, 0, 0, 0.5);
+}
+.recomendation__searchbar{
+    height: 8.25rem;
+    width: 29.5rem;
+    background: #fafeff;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.recomendation__list{
+    height: 8.5rem;
+    width: 29.5rem;
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+}
+::marker{
+    color: transparent;
+}
+
+.recomendation__list__title{
+    display: flex;
+    flex-direction: column;
+}
+
+.recomendation__list__info{
+    display: flex;
+    flex-direction: column;
+    width: 16.5rem;
+}
+
+
+.list-info__direcction{
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+    
+}
+
+.list-info__web{
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+}
+
+.list-info__phone{
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+}
+
+.list-info__photo{
+    margin-left: 1rem;
+    width: 8rem;
+    height: 8rem;
+    border: 1px solid rgba(44, 177, 170, 0.3);
+    border-radius: 9px;
+}
+
+.leaflet-container {
+    width: 60.3rem;
+    height: 55.2rem;
+}
+
+
+
+.leaflet-div-icon{
+    background-color: none !important;
+    border: none !important;
+}
+
+.hotspot-bottonbody{
+    display: flex;
+    flex-direction: column;
+    width: 90rem;
+    height: 43rem;
+    top: 62.5rem;
+    background: linear-gradient(180deg, #E4FAFF 0%, rgba(228, 250, 255, 0.87) 70.31%, rgba(229, 250, 255, 0.57) 100%);
+    box-shadow: 0px -1px 1px rgba(0, 0, 0, 0.5);
+}
+
+.hotspot-bottonbody_title{
+    font-size: 36px;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    font-family: Righteous;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
+}
