@@ -19,6 +19,7 @@ const DeleteProfile = () => {
 		console.log('Este es el siguiente log', result.id)
 		actions.deleteProfile(data, result.id);
 		actions.logout();
+		{navigate("/")};
 	};
 
 

@@ -44,8 +44,6 @@ const Layout = () => {
 				<Route path="/hotspot" element={<HotSpot />} />
 				<Route path="/forecast" element={<Forecast />} />
 				<Route path="/aboutus" element={<AboutUs />} />
-				<Route path="/login" element={<Login />} />
-				<Route path="/register" element={<Register />} />
 				<Route path="/registerwaterdropper" element={<RegisterWaterdropper />} />
 				<Route path="/registercenter" element={<RegisterCenter />} />
 				<Route path="/photo" element={<Uploadingphotos></Uploadingphotos>}></Route>	

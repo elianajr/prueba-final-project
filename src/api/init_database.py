@@ -1,3 +1,12 @@
+import os
+from flask import Flask
+from flask_migrate import Migrate
+from sqlalchemy import Table, insert
+from sqlalchemy.exc import IntegrityError
+import models
+from seed_data import data
+
+
 def load_seed_data():
     for table, rows in data.items():
         ModelClass = getattr(models, table)
@@ -10,7 +19,6 @@ def load_seed_data():
             except IntegrityError as e:
                 print(f'ERROR: inserting row {row} in "{table}". IGNORING')
                 print(e)
-
     models.db.session.execute('''
         DO $$
         DECLARE
@@ -38,3 +46,13 @@ def load_seed_data():
         END $$;
     ''')
     models.db.session.commit()
+
+
+if __name__ == "__main__":
+    app = Flask(__name__)
+    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
+    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+    models.db.init_app(app)
+    MIGRATE = Migrate(app, models.db)
+    with app.app_context():
+        load_seed_data()

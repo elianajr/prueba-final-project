@@ -117,11 +117,13 @@ def create_account():
             address = request.json.get("address", None)
             phone = request.json.get("phone", None)
             web = request.json.get("web", None)
+            name = request.json.get("name", None)
             new_center = Center(
                 account_id=new_account.id,
                 address=address,
                 phone=phone,
-                web=web
+                web=web,
+                name=name
             )
             print(new_center)
             try:
@@ -200,7 +202,8 @@ def update_account_info(id):
                 update_info_center = {
                     'address': request.json.get('address', None),
                     'phone': request.json.get('phone', None),
-                    'web': request.json.get('web', None)
+                    'web': request.json.get('web', None),
+                    'name': request.json.get('name', None)
                 }
                 
                 center = Center.get_center_by_account_id(id)

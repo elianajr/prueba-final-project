@@ -3,10 +3,12 @@
     height: 35rem;
     padding:0;
     margin: 0 auto;
-    border: 1px solid #0c82a644;
+    border: 0.5px solid #0c82a644;
     border-radius: 5px;
     font-family: 'Roboto', sans-serif;
     overflow: hidden;
+    background-color:white;
+    box-shadow:0 1px 2px #0c82a628, 0 1px 1px #4195af15;
 }
 
 .profile-fav {
@@ -16,11 +18,13 @@
     margin: 0 auto;
     margin-left:0;
     margin-bottom:2rem;
-    border: 1px solid #0c82a644;
+    border: 0.5px solid #0c82a644;
     border-radius: 5px;
     font-family: 'Roboto', sans-serif;
-    background-color:#b6e9f813;
+    background-color:white;
+    // background-color:#b6e9f813;
     overflow: hidden;
+    box-shadow:0 1px 2px #0c82a628, 0 1px 1px #4195af15;
 }
 
 .fav-title {
@@ -29,15 +33,35 @@
     color:#2CB1AA;
     margin-top:1.8rem;
     margin-left:1.5rem;
+    margin-bottom:0.8rem;
 }
 
-.fav-list {
-    font-size:0.9rem;
-    color:#2CB1AA;
-    list-style-type: none;
+.fav-list-profile {
+    font-weight: bold;
+    font-size:0.8rem;
+    color:black;
+    // list-style-type: none;
     padding-left: 1.5rem;
+    padding-right: 1.7rem;
     margin-top:0.5rem;
     margin-bottom:0.2rem;
+}
+
+.fav-list-profile>li {
+    margin-top:0.5rem;
+}
+
+.btnfavourite-profile {
+    background-color:transparent;
+    border: none;
+    float: right;
+    overflow: hidden; 
+}
+
+.iconfavourite-profile { 
+    color:#ecc085;  
+    // color: #EDCA9C;       
+    // color:#156683;      
 }
 
 .main-photo-waterdropper {
@@ -108,9 +132,9 @@
 }
 
 .profile-location-center {
-    font-weight: 100;
-    font-size: 0.9rem;
-    margin-top: 0.2rem;
+    font-size: 0.8rem;
+    margin-top: 0.3rem;
+    margin-bottom:0.2rem;
 }
 
 .profile-sports {
@@ -118,12 +142,11 @@
     font-weight: bold;
     font-size:0.9rem;
     margin-top:0.5rem;
-    margin-bottom:0;
     margin-right: 1em;
 }
 
 .profile-sports ul {
-    list-style: none;
+    // list-style: none;
     margin-left:0;
     padding-left:0;
     margin-bottom:0;
@@ -132,8 +155,8 @@
 
 .profile-sports li {
     float: left;
-    list-style-position: inside;
-    list-style-type: disc;
+    // list-style-position: inside;
+    // list-style-type: disc;
     margin-right: 1em;
 }
 
@@ -141,7 +164,8 @@
     font-size:0.8rem;
     margin-top:1rem;
     padding-top:1rem;
-    margin-bottom:0.6rem;
+    margin-bottom:0;
+    padding-bottom:0;
 }
 
 // .button-profile {
@@ -181,10 +205,11 @@
     font-weight: 500;
     font-size:0.8rem;
     margin-top:0.2rem;
+    margin-right:1rem;
 }
 
 .profile-link-center {
-    font-weight: 500;
+    font-weight: bold;
     font-size:0.8rem;
     margin-top:0.2rem;
     color:#006184;
@@ -194,6 +219,7 @@
 .profile-link-center:hover {
     color:#15658373;
 }
+
 
 .buttonWTD_stylee{
     width: 6.4rem;
@@ -207,6 +233,7 @@
     font-size:1rem;
     z-index: 1;
     border: none;
+    margin-top: 0.8rem;
 }
 .buttonWTD_stylee:after {
     position: absolute;
@@ -261,4 +288,5 @@
 
 .myprofile {
     padding-top: 7rem;
+    background-color:#b6e9f813;
 }

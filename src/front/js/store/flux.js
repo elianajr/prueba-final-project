@@ -75,7 +75,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				try{
 					const resp = await fetch(getStore().baseUrl.concat("login"), opts)
 					if (resp.status !== 200) {
-						alert("There has been some error");
+						// alert("There has been some error");
 					}
 					
 					const data = await resp.json();
@@ -102,7 +102,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				try{
 					const resp = await fetch(getStore().baseUrl.concat("account"), opt)
 					if (resp.status !== 201) {
-						alert("There has been some error");
+						// alert("There has been some error");
 						return false;
 					}
 
@@ -231,9 +231,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			deleteFavourites: deleted => {
 				setStore({
-					favourites: getStore().favourites.filter(item => item != deleted)
+					favourites: getStore().favourites.filter((_, item) => item != deleted)
 				});
 			}
+
 
 		}
 	};

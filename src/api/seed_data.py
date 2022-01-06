@@ -4,21 +4,22 @@ data = {
      "Sport":[
         {
             "id": 1,
-            "name": "scuba"
+            "name": "Scuba"
         },
         {
             "id": 2,
-            "name": "surf"
+            "name": "Surf"
         },
         {
             "id": 3,
-            "name": "kitesurf"
+            "name": "Kitesurf"
         },
         {
             "id": 4,
-            "name": "snorkel"
+            "name": "Snorkel"
         }
     ],
+
     "Account":[
         {
             "id": 1,
@@ -135,7 +136,7 @@ data = {
             "account_id": 4
         },
         {
-            "id": 2,
+            "id": 3,
             "name": "C2Sky",
             "address": "16 Nguyen Dinh Chieu Street, Mui Ne, Vietnam",
             "phone": "111111113",
@@ -143,6 +144,7 @@ data = {
             "account_id": 6
         },
     ],
+
     "Hotspot":[ 
         {
             "id": 1,

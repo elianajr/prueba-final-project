@@ -1,6 +1,6 @@
 import React , { useState, useContext, useEffect, Fragment } from "react";
 import { useForm } from "react-hook-form";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import { Context } from "../store/appContext.js";
 import "../../styles/registerlogin.scss";
 import "../../styles/editform.scss";
@@ -29,6 +29,7 @@ const EditProfileCenter = () => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   let params = useParams();
+  const navigate = useNavigate();
 
 	const [passwordShown, setPasswordShown] = useState('');
 	const [isRevealPwd, setIsRevealPwd] = useState(false);
@@ -44,6 +45,7 @@ const EditProfileCenter = () => {
     console.log(data);	
     console.log('Este es el siguiente log', result.id)
 		actions.editProfile(data, result.id);	
+    {navigate("/")};
 	};
 
   useEffect(() => {

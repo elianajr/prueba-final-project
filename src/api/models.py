@@ -65,8 +65,8 @@ class Account(db.Model):
             "about": self.about,
             "_is_waterdropper": self._is_waterdropper,
             # "user": list(map(lambda x: account.to_dict(), user)),
-            # "user": user[0].to_dict(),
-            "user": [account.to_dict() for account in user],
+            "user": user[0].to_dict(),
+            # "user": [account.to_dict() for account in user],
             "sports": list(map(lambda sport: sport.to_dict(), self.have_account_sport))
             # "sports": [sport.to_dict() for sport in self.have_account_sport]
         }
@@ -197,20 +197,22 @@ class Center(db.Model):
     address = db.Column(db.String(), unique=False, nullable=True)
     phone = db.Column(db.String(), unique=False, nullable=True)
     web = db.Column(db.String(), unique=False, nullable=True)
+    name = db.Column(db.String(), unique=False, nullable=True)
     account_id = db.Column(db.Integer, db.ForeignKey("account.id"), nullable=False)
 
     have_favcenter_waterdropper = db.relationship('Waterdropper', secondary=waterdropper_fav_center, back_populates="have_waterdropper_favcenter")
     has_reviews = db.relationship("Review_Center")
 
     def __repr__(self):
-        return f'Center is account_id: {self.account_id}, address: {self.address}, phone: {self.phone}, web: {self.web}'
+        return f'Center is account_id: {self.account_id}, address: {self.address}, phone: {self.phone}, web: {self.web}, name: {self.name}'
 
     def to_dict(self):
         return {
             "id": self.id,
             "address": self.address,
             "phone": self.phone,
-            "web": self.web
+            "web": self.web,
+            "name": self.name
             # "favourite_count": len(self.have_favcenter_waterdropper)
         }
 

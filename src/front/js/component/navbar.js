@@ -5,20 +5,18 @@ import "../../styles/navbar.scss";
 
 export const Navbar = () => {
 	const { store, actions } = useContext(Context);
-	let params = useParams();
 	const logo = <img src="https://i.ibb.co/WkjzmB3/LOGO.png"/>
+	// const myId = store.loggedUser.id;
 
-	
-
-	useEffect(() => {
-        const myId = store.loggedUser.id;
-        console.log(store.loggedUser.id);
-	}, [store.currentUser]);
+	// useEffect (() => {
+		
+	// 	console.log(myId);
+	// }, [store.loggedUser])
 
 	return (
 		<nav className="navbar">
 			<Link to="/">{logo}</Link>
-			<div className="navbar__links"><Link to="/profile">PROFILE</Link ></div>
+			{/* <div className="navbar__links"><Link to={`/profile/${store.loggedUser.id}`}>PROFILE</Link ></div> */}
 			<div className="navbar__links"><Link to="/forecast" >FORECAST</Link ></div>
 			<div className="navbar__links"><Link to="/news" >NEWS</Link ></div>
 			<div className="navbar__links"><Link to="/aboutus" >ABOUT US</Link ></div>

@@ -1,6 +1,6 @@
 import React , { useState, useContext, useEffect, Fragment } from "react";
 import { useForm } from "react-hook-form";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import { Context } from "../store/appContext.js";
 import "../../styles/registerlogin.scss";
 import "../../styles/editform.scss";
@@ -28,6 +28,7 @@ const EditProfileWaterdropper = () => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   let params = useParams();
+  const navigate = useNavigate();
 
 	const [passwordShown, setPasswordShown] = useState('');
 	const [isRevealPwd, setIsRevealPwd] = useState(false);
@@ -44,6 +45,7 @@ const EditProfileWaterdropper = () => {
     console.log(data);	
     console.log('Este es el siguiente log', result.id)
 		actions.editProfile(data, result.id);	
+    {navigate("/")};
 	};
 
   useEffect(() => {
@@ -131,29 +133,29 @@ const EditProfileWaterdropper = () => {
 
 
             <div className="form-input" >
-              <span className="label-relog">Sports* (check all that apply)</span>
-              <div>
-                <div className="form-check form-switch form-check-reglog">
-                <input className="form-check-input" type="checkbox" id="scuba" name="sports" value="scuba" {...register("sports", { required: true })}/>
-                <label className="form-check-label" htmlFor="scuba">Scuba diving</label>
-                </div>
-                <div className="form-check form-switch form-check-reglog">
-                <input className="form-check-input" type="checkbox" id="surf" name="sports" value="surf" {...register("sports", { required: true })}/>
-                <label className="form-check-label" htmlFor="surf">Surf</label>
-                </div>
-                <div className="form-check form-switch form-check-reglog">
-                <input className="form-check-input" type="checkbox" id="kitesurf" name="sports" value="kitesurf" {...register("sports", { required: true })}/>
-                <label className="form-check-label" htmlFor="kitesurf">Kitesurf</label>
-                </div>
-                <div className="form-check form-switch form-check-reglog">
-                <input className="form-check-input" type="checkbox" id="snorkel" name="sports" value="snorkel" {...register("sports", { required: true })}/>
-                <label className="form-check-label" htmlFor="snorkel">Snorkel</label>
-                </div>
-                {errors.sports && errors.sports.type === "required" && (
-                  <span className="error">Sport is required</span>
-                )}
-              </div>
-            </div>
+						<span className="label-relog">Sports (check all that apply)</span>
+						<div>
+							<div className="form-check form-switch form-check-reglog">
+							<input className="form-check-input" type="checkbox" id="scuba" name="sports" value="scuba" {...register("sports", { required: true })}/>
+							<label className="form-check-label" htmlFor="scuba">Scuba diving</label>
+							</div>
+							<div className="form-check form-switch form-check-reglog">
+							<input className="form-check-input" type="checkbox" id="surf" name="sports" value="surf" {...register("sports", { required: true })}/>
+							<label className="form-check-label" htmlFor="surf">Surf</label>
+							</div>
+							<div className="form-check form-switch form-check-reglog">
+							<input className="form-check-input" type="checkbox" id="kitesurf" name="sports" value="kitesurf" {...register("sports", { required: true })}/>
+							<label className="form-check-label" htmlFor="kitesurf">Kitesurf</label>
+							</div>
+							<div className="form-check form-switch form-check-reglog">
+							<input className="form-check-input" type="checkbox" id="snorkel" name="sports" value="snorkel" {...register("sports", { required: true })}/>
+							<label className="form-check-label" htmlFor="snorkel">Snorkel</label>
+							</div>
+							{errors.sports && errors.sports.type === "required" && (
+								<span className="error">Sport is required</span>
+							)}
+						</div>
+					</div>
 
             <div className="form-input">
               <label htmlFor="role" className="label-relog">Level*</label>
