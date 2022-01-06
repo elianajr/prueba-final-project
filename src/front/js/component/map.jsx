@@ -1,49 +1,77 @@
-import React, { useContext, useState } from "react";
-import { MapContainer, TileLayer, Marker, Popup, useMapEvents } from "react-leaflet";
+import React, { useContext, useEffect, useState } from "react";
+import { MapContainer, TileLayer, LayersControl, LayerGroup } from "react-leaflet";
 import { Context } from "../store/appContext";
-import Markers from "./markers.jsx";
+import { DraggableMarker } from "./draggableMarker.jsx";
+import PropTypes from "prop-types";
+import { KitesurfMarker } from "./kitesurfMarker.jsx";
+import { SurfMarker } from "./surfMarker.jsx";
+import { ScubaMarker } from "./scubaMarker.jsx";
+import { SnorkelMarker } from "./snorkelMarker.jsx";
 
-const Map = () =>{
-    const { store, actions } = useContext(Context);
 
-	function LocationMarker() {
-		const [position, setPosition] = useState(null)
-		const map = useMapEvents({
-		  click() {
-			map.locate()
-		  },
-		  locationfound(e) {
-			setPosition(e.latlng)
-			map.flyTo(e.latlng, map.getZoom())
-		  },
-		})
-	  
-		return position === null ? null : (
-		  <Marker position={position} icon={iconUser}>
-			<Popup>It´s you!!</Popup>
-		  </Marker>
-		)
-	  }
+const Map = props => {
+	const { store, actions } = useContext(Context);
+	const {callback } = props;
+	const [sport,setsport]=useState([])
+	
 
-	const iconUser = new L.icon({
-        iconUrl:"https://i.ibb.co/48Tntqx/icono-USER.png",
-        iconAnchor: null,
-        shadowUrl: null,
-        ShadowSize:null,
-        ShadowAnchor:null,
-        iconSize:(45,45),
-    })
+	const getMarkerPosition = position =>{
+		callback(position)
+	}
+
+	useEffect(()=>{
+		setsport([...props.checked])
+
+	},[])
 
 	return (
-		<MapContainer center={{lat:"78.69607184118358",lng: "-4.443754371312125"}} zoom={13} scrollWheelZoom={true}>
-			<TileLayer
-				attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-				url="https://tiles.wmflabs.org/hikebike/{z}/{x}/{y}.png"
-			/>
-			<Markers/>
-			<LocationMarker />
+		<MapContainer center={{ lat: "0", lng: "0" }} zoom={2} minZoom={2} scrollWheelZoom={true}>
+			<LayersControl>
+				<LayersControl.BaseLayer checked name="Painted Map">
+					<TileLayer
+						attribution='Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+						url="https://stamen-tiles-{s}.a.ssl.fastly.net/watercolor/{z}/{x}/{y}.png"
+					/>
+				</LayersControl.BaseLayer>
+				<LayersControl.BaseLayer  name="Traditional Map">
+					<TileLayer
+						attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+						url="https://tiles.wmflabs.org/hikebike/{z}/{x}/{y}.png"
+					/>
+				</LayersControl.BaseLayer>
+				<LayersControl.Overlay checked name="HotSpots">
+					<LayerGroup>
+						<DraggableMarker callback={getMarkerPosition}/>
+					</LayerGroup>
+				</LayersControl.Overlay>
+				<LayersControl.Overlay checked={sport[0]} name="SNORKEL">
+					<LayerGroup>
+						<SnorkelMarker></SnorkelMarker>
+					</LayerGroup>
+				</LayersControl.Overlay>
+				<LayersControl.Overlay checked={sport[1]} name="SURF">
+					<LayerGroup>
+						<SurfMarker></SurfMarker>
+					</LayerGroup>
+				</LayersControl.Overlay>
+				<LayersControl.Overlay checked={sport[2]} name="SCUBA">
+					<LayerGroup>
+						<ScubaMarker></ScubaMarker>
+					</LayerGroup>
+				</LayersControl.Overlay>
+				<LayersControl.Overlay checked={sport[3]} name="KITESURF">
+					<LayerGroup>
+						<KitesurfMarker></KitesurfMarker>
+					</LayerGroup>
+				</LayersControl.Overlay>
+			</LayersControl>
 		</MapContainer>
 	);
 }
+
+Map.propTypes = {
+    callback: PropTypes.func,
+	checked: PropTypes.array
+};
 
 export default Map;

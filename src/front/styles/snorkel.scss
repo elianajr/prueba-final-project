@@ -1,0 +1,221 @@
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Righteous&family=Roboto+Condensed&family=Roboto:wght@300&family=Sacramento&display=swap');
+
+.bodySnorkel{
+    width: 90rem;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: center;
+}
+
+.bodySnorkel-top{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 30.6rem;
+}
+
+.bodySnorkel-top__polaroids__one{
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    width: 17.813rem;
+    height: 19.375rem;
+    left: -4.437999999999999rem;
+    top: 6.715999999999999rem;
+    z-index: -2;
+    background: #F8F8F8;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    box-sizing: border-box;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    transform: rotate(-38.77deg);
+}
+
+.bodySnorkel-top__polaroids__one>img{
+    margin-top: 0.8rem;
+    width: 16.229rem;
+    height: 15.641rem;
+    transform: rotate(0deg);
+}
+
+.bodySnorkel-top__polaroids__two{
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    width: 17.813rem;
+    height: 19.375rem;
+    left: 14.036rem;
+    top: 0.4269999999999996rem;
+    z-index: -1;
+    background: #F8F8F8;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    box-sizing: border-box;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    transform: rotate(33deg);
+}
+
+.bodySnorkel-top__polaroids__two>img{
+    margin-top: 0.8rem;
+    width: 16.229rem;
+    height: 15.641rem;
+    transform: rotate(0deg);
+}
+
+.bodySnorkel-top__polaroids__three{
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    width: 17.813rem;
+    height: 19.375rem;
+    left: 7.861rem;
+    top: 13.695rem;
+    z-index: 0;
+    background: #F8F8F8;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    box-sizing: border-box;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    transform: rotate(-5.45deg);
+}
+
+.bodySnorkel-top__polaroids__three>img{
+    margin-top: 0.8rem;
+    width: 16.229rem;
+    height: 15.641rem;
+    transform: rotate(0deg);
+}
+
+.bodySnorkel-top__tittleOne{
+    position: absolute;
+    z-index: -4;
+    width: 48rem;
+    height: 13.813rem;
+    left: 3.5rem;
+    top: 7.438rem;
+    font-family: "Righteous";
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18.125rem;
+    line-height: 22.5rem;
+    display: flex;
+    align-items: center;
+    color: rgba(0, 97, 132, 0.1);
+    text-shadow: 2px 0 0 rgba(0, 97, 132, 0.1), -2px 0 0 rgba(0, 97, 132, 0.1), 0 2px 0 rgba(0, 97, 132, 0.1), 0 -2px 0 rgba(0, 97, 132, 0.1), 1px 1px rgba(0, 97, 132, 0.1), -1px -1px 0 rgba(0, 97, 132, 0.1), 1px -1px 0 rgba(0, 97, 132, 0.1), -1px 1px 0 rgba(0, 97, 132, 0.1);
+}
+.bodySnorkel-top__tittleTwo{
+    position: absolute;
+    width: 23.313rem;
+    height: 12.188rem;
+    left: 31.938000000000002rem;
+    top: 17rem;
+    font-family: "Righteous";
+    font-style: normal;
+    font-weight: normal;
+    font-size: 9rem;
+    line-height: 11.188rem;
+    display: flex;
+    align-items: center;
+    color: #33819D;
+    text-shadow: 2px 0 0 #091320, -2px 0 0 #091320, 0 2px 0 #091320, 0 -2px 0 #091320, 1px 1px #091320, -1px -1px 0 #091320, 1px -1px 0 #091320, -1px 1px 0 #091320;   
+}
+
+.bodySnorkel-top__senseOne{
+    position: absolute;
+    width: 24.688rem;
+    height: 7.188rem;
+    left: 27.938rem;
+    top: 27.625rem;
+    font-family: "Righteous";
+    font-style: normal;
+    font-weight: normal;
+    font-size: 1.5rem;
+    line-height: 1.875rem;
+    display: flex;
+    align-items: center;
+    color: #000000;
+}
+
+.bodySnorkel-top__senseTwo{
+    position: absolute;
+    width: 25rem;
+    height: 7.188rem;
+    left: 44.125rem;
+    top: 29.188rem;
+    font-family: "Righteous";
+    font-style: normal;
+    font-weight: normal;
+    font-size: 1.5rem;
+    line-height: 1.875rem;
+    display: flex;
+    align-items: center;
+    color: #000000;
+}
+
+.bodySnorkel-top>img{
+    position: absolute;
+    width: 36.625rem;
+    height: 36.625rem;
+    left: 67.438rem;
+    top: 17.086rem;
+    z-index: -2;
+    transform: rotate(337deg);
+}
+
+.bodySnorkel-mid{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 41.938rem;
+    background: #E4FAFF;
+
+}
+
+.bodySnorkel-mid__map{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 86.938rem;
+    height: 40.25rem;
+    .leaflet-container {
+        width: 86.938rem;
+        height: 40.25rem;
+    }
+}
+
+.bodySnorkel-bot{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content:space-around;
+    width: 100vw;
+    height: 35rem;
+    background: #E4FAFF;
+}
+
+.bodySnorkel-bot__forecast{
+    width: 33.214rem;
+    height: 21.916rem;
+    background: #FFFFFF;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.bodySnorkel-bot__best{
+    display: flex;
+    flex-direction: column;
+    width: 44.938rem;
+    height: 21.938rem;
+    font-family: Righteous;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    background: #FFFFFF;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.bodySnorkel-bot__best>p{
+    margin-top: 1rem;
+    margin-left: 1rem;
+   
+}

@@ -3,7 +3,7 @@ import Button from 'react-bootstrap/Button'
 
 import "../../styles/searchBar.scss"
 
-export const SeachBar = () =>{
+export const SearchBar = () =>{
     const seachIcon = <i className="fas fa-search"></i>
     return(
         <div className="searchBar__Box">

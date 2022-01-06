@@ -4,6 +4,7 @@ import { db } from "./firebase";
 import { app } from "./firebase";
 import { doc, setDoc } from "firebase/firestore";
 import { Context } from "../store/appContext.js";
+import Navbar from "./navbar.js"
 import { collection, addDoc, Timestamp, onSnapshot, query, getDocs, orderBy, where } from "firebase/firestore";
 import Card from '@mui/material/Card'
 import jwt_decode from "jwt-decode";
@@ -88,7 +89,7 @@ const ChatForm = () => {
 				return (
 					<div>
 						<span className="userdestiny">{element.username}</span>
-						<img className="chat__userimg"  src={element.cover_photo}></img>
+						<img className="chat__userdestinyimg"  src={element.cover_photo}></img>
 					</div>
 				)
 			
@@ -143,7 +144,10 @@ const ChatForm = () => {
 	
 
 	return (
-		<div className="chatback">
+		<div>
+			<Navbar></Navbar>
+			<div className="chat__container">
+			
 			<div className="chat__header">
 				<div className="chat__sender">
 					<span>
@@ -184,6 +188,8 @@ const ChatForm = () => {
 				</div>
 			</div>
 		</div>
+		</div>
+		
 	);
 };
 

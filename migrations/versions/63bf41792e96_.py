@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 39fbac6d0b1b
+Revision ID: 63bf41792e96
 Revises: 
-Create Date: 2021-12-31 11:03:39.749544
+Create Date: 2022-01-06 13:39:13.584282
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '39fbac6d0b1b'
+revision = '63bf41792e96'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -33,12 +33,6 @@ def upgrade():
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('email'),
     sa.UniqueConstraint('username')
-    )
-    op.create_table('news',
-    sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('photo', sa.Text(), nullable=False),
-    sa.Column('description', sa.String(), nullable=False),
-    sa.PrimaryKeyConstraint('id')
     )
     op.create_table('specie',
     sa.Column('id', sa.Integer(), nullable=False),
@@ -79,7 +73,7 @@ def upgrade():
     sa.Column('latitude', sa.String(), nullable=True),
     sa.Column('longitude', sa.String(), nullable=True),
     sa.Column('account_id', sa.Integer(), nullable=False),
-    sa.Column('sport_id', sa.Integer(), nullable=True),
+    sa.Column('sport_id', sa.Integer(), nullable=False),
     sa.ForeignKeyConstraint(['account_id'], ['account.id'], ),
     sa.ForeignKeyConstraint(['sport_id'], ['sport.id'], ),
     sa.PrimaryKeyConstraint('id')
@@ -151,6 +145,5 @@ def downgrade():
     op.drop_table('account_sport')
     op.drop_table('sport')
     op.drop_table('specie')
-    op.drop_table('news')
     op.drop_table('account')
     # ### end Alembic commands ###

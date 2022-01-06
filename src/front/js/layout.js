@@ -1,16 +1,19 @@
-import React from "react";
+import React, { Fragment } from "react";
 import {
 	BrowserRouter,
 	Routes,
 	Route
   } from "react-router-dom";
 import Navbar from "./component/navbar.js";
-import Landingpage from "./component/Landingpage.jsx";
 import Home from "./pages/home.js";
 import HotSpot from "./pages/hotspot.jsx";
 import Forecast from "./pages/forecast.jsx";
 import injectContext from "./store/appContext";
 import { AboutUs } from "./pages/aboutus.jsx";
+import { Surf } from "./pages/surf.jsx";
+import { Kitesurf } from "./pages/kitesurf.jsx";
+import { Snorkel } from "./pages/snorkel.jsx";
+import { Scuba } from "./pages/scuba.jsx";
 import Login from "./component/login.js";
 import Register from "./component/register.js";
 import RegisterWaterdropper from "./component/registerWaterdropper.js";
@@ -20,13 +23,12 @@ import EditProfileCenter from "./component/editProfileCenter.js";
 import Profile from "./component/profile.js";
 import DeleteProfile from "./component/deleteProfile.js";
 
-
 import Upload from "./component/upload.jsx";
 import Uploadingphotos from "./pages/uploadingphotos.jsx";
-import ChatForm from "./component/ChatForm.jsx"
-import Chatdropdown from "./component/Chatdropdown.jsx"
-import Newsview from "./pages/Newsview.jsx";
-import Newsdetail from "./component/Newsdetails.jsx";
+import ChatForm from "./component/chatForm.jsx"
+import Chatdropdown from "./component/chatdropdown.jsx"
+import Newsview from "./pages/newsview.jsx";
+import Newsdetail from "./component/newsdetails.jsx";
 
 
 //create your first component
@@ -38,19 +40,18 @@ const Layout = () => {
 	return (
 	
 		<BrowserRouter className="index">
-			<Navbar></Navbar>
 			<Routes>
-				<Route path="/" element={<Landingpage />} />
+				<Route path="/" element={<Home />} />
 				<Route path="/hotspot" element={<HotSpot />} />
 				<Route path="/forecast" element={<Forecast />} />
 				<Route path="/aboutus" element={<AboutUs />} />
-				<Route path="/registerwaterdropper" element={<RegisterWaterdropper />} />
-				<Route path="/registercenter" element={<RegisterCenter />} />
-				<Route path="/photo" element={<Uploadingphotos></Uploadingphotos>}></Route>	
+				<Route path="/surf" element={<Surf/>}/>
+				<Route path="/kitesurf" element={<Kitesurf/>}/>
+				<Route path="/snorkel" element={<Snorkel/>}/>
+				<Route path="/diving" element={<Scuba/>}/>
 				<Route path="/news" element={<Newsview />} />
 				<Route path="/newsdetail" element={<Newsdetail />} />		
 				<Route path="/chat" element={<ChatForm />} />
-				<Route path="/home" element={<Home></Home>}></Route>
 				<Route path="/login" element={<Login />} />
 				<Route path="/register" element={<Register />} />
 				<Route path="/register-waterdropper" element={<RegisterWaterdropper />} />
