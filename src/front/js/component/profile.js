@@ -40,7 +40,7 @@ const Profile = () => {
     
     const result = {...store.currentUser.result};
     const user = {...store.currentUser.user};
-    //const favcenters = [...user.favourite_centers];
+   
 
 	// useEffect(() => {
     //     actions.getProfile(params.id);

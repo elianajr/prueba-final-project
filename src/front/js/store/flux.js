@@ -64,10 +64,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			
 			login: async (data) => {
-				// const tokenDecode = token => {
-				// 	let decoded = jwt_decode(token);
-				// 	return decoded;
-				// };
 				const opts = {
 					method: 'POST',
 					headers: new Headers({
@@ -225,25 +221,25 @@ const getState = ({ getStore, getActions, setStore }) => {
 					}
 			},
 
-			getUser:(id)=>{
-				fetch(getStore().url.concat('api/account/',id))
-	        .then(function(response) {
-		          if (!response.ok) {
-	              throw Error(response.statusText);
-	        }
-    		// Read the response as json.
-	              return response.json();
-	        })
-	        .then(function(responseAsJson) {
-				if (id){
-					setStore({ user: responseAsJson });
-	                console.log(responseAsJson);
-				}		
-	        })
-            .catch(function(error) {
-	             console.log('Looks like there was a problem: \n', error);
-                 });
-			},
+			// getUser:(id)=>{
+			// 	fetch(getStore().url.concat('api/account/',id))
+	        // .then(function(response) {
+		    //       if (!response.ok) {
+	        //       throw Error(response.statusText);
+	        // }
+    		// // Read the response as json.
+	        //       return response.json();
+	        // })
+	        // .then(function(responseAsJson) {
+			// 	if (id){
+			// 		setStore({ user: responseAsJson });
+	        //         console.log(responseAsJson);
+			// 	}		
+	        // })
+            // .catch(function(error) {
+	        //      console.log('Looks like there was a problem: \n', error);
+            //      });
+			// },
 			
 			addFavourites: name => {
 				if (
@@ -373,6 +369,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				.then(result => uploadimagehotspot(result.id))
 				.catch(error => console.log('error', error));
 			},
+			
 			verifylogin:()=>{
 				const token=localStorage.getItem('token')
 				if (token) {
