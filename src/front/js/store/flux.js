@@ -225,36 +225,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
-			addFavCenters: async (data) => {
-				let token = localStorage.getItem("token");
-				// let user = localStorage.getItem("id");
-				// let fav = user.favourite_spot;
-				const opt = {
-					method: 'POST',
-					headers: new Headers({
-						'Content-Type': 'application/json',
-						Authorization: `Bearer ${token}`
-					}),
-					body: JSON.stringify(data)
-				};
-
-				try {
-					// const resp = await fetch(getStore().baseUrl.concat(`waterdropper/${user.id}/center/${fav.id}`), opt)
-					const resp = await fetch("https://3001-cyan-lobster-g63lf7ls.ws-eu25.gitpod.io/api/waterdropper/1/favourite-centers/2", opt)
-					if (resp.status !== 201) {
-						// alert("There has been some error");
-						return false;
-					}
-
-					const data = await resp.json();
-
-					setStore({ "favCenters": data });
-
-				}
-				catch (error) {
-					console.error("There was an error!!", error);
-				}
-			},
+			
 			
 			addFavourites: name => {
 				if (
@@ -346,6 +317,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						console.log(error.message);
 					});
 			},
+			
 			getAllHotspots: () => {
 				fetch(getStore().baseUrl.concat('hotspots'))
 					.then(resp => resp.json())
@@ -415,7 +387,24 @@ const getState = ({ getStore, getActions, setStore }) => {
 				} else {
 					return false
 				}
-			}
+			},
+
+			getAllCenters: () => {
+				fetch(getStore().baseUrl.concat('centers'))
+					.then(function (response) {
+						if (!response.ok) {
+							throw Error(response.statusText);
+						}
+						return response.json();
+					})
+					.then(function (responseAsJson) {
+						setStore({ centerss: responseAsJson });
+						console.log(responseAsJson);
+					})
+					.catch(function (error) {
+						console.log('Looks like there was a problem: \n', error);
+					});
+			},
 		},
 	}
 
