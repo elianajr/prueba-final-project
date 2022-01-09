@@ -8,7 +8,6 @@ import "../../styles/registerlogin.scss";
 const Login = () => {
 	const { store, actions } = useContext(Context);
 	const { watch, register, formState: { errors }, handleSubmit } = useForm({mode:"all"});
-	// const history = useHistory();
 	const navigate = useNavigate();
 
 	const [passwordShown, setPasswordShown] = useState('');
@@ -17,20 +16,20 @@ const Login = () => {
 	const showPwdImg = "fas fa-eye";
 
 
-	const token = sessionStorage.getItem("token");
+	
 	const onSubmit = data => {
-		// console.log(data);
-		actions.login(data)
-		// .then(() => {
-		// 	history.pushState("/")
-		// })
+		console.log(data);
+		actions.login(data);
+		
 	};
 
-	if(store.token && store.token !="" && store.token != null) {navigate("/")};
+	const token = localStorage.getItem("token");
+	if(token) {navigate("/")};
+	// if(token == undefined) {actions.logout()};
 
     
 	return (
-		<div className="register-login-form">
+		<div className="register-login-form myprofile">
 			<form className="register-login" onSubmit={handleSubmit(onSubmit)}>
 				<h2 className="tittle-logreg">SIGN IN TO WDS</h2>
 
@@ -84,9 +83,8 @@ const Login = () => {
 				</span>
 				</div>
 				
-                <input className="button" type="submit" value="Continue" />
-
-				{/* <pre>{JSON.stringify(watch(), null, 2)}</pre> */}
+                <input className="button-logreg" type="submit" value="Continue" />
+				
 			</form>
 		</div>
 	);

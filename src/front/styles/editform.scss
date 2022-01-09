@@ -1,17 +1,13 @@
-
-.register-login-form{
-    margin-top: 0.2rem; 
+.edit-profile{
+    margin-top: 2rem;
+    margin-bottom: 0.5rem;
     font-family: 'Roboto', sans-serif;
     font-size: 0.8rem;
 }
 
-.progressbar-regform {
-    color: #006184;
-}
-
-.register-login {
-    width: 15rem;
-    height: 29rem;
+form .edit-profile-form {
+    width: 30rem;
+    height: 38rem;
     margin-top: 2rem;
     margin: 0 auto;
     padding: 0.8rem;
@@ -48,6 +44,27 @@
     margin-bottom: 5px;
     font-size: 14px;
     margin-left: 0.3rem;
+}
+select.input-reglog {
+    font-size: 11px;
+}
+
+textarea#about.about.input-reglog-about {
+    display: inline-block;
+    justify-content: center;
+    box-sizing: border-box;
+    width: 12rem;
+    height: 6.2rem;
+    border: 1px solid black;
+    border-radius: 4px;
+    background-color: white;
+    padding: 10px 15px;
+    margin-bottom: 5px;
+    font-size: 10px;
+    margin-left: 0.6rem;
+    padding-left:0.3rem;
+    padding-right:0;
+    margin-right:0;
 }
 
 .profile-photo {
@@ -125,11 +142,12 @@
     color: #535353;
 }
 
-.button-logreg {
+.button-logreg-edit {
     display: inline-block;
     -webkit-box-sizing: border-box;
     margin-top: 0.6rem;
     width: 12rem;
+    height: 3rem;
     background-color: #88BFAD;
     box-sizing: border-box;
     position: relative;
@@ -166,6 +184,7 @@
     color: grey;
     position: absolute;
     right: 2px;
+    bottom: 3px;
     padding: 12px 12px;
     
 }
@@ -177,8 +196,4 @@
 
 .button-home-reg:hover {
     color:#006184;
-}
-
-.myprofile {
-    padding-top: 7rem;
 }
