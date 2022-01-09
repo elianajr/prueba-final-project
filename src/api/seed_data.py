@@ -88,6 +88,83 @@ data = {
             "about": "We are a kitesurfing school. C2Sky has actually a few meanings, firstly as an outdoor activity of kite flying we SEE 2 the Sky. I guess the more obvious is that we jump around from the SEA 2 THE SKY.Then we have the shape of the kites. No doubt we had to add the letter C in our name branding.",
             "_is_active": True,
             "_is_waterdropper": False
+        },
+        {
+            "id": 7,
+            "email": "dive@is.com",
+            "_password": generate_password_hash("123456", method='pbkdf2:sha256', salt_length=16),
+            "username": "diveis",
+            "photo": "photo",
+	        "cover_photo": "photo",
+            "about": "about",
+            "_is_active": True,
+            "_is_waterdropper": False
+        },
+        {
+            "id": 8,
+            "email": "mykonos@divingcenter.com",
+            "_password": generate_password_hash("123456", method='pbkdf2:sha256', salt_length=16),
+            "username": "mykonosdivingcenter",
+            "photo": "photo",
+	        "cover_photo": "photo",
+            "about": "about",
+            "_is_active": True,
+            "_is_waterdropper": False
+        },
+        {
+            "id": 9,
+            "email": "thalaseakiteboarding@gmail.com",
+            "_password": generate_password_hash("123456", method='pbkdf2:sha256', salt_length=16),
+            "username": "thalaseakiteboarding",
+            "photo": "photo",
+	        "cover_photo": "photo",
+            "about": "about",
+            "_is_active": True,
+            "_is_waterdropper": False
+        },
+        {
+            "id": 10,
+            "email": "orcadiving@gmail.com",
+            "_password": generate_password_hash("123456", method='pbkdf2:sha256', salt_length=16),
+            "username": "orcadiving",
+            "photo": "photo",
+	        "cover_photo": "photo",
+            "about": "about",
+            "_is_active": True,
+            "_is_waterdropper": False
+        },
+        {
+            "id": 11,
+            "email": "info@belizeprodive.com",
+            "_password": generate_password_hash("123456", method='pbkdf2:sha256', salt_length=16),
+            "username": "belizeprodive",
+            "photo": "photo",
+	        "cover_photo": "photo",
+            "about": "about",
+            "_is_active": True,
+            "_is_waterdropper": False
+        },
+        {
+            "id": 12,
+            "email": "info@tpk48diving.com",
+            "_password": generate_password_hash("123456", method='pbkdf2:sha256', salt_length=16),
+            "username": "tpk48diving",
+            "photo": "photo",
+	        "cover_photo": "photo",
+            "about": "about",
+            "_is_active": True,
+            "_is_waterdropper": False
+        },
+        {
+            "id": 13,
+            "email": "avellanassurf@gmail.com",
+            "_password": generate_password_hash("123456", method='pbkdf2:sha256', salt_length=16),
+            "username": "avellanassurfschool",
+            "photo": "photo",
+	        "cover_photo": "photo",
+            "about": "about",
+            "_is_active": True,
+            "_is_waterdropper": False
         }
     ], 
 
@@ -109,12 +186,12 @@ data = {
             "account_id": 3
         },
         {
-            "id": 5,
+            "id": 3,
             "first_name": "Ruben",
             "last_name": "Lopez",
             "level": "Advanced",
             "location": "Barcelona",
-            "account_id": 3
+            "account_id": 5
         }
     ],
 
@@ -123,26 +200,102 @@ data = {
             "id": 1,
             "name": "Pura Vida Diving",
             "address": "9/24, Koh Tao, Surat Thani 84360, Thailand",
-            "phone": "111111111",
+            "phone": "+6677457041",
             "web": "https://www.puravida.com",
+            "latitude": "10.084804143540936", 
+            "longitude": "99.82558214061011",
             "account_id": 2
         },
         {
             "id": 2,
             "name": "In Da Surf Bali",
             "address": "Jl.Pantai Batu Bolong #32A, Canggu, Kec. Kuta Utara, Kabupaten Badung, Bali 80361, Indonesia",
-            "phone": "111111112",
+            "phone": "+6281999065243",
             "web": "https://www.surf.com",
+            "latitude": "-8.649653464429072", 
+            "longitude": "115.13726121182741",
             "account_id": 4
         },
         {
             "id": 3,
             "name": "C2Sky",
             "address": "16 Nguyen Dinh Chieu Street, Mui Ne, Vietnam",
-            "phone": "111111113",
+            "phone": "+31620037417",
             "web": "https://c2skykitecenter.com/",
+            "latitude": "10.941489006446734", 
+            "longitude": "108.1937612810982",
             "account_id": 6
         },
+        {
+            "id": 4,
+            "name": "Dive.is",
+            "address": "Hólmaslóð 2, 101 Reykjavík, Iceland",
+            "phone": "+3545786200",
+            "web": "http://www.dive.is/",
+            "latitude": "64.1574780772487",
+            "longitude": "-21.94000791534146",
+            "account_id": 7
+        },
+        {
+            "id": 5,
+            "name": "Mykonos Diving Center",
+            "address": "Paradise Beach, Mikonos 846 00, Greece",
+            "phone": "+302289024808",
+            "web": "http://www.dive.gr/",
+            "latitude": "37.41138639486761",
+            "longitude": "25.356956584658537",
+            "account_id": 8
+        },
+        {
+            "id": 6,
+            "name": "Thalasea Kiteboarding Center Naxos",
+            "address": "Mikri Vigla 843 00, Greece",
+            "phone": "+33658983631",
+            "web": "http://thalaseasports.com/",
+            "latitude": "38.03134525870652", 
+            "longitude": "25.941173797236903",
+            "account_id": 9
+        },
+        {
+            "id": 7,
+            "name": "Orca Diving Center",
+            "address": "Strada, 73010 Torre Lapillo LE, Italy",
+            "phone": "+393495701717",
+            "web": "https://www.orcadivingcenter.it/",
+            "latitude": "40.881952022715865", 
+            "longitude": "17.778404837675996",
+            "account_id": 10
+        },
+        {
+            "id": 8,
+            "name": "Belize Pro Dive Center",
+            "address": "Seagrape Drive, San Pedro, Belize",
+            "phone": "+1 501-226-2092",
+            "web": "https://belizeprodivecenter.com/",
+            "latitude": "17.906722520461678", 
+            "longitude": "-87.97338531082941",
+            "account_id": 11
+        },
+        {
+            "id": 9,
+            "name": "TPK48 Diving",
+            "address": "Distrik, Jalan Marinda, Arah Bandara MARINDA, Waisai, Kota Waisai, Kabupaten Raja Ampat, Papua Bar. 98482, Indonesia",
+            "phone": "+62 852-8800-8777",
+            "web": "https://tpk48.com/",
+            "latitude": "-0.4374074580738787", 
+            "longitude": "130.78326113874698",
+            "account_id": 12
+        },
+        {
+            "id": 10,
+            "name": "Avellanas Surf School",
+            "address": "Avellanas Lolas Bar & Restaurant, Provincia de Guanacaste, 27 de Abril, 50303, Costa Rica",
+            "phone": "+50671058809",
+            "web": "https://www.avellanas-surf-school.com/",
+            "latitude": "10.227803926347125",
+            "longitude": "-85.83723101705961",
+            "account_id": 13
+        }
     ],
 
     "Hotspot":[ 

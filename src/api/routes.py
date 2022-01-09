@@ -26,15 +26,22 @@ def get_accounts():
   all_accounts=[account.to_dict() for account in accounts]
   return jsonify(all_accounts), 200
 
+@api.route('/centers', methods=[ 'GET'])
+def get_centers():
 
-# @api.route('/account/<int:id>', methods=[ 'GET'])
-# def get_account(id):
+  centers= Center.get_all_centers()
+  all_centers=[center.to_dict() for center in centers]
+  return jsonify(all_centers), 200
+  
 
-#   account= Account.get_account_by_id(id)
+@api.route('/account/<int:id>', methods=[ 'GET'])
+def get_account(id):
 
-#   if account:
-#       account= account.to_dict()
-#       return jsonify(account), 200
+  account= Account.get_account_by_id(id)
+
+  if account:
+      account= account.to_dict()
+      return jsonify(account), 200
   
     
 @api.route('/login', methods=['POST'])
@@ -252,9 +259,10 @@ def add_favcenter(id_waterdropper,id_center):
 
     return jsonify({'error': 'Favourite center not found'}), 404
 
+
 @api.route('/waterdropper/<int:id_waterdropper>/favourite-hotspots/<int:id_hotspot>', methods=['POST'])
 @jwt_required()
-def add_favhotspot(id_waterdropper,id_hotspot):
+def add_fav_hotspot(id_waterdropper,id_hotspot):
     token_id = get_jwt_identity()
     print("token",token_id)
 
@@ -271,6 +279,28 @@ def add_favhotspot(id_waterdropper,id_hotspot):
             return jsonify(fav_hotspots), 200
 
     return jsonify({'error': 'Favourite hotspot not found'}), 404
+
+
+@api.route('/account/<int:id_account>/favourite-hotspots/<int:id_hotspot>', methods=['POST'])
+@jwt_required()
+def add_favhotspot(id_account,id_hotspot):
+    token_id = get_jwt_identity()
+    print("token",token_id)
+
+    if token_id.get("id"):
+        center = Center.get_center_by_account_id(id_account)
+        hotspot = Hotspot.get_hotspot_by_id(id_hotspot)
+        print("center",center)
+        print("hotspot",hotspot)
+
+        if center and hotspot:
+            center_hotspot = center.add_center_hotspot(hotspot)
+            print(center_hotspot)
+            center_hotspots = [hotspot.to_dict() for hotspot in center_hotspot]
+            return jsonify(center_hotspots), 200
+
+    return jsonify({'error': 'Center hotspot not found'}), 404
+
 
 @api.route('/accountphoto/<int:id>', methods=['POST'])
 def handle_uploadaccount(id):
