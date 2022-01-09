@@ -17,7 +17,7 @@ export const Footer = () => {
 					<p className="footer-help__text">Need any help?</p>
 					{help}
 				</Link>
-				{actions.verifylogin()==true?<Chatdropdown/>:''}
+				{/* {actions.verifylogin()==true?<Chatdropdown/>:''} */}
 				</div>
 			
 		</footer>

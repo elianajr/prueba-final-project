@@ -2,16 +2,15 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 import os
-from flask_jwt_extended import JWTManager
 from flask import Flask, request, jsonify, url_for, send_from_directory
 from flask_migrate import Migrate
 from flask_swagger import swagger
+from flask_jwt_extended import JWTManager
 from flask_cors import CORS
 from api.utils import APIException, generate_sitemap
 from api.models import db
 from api.routes import api
 from api.admin import setup_admin
-from flask_jwt_extended import JWTManager
 
 
 ENV = os.getenv("FLASK_ENV")
@@ -31,6 +30,7 @@ else:
     if uri.startswith("postgres://"):
         uri = uri.replace("postgres://", "postgresql://", 1)
     app.config['SQLALCHEMY_DATABASE_URI'] = uri
+
 #TOKEN
 app.config["JWT_SECRET_KEY"] = os.environ.get('FLASK_APP_KEY')
 jwt = JWTManager(app)

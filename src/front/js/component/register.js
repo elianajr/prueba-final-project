@@ -13,24 +13,24 @@ const Register = () => {
 
 	return (
 
-		<div className="register-login-form">
+		<div className="register-login-form myprofile">
 			<div className="register-login">
 				<h2 className="tittle-logreg">JOIN WDS</h2> 
-
+				
 				<div className="form-input">
 					<span className="label-reg">What kind of waterdropper are you?</span>
 					
 					<button className="button-logreg">
-						<Link className="button-home-reg" to="/registerWaterdropper">Athlete</Link>
+						<Link className="button-home-reg" to="/register-waterdropper">Athlete</Link>
 					</button>
 					<button className="button-logreg">
-						<Link className="button-home-reg" to="/registerCenter">Center or school</Link>
+						<Link className="button-home-reg" to="/register-center">Center or school</Link>
 					</button>
 				</div>
 				<hr />
 				<div className="span-logreg">
 					<span>Are you a member? 
-						<Link className="link-logreg" to="/registerWaterdropper">Sign in</Link>
+						<Link className="link-logreg" to="/register-waterdropper">Sign in</Link>
 					</span>
 				</div>
 			</div>
