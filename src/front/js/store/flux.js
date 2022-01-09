@@ -197,7 +197,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			 		});
 			},
 			getAllHotspots:()=>{
-				fetch(`https://3001-pink-rook-7fv35jqw.ws-eu23.gitpod.io/api/hotspots/`)
+				fetch(getStore().baseUrl.concat('hotspots'))
 					.then(resp => resp.json())
 					.then(data => {
 						setStore({hotspots:[...data]})
@@ -206,6 +206,28 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.catch(error => {
 						console.log(error.message);
 					});
+			},
+
+			searchHotspot:(data)=>{
+				var myHeaders = new Headers();
+				myHeaders.append("Content-Type", "application/json");
+
+				var raw = JSON.stringify({'name':data});
+
+				var requestOptions = {
+				method: 'POST',
+				headers: myHeaders,
+				body: raw,
+				redirect: 'follow'
+				};
+
+				fetch(getStore().baseUrl.concat('search'), requestOptions)
+				.then(response => response.json())
+				.then(data => {
+					setStore({hotspots:[...data]})
+					console.log(data)
+				})
+				.catch(error => console.log('error', error));
 			},
 
 			addNewHotspot:(data,image)=>{

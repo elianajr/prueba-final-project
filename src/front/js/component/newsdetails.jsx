@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import img from '../../img/crazyfly-pure.jpg'
 import '../../styles/newsdetail.scss'
-import Logo from "./Logo.jsx";
+import Logo from "./logo.jsx";
 import ReactPlayer from "react-player";
 import { Context } from "../store/appContext.js";
 import sendicon from '../../img/icon-send.jpg'
@@ -67,7 +67,7 @@ const Newsdetail=()=>{
         <Logo></Logo>
         <form>
         <div className="comments__wrapper">
-        <img className="user__img" src={currentUser.cover_photo} ></img>
+        <img className="user__img" src={currentUser.photo} ></img>
         
         <div className="comments__container">
             <input type="text" placeholder="Start the discussion..." className="comments__input" />

@@ -16,7 +16,7 @@ import img5newshome from '../../img/imgnewshome5.png'
 
 
 import "../../styles/home.scss";
-import Keywordsearch from "../component/Keywordsearch.jsx";
+
 
 const Home = () => {
 	const { store, actions } = useContext(Context);

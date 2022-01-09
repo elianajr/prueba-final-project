@@ -6,7 +6,7 @@ import Aos from "aos";
 import 'aos/dist/aos.css'
 import { Link } from "react-router-dom";
 import News from "../component/news.jsx";
-import Logo from "../component/Logo.jsx";
+import Logo from "../component/logo.jsx";
 import '../../styles/news.scss'
 
 import img from '../../img/imgnews.jpg'
