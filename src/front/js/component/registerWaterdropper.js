@@ -3,6 +3,8 @@ import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext.js";
 import { Redirect } from 'react-router';
+import { Navbar } from "./navbar.js";
+import { Footer } from "./footer.js";
 import "../../styles/registerlogin.scss";
 
 
@@ -19,11 +21,9 @@ const RegisterWaterdropper = () => {
 	const onSubmit = data => {
 		console.log(data);
 		actions.register(data);
-		
 	};
 
 	const [formStep, setFormStep] = useState(0);
-
 
 	const completeFormStep = () => {
 		if (formStep === 2) return;
@@ -34,7 +34,9 @@ const RegisterWaterdropper = () => {
 
 
 	return (
-		<div className="register-login-form">
+		<Fragment>
+		<Navbar />
+		<div className="register-login-form myprofile">
 			<form className="register-login" onSubmit={handleSubmit(onSubmit)}>
 
 				<div className="progressbar-regform">
@@ -151,19 +153,19 @@ const RegisterWaterdropper = () => {
 						<span className="label-relog">Sports (check all that apply)</span>
 						<div>
 							<div className="form-check form-switch form-check-reglog">
-							<input className="form-check-input" type="checkbox" id="scuba" name="sports" value="scuba" {...register("sports")}/>
+							<input className="form-check-input" type="checkbox" id="scuba" name="sports" value="scuba" {...register("sports", { required: true })}/>
 							<label className="form-check-label" htmlFor="scuba">Scuba diving</label>
 							</div>
 							<div className="form-check form-switch form-check-reglog">
-							<input className="form-check-input" type="checkbox" id="surf" name="sports" value="surf" {...register("sports")}/>
+							<input className="form-check-input" type="checkbox" id="surf" name="sports" value="surf" {...register("sports", { required: true })}/>
 							<label className="form-check-label" htmlFor="surf">Surf</label>
 							</div>
 							<div className="form-check form-switch form-check-reglog">
-							<input className="form-check-input" type="checkbox" id="kitesurf" name="sports" value="kitesurf" {...register("sports")}/>
+							<input className="form-check-input" type="checkbox" id="kitesurf" name="sports" value="kitesurf" {...register("sports", { required: true })}/>
 							<label className="form-check-label" htmlFor="kitesurf">Kitesurf</label>
 							</div>
 							<div className="form-check form-switch form-check-reglog">
-							<input className="form-check-input" type="checkbox" id="snorkel" name="sports" value="snorkel" {...register("sports")}/>
+							<input className="form-check-input" type="checkbox" id="snorkel" name="sports" value="snorkel" {...register("sports", { required: true })}/>
 							<label className="form-check-label" htmlFor="snorkel">Snorkel</label>
 							</div>
 							{errors.sports && errors.sports.type === "required" && (
@@ -209,7 +211,7 @@ const RegisterWaterdropper = () => {
 
 					<div className="form-input">
 						<label htmlFor="role" className="label-relog">Level</label>
-						<select className="input-reglog" {...register("level")}>
+						<select className="input-reglog" {...register("level", { required: true })}>
 							<option value="">Choose an option...</option>
 							<option value="beginner">Beginner</option>
 							<option value="intermediate">Intermediate</option>
@@ -226,7 +228,7 @@ const RegisterWaterdropper = () => {
 						<input
 							type="text"
 							name="location"
-							id="lastame"
+							id="location"
 							placeholder="Location"
 							className="input-reglog"
 							{...register("location", { required: true })}
@@ -248,6 +250,8 @@ const RegisterWaterdropper = () => {
 
 			</form>
 		</div>
+		<Footer />
+		</Fragment>
 	);
 };
 

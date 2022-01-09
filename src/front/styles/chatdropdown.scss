@@ -1,29 +1,31 @@
 .chatdropdown__userimg{
-    height:3rem;
+    height:2.4rem;
     border-radius: 100%;
-    width: 3rem;
+    width: 2.4rem;
     margin: 0.5rem 0.5rem;
     justify-content: center;
     padding: auto;
 }
 
 .chatdropdown__box{
- background: #EDF5F5;
-border: 0.1rem solid #C8EEEE;
-box-sizing: border-box;
-box-shadow: 0rem -0.2rem 3.1 rgba(0, 0, 0, 0.1);
-border-top-left-radius: 1rem;
-border-top-right-radius: 1rem;
-width: 22rem;
-height: 4rem;
-position: absolute;
-left: 62rem;
-margin-top: 3rem;
+    background-color: white;
+    border: 0.5px solid #0c82a644;
+    box-sizing: border-box;
+    box-shadow:0 0 1px 1px #0c82a628;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+    width: 14rem;
+    height: 3rem;
+    margin-bottom: 0rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
 }
 
 .chatdropdown__text{
     font-family: 'Roboto Condensed';
-    font-size: 1.2rem;
+    font-size: 1rem;
     margin-left: 0.5rem;
     text-decoration: none;
     color: #091320
@@ -44,8 +46,8 @@ margin-top: 3rem;
 }
 
 .chatdropdown__usersimg{
-    height:3rem;
     border-radius: 100%;
+    height:3rem;
     width: 3rem;
     margin: 0.5rem 0.5rem;
     justify-content: center;

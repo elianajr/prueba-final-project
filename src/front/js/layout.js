@@ -4,6 +4,7 @@ import {
 	Routes,
 	Route
   } from "react-router-dom";
+import Navbar from "./component/navbar.js";
 import Home from "./pages/home.js";
 import HotSpot from "./pages/hotspot.jsx";
 import Forecast from "./pages/forecast.jsx";
@@ -15,16 +16,16 @@ import { Snorkel } from "./pages/snorkel.jsx";
 import { Scuba } from "./pages/scuba.jsx";
 import Login from "./component/login.js";
 import Register from "./component/register.js";
-import Upload from "./component/upload.jsx";
-import Uploadingphotos from "./pages/uploadingphotos.jsx";
 import RegisterWaterdropper from "./component/registerWaterdropper.js";
 import RegisterCenter from "./component/registerCenter.js";
-import ChatForm from "./component/ChatForm.jsx"
-import Chatdropdown from "./component/Chatdropdown.jsx"
-import Newsview from "./pages/Newsview.jsx";
-import Newsdetail from "./component/Newsdetails.jsx";
 import HotspotID from "./pages/hotspotID.jsx";
-
+import EditProfileWaterdropper from "./component/editProfileWaterdropper.js";
+import EditProfileCenter from "./component/editProfileCenter.js";
+import Profile from "./pages/profile.js";
+import DeleteProfile from "./component/deleteProfile.js";
+import ChatForm from "./component/chatForm.jsx"
+import Newsview from "./pages/newsview.jsx";
+import Newsdetail from "./component/newsdetails.jsx";
 
 
 //create your first component
@@ -45,15 +46,20 @@ const Layout = () => {
 				<Route path="/kitesurf" element={<Kitesurf/>}/>
 				<Route path="/snorkel" element={<Snorkel/>}/>
 				<Route path="/diving" element={<Scuba/>}/>
-				<Route path="/login" element={<Login />} />
-				<Route path="/register" element={<Register />} />
-				<Route path="/registerwaterdropper" element={<RegisterWaterdropper />} />
-				<Route path="/registercenter" element={<RegisterCenter />} />
 				<Route path="/news" element={<Newsview />} />
 				<Route path="/newsdetail" element={<Newsdetail />} />		
 				<Route path="/chat" element={<ChatForm />} />
 				<Route path="/hotspotID/:id" element={<HotspotID />} />
-			</Routes>		
+				<Route path="/login" element={<Login />} />
+				<Route path="/register" element={<Register />} />
+				<Route path="/register-waterdropper" element={<RegisterWaterdropper />} />
+				<Route path="/register-center" element={<RegisterCenter />} />
+				<Route path="/profile/:id" element={<Profile />} />
+				<Route path="/profile-waterdropper" element={<EditProfileWaterdropper />} />
+				<Route path="/profile-center" element={<EditProfileCenter />} /> 
+				<Route path="/delete-profile" element={<DeleteProfile />} /> 
+			</Routes>	
+	
 		</BrowserRouter>
 		
 	);

@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import jwt_decode from "jwt-decode";
+
 import getState from "./flux.js";
 
 // Don't change, here is where we initialize our context, by default it's just going to be null.
@@ -22,8 +24,12 @@ const injectContext = PassedComponent => {
 		);
 
 		useEffect(() => {
-				 
+			if(localStorage.getItem("token")){
+				const loggedUser = jwt_decode(localStorage.getItem("token"));
+				state.actions.setLoggedUser(loggedUser.sub);
+			}
 		}, []);
+		
 
 		return (
 			<Context.Provider value={state}>

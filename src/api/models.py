@@ -1,6 +1,6 @@
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.dialects import postgresql
-from werkzeug.security import generate_password_hash, check_password_hash
+from werkzeug.security import generate_password_hash
 
 
 db = SQLAlchemy()
@@ -18,6 +18,11 @@ waterdropper_fav_center = db.Table('waterdropper_fav_center',
 
 waterdropper_fav_spot = db.Table('waterdropper_fav_spot',
     db.Column('waterdropper_id', db.Integer, db.ForeignKey('waterdropper.id'), primary_key=True),
+    db.Column('hotspot_id', db.Integer, db.ForeignKey('hotspot.id'), primary_key=True)
+)
+
+center_fav_spot = db.Table('center_fav_spot',
+    db.Column('center_id', db.Integer, db.ForeignKey('center.id'), primary_key=True),
     db.Column('hotspot_id', db.Integer, db.ForeignKey('hotspot.id'), primary_key=True)
 )
 
@@ -49,7 +54,7 @@ class Account(db.Model):
 
 
     def __repr__(self):
-        return f'Account is email: {self.email}, id: {self.id}, password: {self._password}, username: {self.username}, photo: {self.photo}, cover_photo: {self.cover_photo}, instagram: {self.instagram}, facebook: {self.facebook}, waterdropper: {self._is_waterdropper}'
+        return f'Account is email: {self.email}, id: {self.id}, password: {self._password}, username: {self.username}, photo: {self.photo}, cover_photo: {self.cover_photo}, instagram: {self.instagram}, facebook: {self.facebook}, about: {self.about}, waterdropper: {self._is_waterdropper}'
 
     def to_dict(self):
         user = self.has_waterdropper if self._is_waterdropper else self.has_center
@@ -62,8 +67,12 @@ class Account(db.Model):
             "cover_photo": self.cover_photo,
             "instagram": self.instagram,
             "facebook": self.facebook,
+            "about": self.about,
             "_is_waterdropper": self._is_waterdropper,
-            "user": user[0].to_dict()
+            "user": list(map(lambda x: x.to_dict(), user)),
+            # "user": user[0].to_dict(),
+            "sports": list(map(lambda sport: sport.to_dict(), self.have_account_sport))
+            # "sports": [sport.to_dict() for sport in self.have_account_sport]
         }
 
 
@@ -104,10 +113,8 @@ class Account(db.Model):
         db.session.commit()
         return self
 
-    def reactive_account(self, username, photo, is_waterdropper, password):
-        self.username = username
-        self.photo = photo
-        self._is_waterdropper = is_waterdropper
+    def reactive_account(self, email, password):
+        self.email = email
         self.password = password
         self._is_active = True
         db.session.commit()
@@ -146,8 +153,9 @@ class Waterdropper(db.Model):
             "last_name": self.last_name,
             "level": self.level,
             "location": self.location,
-            "favourite_centers": self.have_waterdropper_favcenter,
-            "favourite_spot": self.have_waterdropper_favspot
+            "favourite_centers": list(map(lambda center: center.to_dict(), self.have_waterdropper_favcenter)),
+            # "favourite_centers": [center.to_dict() for center in self.have_waterdropper_favcenter]
+            "favourite_spot": [hotspot.to_dict() for hotspot in self.have_waterdropper_favspot]
         }
 
     @classmethod
@@ -183,6 +191,8 @@ class Waterdropper(db.Model):
         return self.have_waterdropper_favspot
 
 
+    
+
 class Center(db.Model):
     __tablename__: "center"
 
@@ -190,13 +200,17 @@ class Center(db.Model):
     address = db.Column(db.String(), unique=False, nullable=True)
     phone = db.Column(db.String(), unique=False, nullable=True)
     web = db.Column(db.String(), unique=False, nullable=True)
+    name = db.Column(db.String(), unique=False, nullable=True)
+    latitude = db.Column(db.String(), unique=False, nullable=True)
+    longitude = db.Column(db.String(), unique=False, nullable=True)
     account_id = db.Column(db.Integer, db.ForeignKey("account.id"), nullable=False)
 
     have_favcenter_waterdropper = db.relationship('Waterdropper', secondary=waterdropper_fav_center, back_populates="have_waterdropper_favcenter")
+    have_favspot_center = db.relationship('Hotspot', secondary=center_fav_spot, back_populates="have_center_favspot")
     has_reviews = db.relationship("Review_Center")
 
     def __repr__(self):
-        return f'Center is account_id: {self.account_id}, address: {self.address}, phone: {self.phone}, web: {self.web}'
+        return f'Center is account_id: {self.account_id}, address: {self.address}, phone: {self.phone}, web: {self.web}, name: {self.name}, latitude: {self.latitude}, longitude: {self.longitude}'
 
     def to_dict(self):
         return {
@@ -204,7 +218,10 @@ class Center(db.Model):
             "address": self.address,
             "phone": self.phone,
             "web": self.web,
-            "favourite_count": len(self.have_favcenter_waterdropper),
+            "name": self.name,
+            "latitude": self.latitude,
+            "longitude": self.longitude,
+            "favourite_spot": [hotspot.to_dict() for hotspot in self.have_favspot_center]
         }
 
     @classmethod
@@ -217,6 +234,11 @@ class Center(db.Model):
         account_center = cls.query.filter_by(account_id=account_id).one_or_none()
         return account_center
 
+    @classmethod
+    def get_all_centers(cls):
+        centers= cls.query.all()
+        return centers
+
     def create_center(self):
         db.session.add(self)
         db.session.commit()
@@ -228,6 +250,11 @@ class Center(db.Model):
             setattr(self, key, value)
         db.session.commit()
         return self
+
+    def add_center_hotspot(self,hotspot):
+        self.have_favspot_center.append(hotspot)
+        db.session.commit()
+        return self.have_favspot_center
 
 
 class Hotspot(db.Model):
@@ -245,6 +272,7 @@ class Hotspot(db.Model):
 
     have_favspot_waterdropper = db.relationship('Waterdropper', secondary=waterdropper_fav_spot, back_populates="have_waterdropper_favspot")
     have_hotspot_specie = db.relationship('Specie', secondary=species_hotspot, back_populates="have_specie_hotspot")
+    have_center_favspot = db.relationship('Center', secondary=center_fav_spot, back_populates="have_favspot_center")
     has_reviews_spot = db.relationship("Review_Hotspot")
 
     def __repr__(self):

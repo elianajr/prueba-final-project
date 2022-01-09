@@ -1,31 +1,36 @@
 from werkzeug.security import generate_password_hash
+
 data = {
     "Sport":[
         {
             "id": 1,
-            "name": "scuba"
+            "name": "Scuba"
         },
         {
             "id": 2,
-            "name": "surf"
+            "name": "Surf"
         },
         {
             "id": 3,
-            "name": "kitesurf"
+            "name": "Kitesurf"
         },
         {
             "id": 4,
-            "name": "snorkel"
+            "name": "Snorkel"
         }
     ],
     
     "Account":[
         {
             "id": 1,
-            "email": "elianajr1@gmail.com",
+            "email": "eliana@gmail.com",
             "_password": generate_password_hash("123456", method='pbkdf2:sha256', salt_length=16),
             "username": "elianajr",
-            "photo": "photo",
+            "photo": "https://res.cloudinary.com/dbopipvcs/image/upload/v1640024461/waterdropper/eliana-sea-dragons_rbm3lv.png",
+            "cover_photo": "https://res.cloudinary.com/dbopipvcs/image/upload/v1640024460/waterdropper/eliana-turtle_e3nrct.png",
+            "instagram": "https://www.instagram.com/eliana_jordan/",
+            "facebook": "https://www.facebook.com/eliana.jordan.romea",
+            "about": "I learn how to dive 7 years ago in Thailand and since the very first moment I got absolute amazed by the underwater world, all colours, fish and feeling the water on top of my head, made me feel like an astronaut who want to meet every single specie. 4 years ago I decided to become instructor to share my passion with everybody!",
             "_is_active": True,
             "_is_waterdropper": True
         },
@@ -33,8 +38,10 @@ data = {
             "id": 2,
             "email": "puravida@gmail.com",
             "_password": generate_password_hash("123456", method='pbkdf2:sha256', salt_length=16),
-            "username": "Pura vida diving",
-            "photo": "photo",
+            "username": "puravidadiving",
+            "photo": "https://res.cloudinary.com/dbopipvcs/image/upload/v1640024460/waterdropper/pura-vida-logo_tpltcc.png",
+	        "cover_photo": "https://res.cloudinary.com/dbopipvcs/image/upload/v1640024460/waterdropper/pura-vida-cover_km4jhz.png",
+            "about": "After 14 years learning and teaching, our motto haven’t changed: passion for the ocean, for you, for teaching y for sharing our little paradise called Koh Tao. We are the first Spanish teaching school and we want to make you feel as part of a big family! We are a SSI center teaching up to instructor.",
             "_is_active": True,
             "_is_waterdropper": False
         },
@@ -43,16 +50,119 @@ data = {
             "email": "folken@gmail.com",
             "_password": generate_password_hash("123456", method='pbkdf2:sha256', salt_length=16),
             "username": "folkencillo",
-            "photo": "photo",
-            "_is_active": True,
+            "about": "I´m a beautiful Full Stack Developer. Constantly trying to improve and learn. I love drawing and in free time I like to go for free diving. Octopus are one of my favourite marine creatures, My octopus teacher documentary deeply moved me",
+            "photo": "https://res.cloudinary.com/dbopipvcs/image/upload/v1640024630/waterdropper/folken-profile_dxjtge.png",
+            "cover_photo": "https://res.cloudinary.com/dbopipvcs/image/upload/v1640114455/waterdropper/octopus-cover_lqikhi.png",
+	        "_is_active": True,
             "_is_waterdropper": True
         },
         {
             "id": 4,
-            "email": "indrasurf@gmail.com",
+            "email": "indasurf@gmail.com",
             "_password": generate_password_hash("123456", method='pbkdf2:sha256', salt_length=16),
-            "username": "Indra Surf Bali",
+            "username": "indasurf",
+            "photo": "https://res.cloudinary.com/dbopipvcs/image/upload/v1640024460/waterdropper/in_da_surf_bali-logo_s1jmfh.png",
+	        "cover_photo": "https://res.cloudinary.com/dbopipvcs/image/upload/v1640024460/waterdropper/in_da_surf_bali-cover_x322ti.png",
+            "about": "We are a family run surf camp in Bali. We do only semi-private surf lessons (max 2 guests with 1 coach) with an individual program according to every guest level and goal what makes our camp suitable for all levels (from beginner to advance surfers).",
+            "_is_active": True,
+            "_is_waterdropper": False
+        },
+        {
+            "id": 5,
+            "email": "ruben@gmail.com",
+            "_password": generate_password_hash("123456", method='pbkdf2:sha256', salt_length=16),
+            "username": "rubenl",
+            "photo": "https://res.cloudinary.com/dbopipvcs/image/upload/v1640114454/waterdropper/ruben-profile_evmcnp.png",
+	        "cover_photo": "https://res.cloudinary.com/dbopipvcs/image/upload/v1640114455/waterdropper/surf-cover_gyki1r.png",
+            "about": "I'm a very calm, hard worker and organized person. After few years working in finance, I met my friend Juan and we started to travel the world surfing at the best turquoise water beaches. Now, I have decided follow my passion and become surf instructor.",
+            "_is_active": True,
+            "_is_waterdropper": True
+        },
+        {
+            "id": 6,
+            "email": "info@c2sky.com",
+            "_password": generate_password_hash("123456", method='pbkdf2:sha256', salt_length=16),
+            "username": "c2sky",
+            "photo": "https://res.cloudinary.com/dbopipvcs/image/upload/v1640114454/waterdropper/C2Sky-profile_ub4gfi.png",
+	        "cover_photo": "https://res.cloudinary.com/dbopipvcs/image/upload/v1640114455/waterdropper/C2Sky-cover_sqosif.png",
+            "about": "We are a kitesurfing school. C2Sky has actually a few meanings, firstly as an outdoor activity of kite flying we SEE 2 the Sky. I guess the more obvious is that we jump around from the SEA 2 THE SKY.Then we have the shape of the kites. No doubt we had to add the letter C in our name branding.",
+            "_is_active": True,
+            "_is_waterdropper": False
+        },
+        {
+            "id": 7,
+            "email": "dive@is.com",
+            "_password": generate_password_hash("123456", method='pbkdf2:sha256', salt_length=16),
+            "username": "diveis",
             "photo": "photo",
+	        "cover_photo": "photo",
+            "about": "about",
+            "_is_active": True,
+            "_is_waterdropper": False
+        },
+        {
+            "id": 8,
+            "email": "mykonos@divingcenter.com",
+            "_password": generate_password_hash("123456", method='pbkdf2:sha256', salt_length=16),
+            "username": "mykonosdivingcenter",
+            "photo": "photo",
+	        "cover_photo": "photo",
+            "about": "about",
+            "_is_active": True,
+            "_is_waterdropper": False
+        },
+        {
+            "id": 9,
+            "email": "thalaseakiteboarding@gmail.com",
+            "_password": generate_password_hash("123456", method='pbkdf2:sha256', salt_length=16),
+            "username": "thalaseakiteboarding",
+            "photo": "photo",
+	        "cover_photo": "photo",
+            "about": "about",
+            "_is_active": True,
+            "_is_waterdropper": False
+        },
+        {
+            "id": 10,
+            "email": "orcadiving@gmail.com",
+            "_password": generate_password_hash("123456", method='pbkdf2:sha256', salt_length=16),
+            "username": "orcadiving",
+            "photo": "photo",
+	        "cover_photo": "photo",
+            "about": "about",
+            "_is_active": True,
+            "_is_waterdropper": False
+        },
+        {
+            "id": 11,
+            "email": "info@belizeprodive.com",
+            "_password": generate_password_hash("123456", method='pbkdf2:sha256', salt_length=16),
+            "username": "belizeprodive",
+            "photo": "photo",
+	        "cover_photo": "photo",
+            "about": "about",
+            "_is_active": True,
+            "_is_waterdropper": False
+        },
+        {
+            "id": 12,
+            "email": "info@tpk48diving.com",
+            "_password": generate_password_hash("123456", method='pbkdf2:sha256', salt_length=16),
+            "username": "tpk48diving",
+            "photo": "photo",
+	        "cover_photo": "photo",
+            "about": "about",
+            "_is_active": True,
+            "_is_waterdropper": False
+        },
+        {
+            "id": 13,
+            "email": "avellanassurf@gmail.com",
+            "_password": generate_password_hash("123456", method='pbkdf2:sha256', salt_length=16),
+            "username": "avellanassurfschool",
+            "photo": "photo",
+	        "cover_photo": "photo",
+            "about": "about",
             "_is_active": True,
             "_is_waterdropper": False
         }
@@ -74,25 +184,120 @@ data = {
             "level": "Intermediate",
             "location": "Malaga",
             "account_id": 3
+        },
+        {
+            "id": 3,
+            "first_name": "Ruben",
+            "last_name": "Lopez",
+            "level": "Advanced",
+            "location": "Barcelona",
+            "account_id": 5
         }
     ],
 
     "Center":[
         {
             "id": 1,
+            "name": "Pura Vida Diving",
             "address": "9/24, Koh Tao, Surat Thani 84360, Thailand",
-            "phone": "111111111",
+            "phone": "+6677457041",
             "web": "https://www.puravida.com",
+            "latitude": "10.084804143540936", 
+            "longitude": "99.82558214061011",
             "account_id": 2
         },
         {
             "id": 2,
+            "name": "In Da Surf Bali",
             "address": "Jl.Pantai Batu Bolong #32A, Canggu, Kec. Kuta Utara, Kabupaten Badung, Bali 80361, Indonesia",
-            "phone": "111111112",
+            "phone": "+6281999065243",
             "web": "https://www.surf.com",
+            "latitude": "-8.649653464429072", 
+            "longitude": "115.13726121182741",
             "account_id": 4
+        },
+        {
+            "id": 3,
+            "name": "C2Sky",
+            "address": "16 Nguyen Dinh Chieu Street, Mui Ne, Vietnam",
+            "phone": "+31620037417",
+            "web": "https://c2skykitecenter.com/",
+            "latitude": "10.941489006446734", 
+            "longitude": "108.1937612810982",
+            "account_id": 6
+        },
+        {
+            "id": 4,
+            "name": "Dive.is",
+            "address": "Hólmaslóð 2, 101 Reykjavík, Iceland",
+            "phone": "+3545786200",
+            "web": "http://www.dive.is/",
+            "latitude": "64.1574780772487",
+            "longitude": "-21.94000791534146",
+            "account_id": 7
+        },
+        {
+            "id": 5,
+            "name": "Mykonos Diving Center",
+            "address": "Paradise Beach, Mikonos 846 00, Greece",
+            "phone": "+302289024808",
+            "web": "http://www.dive.gr/",
+            "latitude": "37.41138639486761",
+            "longitude": "25.356956584658537",
+            "account_id": 8
+        },
+        {
+            "id": 6,
+            "name": "Thalasea Kiteboarding Center Naxos",
+            "address": "Mikri Vigla 843 00, Greece",
+            "phone": "+33658983631",
+            "web": "http://thalaseasports.com/",
+            "latitude": "38.03134525870652", 
+            "longitude": "25.941173797236903",
+            "account_id": 9
+        },
+        {
+            "id": 7,
+            "name": "Orca Diving Center",
+            "address": "Strada, 73010 Torre Lapillo LE, Italy",
+            "phone": "+393495701717",
+            "web": "https://www.orcadivingcenter.it/",
+            "latitude": "40.881952022715865", 
+            "longitude": "17.778404837675996",
+            "account_id": 10
+        },
+        {
+            "id": 8,
+            "name": "Belize Pro Dive Center",
+            "address": "Seagrape Drive, San Pedro, Belize",
+            "phone": "+1 501-226-2092",
+            "web": "https://belizeprodivecenter.com/",
+            "latitude": "17.906722520461678", 
+            "longitude": "-87.97338531082941",
+            "account_id": 11
+        },
+        {
+            "id": 9,
+            "name": "TPK48 Diving",
+            "address": "Distrik, Jalan Marinda, Arah Bandara MARINDA, Waisai, Kota Waisai, Kabupaten Raja Ampat, Papua Bar. 98482, Indonesia",
+            "phone": "+62 852-8800-8777",
+            "web": "https://tpk48.com/",
+            "latitude": "-0.4374074580738787", 
+            "longitude": "130.78326113874698",
+            "account_id": 12
+        },
+        {
+            "id": 10,
+            "name": "Avellanas Surf School",
+            "address": "Avellanas Lolas Bar & Restaurant, Provincia de Guanacaste, 27 de Abril, 50303, Costa Rica",
+            "phone": "+50671058809",
+            "web": "https://www.avellanas-surf-school.com/",
+            "latitude": "10.227803926347125",
+            "longitude": "-85.83723101705961",
+            "account_id": 13
         }
     ],
+
     "Hotspot":[ 
         {
             "id": 1,
@@ -108,7 +313,7 @@ data = {
 
 	    {
             "id": 2,
-            "sport_id": 1,  
+            "sport_id": 2,  
             "account_id": 1,
             "name": "Lofoten Isle, NORUEGA",
             "photo": "https://www.actualidadviajes.com/wp-content/uploads/2018/03/islas-lofoten.jpg", 
@@ -120,7 +325,7 @@ data = {
 
 	    {
             "id": 3,
-            "sport_id": 1,  
+            "sport_id": 3,  
             "account_id": 1,
             "name": "Isla de Chios – Mar Egeo, GRECIA",
             "photo": "https://www.grecotour.com/img/cms/grecia/islas-griegas/chios/chios-beach2.jpg", 
@@ -144,7 +349,7 @@ data = {
 	
 	    {
             "id": 5,
-            "sport_id": 1,  
+            "sport_id": 3,  
             "account_id": 1,
             "name": "Silfra – Parque Nacional de Thingvellir, ISLANDIA",
             "photo": "https://cdn2.civitatis.com/islandia/thingvellir/galeria/header/silfra-islandia.jpg", 
@@ -156,7 +361,7 @@ data = {
 	
 	    {
             "id": 6,
-            "sport_id": 1,  
+            "sport_id": 2,  
             "account_id": 1,
             "name": "Blue Hole – Gozo, MALTA",
             "photo": "https://www.descubremalta.com/wp-content/uploads/Blue-Hole-Dwejra-Gozo-scaled.jpg", 
@@ -192,7 +397,7 @@ data = {
 	
 	    {
             "id": 9,
-            "sport_id": 1,  
+            "sport_id": 3,  
             "account_id": 1,
             "name": "Layang Layang – Mar de la China meridional, MALASIA",
             "photo": "https://q-xx.bstatic.com/images/hotel/max1024x768/125/125963951.jpg", 
@@ -216,7 +421,7 @@ data = {
 
 	    {
             "id": 11,
-            "sport_id": 1,  
+            "sport_id": 2,  
             "account_id": 1,
             "name": "Lembeh Strait – isla Sulawesi, INDONESIA",
             "photo": "https://www.lembehresort.com/wp-content/uploads/East-Lembeh-768x303.jpg", 
@@ -240,7 +445,7 @@ data = {
 
 	    {
             "id": 13,
-            "sport_id": 1,  
+            "sport_id": 4,  
             "account_id": 1,
             "name": "Cape Kri – Raja Ampat, INDONESIA",
             "photo": "https://mochilerosentailandia.com/wp-content/uploads/2019/02/que-hacer-en-puerto-galera.jpg", 
@@ -264,7 +469,7 @@ data = {
 
 	    {
             "id": 15,
-            "sport_id": 1,  
+            "sport_id": 2,  
             "account_id": 1,
             "name": "Apo Reef – Mar de Sulu et Mar de China, FILIPINAS",
             "photo": "https://cdni.rt.com/actualidad/public_images/2021.04/article/r/700/90/jpeg/6066f8ae59bf5b49896e3ebc.jpg", 
@@ -276,7 +481,7 @@ data = {
 
 	    {
             "id": 16,
-            "sport_id": 1,  
+            "sport_id": 3,  
             "account_id": 1,
             "name": "Roca de Richelieu – Mar de Andaman, Oeste de Phuket, TAILANDIA",
             "photo": "https://imagenes.20minutos.es/files/article_amp/uploads/imagenes/2020/01/31/phang-nga-bay-tailandia.jpeg", 
@@ -300,7 +505,7 @@ data = {
 
 	    {
             "id": 18,
-            "sport_id": 1,  
+            "sport_id": 4,  
             "account_id": 1,
             "name": "Islas Wolf y Darwin – Archipiélago des Galapagos, ECUADOR",
             "photo": "https://1.bp.blogspot.com/-2QSutSInxpY/Wmn8am8h6RI/AAAAAAAABNg/BYSzRWfF75MdrnmOWSYmCnNH9ESIqAEyQCLcBGAs/s1600/Isla%2BDarwin.PNG", 
@@ -348,7 +553,7 @@ data = {
 	
 	    {
             "id": 22,
-            "sport_id": 1,  
+            "sport_id": 2,  
             "account_id": 1,
             "name": "Isla Malpelo, COLOMBIA",
             "photo": "https://noticias.masverdedigital.com/wp-content/uploads/2020/06/colombiaislademalpelob.jpg", 
@@ -420,7 +625,7 @@ data = {
 
 	    {
             "id": 28,
-            "sport_id": 2,  
+            "sport_id": 3,  
             "account_id": 1,
             "name": "Protea Banks, SUDAFRICA",
             "photo": "https://taucher.net/media/images/w850/b0/dc/b8/b0dcb8222d901073ae17a0c40dc00f60.JPG", 
@@ -588,7 +793,7 @@ data = {
 
 	    {
             "id": 42,
-            "sport_id": 2,  
+            "sport_id": 3,  
             "account_id": 1,
             "name": "Supertubes, Jeffrey's Bay, South Africa",
             "photo": "https://dl.airtable.com/.attachmentThumbnails/7d20c94597ae414ea2dd004863504fbd/601f8f5b", 
@@ -672,7 +877,7 @@ data = {
 	
 	    {
             "id": 49,
-            "sport_id": 3,  
+            "sport_id": 2,  
             "account_id": 1,
             "name": "Cloud Nine, Siargao Island, Philippines",
             "photo": "https://www.thecoastalcampaign.com/wp-content/uploads/2019/09/Cloud-9-Siargao-.jpg", 
@@ -720,7 +925,7 @@ data = {
 
 	    {
             "id": 53,
-            "sport_id": 3,  
+            "sport_id": 4,  
             "account_id": 1,
             "name": "Honolua Bay, Maui, Hawaii",
             "photo": "https://cdn.pixabay.com/photo/2019/10/20/16/57/maui-4564227_1280.jpg", 
@@ -768,7 +973,7 @@ data = {
 	
 	    {
             "id": 57,
-            "sport_id": 3,  
+            "sport_id": 2,  
             "account_id": 1,
             "name": "Manu Bay, Raglan, New Zealand",
             "photo": "https://surfsimply.com/wp-content/uploads/2016/05/Surf_Simply_Departure_Gate_Raglan_New_Zealand_feature-1.jpg", 
@@ -792,7 +997,7 @@ data = {
 	
 	    {
             "id": 59,
-            "sport_id": 3,  
+            "sport_id": 2,  
             "account_id": 1,
             "name": "Jaws, Maui, Hawaii",
             "photo": "https://wpcdn.us-east-1.vip.tn-cloud.net/www.hawaiimagazine.com/content/uploads/2020/12/MikeCoots_Peahi_HawaiiMag-6882.jpg", 
@@ -816,7 +1021,7 @@ data = {
 	
 	    {
             "id": 61,
-            "sport_id": 3,  
+            "sport_id": 2,  
             "account_id": 1,
             "name": "Surfrider Beach, Malibu, California",
             "photo": "https://www.californiabeaches.com/wp-content/uploads/2014/09/bigstock-Malibu-Lagoon-State-Beach-in-M-459615401-e1486591810993-1000x615.jpg", 
@@ -876,7 +1081,7 @@ data = {
 
 	    {
             "id": 66,
-            "sport_id": 4,  
+            "sport_id": 3,  
             "account_id": 1,
             "name": "Pasta Point, Maldives",
             "photo": "https://soulridercamp.com/83/pasta-point-resort-pack/ajax/crop.php?w=800&h=600&src=scPa1G4n.jpg", 
@@ -900,7 +1105,7 @@ data = {
 	
 	    {
             "id": 68,
-            "sport_id": 4,  
+            "sport_id": 2,  
             "account_id": 1,
             "name": "Bundoran Beach, County Donegal, Ireland",
             "photo": "https://i.pinimg.com/originals/1e/bf/5a/1ebf5a861dd49f8cbb8dda410a59d89c.jpg", 
@@ -1115,7 +1320,7 @@ data = {
         },
         {
             "id": 86,
-            "sport_id": 4,  
+            "sport_id": 2,  
             "account_id": 1,
             "name": "Arugam Bay, Sri Lanka",
             "photo": "https://1001beach.com/img/posts/2122/1200/arugam_bay-1.jpg", 

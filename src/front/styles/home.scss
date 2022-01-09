@@ -3,13 +3,13 @@
 .home{
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-items: center;
 }
 
 .home-topbody{
     display: flex;
-    width: 90rem;
+    width: 100vw;
+    background-repeat: no-repeat;
+    background-position: center;
     height: 47.8rem;
     background-image: url("https://i.ibb.co/jRsbvtf/whale.png");
     align-items: flex-end;
@@ -51,10 +51,14 @@
 
 .home-bottonbody{
     display: flex;
-    align-items: flex-start;
     justify-items: center;
+    align-items: flex-start;
     flex-direction: row;
+    justify-content: center;
 }
+::-webkit-scrollbar {
+    display: none;
+    }
 
 .home-bottonbody__services{
     display: flex;
@@ -102,12 +106,11 @@
 }
 
 .home-bottonbody__newsBox{
-    display: block;
+    display: flex;
     width: 43rem;
-    height: 216.4;
-    background: rgb(124, 20, 20);
+    height: 50rem;
+    overflow: hidden;
     overflow-y: scroll;
-    scroll-behavior: smooth;
 }
 
 .buttonWTD_style{
@@ -155,4 +158,56 @@
 .home-bottonbody__services__searchbar{
     margin-top: -7rem;
     margin-bottom: 2rem;
+}
+
+.home-bottonbody__newsBoxtitle{
+    margin-top: 2rem;
+    font-family: 'Righteous';
+    font-size: 4rem;
+    margin-left: 2rem;
+}
+
+
+.Card__NewsHome{
+    width: 18rem;
+    height: 18rem;
+    filter: drop-shadow(0rem 0.25rem 0.25rem rgba(0, 0, 0, 0.25));
+}
+
+.Card__NewsHomeimg{
+    width: 90%;
+    align-self: center;
+    margin-top: 1rem;
+}
+
+.home-bottonbody__newsleftbox{
+    display: flex;
+    flex-direction: column;
+    margin-left: 4rem;
+}
+
+.home-bottonbody__newsrightbox{
+    display: flex;
+    flex-direction: column;
+    margin-top: 2.3rem;
+    margin-left: 2rem;
+    margin-right: 2rem;
+
+}
+
+.Card__NewsHometext{
+    font-family: 'Roboto Condensed';
+}
+
+.Card__NewsHomefooter__category{
+    color: rgba( #7494be, 0.7);
+}
+
+.Card__NewsHomefooter{
+    display: flex;
+    justify-content: space-between;
+}
+
+.Card__NewsHomefooter__date{
+    font-family: 'Roboto Condensed';
 }

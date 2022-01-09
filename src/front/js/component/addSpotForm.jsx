@@ -9,6 +9,9 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import MenuItem from '@mui/material/MenuItem';
+import Upload from "./upload.jsx";
+import { set } from "date-fns/esm";
+
 
 export const AddSpotForm = props => {
     const { store, actions } = useContext(Context);
@@ -21,6 +24,7 @@ export const AddSpotForm = props => {
     const [open, setOpen] = React.useState(false);
     const [sport, setSport] = React.useState('');
     const [level, setLevel] = React.useState('');
+    const [files,setFiles]=React.useState(null)
     const [form, setForm] = React.useState({
         account_id: 1,
         sport_id:null,
@@ -112,6 +116,19 @@ export const AddSpotForm = props => {
         setOpen(false);
     };
 
+    const uploadimage=(img)=>{
+		props.files(img)    
+	}
+
+    const changefiles= data=>{
+		setFiles(data)
+       
+	}
+
+    useEffect(()=>{
+        uploadimage(files)
+    },[files])
+
     return (
         <div className="hotspot-midbody">
             <Button variant="outlined" onClick={handleClickOpen}>
@@ -134,20 +151,8 @@ export const AddSpotForm = props => {
                         variant="outlined"
                         onChange={handleChange}
                     />
-                    <DialogContentText>
-                        Add a photo of the place!
-                    </DialogContentText>
-                    <TextField
-                        autoFocus
-                        margin="dense"
-                        id="Photo"
-                        name="photo"
-                        label="Add Photo or URL"
-                        type="email"
-                        fullWidth
-                        variant="standard"
-                        onChange={handleChange}
-                    />
+                    <Upload changefiles={changefiles}></Upload>
+                    
                     <DialogContentText>
                         Select a Sport from here please!
                     </DialogContentText>
@@ -212,5 +217,6 @@ export const AddSpotForm = props => {
 AddSpotForm.propTypes = {
     spotForm: PropTypes.func,
     lat: PropTypes.number,
-    lng: PropTypes.number
+    lng: PropTypes.number,
+    files:PropTypes.func
 };

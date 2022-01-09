@@ -19,14 +19,20 @@ import cloudinary.uploader
 api = Blueprint('api', __name__)
 
 
-
-
 @api.route('/account', methods=[ 'GET'])
 def get_accounts():
 
   accounts= Account.get_all()
   all_accounts=[account.to_dict() for account in accounts]
   return jsonify(all_accounts), 200
+
+@api.route('/centers', methods=[ 'GET'])
+def get_centers():
+
+  centers= Center.get_all_centers()
+  all_centers=[center.to_dict() for center in centers]
+  return jsonify(all_centers), 200
+
 
 @api.route('/account/<int:id>', methods=[ 'GET'])
 def get_account(id):
@@ -37,15 +43,16 @@ def get_account(id):
       account= account.to_dict()
       return jsonify(account), 200
   
-
 @api.route('/login', methods=['POST'])
 def login():
-    
     email = request.json.get('email', None)
     password = request.json.get('password', None)
 
     if email and password:
         account = Account.get_by_email(email)
+        if account and not account._is_active:
+            account.reactive_account(email, password)
+            return jsonify(account.to_dict()), 200
 
         if account and check_password_hash(account._password, password) and account._is_active:
             access_token = create_access_token(identity=account.to_dict(), expires_delta=timedelta(minutes=100))
@@ -70,7 +77,7 @@ def create_account():
 
     account = Account.get_by_email(email)
     if account and not account._is_active:
-        account.reactive_account(username, photo, is_waterdropper, password)
+        account.reactive_account(email, is_waterdropper, password)
         return jsonify(account.to_dict()), 200
     
     if is_waterdropper == "waterdropper": 
@@ -114,11 +121,13 @@ def create_account():
             address = request.json.get("address", None)
             phone = request.json.get("phone", None)
             web = request.json.get("web", None)
+            name = request.json.get("name", None)
             new_center = Center(
                 account_id=new_account.id,
                 address=address,
                 phone=phone,
-                web=web
+                web=web,
+                name=name
             )
             print(new_center)
             try:
@@ -141,7 +150,7 @@ def get_account_profile(id):
     account = Account.get_account_by_id(id)
 
     if account and account._is_active:
-        return jsonify({'getaccount': account.to_dict()}), 200
+        return jsonify(account.to_dict()), 200
     
     return({"error": "Account not found"}), 404
 
@@ -159,6 +168,7 @@ def update_account_info(id):
         'email': request.json.get('email', None),
         'password': request.json.get('password', None),
         'username': request.json.get('username', None),
+        # TODO obteber URL de almacenaje de foto y dar valor a la propiedad photo con ella
         'photo': request.json.get('photo', None),
         'sports' : request.json.get("sports", None),
         'is_waterdropper': True if request.json.get('userType', None) == "waterdropper" else False
@@ -196,7 +206,8 @@ def update_account_info(id):
                 update_info_center = {
                     'address': request.json.get('address', None),
                     'phone': request.json.get('phone', None),
-                    'web': request.json.get('web', None)
+                    'web': request.json.get('web', None),
+                    'name': request.json.get('name', None)
                 }
                 
                 center = Center.get_center_by_account_id(id)
@@ -227,6 +238,69 @@ def update_account_status(id):
         return jsonify({'error' : 'Account not found'}), 404
 
 
+@api.route('/waterdropper/<int:id_waterdropper>/favourite-centers/<int:id_center>', methods=['POST'])
+@jwt_required()
+def add_favcenter(id_waterdropper,id_center):
+    token_id = get_jwt_identity()
+    print("token",token_id)
+
+    if token_id.get("id"):
+        waterdropper = Waterdropper.get_waterdropper_by_id(id_waterdropper)
+        center = Center.get_center_by_id(id_center)
+        print("waterdropper",waterdropper)
+        print("center",center)
+
+        if waterdropper and center:
+            fav_center = waterdropper.add_fav_center(center)
+            print(fav_center)
+            fav_centers = [center.to_dict() for center in fav_center]
+            return jsonify(fav_centers), 200
+
+    return jsonify({'error': 'Favourite center not found'}), 404
+
+
+@api.route('/waterdropper/<int:id_waterdropper>/favourite-hotspots/<int:id_hotspot>', methods=['POST'])
+@jwt_required()
+def add_fav_hotspot(id_waterdropper,id_hotspot):
+    token_id = get_jwt_identity()
+    print("token",token_id)
+
+    if token_id.get("id"):
+        waterdropper = Waterdropper.get_waterdropper_by_id(id_waterdropper)
+        hotspot = Hotspot.get_hotspot_by_id(id_hotspot)
+        print("waterdropper",waterdropper)
+        print("hotspot",hotspot)
+
+        if waterdropper and hotspot:
+            fav_hotspot = waterdropper.add_fav_hotspot(hotspot)
+            print(fav_hotspot)
+            fav_hotspots = [hotspot.to_dict() for hotspot in fav_hotspot]
+            return jsonify(fav_hotspots), 200
+
+    return jsonify({'error': 'Favourite hotspot not found'}), 404
+
+
+@api.route('/account/<int:id_account>/favourite-hotspots/<int:id_hotspot>', methods=['POST'])
+@jwt_required()
+def add_favhotspot(id_account,id_hotspot):
+    token_id = get_jwt_identity()
+    print("token",token_id)
+
+    if token_id.get("id"):
+        center = Center.get_center_by_account_id(id_account)
+        hotspot = Hotspot.get_hotspot_by_id(id_hotspot)
+        print("center",center)
+        print("hotspot",hotspot)
+
+        if center and hotspot:
+            center_hotspot = center.add_center_hotspot(hotspot)
+            print(center_hotspot)
+            center_hotspots = [hotspot.to_dict() for hotspot in center_hotspot]
+            return jsonify(center_hotspots), 200
+
+    return jsonify({'error': 'Center hotspot not found'}), 404
+
+
 @api.route('/accountphoto/<int:id>', methods=['POST'])
 def handle_uploadaccount(id):
 
@@ -250,9 +324,9 @@ def handle_uploadaccount(id):
 def handle_uploadhotspot(id):
 
     # validate that the front-end request was built correctly
-    if 'profile_image' in request.files:
+    if 'media' in request.files:
         # upload file to uploadcare
-        result = cloudinary.uploader.upload(request.files['profile_image'])
+        result = cloudinary.uploader.upload(request.files['media'])
 
         # fetch for the user
         hotspot1 = Hotspot.get_hotspot_by_id(id)
