@@ -115,9 +115,6 @@ class Account(db.Model):
 
     def reactive_account(self, email, password):
         self.email = email
-        # self.username = username
-        # self.photo = photo
-        # self._is_waterdropper = is_waterdropper
         self.password = password
         self._is_active = True
         db.session.commit()
@@ -193,6 +190,8 @@ class Waterdropper(db.Model):
         db.session.commit()
         return self.have_waterdropper_favspot
 
+
+    
 
 class Center(db.Model):
     __tablename__: "center"
