@@ -32,7 +32,7 @@ def get_centers():
   centers= Center.get_all_centers()
   all_centers=[center.to_dict() for center in centers]
   return jsonify(all_centers), 200
-  
+
 
 @api.route('/account/<int:id>', methods=[ 'GET'])
 def get_account(id):

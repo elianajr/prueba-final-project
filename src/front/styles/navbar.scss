@@ -1,10 +1,11 @@
-
-
 .navbar{
-
+    margin-top:0;
+    margin-bottom:0;
+    padding-top:0;
+    padding-bottom: 0;
     justify-content: space-around;
     width: 100vw;
-    height: 7rem;
+    height: 4.8rem;
     background: linear-gradient(0deg, rgba(251,251,251,0.19371498599439774) 0%, rgba(252,252,252,0.19) 7%, rgba(252,252,252,0.45) 8%, rgba(252,252,252,0.45) 15%, rgba(252,252,252,0.6867121848739496) 16%, rgba(253,253,253,0.69) 22%, rgba(253,253,253,1) 23%, rgba(255,255,255,1) 100%);
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
@@ -22,18 +23,21 @@
     color: #006184;
     text-decoration: none;
     font-family: 'Righteous', cursive;
-    font-size: 20px;
+    font-size: 1.2rem;
     font-style: normal;
     font-weight: 400;
-    line-height: 25px;
+    line-height: 0.5rem;
     letter-spacing: 0em;
     text-align: center;
-    
+}
+
+.navbar__links>a:hover{
+    border-bottom: 1.5px solid #00618462;
 }
 
 .navbar>a>img{
-    width: 4rem;
-    height: 4rem;
+    width: 3.3rem;
+    height: 3.3rem;
 }
 
 .footer-help>a{
@@ -46,3 +50,64 @@
     align-content: center;
 }
 
+.profile-photo-waterdropper-navbar {
+    display:block;
+    position:relative;
+    border:#ffffff solid 3px;
+    border-radius:100%;
+    max-width:3rem;
+    max-height:3rem;
+    margin: -100px 0 10px 20px;
+    z-index:999;
+}
+
+.profile-photo-waterdropper-navbar img {
+    max-width:100%;
+    max-height: 100%;
+    z-index:999;
+    border-radius:100%;
+    width: 3rem;
+    height: 3rem;
+    overflow: hidden;
+    padding-top: 0rem;
+    margin-top: 3rem;
+}
+
+#nav-dropdown{
+    color: black;
+    font-weight: bold;
+    margin-top: 3rem;
+    margin-right: 0;
+    padding-right:0;
+}
+
+.navbar-member {
+    padding-bottom: 0.1rem;
+    margin-bottom: 0.1rem;
+    font-size: 0.8rem;
+    font-weight: bold;
+    text-align:center;
+}
+
+.link-navbar {
+    color: black;
+    text-decoration: none;
+}
+
+.link-navbar-member {
+    color: #006184;
+    text-decoration: none;
+    font-size: 0.9rem;
+    padding:0.3rem;
+}
+
+.link-navbar-member:hover {
+    background-color: #00618448;
+    color:black;
+    padding:0.3rem;
+}
+
+.username-navbar {
+    font-weight: bold;
+    font-size:1.1rem;
+}

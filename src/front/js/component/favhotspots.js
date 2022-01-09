@@ -6,7 +6,11 @@ import "../../styles/profile.scss";
 const FavHotspots = () => {
     const { store, actions } = useContext(Context);
     const user = {...store.currentUser.user};
-
+    
+    useEffect(()=>{
+       const fav = {...store.favourites};
+       console.log("myfav", fav)
+    }, [])
 
     const favourites = user.favourite_spot.map((favourite, index) => {
         return (
@@ -26,6 +30,7 @@ const FavHotspots = () => {
 
     return (
         <ul className="fav-list-profile">{favourites}</ul>
+        
     );
 }
 

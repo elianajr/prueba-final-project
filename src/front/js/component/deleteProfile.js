@@ -3,6 +3,8 @@ import { useForm, useParams } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import Button from 'react-bootstrap/Button';
 import { Context } from "../store/appContext.js";
+import { Navbar } from "./navbar.js";
+import { Footer } from "./footer.js";
 import "../../styles/registerlogin.scss";
 
 
@@ -24,9 +26,11 @@ const DeleteProfile = () => {
 
 
 	return (
+		<Fragment>
+		<Navbar />
 		<div className="register-login-form myprofile">
 			<form className="register-login" onSubmit={handleSubmit(onSubmit)}>
-				<h6>Sorry to hear you are leaving... Are you sure you wanna continue?</h6>
+				<h6>Sorry to hear you are leaving... Are you sure you want to continue?</h6>
 			
                 <input className="button-logreg" type="submit" value="YES" />
 				
@@ -38,6 +42,8 @@ const DeleteProfile = () => {
 				
 			</form>
 		</div>
+		<Footer />
+		</Fragment>
 	);
 };
 

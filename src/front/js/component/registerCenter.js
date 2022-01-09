@@ -3,6 +3,8 @@ import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext.js";
 import { Redirect } from 'react-router';
+import { Navbar } from "./navbar.js";
+import { Footer } from "./footer.js";
 import "../../styles/registerlogin.scss";
 
 
@@ -19,12 +21,9 @@ const RegisterCenter = () => {
 	const onSubmit = data => {
 		console.log(data);
 		actions.register(data);
-		
 	};
 
 	const [formStep, setFormStep] = useState(0);
-	
-
 
 	const completeFormStep = () => {
 		if (formStep === 2) return;
@@ -33,6 +32,8 @@ const RegisterCenter = () => {
 
 
 	return (
+		<Fragment>
+		<Navbar />
 		<div className="register-login-form myprofile">
 			<form className="register-login" onSubmit={handleSubmit(onSubmit)}>
 
@@ -227,6 +228,8 @@ const RegisterCenter = () => {
 				
 			</form>
 		</div>
+		<Footer />
+		</Fragment>
 	);
 };
 

@@ -11,14 +11,16 @@ export const Footer = () => {
 
 
 	return (
-		<footer className="footer mt-auto py-3 text-center">
-			<div className="footer-help">
+		<footer className="footer row">
+			{/* <div className="footer-help col-8">
 				<Link to="/help">
 					<p className="footer-help__text">Need any help?</p>
 					{help}
 				</Link>
-				{/* {actions.verifylogin()==true?<Chatdropdown/>:''} */}
-				</div>
+			</div> */}
+			<div className="col-4">
+				{actions.verifylogin()==true?<Chatdropdown/>:''}
+			</div>
 			
 		</footer>
 	)
