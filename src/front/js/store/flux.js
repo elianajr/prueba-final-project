@@ -248,7 +248,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				fetch("https://3001-pink-rook-7fv35jqw.ws-eu25.gitpod.io/api/hotspots", requestOptions)
 				.then(response => response.json())
-				.then(result => console.log(result))
+				.then(result =>{
+					console.log(result)
+					getActions().getAllHotspots()
+				} )
 				.catch(error => console.log('error', error));
 			}
 		}
