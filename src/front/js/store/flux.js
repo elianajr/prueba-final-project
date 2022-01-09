@@ -387,7 +387,24 @@ const getState = ({ getStore, getActions, setStore }) => {
 				} else {
 					return false
 				}
-			}
+			},
+
+			getAllCenters: () => {
+				fetch(getStore().baseUrl.concat('centers'))
+					.then(function (response) {
+						if (!response.ok) {
+							throw Error(response.statusText);
+						}
+						return response.json();
+					})
+					.then(function (responseAsJson) {
+						setStore({ centerss: responseAsJson });
+						console.log(responseAsJson);
+					})
+					.catch(function (error) {
+						console.log('Looks like there was a problem: \n', error);
+					});
+			},
 		},
 	}
 
