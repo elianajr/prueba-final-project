@@ -2,6 +2,9 @@ import React , { useState, useContext, useEffect, Fragment } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { Context } from "../store/appContext.js";
+import { Navbar } from "./navbar.js";
+import { Footer } from "./footer.js";
+
 import "../../styles/registerlogin.scss";
 import "../../styles/editform.scss";
 import Box from "@mui/material/Box";
@@ -38,7 +41,6 @@ const EditProfileCenter = () => {
 
   const result = {...store.currentUser.result};
   const user = {...store.currentUser.user};
-  const sports = {...result.sports};
 
 
 	const onSubmit = (data) => {
@@ -53,8 +55,9 @@ const EditProfileCenter = () => {
   }, [])
  
 
-
 	return (
+    <Fragment>
+    <Navbar />
 		<div className="edit-profile-form myprofile">
 		<form className="edit-profile" onSubmit={handleSubmit(onSubmit)}>
 				<div className="row justify-content-center edit-profile-form">
@@ -253,6 +256,8 @@ const EditProfileCenter = () => {
     
 		</form>
     </div>
+    <Footer />
+    </Fragment>
   );
 
 };

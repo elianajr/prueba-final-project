@@ -20,7 +20,7 @@ import RegisterWaterdropper from "./component/registerWaterdropper.js";
 import RegisterCenter from "./component/registerCenter.js";
 import EditProfileWaterdropper from "./component/editProfileWaterdropper.js";
 import EditProfileCenter from "./component/editProfileCenter.js";
-import Profile from "./component/profile.js";
+import Profile from "./pages/profile.js";
 import DeleteProfile from "./component/deleteProfile.js";
 
 import Upload from "./component/upload.jsx";

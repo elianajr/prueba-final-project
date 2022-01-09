@@ -35,9 +35,9 @@ const Chatdropdown=()=>{
    
 
     return (<div className="chatdropdown__box">
-        <img className="chatdropdown__userimg" src={currentuser.cover_photo}></img>
+        <img className="chatdropdown__userimg" src={currentuser.photo}></img>
         <span > <Link to='/chat' className="chatdropdown__text">Messages</Link></span>
     </div>)
 }
 
-export default Chatdropdown
+export default Chatdropdown;

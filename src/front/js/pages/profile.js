@@ -7,11 +7,14 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import TextField from '@mui/material/TextField';
+import "../../styles/profile.scss";
 
 import { Context } from "../store/appContext.js";
-import "../../styles/profile.scss";
-import FavCenters from "./favcenters.js";
-import FavHotspots from "./favhotspots.js";
+import FavCenters from "../component/favcenters.js";
+import FavHotspots from "../component/favhotspots.js";
+import FavButton from "../component/favButton.js";
+import { Navbar } from "../component/navbar.js";
+import { Footer } from "../component/footer.js";
 
 const style = {
     position: "absolute",
@@ -40,12 +43,7 @@ const Profile = () => {
     
     const result = {...store.currentUser.result};
     const user = {...store.currentUser.user};
-   
-
-	// useEffect(() => {
-    //     actions.getProfile(params.id);
-    //     console.log(params.id);
-	// }, []);
+ 
 
     useEffect(() => {
         localStorage.getItem("token") ? actions.getProfile(params.id) : navigate("/login");
@@ -53,6 +51,7 @@ const Profile = () => {
 
 
     useEffect(()=>{
+        console.log("aquii", user.favourite_spot);
         setIsWaterdropper(result._is_waterdropper);
         if(result.id == store.loggedUser.id) {
             setEditButton(<Button><i className="fas fa-pen"></i> Edit profile</Button>);
@@ -95,7 +94,6 @@ const Profile = () => {
                                 </div>
 
                                 <div className="profile-sports">
-                                {/* <i className="fas fa-arrow-right"></i> */}
                                     <ul>
                                         {result.sports.map(sport => (
                                             <li key={sport.id}>| {sport.name} |</li>
@@ -114,7 +112,7 @@ const Profile = () => {
                                 </div>
                                
 
-                                <button className="buttonWTD_stylee">Add spot</button>
+                                <p className="profile-follow">Follow me on:</p>
                                 <a href={result.instagram} target="_blank" className="profile-instagram"><i className="fab fa-instagram"></i></a>
                                 <a href={result.facebook} target="_blank" className="profile-facebook"><i className="fab fa-facebook-square"></i></a>
 
@@ -164,13 +162,19 @@ const Profile = () => {
                                         <span className="profile-username">{result.username}</span>
                                     </div>
                                     <div className="col-2">
-                                    <i className="fas fa-heart unclicked active iconfavourite-profile" />
-                                        {/* <p className="profile-location"><i className="fas fa-mobile-alt"></i> {user.phone}</p> */}
+                                    <button
+                                        className="btnfavourite-profile"
+                                        onClick={event => {
+                                            event.preventDefault;
+                                            actions.addFavourites(user.name);
+                                            console.log("fav", store.favourites);
+                                        }}>
+                                        <FavButton />
+                                    </button>
                                     </div>
                                 </div>
     
                                 <div className="profile-sports">
-                                {/* <i className="fas fa-arrow-right"></i> */}
                                     <ul>
                                         {
                                             result.sports
@@ -184,7 +188,7 @@ const Profile = () => {
                                 
                                 <br/>
                                 
-                                <button className="buttonWTD_stylee">Add spot</button>
+                                <p className="profile-follow">Follow us on:</p>
                                 <a href={result.instagram} target="_blank" className="profile-instagram"><i className="fab fa-instagram"></i></a>
                                 <a href={result.facebook} target="_blank" className="profile-facebook"><i className="fab fa-facebook-square"></i></a>
     
@@ -205,9 +209,24 @@ const Profile = () => {
                     <div className="col-4">
                         <div className="profile-fav">
                             <h5 className="fav-title">Spots where we go</h5>
-                            <ul className="fav-list">
-                                <li>lista</li>
+                            <ul className="fav-list-profile">
+                                {
+                                    user.favourite_spot
+                                    ? user.favourite_spot.map(fav => (
+                                        <li key={fav.id}>{fav.name}
+                                        <button className="btnfavourite-profile"
+                                            onClick={event => {
+                                                event.preventDefault;
+                                                actions.deleteFavourites(`${fav.name}`);
+                                            }}>
+                                            <i className="fas fa-heart unclicked active iconfavourite-profile" />
+                                        </button>
+                                        </li>
+                                    ))
+                                    : (<span></span>)
+                                }
                             </ul>
+                            {/* <FavHotspots /> */}
                         </div>
                         
                     </div>
@@ -222,7 +241,9 @@ const Profile = () => {
 
 	return (
         <Fragment>
+        <Navbar />
         <div>{profile}</div>
+        <Footer />
         </Fragment>
 	);
 };

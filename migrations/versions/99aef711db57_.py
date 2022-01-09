@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 63bf41792e96
+Revision ID: 99aef711db57
 Revises: 
-Create Date: 2022-01-06 13:39:13.584282
+Create Date: 2022-01-09 17:55:59.562533
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '63bf41792e96'
+revision = '99aef711db57'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -60,6 +60,8 @@ def upgrade():
     sa.Column('phone', sa.String(), nullable=True),
     sa.Column('web', sa.String(), nullable=True),
     sa.Column('name', sa.String(), nullable=True),
+    sa.Column('latitude', sa.String(), nullable=True),
+    sa.Column('longitude', sa.String(), nullable=True),
     sa.Column('account_id', sa.Integer(), nullable=False),
     sa.ForeignKeyConstraint(['account_id'], ['account.id'], ),
     sa.PrimaryKeyConstraint('id')
@@ -87,6 +89,13 @@ def upgrade():
     sa.Column('account_id', sa.Integer(), nullable=False),
     sa.ForeignKeyConstraint(['account_id'], ['account.id'], ),
     sa.PrimaryKeyConstraint('id')
+    )
+    op.create_table('center_fav_spot',
+    sa.Column('center_id', sa.Integer(), nullable=False),
+    sa.Column('hotspot_id', sa.Integer(), nullable=False),
+    sa.ForeignKeyConstraint(['center_id'], ['center.id'], ),
+    sa.ForeignKeyConstraint(['hotspot_id'], ['hotspot.id'], ),
+    sa.PrimaryKeyConstraint('center_id', 'hotspot_id')
     )
     op.create_table('review_centre',
     sa.Column('message', sa.String(), nullable=False),
@@ -139,6 +148,7 @@ def downgrade():
     op.drop_table('species_hotspot')
     op.drop_table('review_hotspot')
     op.drop_table('review_centre')
+    op.drop_table('center_fav_spot')
     op.drop_table('waterdropper')
     op.drop_table('hotspot')
     op.drop_table('center')
