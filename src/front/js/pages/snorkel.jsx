@@ -4,6 +4,7 @@ import {Navbar} from "../component/navbar.js";
 import { Footer } from "../component/footer.js";
 import Map from "../component/map.jsx"
 import  MiniForecast from "../component/miniForecast.jsx";
+import { Link } from "react-router-dom";
 
 import "../../styles/snorkel.scss"
 
@@ -24,9 +25,11 @@ export const Snorkel = ()=>{
                         return (
                             <div >
                                 <ul key={index.id}>
-                                    <li className="bestplaces-list">
-                                         {index.name}<img src={index.photo} alt="" width="50" height="25" />
-                                    </li>
+                                    <Link to={`/hotspotID/${index.id}`} >
+                                        <li className="bestplaces-list">
+                                            {index.name}<img src={index.photo} alt="" width="50" height="25" />
+                                        </li>
+                                    </Link>
                                 </ul>
                             </div>
 					    );
