@@ -323,7 +323,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			 		});
 			},
 			getAllHotspots:()=>{
-				fetch(`https://3001-pink-rook-7fv35jqw.ws-eu23.gitpod.io/api/hotspots/`)
+				fetch(`https://3001-pink-rook-7fv35jqw.ws-eu25.gitpod.io/api/hotspots/`)
 					.then(resp => resp.json())
 					.then(data => {
 						setStore({hotspots:[...data]})
