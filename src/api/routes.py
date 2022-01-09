@@ -37,12 +37,7 @@ def get_account(id):
       account= account.to_dict()
       return jsonify(account), 200
   
-  
 
-  
-
-
-    
 @api.route('/login', methods=['POST'])
 def login():
     
@@ -59,8 +54,6 @@ def login():
         return jsonify({'error':'Not found'}), 200
 
     return {'error': 'Some parameter is wrong'}, 401
-
-
 
 
 @api.route('/account', methods=['POST'])
@@ -274,7 +267,6 @@ def handle_uploadhotspot(id):
 
 
 
-
 @api.route('/speciephoto/<int:id>', methods=['POST'])
 def handle_uploadspecie(id):
 
@@ -299,7 +291,6 @@ def handle_uploadspecie(id):
 @api.route('/hotspots/', methods=['GET'])
 def get_all_hotpot_by_id():
     hotspot_s = Hotspot.get_all()
-
 
     if hotspot_s:
         all_hotspots = [hotspot.to_dict() for hotspot in hotspot_s]
@@ -339,3 +330,11 @@ def post_hotspot():
         print(f"Unexpected {err=}, {type(err)=}")
         return {'error': 'Something went wrong waterdropper'}, 400
     return jsonify(new_hotspot.to_dict()), 200
+
+@api.route('/hotspots/<int:id>', methods=['GET'])
+def get_hotpot_id(id):
+    hotspot = Hotspot.get_hotspot_by_id(id)
+
+    if hotspot:
+        return jsonify(hotspot.to_dict()), 200
+    return({"error": "hotspot not found"}), 404

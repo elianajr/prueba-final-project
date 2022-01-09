@@ -18,7 +18,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			weather: {},
 			nextDaysWeather: {},
-			hotspots: []
+			hotspots: [],
+			hotspotsDetails: {},
+			hotspotURL: `https://3001-pink-rook-7fv35jqw.ws-eu25.gitpod.io/api/hotspots/`
 		},
 
 		actions: {
@@ -129,13 +131,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 				catch(error){
 					console.error("There was an error!!", error);
 					}
-
-
 			},	
-			
-		},
 
-			},
 
 			setPosition: (coords) => {
 				setStore({position: {
@@ -143,6 +140,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					longitude: coords.longitude
 				}})
 			},
+
 
 			getOnloadWeatherData: () => {
 				console.log(process.env.FORECAST_API_KEY)
@@ -169,6 +167,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 						console.log(error.message);
 					});
 			},
+
+
 			getThreeDaysWeatherData: ()=>{
 				fetch(`${process.env.FORECAST_THREE_DAYS}lat=${getStore().position.latitude}&lon=${getStore().position.longitude}&exclude=minutely,hourly&appid=${process.env.FORECAST_API_KEY}&units=metric`)
 				.then(resp => resp.json())
@@ -185,6 +185,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.log(error.message);
 				});
 			},
+
+
 			getWeatherData:(city,country,APYKEY)=>{
 			 	fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${process.env.FORECAST_API_KEY}&units=metric`)
 			 		.then(resp => resp.json())
@@ -202,13 +204,30 @@ const getState = ({ getStore, getActions, setStore }) => {
 			 			console.log(error.message);
 			 		});
 			},
+
+
 			getAllHotspots:()=>{
-				fetch(`https://3001-pink-rook-7fv35jqw.ws-eu23.gitpod.io/api/hotspots/`)
+				fetch(`https://3001-pink-rook-7fv35jqw.ws-eu25.gitpod.io/api/hotspots`)
 					.then(resp => resp.json())
 					.then(data => {
 						setStore({hotspots:[...data]})
 					})
+					.catch(error => {
+						console.log(error.message);
+					});
+			},
 
+			getHotspotsDetails: (id) => {
+				fetch(getStore().hotspotURL.concat(id))
+					.then(answer => {
+						if (answer.ok) {
+							return answer.json();
+						}
+						throw new Error("FAIL DOWNLOADING SPECIES DETAILS");
+					})
+					.then(answer => {
+						setStore({ hotspotsDetails: answer });
+					})
 					.catch(error => {
 						console.log(error.message);
 					});
@@ -227,7 +246,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				redirect: 'follow'
 				};
 
-				fetch("https://3001-pink-rook-7fv35jqw.ws-eu23.gitpod.io/api/hotspots/", requestOptions)
+				fetch("https://3001-pink-rook-7fv35jqw.ws-eu25.gitpod.io/api/hotspots", requestOptions)
 				.then(response => response.json())
 				.then(result => console.log(result))
 				.catch(error => console.log('error', error));
@@ -237,6 +256,4 @@ const getState = ({ getStore, getActions, setStore }) => {
 	};
 
 }
-
-
 export default getState;

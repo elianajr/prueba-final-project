@@ -4,8 +4,6 @@ import {
 	Routes,
 	Route
   } from "react-router-dom";
-import Navbar from "./component/navbar.js";
-import Landingpage from "./component/Landingpage.jsx";
 import Home from "./pages/home.js";
 import HotSpot from "./pages/hotspot.jsx";
 import Forecast from "./pages/forecast.jsx";
@@ -25,6 +23,8 @@ import ChatForm from "./component/ChatForm.jsx"
 import Chatdropdown from "./component/Chatdropdown.jsx"
 import Newsview from "./pages/Newsview.jsx";
 import Newsdetail from "./component/Newsdetails.jsx";
+import HotspotID from "./pages/hotspotID.jsx";
+
 
 
 //create your first component
@@ -34,7 +34,6 @@ const Layout = () => {
 	const basename = process.env.BASENAME || "";
 
 	return (
-		
 			
 		<BrowserRouter className="index">
 			<Routes>
@@ -53,6 +52,7 @@ const Layout = () => {
 				<Route path="/news" element={<Newsview />} />
 				<Route path="/newsdetail" element={<Newsdetail />} />		
 				<Route path="/chat" element={<ChatForm />} />
+				<Route path="/hotspotID/:id" element={<HotspotID />} />
 			</Routes>		
 		</BrowserRouter>
 		

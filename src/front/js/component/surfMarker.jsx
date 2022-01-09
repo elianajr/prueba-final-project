@@ -41,6 +41,7 @@ export const SurfMarker = () => {
 		},
 	[store.hotspots]
 	);
+    
     return (
         <div>
             {detailElements}
