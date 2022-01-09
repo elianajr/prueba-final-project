@@ -20,32 +20,32 @@ import "../../styles/home.scss";
 const Home = () => {
 	const { store, actions } = useContext(Context);
 
-	const surf = <img src="https://i.ibb.co/ssMzJnP/mdi-kitesurfing.png" alt="surf"/>
-	const snorkel = <img src="https://i.ibb.co/JBVt1Tt/mdi-diving-snorkel.png" alt="snorkel"/>
-	const kitesurf = <img src="https://i.ibb.co/GVKWPVT/map-surfing.png" alt="kitesurf"/>
-	const diving = <img src="https://i.ibb.co/pfCWKG5/mdi-diving-helmet.png" alt="diving"/>
+	const kitesurf = <img src="https://i.ibb.co/ssMzJnP/mdi-kitesurfing.png" alt="surf" />
+	const snorkel = <img src="https://i.ibb.co/JBVt1Tt/mdi-diving-snorkel.png" alt="snorkel" />
+	const surf = <img src="https://i.ibb.co/GVKWPVT/map-surfing.png" alt="kitesurf" />
+	const diving = <img src="https://i.ibb.co/pfCWKG5/mdi-diving-helmet.png" alt="diving" />
 
 
 	return (
-		
+
 		<div className="home">
-			<Navbar/>
-				<div className="home-topbody">
-					<div className="home-topbody__sports">
-						<Link to="/surf">
-							<button className="home-topbody__sports__buttons">{surf}SURF</button>
-						</Link>
-						<Link to="/snorkel">
-							<button className="home-topbody__sports__buttons">{snorkel}SNORKEL</button>
-						</Link>
-						<Link to="/kitesurf">
-							<button className="home-topbody__sports__buttons">{kitesurf}KITESURF</button>
-						</Link>
-						<Link to="/diving">
-							<button className="home-topbody__sports__buttons">{diving}DIVING</button>
-						</Link>
-					</div>
+			<Navbar />
+			<div className="home-topbody">
+				<div className="home-topbody__sports">
+					<Link to="/surf">
+						<button className="home-topbody__sports__buttons">{surf}SURF</button>
+					</Link>
+					<Link to="/snorkel">
+						<button className="home-topbody__sports__buttons">{snorkel}SNORKEL</button>
+					</Link>
+					<Link to="/kitesurf">
+						<button className="home-topbody__sports__buttons">{kitesurf}KITESURF</button>
+					</Link>
+					<Link to="/diving">
+						<button className="home-topbody__sports__buttons">{diving}DIVING</button>
+					</Link>
 				</div>
+			</div>
 				<div className="home-bottonbody">
 					<div className="home-bottonbody__services">
 						<div className="home-bottonbody__services__forecast">
@@ -79,91 +79,90 @@ const Home = () => {
 							</div>
 						</div>
 						<div className="home-bottonbody__services__photos"></div>
-						<div className="home-bottonbody__services__searchbar"><SearchBar/></div>
+						<div className="home-bottonbody__services__searchbar"><SearchBar /></div>
 					</div>
 					<div className="home-bottonbody__newsBox">
-					<div className="home-bottonbody__newsleftbox">
-					<div className="home-bottonbody__newsBoxtitle">News</div>
-					
-					<Card className="Card__NewsHome">
-                       <Card.Img variant="top" src={imgnewshome} className="Card__NewsHomeimg"/>
-                       <Card.Body>
-                      <Card.Text>
-					    <p className="Card__NewsHometext">100 Days Summer: Sunsets</p>
-					    <div className="Card__NewsHomefooter">
-					       <p className="Card__NewsHomefooter__category">PHOTOGRAPHY</p>
-					       <span className="Card__NewsHomefooter__date">1 Month ago</span>
-					   </div>
-					 
-                  </Card.Text>
-                  </Card.Body>
-                </Card>
-                  <br />
-				  <Card className="Card__NewsHome">
-                  <Card.Img variant="top" src={img2newshome} className="Card__NewsHomeimg" />
-            <Card.Body>
-             <Card.Text>
-                   <p className="Card__NewsHometext">How to check forecast for your holydays</p>
-				   <div className="Card__NewsHomefooter">
-				   <p className="Card__NewsHomefooter__category">SCIENCE</p> 
-				   <span className="Card__NewsHomefooter__date">1 Month ago</span>
-					  </div>
-                
-               </Card.Text>
-              </Card.Body>
-             </Card>
-             <br />
+						<div className="home-bottonbody__newsleftbox">
+							<div className="home-bottonbody__newsBoxtitle">News</div>
+
+							<Card className="Card__NewsHome">
+								<Card.Img variant="top" src={imgnewshome} className="Card__NewsHomeimg" />
+								<Card.Body>
+									<Card.Text>
+										<p className="Card__NewsHometext">100 Days Summer: Sunsets</p>
+										<div className="Card__NewsHomefooter">
+											<p className="Card__NewsHomefooter__category">PHOTOGRAPHY</p>
+											<span className="Card__NewsHomefooter__date">1 Month ago</span>
+										</div>
+									</Card.Text>
+								</Card.Body>
+							</Card>
+							<br />
+							<Card className="Card__NewsHome">
+								<Card.Img variant="top" src={img2newshome} className="Card__NewsHomeimg" />
+								<Card.Body>
+									<Card.Text>
+										<p className="Card__NewsHometext">How to check forecast for your holydays</p>
+										<div className="Card__NewsHomefooter">
+											<p className="Card__NewsHomefooter__category">SCIENCE</p>
+											<span className="Card__NewsHomefooter__date">1 Month ago</span>
+										</div>
+
+									</Card.Text>
+								</Card.Body>
+							</Card>
+							<br />
+						</div>
+
+						<div className="home-bottonbody__newsrightbox">
+							<Card className="Card__NewsHome">
+								<Card.Img variant="top" src={img3newshome} className="Card__NewsHomeimg" />
+								<Card.Body>
+									<Card.Text>
+										<p className="Card__NewsHometext">Kitesurf Wolrd Cup</p>
+										<div className="Card__NewsHomefooter">
+											<p className="Card__NewsHomefooter__category">COMPETITION</p>
+											<span className="Card__NewsHomefooter__date">1 Month ago</span>
+										</div>
+
+									</Card.Text>
+								</Card.Body>
+							</Card>
+							<br />
+							<Card className="Card__NewsHome">
+								<Card.Img variant="top" src={img4newshome} className="Card__NewsHomeimg" />
+								<Card.Body>
+									<Card.Text>
+										<p className="Card__NewsHometext">Photoshop your memories</p>
+										<div className="Card__NewsHomefooter">
+											<p className="Card__NewsHomefooter__category">TRAVEL</p>
+											<span className="Card__NewsHomefooter__date" >1 Month ago</span>
+										</div>
+									</Card.Text>
+								</Card.Body>
+							</Card>
+							<br />
+							<Card className="Card__NewsHome">
+								<Card.Img variant="top" src={img5newshome} className="Card__NewsHomeimg" />
+								<Card.Body>
+									<Card.Text>
+										<p className="Card__NewsHometext">Discover new places to practise surf</p>
+										<div className="Card__NewsHomefooter">
+											<p className="Card__NewsHomefooter__category">TRAVEL</p>
+											<span className="Card__NewsHomefooter__date">1 Month ago</span>
+										</div>
+
+									</Card.Text>
+								</Card.Body>
+							</Card>
+							<br />
+						</div>
 					</div>
-					
-  <div className="home-bottonbody__newsrightbox">
-  <Card className="Card__NewsHome">
-    <Card.Img variant="top" src={img3newshome} className="Card__NewsHomeimg" />
-    <Card.Body>
-      <Card.Text>
-        <p className="Card__NewsHometext">Kitesurf Wolrd Cup</p>
-		<div className="Card__NewsHomefooter">
-		   <p className="Card__NewsHomefooter__category">COMPETITION</p> 
-		   <span className="Card__NewsHomefooter__date">1 Month ago</span>
+				</div>
+			<Footer />
 		</div>
-		
-      </Card.Text>
-    </Card.Body>
-  </Card>
-  <br />
-  <Card className="Card__NewsHome">
-    <Card.Img variant="top" src={img4newshome} className="Card__NewsHomeimg" />
-    <Card.Body>
-      <Card.Text>
-        <p className="Card__NewsHometext">Photoshop your memories</p>
-		<div className="Card__NewsHomefooter">
-		    <p className="Card__NewsHomefooter__category">TRAVEL</p>
-		    <span className="Card__NewsHomefooter__date" >1 Month ago</span>
-		</div>
-      </Card.Text>
-    </Card.Body>
-  </Card>
-  <br />
-  <Card className="Card__NewsHome">
-    <Card.Img variant="top" src={img5newshome} className="Card__NewsHomeimg" />
-    <Card.Body>
-      <Card.Text>
-        <p className="Card__NewsHometext">Discover new places to practise surf</p>
-		<div className="Card__NewsHomefooter">
-		   <p className="Card__NewsHomefooter__category">TRAVEL</p>
-		   <span className="Card__NewsHomefooter__date">1 Month ago</span>
-		</div>
-		
-      </Card.Text>
-    </Card.Body>
-  </Card>
-  <br />
-  </div>
-	</div>
-	</div>
-	<Footer/>
-</div>
-		
-		
+
+
 	);
 };
 

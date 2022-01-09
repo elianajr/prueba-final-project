@@ -212,10 +212,21 @@
     font-size: 24px;
     background: #FFFFFF;
     border: 1px solid rgba(0, 0, 0, 0.1);
+    overflow-y: scroll;
 }
+
+.bodyKitesurf-bot__best>ul{
+    font-size: 18px;
+   }
 
 .bodyScuba-bot__best>p{
     margin-top: 1rem;
     margin-left: 1rem;
    
+}
+.bestplaces-list{
+    display: flex;
+    flex-direction: row;
+    align-content: space-between;
+    justify-content: space-between;
 }

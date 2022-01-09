@@ -22,7 +22,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			weather: {},
 			nextDaysWeather: {},
-			hotspots: []
+			hotspots: [],
+			hotspotsDetails: {},
+			hotspotURL: `https://3001-pink-rook-7fv35jqw.ws-eu25.gitpod.io/api/hotspots/`
 		},
 
 		actions: {
@@ -250,6 +252,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				})
 			},
 
+
 			getOnloadWeatherData: () => {
 				console.log(process.env.FORECAST_API_KEY)
 				console.log('position', getStore().position);
@@ -321,7 +324,22 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(data => {
 						setStore({ hotspots: [...data] })
 					})
+					.catch(error => {
+						console.log(error.message);
+					});
+			},
 
+			getHotspotsDetails: (id) => {
+				fetch(getStore().hotspotURL.concat(id))
+					.then(answer => {
+						if (answer.ok) {
+							return answer.json();
+						}
+						throw new Error("FAIL DOWNLOADING SPECIES DETAILS");
+					})
+					.then(answer => {
+						setStore({ hotspotsDetails: answer });
+					})
 					.catch(error => {
 						console.log(error.message);
 					});
@@ -339,7 +357,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 					body: raw,
 					redirect: 'follow'
 				};
-
 				const uploadimagehotspot = (id) => {
 					if (image != '') {
 						let body = new FormData();
@@ -350,13 +367,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 						};
 						fetch(getStore().baseUrl.concat('hotspotphoto/', id), options)
 							.then(resp => resp.json())
-							.then(data => console.log("Success!!!!", data))
+							.then(data =>{
+								console.log("Success!!!!", data)
+								getActions().getAllHotspots()
+							})
 							.catch(error => console.error("ERRORRRRRR!!!", error))
-
 					}
-
 				};
-
 				fetch(getStore().baseUrl.concat('hotspots'), requestOptions)
 					.then(response => response.json())
 					.then(result => uploadimagehotspot(result.id))
@@ -375,8 +392,5 @@ const getState = ({ getStore, getActions, setStore }) => {
 	}
 
 };
-
-
-
 
 export default getState;
