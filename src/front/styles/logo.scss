@@ -17,3 +17,18 @@
 .logowdp__icon{
     height: 4rem;
 }
+
+@media(max-width:391px){
+    .logo__divider{
+        width: 6.5rem
+    }
+    .logowdp__icon{
+        width: 2rem;
+        height: 2rem;
+    }
+    .pagedivider{
+        margin-top: -4rem;
+        display: inline-flex;
+        margin-bottom: -4rem;
+    }
+}

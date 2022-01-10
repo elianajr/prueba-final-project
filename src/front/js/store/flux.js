@@ -31,13 +31,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 			setLoggedUser: (user) => {
 				setStore({ "loggedUser": user });
 			},
-
 			logout: () => {
 				localStorage.removeItem("token");
 				setStore({ "loggedUser": null })
 
 			},
-
 			// Use getActions to call a function within a fuctio
 			getMessage: () => {
 				// fetching data from the backend
@@ -111,7 +109,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 						console.log('Looks like there was a problem: \n', error);
 					});
 			},
-
 			register: async data => {
 				const opt = {
 					method: 'POST',
@@ -139,7 +136,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.error("There was an error!!", error);
 				}
 			},
-
 			getProfile: async (id) => {
 				let token = localStorage.getItem("token");
 				let myHeaders = new Headers();
@@ -166,8 +162,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.catch(error => console.log('error', error));
 
 			},
-
-
 			editProfile: async (data, id) => {
 				let token = localStorage.getItem("token");
 				const opt = {
@@ -199,7 +193,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.error("There was an error!!", error);
 				}
 			},
-
 			deleteProfile: async (data, id) => {
 				let token = localStorage.getItem("token");
 				const opt = {
@@ -236,13 +229,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 					setStore({ favourites: [...getStore().favourites, name] });
 				}
 			},
-
 			deleteFavourites: deleted => {
 				setStore({
 					favourites: getStore().favourites.filter(item => item != deleted)
 				});
-			},
-
+			},	
 			setPosition: (coords) => {
 				setStore({
 					position: {
@@ -251,8 +242,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 					}
 				})
 			},
-
-
 			getOnloadWeatherData: () => {
 				console.log(process.env.FORECAST_API_KEY)
 				console.log('position', getStore().position);
@@ -317,7 +306,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 						console.log(error.message);
 					});
 			},
-			
 			getAllHotspots: () => {
 				fetch(getStore().baseUrl.concat('hotspots'))
 					.then(resp => resp.json())
@@ -330,7 +318,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 			getHotspotsDetails: (id) => {
-				fetch(getStore().hotspotURL.concat(id))
+				fetch(getStore().baseUrl.concat('hotspots/',id))
 					.then(answer => {
 						if (answer.ok) {
 							return answer.json();
@@ -344,8 +332,28 @@ const getState = ({ getStore, getActions, setStore }) => {
 						console.log(error.message);
 					});
 			},
+			searchHotspot:(data)=>{
+				var myHeaders = new Headers();
+				myHeaders.append("Content-Type", "application/json");
 
-			addNewHotspot: (data, image) => {
+				var raw = JSON.stringify({'name':data});
+
+				var requestOptions = {
+				method: 'POST',
+				headers: myHeaders,
+				body: raw,
+				redirect: 'follow'
+				};
+
+				fetch(getStore().baseUrl.concat('search'), requestOptions)
+				.then(response => response.json())
+				.then(data => {
+					setStore({hotspots:[...data]})
+					console.log(data)
+				})
+				.catch(error => console.log('error', error));
+			},
+			addNewHotspot:(data,image)=>{
 				var myHeaders = new Headers();
 				myHeaders.append("Content-Type", "application/json");
 
@@ -379,7 +387,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(result => uploadimagehotspot(result.id))
 					.catch(error => console.log('error', error));
 			},
-
 			verifylogin: () => {
 				const token = localStorage.getItem('token')
 				if (token) {
@@ -388,7 +395,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 					return false
 				}
 			},
-
 			getAllCenters: () => {
 				fetch(getStore().baseUrl.concat('centers'))
 					.then(function (response) {

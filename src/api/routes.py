@@ -405,6 +405,18 @@ def post_hotspot():
         return {'error': 'Something went wrong waterdropper'}, 400
     return jsonify(new_hotspot.to_dict()), 200
 
+@api.route('/search', methods=['POST'])
+def get_hotspot_byname():
+
+    name= request.json.get('name',None)
+    if name:
+        hotspots = Hotspot.query.filter(Hotspot.name.ilike('%' + name + '%'))
+
+        hotspots = hotspots.order_by(Hotspot.name).all()
+        hotspots_searched= [hotspot.to_dict() for hotspot in hotspots]
+        return jsonify(hotspots_searched)
+    else:
+        return jsonify({'response':[]})
 @api.route('/hotspots/<int:id>', methods=['GET'])
 def get_hotpot_id(id):
     hotspot = Hotspot.get_hotspot_by_id(id)

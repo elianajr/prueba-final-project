@@ -181,24 +181,32 @@
     }
 }
 
-@media(max-width:500px){
+@media(max-width:391px){
     .chat__sender{
-    width: 7rem;
+    width: 5rem;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 1rem;
+    font-size: 0.7rem;
     text-align: center;
+
     }
     .chat__receiver{
         width: 14rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 0.7rem;
+        text-align: center;
+        font-size: 0.7rem;
     }
     .chat__header{
         height: 4rem;
+        margin-left: 0rem;
     }
     .chat__userdestinyimg{
-        height: 2rem;
-        width: 2rem;
+        height: 0rem;
+        width: 0rem;
     }
 
     .chat__userimg{
@@ -208,13 +216,10 @@
     .userdestiny{
         align-content: center;
         margin-right: 2rem;
-        font-size: 1rem;
-        text-align: center;
-        display: inline-block;
-        justify-content: center;
     }
     .chat__users{
-        width: 7rem;
+        width: 5rem;
+        margin-left: 0rem;
     }
     .chat__messages{
         width: 14rem;
@@ -224,7 +229,7 @@
        
     }
     .chat__userselected{
-        font-size: 1rem;
+        font-size: 0.7rem;
         text-align: center;
         margin: auto;  
     }
@@ -239,10 +244,11 @@
     }
 
     .chat__section{
-        height: 18rem;
+        height: 24rem;
     }
     .chat__message{
         margin-left: 2rem;
+        height: 0.5rem;
     }
    
 }

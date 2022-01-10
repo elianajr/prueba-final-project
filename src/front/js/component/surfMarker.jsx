@@ -39,6 +39,7 @@ export const SurfMarker = () => {
 				})
 			);
 		},
+        
 	[store.hotspots]
 	);
     

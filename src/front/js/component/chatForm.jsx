@@ -8,6 +8,7 @@ import Navbar from "./navbar.js"
 import { collection, addDoc, Timestamp, onSnapshot, query, getDocs, orderBy, where } from "firebase/firestore";
 import Card from '@mui/material/Card'
 import jwt_decode from "jwt-decode";
+import avatar from '../../img/defaultavatar.png'
 import {formatDistanceToNow} from 'date-fns'
 
 
@@ -63,11 +64,11 @@ const ChatForm = () => {
 
 	useEffect( async()=>{
 		const decoded=(jwt_decode(localStorage.getItem('token')))
-		
+	
+			
         await actions.getUser(decoded.sub.id)
         await actions.getUsers()
 		
-        
 		
     },[])
 
@@ -89,7 +90,7 @@ const ChatForm = () => {
 				return (
 					<div>
 						<span className="userdestiny">{element.username}</span>
-						<img className="chat__userdestinyimg"  src={element.cover_photo}></img>
+						{element.photo!='photo'?<img className="chat__userdestinyimg"  src={element.photo}></img>:<img className="chat__userdestinyimg"  src={avatar}></img>}
 					</div>
 				)
 			
@@ -104,7 +105,7 @@ const ChatForm = () => {
 				otherusers.map((element, index) => {
 					return (
 						<Card variant="outlined" key={index.toString()} className="chat__username">
-							<img className="chat__userimg" src={element.cover_photo} />
+							{element.photo!='photo'? <img className="chat__userimg" src={element.photo} /> : <img className="chat__userimg" src={avatar}></img>}
 							<span className="chat__userselected" onClick={()=>{setUserdestiny((element.id))}}> {element.username}</span>
 						</Card>
 					);
@@ -187,6 +188,7 @@ const ChatForm = () => {
 						
 				</div>
 			</div>
+			
 		</div>
 		</div>
 		
