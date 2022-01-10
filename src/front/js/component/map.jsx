@@ -13,6 +13,8 @@ const Map = props => {
 	const { store, actions } = useContext(Context);
 	const {callback } = props;
 	const [sport,setsport]=useState([])
+
+	
 	
 
 	const getMarkerPosition = position =>{

@@ -82,22 +82,7 @@ const HotSpot = () => {
                             <SearchBar />
                         </div>
                         <div>
-                            <ul>
-                                <li className="recomendation__list">
-                                    <article className="recomendation__list__title">
-                                        <h5>Scuba Diving Center sea Diver</h5>
-                                        <Rate />
-                                        <div className="recomendation__list__info">
-                                            <p className="list-info__direcction">{iconLocation}410 Atkinson Dr SUITE 1F32A</p>
-                                            <a className="list-info__web" href="http://www.divealohascuba.com/">{iconWorld}http://www.divealohascuba.com/</a>
-                                            <p className="list-info__phone">{inconPhone}+1234584569</p>
-                                        </div>
-                                    </article>
-                                    <figure>
-                                        {<img src="https://lh5.googleusercontent.com/p/AF1QipNxq7n0_WnhXzz38fwR49jJUM_GaJmVmxg4LxyU=w156-h96-p-k-no" alt="recomendation-list__photo" className="list-info__photo" height="100px" width="100px" />}
-                                    </figure>
-                                </li>
-                            </ul>
+                        
                         </div>
                     </div>
                     <Map className="map" callback={getMarkerPosition} checked={check}/>

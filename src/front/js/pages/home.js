@@ -17,6 +17,7 @@ import img5newshome from '../../img/imgnewshome5.png'
 
 import "../../styles/home.scss";
 
+
 const Home = () => {
 	const { store, actions } = useContext(Context);
 

@@ -4,13 +4,13 @@ import '../../styles/logo.scss'
 
 
 const Logo=()=>{
-    return(<div>
+    return(
          <div className='pagedivider'>
     <div className='logo__divider'></div>
     <img className='logowdp__icon' src={logo}></img>
     <div className='logo__divider'></div>
    </div>
-    </div>)
+    )
 
    
 }

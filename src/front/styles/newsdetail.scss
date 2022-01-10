@@ -8,6 +8,7 @@
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
+    height: 42rem;
 }
 
 .detailsnews__title{
@@ -34,6 +35,7 @@
     top: -1rem;
     
 }
+
   
 .reactplayer {
     position: absolute;
@@ -44,6 +46,7 @@
     top: 5rem;
     // left: 12.5rem;
     // box-sizing: border-box;
+    filter: drop-shadow(0.2rem 0.25rem 1.8rem #FFFFFF);box-sizing: border-box;
     filter: drop-shadow(0.2rem 0.25rem 1.8rem #FFFFFF);
     
 }
@@ -130,10 +133,10 @@ svg{
 
 .comments__counter{
     font-family:'Roboto Condensed', sans-serif;
-    margin-left: 2rem; 
-    position: absolute;
-    left: 8rem;
-    top: 78rem;
+    display: flex;
+    align-items: flex-start;
+    margin-left: 8rem;
+    margin-bottom: -6.5%
 }
 
 .backbutton{
