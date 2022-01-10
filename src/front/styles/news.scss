@@ -1,3 +1,28 @@
+@media screen and (max-width: 1000px) {
+    .news__title{
+        font-family: 'Righteous', cursive;
+        margin-left: 6rem;
+        margin-top: 10rem;
+        padding-right: 0;
+        margin-right:0;
+        position: relative;
+        display: inline-block;
+        font-size: 2rem;
+    }
+
+    .news__image{
+        max-width: 20rem;
+        max-height: auto;
+        top: -1rem;
+        position: relative;
+        //margin-left: 8rem;
+        border-radius: 2%;
+        float: right;
+        z-index: -1;
+        margin-bottom:1.5rem;
+    }
+
+  }
 
 
 .news__header{
@@ -6,11 +31,13 @@
 
 .news__title{
     font-family: 'Righteous', cursive;
-    margin-left: 14rem;
+    margin-left: 9rem;
     margin-top: 13rem;
+    padding-right: 0;
+    margin-right:0;
     position: relative;
-    display: inline-block;
-    font-size: 7rem;
+    // display: inline-block;
+    font-size: 6rem;
 }
 
 .news__title::after{
@@ -18,21 +45,22 @@
     position: absolute;
     background-color: rgba( #000000, 0.7);
     height: 0.1rem;
-    width: 22rem;
+    width: 20rem;
     top: 1.5em;
-    left: -2rem;
+    left: -1rem;
 
 }
 
 .news__image{
-   width: 35rem;
-   height: 30rem;
+   max-width: 35rem;
+   max-height: 30rem;
    top: -1rem;
    position: relative;
-   margin-left: 8rem;
+   //margin-left: 8rem;
    border-radius: 2%;
    float: right;
    z-index: -1;
+   margin-bottom:1.5rem;
 }
 
 .news__subimage{
@@ -47,6 +75,7 @@
 
 .news__items{
     margin-left: 4rem;
+    margin-right: 4rem;
     margin-top: 3rem;
     font-family: 'Roboto Condensed', sans-serif;
     font-weight: bold;
@@ -87,4 +116,10 @@
 .cardnews__link{
     text-decoration: none;
     color: currentColor ;
+}
+
+.cardnews_row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
 }

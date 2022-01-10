@@ -18,7 +18,7 @@ export const AboutUs = () =>(
                     </div>
                 </div>
                 <div className="aboutUs-topBody__what">
-                    <img src="https://i.ibb.co/4tgQpLJ/Img-about-us.png" alt="" />
+                    <img src="https://images.pexels.com/photos/37542/divers-scuba-reef-underwater-37542.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="" />
                     <div className="aboutUs-topBody__what__T">
                         <h3>WHAT CAN WE OFFER</h3>
                         <p>We will help you to find the information about the places where you can practise your favourites water sports and have a good time during your journey </p>

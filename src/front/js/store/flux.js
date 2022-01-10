@@ -225,7 +225,36 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
-			
+			addFavCenters: async (fav, user) => {
+				let token = localStorage.getItem("token");
+				// let user = localStorage.getItem("id");
+				// let fav = user.favourite_spot;
+				const opt = {
+					method: 'POST',
+					headers: new Headers({
+						'Content-Type': 'application/json',
+						Authorization: `Bearer ${token}`
+					}),
+					body: JSON.stringify(data)
+				};
+
+				try {
+					const resp = await fetch(getStore().baseUrl.concat(`waterdropper/${user.id}/center/${fav.id}`), opt)
+					
+					if (resp.status !== 201) {
+						// alert("There has been some error");
+						return false;
+					}
+
+					const data = await resp.json();
+
+					setStore({ "favCenters": data });
+
+				}
+				catch (error) {
+					console.error("There was an error!!", error);
+				}
+			},
 			
 			addFavourites: name => {
 				if (
@@ -405,6 +434,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						console.log('Looks like there was a problem: \n', error);
 					});
 			},
+
 		},
 	}
 
