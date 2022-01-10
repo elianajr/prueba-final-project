@@ -1,9 +1,6 @@
 import jwt_decode from "jwt-decode";
 
 
-const PORT = 3001;
-const [PROTOCOL, HOST] = process.env.GITPOD_WORKSPACE_URL.split("://");
-
 
 const getState = ({ getStore, getActions, setStore }) => {
 	let BACKEND_URL = "";
@@ -19,7 +16,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			message: null,
 			users: [],
 			user: {},
-			baseUrl: `${PROTOCOL}://${PORT}-${HOST}/api/`,
+			baseUrl: `${BACKEND_URL}/api/`,
 			currentUser: {},
 			loggedUser: {},
 			favourites: [],
