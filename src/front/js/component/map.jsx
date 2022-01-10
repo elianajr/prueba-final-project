@@ -7,6 +7,7 @@ import { KitesurfMarker } from "./kitesurfMarker.jsx";
 import { SurfMarker } from "./surfMarker.jsx";
 import { ScubaMarker } from "./scubaMarker.jsx";
 import { SnorkelMarker } from "./snorkelMarker.jsx";
+import { CentersMarkers } from "./centersMarkers.jsx"; 
 
 
 const Map = props => {
@@ -41,9 +42,14 @@ const Map = props => {
 						url="https://tiles.wmflabs.org/hikebike/{z}/{x}/{y}.png"
 					/>
 				</LayersControl.BaseLayer>
-				<LayersControl.Overlay checked name="HotSpots">
+				<LayersControl.Overlay checked name="New Spot">
 					<LayerGroup>
 						<DraggableMarker callback={getMarkerPosition}/>
+					</LayerGroup>
+				</LayersControl.Overlay>
+				<LayersControl.Overlay checked name="Centers">
+					<LayerGroup>
+						<CentersMarkers></CentersMarkers>
 					</LayerGroup>
 				</LayersControl.Overlay>
 				<LayersControl.Overlay checked={sport[0]} name="SNORKEL">

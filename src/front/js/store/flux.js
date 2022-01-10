@@ -29,7 +29,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			nextDaysWeather: {},
 			hotspots: [],
 			hotspotsDetails: {},
-			hotspotURL: `https://3001-pink-rook-7fv35jqw.ws-eu25.gitpod.io/api/hotspots/`
+			hotspotURL: `https://3001-pink-rook-7fv35jqw.ws-eu25.gitpod.io/api/hotspots/`,
+			centers:[]
 		},
 
 		actions: {
@@ -409,8 +410,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						return response.json();
 					})
 					.then(function (responseAsJson) {
-						setStore({ centerss: responseAsJson });
-						console.log(responseAsJson);
+						setStore({ centers: responseAsJson });
 					})
 					.catch(function (error) {
 						console.log('Looks like there was a problem: \n', error);
