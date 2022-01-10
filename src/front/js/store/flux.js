@@ -6,6 +6,14 @@ const [PROTOCOL, HOST] = process.env.GITPOD_WORKSPACE_URL.split("://");
 
 
 const getState = ({ getStore, getActions, setStore }) => {
+	let BACKEND_URL = "";
+	if (process.env.GITPOD_WORKSPACE_URL) {
+		const PORT = 3001;
+		const [PROTOCOL, HOST] = process.env.GITPOD_WORKSPACE_URL.split("://");
+		BACKEND_URL = `${PROTOCOL}://${PORT}-${HOST}`;
+	} else {
+		BACKEND_URL = process.env.BACKEND_URL;
+	}
 	return {
 		store: {
 			message: null,
