@@ -1,7 +1,9 @@
-import React , { useState, useContext } from "react";
+import React , { useState, useContext, Fragment } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { Context } from "../store/appContext.js";
+import { Navbar } from "./navbar.js";
+import { Footer } from "./footer.js";
 import "../../styles/registerlogin.scss";
 
 
@@ -15,20 +17,19 @@ const Login = () => {
 	const hidePwdImg = "fas fa-eye-slash";
 	const showPwdImg = "fas fa-eye";
 
-
 	
 	const onSubmit = data => {
 		console.log(data);
 		actions.login(data);
-		
 	};
 
 	const token = localStorage.getItem("token");
 	if(token) {navigate("/")};
-	// if(token == undefined) {actions.logout()};
 
     
 	return (
+		<Fragment>
+		<Navbar />
 		<div className="register-login-form myprofile">
 			<form className="register-login" onSubmit={handleSubmit(onSubmit)}>
 				<h2 className="tittle-logreg">SIGN IN TO WDS</h2>
@@ -87,6 +88,8 @@ const Login = () => {
 				
 			</form>
 		</div>
+		<Footer />
+		</Fragment>
 	);
 	
 };

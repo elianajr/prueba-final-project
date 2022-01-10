@@ -22,7 +22,8 @@ export const SearchBar = () =>{
 		if (search!=null) {
 			setSearchedspots(store.hotspots.map((element,index)=>{
 				return <div className="searchBar__resultitems">
-					<div className="searchBar__resultname" key={index.toString()}>{element.name}
+					<div className="searchBar__resultname" key={index.toString()}>
+						<Link className="searcBar__resultlink" to={'/hotspotID/'.concat(element.id)}>{element.name}</Link>
 				          <Rate />
 						</div>
 						{element.photo && <img className="searchBar__resultimg" src={element.photo}></img>}

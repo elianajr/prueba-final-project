@@ -40,4 +40,4 @@ const Chatdropdown=()=>{
     </div>)
 }
 
-export default Chatdropdown
+export default Chatdropdown;

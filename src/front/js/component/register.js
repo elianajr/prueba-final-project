@@ -2,6 +2,8 @@ import React , { useState, useContext, useEffect, Fragment } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext.js";
+import { Navbar } from "./navbar.js";
+import { Footer } from "./footer.js";
 import "../../styles/registerlogin.scss";
 
 
@@ -10,9 +12,9 @@ const Register = () => {
 	const { watch, register, getValues, formState: { errors, isValid }, handleSubmit } = useForm();
 	
 
-
 	return (
-
+		<Fragment>
+		<Navbar />
 		<div className="register-login-form myprofile">
 			<div className="register-login">
 				<h2 className="tittle-logreg">JOIN WDS</h2> 
@@ -35,6 +37,8 @@ const Register = () => {
 				</div>
 			</div>
 		</div>
+		<Footer />
+		</Fragment>
 	);
 };
 

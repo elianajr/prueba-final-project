@@ -9,8 +9,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 			message: null,
-			users:[],
-			user:{},
+			users: [],
+			user: {},
 			baseUrl: `${PROTOCOL}://${PORT}-${HOST}/api/`,
 			currentUser: {},
 			loggedUser: {},
@@ -22,17 +22,19 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			weather: {},
 			nextDaysWeather: {},
-			hotspots: []
+			hotspots: [],
+			hotspotsDetails: {},
+			hotspotURL: `https://3001-pink-rook-7fv35jqw.ws-eu25.gitpod.io/api/hotspots/`
 		},
 
 		actions: {
 			setLoggedUser: (user) => {
-				setStore({"loggedUser": user});
+				setStore({ "loggedUser": user });
 			},
 			logout: () => {
 				localStorage.removeItem("token");
-				setStore({"loggedUser": null})
-			
+				setStore({ "loggedUser": null })
+
 			},
 			// Use getActions to call a function within a fuctio
 			getMessage: () => {
@@ -42,41 +44,70 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(data => setStore({ message: data.message }))
 					.catch(error => console.log("Error loading message from backend", error));
 			},
-			getUsers:()=>{
+
+			getUsers: () => {
 				fetch(getStore().baseUrl.concat('account'))
-	        .then(function(response) {
-		          if (!response.ok) {
-	              throw Error(response.statusText);
-	        }
-    		// Read the response as json.
-	              return response.json();
-	        })
-	            .then(function(responseAsJson) {
-					setStore({ users: responseAsJson });
-	                console.log(responseAsJson);
-	        })
-                .catch(function(error) {
-	             console.log('Looks like there was a problem: \n', error);
-                 });
+					.then(function (response) {
+						if (!response.ok) {
+							throw Error(response.statusText);
+						}
+						// Read the response as json.
+						return response.json();
+					})
+					.then(function (responseAsJson) {
+						setStore({ users: responseAsJson });
+						console.log(responseAsJson);
+					})
+					.catch(function (error) {
+						console.log('Looks like there was a problem: \n', error);
+					});
 			},
-			getUser:(id)=>{
-				fetch(getStore().baseUrl.concat('account/',id))
-	        .then(function(response) {
-		          if (!response.ok) {
-	              throw Error(response.statusText);
-	        }
-    		// Read the response as json.
-	              return response.json();
-	        })
-	        .then(function(responseAsJson) {
-				if (id){
-					setStore({ user: responseAsJson });
-	                console.log(responseAsJson);
-				}		
-	        })
-            .catch(function(error) {
-	             console.log('Looks like there was a problem: \n', error);
-                 });
+
+			login: async (data) => {
+				const opts = {
+					method: 'POST',
+					headers: new Headers({
+						'Content-Type': 'application/json'
+					}),
+					body: JSON.stringify(data)
+				};
+
+				try {
+					const resp = await fetch(getStore().baseUrl.concat("login"), opts)
+					if (resp.status !== 200) {
+						// alert("There has been some error");
+					}
+
+					const data = await resp.json();
+					console.log("this came from the backend", data);
+
+					localStorage.setItem("token", data.token);
+					const tokenDecoded = jwt_decode(data.token);
+					setStore({ "loggedUser": tokenDecoded });
+				}
+				catch (error) {
+					console.error("There was an error!!", error);
+				}
+			},
+
+			getUser: (id) => {
+				fetch(getStore().baseUrl.concat('account/', id))
+					.then(function (response) {
+						if (!response.ok) {
+							throw Error(response.statusText);
+						}
+						// Read the response as json.
+						return response.json();
+					})
+					.then(function (responseAsJson) {
+						if (id) {
+							setStore({ user: responseAsJson });
+							console.log(responseAsJson);
+						}
+					})
+					.catch(function (error) {
+						console.log('Looks like there was a problem: \n', error);
+					});
 			},
 			register: async data => {
 				const opt = {
@@ -87,7 +118,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					body: JSON.stringify(data)
 				};
 
-				try{
+				try {
 					const resp = await fetch(getStore().baseUrl.concat("account"), opt)
 					if (resp.status !== 201) {
 						// alert("There has been some error");
@@ -98,73 +129,37 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 					localStorage.setItem("token", data.token);
 					const tokenDecoded = jwt_decode(data.token);
-					setStore({"loggedUser": tokenDecoded});
+					setStore({ "loggedUser": tokenDecoded });
 
 				}
-				catch(error){
+				catch (error) {
 					console.error("There was an error!!", error);
 				}
 			},
-			verifylogin:()=>{
-				const token=localStorage.getItem('token')
-				if (token) {
-					return true
-				} else{
-					return false
-				}
-			},
-			login: async (data) => {
-				const opts = {
-					method: 'POST',
-					headers: new Headers({
-						'Content-Type': 'application/json'
-					}),
-					body: JSON.stringify(data)
-				};
-
-				try{
-					const resp = await fetch(getStore().baseUrl.concat("login"), opts)
-					if (resp.status !== 200) {
-						// alert("There has been some error");
-					}
-					
-					const data = await resp.json();
-					console.log("this came from the backend", data);
-					
-					localStorage.setItem("token", data.token);
-					const tokenDecoded = jwt_decode(data.token);
-					setStore({"loggedUser": tokenDecoded});
-				}
-				catch(error){
-					console.error("There was an error!!", error);
-				}
-					}
-
-			},
-			
-			
 			getProfile: async (id) => {
 				let token = localStorage.getItem("token");
 				let myHeaders = new Headers();
 				myHeaders.append("Authorization", `Bearer ${token}`);
 
 				let requestOptions = {
-				method: 'GET',
-				headers: myHeaders,
-				redirect: 'follow'
+					method: 'GET',
+					headers: myHeaders,
+					redirect: 'follow'
 				};
 
 				await fetch(getStore().baseUrl.concat(`account/${id}`), requestOptions)
-				.then(response => response.json())
-				.then(result => {
-					setStore({currentUser: {
-						result: result,
-						user: result.user
-					}}),
-					setStore({token: token})
-					console.log(result)
-				})
-				.catch(error => console.log('error', error));
+					.then(response => response.json())
+					.then(result => {
+						setStore({
+							currentUser: {
+								result: result,
+								user: result.user[0]
+							}
+						}),
+							setStore({ token: token })
+						console.log(result)
+					})
+					.catch(error => console.log('error', error));
 
 			},
 			editProfile: async (data, id) => {
@@ -178,21 +173,23 @@ const getState = ({ getStore, getActions, setStore }) => {
 					body: JSON.stringify(data)
 				};
 
-				try{
+				try {
 					const resp = await fetch(getStore().baseUrl.concat('account/', id), opt)
 					if (resp.status !== 201) {
 						// alert("There has been some error");
 					}
 
 					const result = await resp.json();
-					setStore({currentUser: {
-						result: result,
-						user: result.user
-					}}),
-					setStore({token: token})
+					setStore({
+						currentUser: {
+							result: result,
+							user: result.user
+						}
+					}),
+						setStore({ token: token })
 					console.log(result)
 				}
-				catch(error){
+				catch (error) {
 					console.error("There was an error!!", error);
 				}
 			},
@@ -207,7 +204,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					body: JSON.stringify(data)
 				};
 
-				try{
+				try {
 					const resp = await fetch(getStore().baseUrl.concat(`account/${id}`), opt)
 					if (resp.status !== 201) {
 						//alert("There has been some error");
@@ -216,29 +213,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 					const data = await resp.json();
 					console.log(data);
 				}
-				catch(error){
+				catch (error) {
 					console.error("There was an error!!", error);
-					}
+				}
 			},
-			// getUser:(id)=>{
-			// 	fetch(getStore().url.concat('api/account/',id))
-	        // .then(function(response) {
-		    //       if (!response.ok) {
-	        //       throw Error(response.statusText);
-	        // }
-    		// // Read the response as json.
-	        //       return response.json();
-	        // })
-	        // .then(function(responseAsJson) {
-			// 	if (id){
-			// 		setStore({ user: responseAsJson });
-	        //         console.log(responseAsJson);
-			// 	}		
-	        // })
-            // .catch(function(error) {
-	        //      console.log('Looks like there was a problem: \n', error);
-            //      });
-			// },
+
+			
+			
 			addFavourites: name => {
 				if (
 					!getStore().favourites.find(favourite => {
@@ -250,80 +231,103 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			deleteFavourites: deleted => {
 				setStore({
-					favourites: getStore().favourites.filter((_, item) => item != deleted)
+					favourites: getStore().favourites.filter(item => item != deleted)
 				});
 			},	
 			setPosition: (coords) => {
-				setStore({position: {
-					latitude: coords.latitude,
-					longitude: coords.longitude
-				}})
+				setStore({
+					position: {
+						latitude: coords.latitude,
+						longitude: coords.longitude
+					}
+				})
 			},
 			getOnloadWeatherData: () => {
 				console.log(process.env.FORECAST_API_KEY)
 				console.log('position', getStore().position);
 				fetch(`${process.env.FORECAST_BASE_URL}lat=${getStore().position.latitude}&lon=${getStore().position.longitude}&appid=${process.env.FORECAST_API_KEY}&units=metric`)
-					.then(resp =>{
-						if(resp.ok) {
+					.then(resp => {
+						if (resp.ok) {
 							return resp.json();
 						}
-						
+
 						throw new Error("Fail loading weather");
 					})
-					.then(data =>{
-						setStore({ weather: {
-							city: data.name,
-							weatherMain: data.main,
-							weatherCoord: data.coord,
-							weatherSys: data.sys,
-							weatherWeather: data.weather[0],
-							weatherWind: data.wind,
-						}});					
+					.then(data => {
+						setStore({
+							weather: {
+								city: data.name,
+								weatherMain: data.main,
+								weatherCoord: data.coord,
+								weatherSys: data.sys,
+								weatherWeather: data.weather[0],
+								weatherWind: data.wind,
+							}
+						});
 					})
 					.catch(error => {
 						console.log(error.message);
 					});
 			},
-			getThreeDaysWeatherData: ()=>{
+			getThreeDaysWeatherData: () => {
 				fetch(`${process.env.FORECAST_THREE_DAYS}lat=${getStore().position.latitude}&lon=${getStore().position.longitude}&exclude=minutely,hourly&appid=${process.env.FORECAST_API_KEY}&units=metric`)
-				.then(resp => resp.json())
-				.then(data =>{
-					console.log("THREE DAYS AFTER",data)
-					setStore({nextDaysWeather: {
-						weatherToday: data.daily[0],
-						weatherTomorrow: data.daily[1],
-						weatherNextDay: data.daily[2],
-						weatherNextNextDay: data.daily[3]
-					}})													
-				})
-				.catch(error => {
-					console.log(error.message);
-				});
+					.then(resp => resp.json())
+					.then(data => {
+						console.log("THREE DAYS AFTER", data)
+						setStore({
+							nextDaysWeather: {
+								weatherToday: data.daily[0],
+								weatherTomorrow: data.daily[1],
+								weatherNextDay: data.daily[2],
+								weatherNextNextDay: data.daily[3]
+							}
+						})
+					})
+					.catch(error => {
+						console.log(error.message);
+					});
 			},
-			getWeatherData:(city,country,APYKEY)=>{
-			 	fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${process.env.FORECAST_API_KEY}&units=metric`)
-			 		.then(resp => resp.json())
-			 		.then(data =>{
-			 			setStore({ weather: {
-							city: data.name,
-							weatherMain: data.main,
-							weatherCoord: data.coord,
-							weatherSys: data.sys,
-							weatherWeather: data.weather[0],
-							weatherWind: data.wind,
-						}});						
-			 		})
-			 		.catch(error => {
-			 			console.log(error.message);
-			 		});
+			getWeatherData: (city, country, APYKEY) => {
+				fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${process.env.FORECAST_API_KEY}&units=metric`)
+					.then(resp => resp.json())
+					.then(data => {
+						setStore({
+							weather: {
+								city: data.name,
+								weatherMain: data.main,
+								weatherCoord: data.coord,
+								weatherSys: data.sys,
+								weatherWeather: data.weather[0],
+								weatherWind: data.wind,
+							}
+						});
+					})
+					.catch(error => {
+						console.log(error.message);
+					});
 			},
-			getAllHotspots:()=>{
+			getAllHotspots: () => {
 				fetch(getStore().baseUrl.concat('hotspots'))
 					.then(resp => resp.json())
 					.then(data => {
-						setStore({hotspots:[...data]})
+						setStore({ hotspots: [...data] })
 					})
+					.catch(error => {
+						console.log(error.message);
+					});
+			},
 
+			getHotspotsDetails: (id) => {
+				fetch(getStore().baseUrl.concat('hotspots/',id))
+					.then(answer => {
+						if (answer.ok) {
+							return answer.json();
+						}
+						throw new Error("FAIL DOWNLOADING SPECIES DETAILS");
+					})
+					.then(answer => {
+						setStore({ hotspotsDetails: answer });
+					})
 					.catch(error => {
 						console.log(error.message);
 					});
@@ -356,41 +360,60 @@ const getState = ({ getStore, getActions, setStore }) => {
 				var raw = JSON.stringify(data);
 
 				var requestOptions = {
-				method: 'POST',
-				headers: myHeaders,
-				body: raw,
-				redirect: 'follow'
+					method: 'POST',
+					headers: myHeaders,
+					body: raw,
+					redirect: 'follow'
 				};
-
-				const uploadimagehotspot =(id)  => {
-					if (image!=''){
+				const uploadimagehotspot = (id) => {
+					if (image != '') {
 						let body = new FormData();
-					body.append('media', image);
-					const options = {
-						body,
-						method: "POST"
-					};
-					fetch(getStore().baseUrl.concat('hotspotphoto/',id),options)
-					.then(resp => resp.json())
-					.then(data => console.log("Success!!!!", data))
-					.catch(error => console.error("ERRORRRRRR!!!", error))
-
+						body.append('media', image);
+						const options = {
+							body,
+							method: "POST"
+						};
+						fetch(getStore().baseUrl.concat('hotspotphoto/', id), options)
+							.then(resp => resp.json())
+							.then(data =>{
+								console.log("Success!!!!", data)
+								getActions().getAllHotspots()
+							})
+							.catch(error => console.error("ERRORRRRRR!!!", error))
 					}
-					
 				};
-
 				fetch(getStore().baseUrl.concat('hotspots'), requestOptions)
-				.then(response => response.json())
-				.then(result => uploadimagehotspot(result.id))
-				.catch(error => console.log('error', error));
+					.then(response => response.json())
+					.then(result => uploadimagehotspot(result.id))
+					.catch(error => console.log('error', error));
 			},
-			
-			
-		}
+			verifylogin: () => {
+				const token = localStorage.getItem('token')
+				if (token) {
+					return true
+				} else {
+					return false
+				}
+			},
+			getAllCenters: () => {
+				fetch(getStore().baseUrl.concat('centers'))
+					.then(function (response) {
+						if (!response.ok) {
+							throw Error(response.statusText);
+						}
+						return response.json();
+					})
+					.then(function (responseAsJson) {
+						setStore({ centerss: responseAsJson });
+						console.log(responseAsJson);
+					})
+					.catch(function (error) {
+						console.log('Looks like there was a problem: \n', error);
+					});
+			},
+		},
+	}
 
-	};
-
-
-		
+};
 
 export default getState;

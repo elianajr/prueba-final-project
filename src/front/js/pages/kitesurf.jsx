@@ -1,17 +1,44 @@
-import React from "react";
+import React, { useEffect, useState, useContext } from "react";
+import { Context } from "../store/appContext";
 import {Navbar} from "../component/navbar.js";
 import { Footer } from "../component/footer.js";
 import Map from "../component/map.jsx"
 import  MiniForecast from "../component/miniForecast.jsx";
+import { Link } from "react-router-dom";
 
 import "../../styles/kitesurf.scss"
 
 export const Kitesurf = ()=>{
+    const { store, actions } = useContext(Context);
+    const [detailElements, setDetailElement] = useState(null);
     const check = [false,false,false,true];
 
     const getMarkerPosition = position =>{
 		console.log("Kitesurf spot",position)
 	};
+
+    useEffect(
+		() => { 
+			setDetailElement(
+				store.hotspots.map((index, info) => {
+                    if(index.sport_id == 2){
+                        return (
+                            <div >
+                                <ul key={index.id}>
+                                    <Link to={`/hotspotID/${index.id}`} >
+                                        <li className="bestplaces-list">
+                                            {index.name}<img src={index.photo} alt="" width="50" height="25" />
+                                        </li>
+                                    </Link>
+                                </ul>
+                            </div>
+					    );
+                    }
+				})
+			);
+		},
+	[store.hotspots]
+	);
 
     return(
         <div className="bodyKitesurf">
@@ -41,7 +68,9 @@ export const Kitesurf = ()=>{
                     <div className="bodyKitesurf-bot__forecast"><MiniForecast/></div>
                     <div className="bodyKitesurf-bot__best">
                             <p>The best places in the world </p>
-                            <div></div>
+                            <div className="bodySurf-bot__best__places">
+                                {detailElements}
+                            </div>
                     </div>
                 </div>
             <Footer/>

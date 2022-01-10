@@ -5,6 +5,10 @@
     border:1.5rem solid rgba(#92E2C8, 0.3); ;
     border-bottom-right-radius: 15%;
     border-bottom-left-radius: 15%;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 42rem;
 }
 
 .detailsnews__title{
@@ -26,17 +30,16 @@
 }
 
 
-.player__wrapper {
-    position: relative;
-    top: -1rem;
-    
-}
+
   
 .reactplayer {
     position: absolute;
-    top: 6rem;
-    left: 12.5rem;
-    box-sizing: border-box;
+    margin: auto;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 5rem;
+    filter: drop-shadow(0.2rem 0.25rem 1.8rem #FFFFFF);box-sizing: border-box;
     filter: drop-shadow(0.2rem 0.25rem 1.8rem #FFFFFF);
     
 }

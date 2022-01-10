@@ -1,7 +1,7 @@
 from werkzeug.security import generate_password_hash
 
 data = {
-     "Sport":[
+    "Sport":[
         {
             "id": 1,
             "name": "Scuba"
@@ -19,7 +19,7 @@ data = {
             "name": "Snorkel"
         }
     ],
-
+    
     "Account":[
         {
             "id": 1,
@@ -565,7 +565,7 @@ data = {
 	
 	    {
             "id": 23,
-            "sport_id": 1,  
+            "sport_id": 2,  
             "account_id": 1,
             "name": "Scotts Head – Reserva marina natural, Sur de Roseau, DOMINICA",
             "photo": "https://www.travelsauro.com/wp-content/uploads/2016/01/scotts-head-dominica-1.jpg", 
@@ -577,7 +577,7 @@ data = {
 
 	    {
             "id": 24,
-            "sport_id": 1,  
+            "sport_id": 2,  
             "account_id": 1,
             "name": "Great Blue Hole – Arrecife Lighthouse, BELIZE",
             "photo": "https://www.visitcentroamerica.com/wp-content/uploads/2017/11/ver-centroamerica-belice-blue-hole-naturaleza-01.jpg", 
@@ -601,7 +601,7 @@ data = {
 
 	    {
             "id": 26,
-            "sport_id": 1,  
+            "sport_id": 2,  
             "account_id": 1,
             "name": "Isla Mnemba – Archipiélago de Zanzibar, TANZANIA",
             "photo": "https://album.mediaset.es/eimg/10000/2021/06/25/clipping_hSBOxP_fa10.jpg", 
@@ -613,7 +613,7 @@ data = {
 
 	    {
             "id": 27,
-            "sport_id": 1,  
+            "sport_id": 2,  
             "account_id": 1,
             "name": "Aliwal Shoal – Umkomaas, SUDAFRICA",
             "photo": "https://www.south-coast-info.co.za/info/towns/1677/images/bottom_images/10.jpg", 
@@ -637,7 +637,7 @@ data = {
 	
 	    {
             "id": 29,
-            "sport_id": 1,  
+            "sport_id": 2,  
             "account_id": 1,
             "name": "Sardine Run, SUDAFRICA",
             "photo": "https://www.tripsavvy.com/thmb/PicnORo_HMiDOR01h7crU27WrA0=/2119x1417/filters:fill%28auto,1%29/sharkandbaitball-565ba1933df78c6ddf5c2e02.jpg", 
@@ -649,7 +649,7 @@ data = {
 	
 	    {
             "id": 30,
-            "sport_id": 3,  
+            "sport_id": 2,  
             "account_id": 1,
             "name": "Elphinstone Reef – Mar Rojo, EGIPTO",
             "photo": "http://www.joveneslowcost.com/contenido/uploads/2016/10/j-mar-rojo-2.jpg", 
@@ -661,7 +661,7 @@ data = {
 	
 	    {
             "id": 31,
-            "sport_id": 1,  
+            "sport_id": 2,  
             "account_id": 1,
             "name": "Blue Hole – Dahab, Mar Rojo, EGIPTO",
             "photo": "https://upload.wikimedia.org/wikipedia/commons/b/bf/BlueHole_Rohscan_bearb_150d.jpg", 
@@ -685,7 +685,7 @@ data = {
 	
 	    {
             "id": 33,
-            "sport_id": 1,  
+            "sport_id": 2,  
             "account_id": 1,
             "name": "Islas Hermanos – Mar Rojo, EGIPTO",
             "photo": "https://www.cairotoptours.com/uploads/pages/a89c106af5d3fd005e94c7e249bcd226.jpg", 
@@ -697,7 +697,7 @@ data = {
 
 	    {
             "id": 34,
-            "sport_id": 1,  
+            "sport_id": 2,  
             "account_id": 1,
             "name": "Manta Reef – Nusa Penida, MOZAMBIQUE",
             "photo": "https://saveourseas.com/wp-content/uploads/2019/09/20190709im03ryandalysaveourseasfoundationcopyright.jpg", 
@@ -721,7 +721,7 @@ data = {
 
 	    {
             "id": 36,
-            "sport_id": 1,  
+            "sport_id": 2,  
             "account_id": 1,
             "name": "Perpendicular Wall – Christmas Island, AUSTRALIA",
             "photo": " https://www.scubadivermag.com/wp-content/uploads/2021/03/Christmas-Island-hard-coral-with-divers-credit-Scott-Portelli_SP13278.jpg", 
@@ -733,7 +733,7 @@ data = {
 
 	    {
             "id": 37,
-            "sport_id": 1,  
+            "sport_id": 2,  
             "account_id": 1,
             "name": "Navy Pier – Parque Marino Ningaloo Reef, Exmouth, AUSTRALIA",
             "photo": "https://www.diveningaloo.com.au/wp-content/uploads/2018/07/navypier1-1024x504.jpg", 
@@ -745,7 +745,7 @@ data = {
 
 	    {
             "id": 38,
-            "sport_id": 4,  
+            "sport_id": 2,  
             "account_id": 1,
             "name": "Blue Corner – Palau, MICRONESIA",
             "photo": "https://content.unops.org/photos/News-and-Stories/News/_1200x630_crop_center-center_82_none/Palau_GettyImages-949006476.jpg", 
@@ -757,7 +757,7 @@ data = {
 	
 	    {
             "id": 39,
-            "sport_id": 1,  
+            "sport_id": 2,  
             "account_id": 1,
             "name": "Paso de Tiputa – Atolón de Rangiroa, Polinesia Francesa",
             "photo": "https://unaideaunviaje.com/wp-content/uploads/2020/12/pink-beach-rangiroa-polinesia-francesa-unaideaunviaje-47.jpg", 
@@ -769,7 +769,7 @@ data = {
 	
 	    {
             "id": 40,
-            "sport_id": 1,  
+            "sport_id": 2,  
             "account_id": 1,
             "name": "Buceo nocturno con mantarrayas – Kailua Kona, HAWAI",
             "photo": "https://images.rove.me/w_1920,q_85/i450ph7xpo3nakxipfwi/big-island-manta-ray-night-dive.jpg", 
@@ -805,7 +805,7 @@ data = {
 
 	    {
             "id": 43,
-            "sport_id": 1,  
+            "sport_id": 3,  
             "account_id": 1,
             "name": "Teahupo'o, Tahiti, French Polynesia",
             "photo": "https://www.singlequiver.com/enelpico/wp-content/uploads/2019/09/pato-teixera-surf-teahupoo.jpg", 
@@ -817,7 +817,7 @@ data = {
 
 	    {
             "id": 44,
-            "sport_id": 2,  
+            "sport_id": 3,  
             "account_id": 1,
             "name": "Uluwatu and Kuta, Bali, Indonesia",
             "photo": "https://world-travel-guy-inboundhorizonsi.netdna-ssl.com/wp-content/uploads/2021/02/DJI_0377_1300.jpg", 
@@ -829,7 +829,7 @@ data = {
 
 	    {
             "id": 45,
-            "sport_id": 1,  
+            "sport_id": 3,  
             "account_id": 1,
             "name": "P-Pass, Pohnpei, Federated States of Micronesia",
             "photo": "https://www.leeabbamonte.com/wp-content/uploads/2013/03/IMG_0793.jpg", 
@@ -841,7 +841,7 @@ data = {
 
 	    {
             "id": 46,
-            "sport_id": 1,  
+            "sport_id": 3,  
             "account_id": 1,
             "name": "Maverick's, California",
             "photo": "https://www.californiabeaches.com/wp-content/uploads/2014/09/IMG_5630-Large-1000x667.jpg", 
@@ -853,7 +853,7 @@ data = {
 	
 	    {
             "id": 47,
-            "sport_id": 1,  
+            "sport_id": 3,  
             "account_id": 1,
             "name": "Hossegor, France",
             "photo": "https://www.alba-car.es/wp-content/uploads/2020/11/surf-hossegor2.jpg", 
@@ -865,7 +865,7 @@ data = {
 	
 	    {
             "id": 48,
-            "sport_id": 1,  
+            "sport_id": 3,  
             "account_id": 1,
             "name": "Puerto Escondido, Southern Oaxaca, Mexico",
             "photo": "http://cdn.cnn.com/cnnnext/dam/assets/180427150310-04-puerto-escondido.jpg", 
@@ -889,7 +889,7 @@ data = {
 	
 	    {
             "id": 50,
-            "sport_id": 1,  
+            "sport_id": 3,  
             "account_id": 1,
             "name": "Lance's Right, Sipora, Mentawais Islands, Sumatera Barat, Indonesia",
             "photo": "https://mylemonmagazine.com/wp-content/uploads/2020/04/shutterstock_1119145235.jpg", 
@@ -913,7 +913,7 @@ data = {
 
 	    {
             "id": 52,
-            "sport_id": 1,  
+            "sport_id": 3,  
             "account_id": 1,
             "name": "Trestles, Orange County, California",
             "photo": "https://www.surfholidays.com/assets/images/blog/2015-09-08-Trestles.jpg", 
@@ -937,7 +937,7 @@ data = {
 
 	    {
             "id": 54,
-            "sport_id": 1,  
+            "sport_id": 3,  
             "account_id": 1,
             "name": "Montanita Beach, Montanita, Ecuador",
             "photo": "https://beachlifeecuador.com/wp-content/uploads/2021/06/Playa-Montanita-Ecuador.jpg", 
@@ -949,7 +949,7 @@ data = {
 
 	    {
             "id": 55,
-            "sport_id": 1,  
+            "sport_id": 3,  
             "account_id": 1,
             "name": "Rincon, Santa Barbara, California",
             "photo": "https://pbs.twimg.com/media/CjVpxfZUgAA5K2u.jpg", 
@@ -961,7 +961,7 @@ data = {
 
 	    {
             "id": 56,
-            "sport_id": 1,  
+            "sport_id": 3,  
             "account_id": 1,
             "name": "Nihiwatu, Sumba, Indonesia",
             "photo": "https://cf.bstatic.com/xdata/images/hotel/max1280x900/211621769.jpg", 
@@ -985,7 +985,7 @@ data = {
 	
 	    {
             "id": 58,
-            "sport_id": 1,  
+            "sport_id": 3,  
             "account_id": 1,
             "name": "Riyuewan, Sanya, Hainan Island, China",
             "photo": "https://d14fqx6aetz9ka.cloudfront.net/wp-content/uploads/2019/09/24105952/image0042.jpg", 
@@ -1009,7 +1009,7 @@ data = {
 	
 	    {
             "id": 60,
-            "sport_id": 1,  
+            "sport_id": 3,  
             "account_id": 1,
             "name": "The Box, Margaret River Valley, Australia",
             "photo": "https://summerstar.com.au/storage/app/media/blogs/margaret-river-surf-spots/the-box-margaret-river.jpg", 
@@ -1033,7 +1033,7 @@ data = {
 
         {
             "id": 62,
-            "sport_id": 1,  
+            "sport_id": 3,  
             "account_id": 1,
             "name": "Superbank, Gold Coast, Australia",
             "photo": "https://d14fqx6aetz9ka.cloudfront.net/wp-content/uploads/2019/03/30054440/E0I8196-1560x1024.jpg", 
@@ -1045,7 +1045,7 @@ data = {
 
 	    {
             "id": 63,
-            "sport_id": 1,  
+            "sport_id": 4,  
             "account_id": 1,
             "name": "Cloudbreak, Tavarua Island, Fiji",
             "photo": "https://isaworlds.com/sup/2016/wp-content/uploads/2016/11/RestaurantsAerial.jpg", 
@@ -1057,7 +1057,7 @@ data = {
 
 	    {
             "id": 64,
-            "sport_id": 1,  
+            "sport_id": 4,  
             "account_id": 1,
             "name": " Watergate Bay, Cornwall, England",
             "photo": "https://watergatebay.azurewebsites.net/media/2500/watergate-bay-hotel-cornwall.jpg", 
@@ -1069,7 +1069,7 @@ data = {
 
 	    {
             "id": 65,
-            "sport_id": 1,  
+            "sport_id": 4,  
             "account_id": 1,
             "name": "Backdoor, Oahu, Hawaii",
             "photo": "https://ep00.epimg.net/elpais/imagenes/2013/06/04/album/1370334695_972119_1370335652_album_normal.jpg", 
@@ -1093,7 +1093,7 @@ data = {
 
 	    {
             "id": 67,
-            "sport_id": 1,  
+            "sport_id": 4,  
             "account_id": 1,
             "name": "Tamarindo Beach, Tamarindo, Costa Rica",
             "photo": "https://upload.wikimedia.org/wikipedia/commons/c/cc/Costa_Rica_Playa_Tamarindo_and_Rivermouth_2007_Aerial_Photograph_Tamarindowiki_01.JPG", 
@@ -1117,7 +1117,7 @@ data = {
 	
 	    {
             "id": 69,
-            "sport_id": 1,  
+            "sport_id": 4,  
             "account_id": 1,
             "name": "Rincon, Puerto Rico",
             "photo": "https://revistaturismoyviajes.com/wp-content/uploads/2018/11/Rincon-Puerto-Rico-4-1024x576.jpg", 
@@ -1129,7 +1129,7 @@ data = {
 	
 	    {
             "id": 70,
-            "sport_id": 1,  
+            "sport_id": 4,  
             "account_id": 1,
             "name": "Hanalei Bay, Hawaii",
             "photo": "https://www.hawaiimagazine.com/content/uploads/2021/05/s/r/gettyimages-1000512980.jpg", 
@@ -1141,7 +1141,7 @@ data = {
 	
 	    {
             "id": 71,
-            "sport_id": 3,  
+            "sport_id": 4,  
             "account_id": 1,
             "name": "Carrapateira, Portugal",
             "photo": "https://www.shamaretreats.com/wp-content/uploads/2021/05/c61cfd74-f7bc-41fb-a514-2ddd55d0d301-istock-bordeira-1.jpg", 
@@ -1153,7 +1153,7 @@ data = {
 	
 	    {
             "id": 72,
-            "sport_id": 1,  
+            "sport_id": 4,  
             "account_id": 1,
             "name": "Coconuts, Samoa",
             "photo": "https://media01.stockfood.com/largepreviews/MjE3MDQ5MTcyMg==/70015862-Coconut-Trees-and-Blowholes-Taga-Savai-i-Samoa.jpg", 
@@ -1165,7 +1165,7 @@ data = {
 
 	    {
             "id": 73,
-            "sport_id": 2,  
+            "sport_id": 4,  
             "account_id": 1,
             "name": "Sao Francisco do Sul, Brazil",
             "photo": "https://q-xx.bstatic.com/xdata/images/hotel/max1024x768/119314913.jpg", 
@@ -1177,7 +1177,7 @@ data = {
 
 	    {
             "id": 74,
-            "sport_id": 1,  
+            "sport_id": 4,  
             "account_id": 1,
             "name": "Pedra Branca Ericeira, Portugal",
             "photo": "https://rutas-turisticas.com/imagens/destinos/pt/large/IMGD3-840-13776-pedra_branca_ericeira_surf_spot.jpg", 
@@ -1189,7 +1189,7 @@ data = {
 
 	    {
             "id": 75,
-            "sport_id": 1,  
+            "sport_id": 4,  
             "account_id": 1,
             "name": "Les Cavaliers, Anglet, France",
             "photo": "https://cdt64.media.tourinsoft.eu/upload/spot-la-madrague-1.jpg", 
@@ -1201,7 +1201,7 @@ data = {
 
 	    {
             "id": 76,
-            "sport_id": 1,  
+            "sport_id": 4,  
             "account_id": 1,
             "name": "Killer Point, Taghazoute, Morocco",
             "photo": "https://surfberbere.com/wp-content/uploads/2016/03/la_source_and_the_view_up_to_killers.png", 
@@ -1225,7 +1225,7 @@ data = {
 	
 	    {
             "id": 78,
-            "sport_id": 1,  
+            "sport_id": 4,  
             "account_id": 1,
             "name": "Tofino, Vancouver Island, Canada",
             "photo": "http://cdn.cnn.com/cnnnext/dam/assets/200928112745-10-tofino-crunchy-city-canada-restricted.jpg", 
@@ -1237,7 +1237,7 @@ data = {
 	
 	    {
             "id": 79,
-            "sport_id": 1,  
+            "sport_id": 4,  
             "account_id": 1,
             "name": "Ponta Preta, Maio, Cape Verde",
             "photo": "https://i.pinimg.com/736x/f9/05/97/f90597c7bf996961a377e0cda9a776c3--capes.jpg", 
@@ -1249,7 +1249,7 @@ data = {
 	
 	    {
             "id": 80,
-            "sport_id": 1,  
+            "sport_id": 4,  
             "account_id": 1,
             "name": "Biarritz, France",
             "photo": "https://upload.wikimedia.org/wikipedia/commons/a/a9/Biarritz-Plage.JPG", 
@@ -1261,7 +1261,7 @@ data = {
 	
 	    {
             "id": 81,
-            "sport_id": 2,  
+            "sport_id": 4,  
             "account_id": 1,
             "name": "Surf pool, United Arab Emirates",
             "photo": "https://totalsurfcamp.com/sites/default/files/surfcamps/%5Btitle-raw%5D/wadi-adventure.jpg", 
@@ -1273,7 +1273,7 @@ data = {
 	
 	    {
             "id": 82,
-            "sport_id": 1,  
+            "sport_id": 4,  
             "account_id": 1,
             "name": "Cape Hatteras Lighthouse, Buxton, North Carolina",
             "photo": "https://ewscripps.brightspotcdn.com/dims4/default/a1aa0fe/2147483647/strip/true/crop/2000x1125+0+48/resize/1280x720!/quality/90/?url=http%3A%2F%2Fewscripps-brightspot.s3.amazonaws.com%2F9a%2Fd3%2F4f304b1247388c0dff7adda7170a%2Fap-18254602046735.jpg", 
@@ -1285,7 +1285,7 @@ data = {
 
         {
             "id": 83,
-            "sport_id": 3,  
+            "sport_id": 4,  
             "account_id": 1,
             "name": "Black's Beach, San Diego, California",
             "photo": "https://viewfinder.expedia.com/wp-content/uploads/2019/08/blacks-beach-header-1140x630.jpg", 
@@ -1297,7 +1297,7 @@ data = {
 
         {
             "id": 84,
-            "sport_id": 1,  
+            "sport_id": 4,  
             "account_id": 1,
             "name": "The Bubble, Fuerteventura, Canary Islands",
             "photo": "https://thesurfatlas.com/wp-content/uploads/2020/02/Fuerteventura-surf.jpg", 
@@ -1309,7 +1309,7 @@ data = {
 
         {
             "id": 85,
-            "sport_id": 1,  
+            "sport_id": 4,  
             "account_id": 1,
             "name": "Surfer's Point, Barbados",
             "photo": "https://i.ytimg.com/vi/doJN8Wu-8TU/maxresdefault.jpg", 
@@ -1332,7 +1332,7 @@ data = {
 
         {
             "id": 87,
-            "sport_id": 1,  
+            "sport_id": 4,  
             "account_id": 1,
             "name": "Surin Beach, Phuket, Thailand",
             "photo": "https://a.cdn-hotels.com/gdcs/production33/d1061/2de45452-8f22-47e0-ae85-39b070b6dfb4.jpg", 
@@ -1344,7 +1344,7 @@ data = {
 
         {
             "id": 88,
-            "sport_id": 1,  
+            "sport_id": 4,  
             "account_id": 1,
             "name": "Fulong Beach, Taiwan",
             "photo": "https://m.justgola.com/media/a/00/0c/53064_og_1.jpeg", 
@@ -1356,7 +1356,7 @@ data = {
 
         {
             "id": 89,
-            "sport_id": 1,  
+            "sport_id": 4,  
             "account_id": 1,
             "name": "Baja Malibu, Baja Norte, Mexico",
             "photo": "https://www.surf-forecast.com/system/images/10872/large/Baja-Malibu.jpg", 
@@ -1368,7 +1368,7 @@ data = {
 
         {
             "id": 90,
-            "sport_id": 1,  
+            "sport_id": 4,  
             "account_id": 1,
             "name": "Eisbach, Munich",
             "photo": "https://previews.123rf.com/images/gameover/gameover1703/gameover170300036/73736098-munich-surfer-sur-la-vague-artificielle-sur-la-eisbach-petite-rivi%C3%A8re-%C3%A0-travers-le-englischer-garten.jpg", 

@@ -97,8 +97,7 @@
     }
     .news__title{
         font-family: 'Righteous', cursive;
-        margin-left: 5.5rem;
-        margin-top: 2.5rem;
+      margin: 2.5rem 2rem 2rem 8.5rem;
         font-size: 2rem;
     }
 
@@ -114,7 +113,7 @@
         height: 8rem;
         border-radius: 2%;
        margin-top: 2rem;
-       margin-right: 9.5rem;
+       margin-right: 6.5rem;
      }
     
      .news__subimage{
@@ -124,20 +123,23 @@
         border-radius: 5%;
         position: absolute;
         top: 35%;
-        right: 39%;
+        right: 25%;
         z-index: -1;
     }
     .news__items{
         justify-content: center;
         align-items: center;
         font-size: 0.75rem;
-        margin:  0.5rem 0.5rem 0.5rem 0.1rem;
+        margin:  1.5rem 0.5rem 0.5rem 2.5rem;
         width: 15rem;
     }
     .cardnews{
         width: 15rem;
         display: flex;
-        flex-direction:column
+        flex-direction:column;
+        justify-content: center;
+        align-items: center;
+        margin-left: 3.5rem;
     }
 
     .cardnews__main{
