@@ -398,7 +398,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						return response.json();
 					})
 					.then(function (responseAsJson) {
-						setStore({ centerss: responseAsJson });
+						setStore({ centers: responseAsJson });
 						console.log(responseAsJson);
 					})
 					.catch(function (error) {
