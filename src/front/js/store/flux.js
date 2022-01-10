@@ -29,13 +29,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 			setLoggedUser: (user) => {
 				setStore({"loggedUser": user});
 			},
-
 			logout: () => {
 				localStorage.removeItem("token");
 				setStore({"loggedUser": null})
 			
 			},
-
 			// Use getActions to call a function within a fuctio
 			getMessage: () => {
 				// fetching data from the backend
@@ -44,7 +42,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(data => setStore({ message: data.message }))
 					.catch(error => console.log("Error loading message from backend", error));
 			},
-
 			getUsers:()=>{
 				fetch(getStore().baseUrl.concat('account'))
 	        .then(function(response) {
@@ -62,7 +59,60 @@ const getState = ({ getStore, getActions, setStore }) => {
 	             console.log('Looks like there was a problem: \n', error);
                  });
 			},
-			
+			getUser:(id)=>{
+				fetch(getStore().baseUrl.concat('account/',id))
+	        .then(function(response) {
+		          if (!response.ok) {
+	              throw Error(response.statusText);
+	        }
+    		// Read the response as json.
+	              return response.json();
+	        })
+	        .then(function(responseAsJson) {
+				if (id){
+					setStore({ user: responseAsJson });
+	                console.log(responseAsJson);
+				}		
+	        })
+            .catch(function(error) {
+	             console.log('Looks like there was a problem: \n', error);
+                 });
+			},
+			register: async data => {
+				const opt = {
+					method: 'POST',
+					headers: new Headers({
+						'Content-Type': 'application/json'
+					}),
+					body: JSON.stringify(data)
+				};
+
+				try{
+					const resp = await fetch(getStore().baseUrl.concat("account"), opt)
+					if (resp.status !== 201) {
+						// alert("There has been some error");
+						return false;
+					}
+
+					const data = await resp.json();
+
+					localStorage.setItem("token", data.token);
+					const tokenDecoded = jwt_decode(data.token);
+					setStore({"loggedUser": tokenDecoded});
+
+				}
+				catch(error){
+					console.error("There was an error!!", error);
+				}
+			},
+			verifylogin:()=>{
+				const token=localStorage.getItem('token')
+				if (token) {
+					return true
+				} else{
+					return false
+				}
+			},
 			login: async (data) => {
 				const opts = {
 					method: 'POST',
@@ -91,54 +141,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					}
 
 			},
-
-			getUser:(id)=>{
-				fetch(getStore().baseUrl.concat('account/',id))
-	        .then(function(response) {
-		          if (!response.ok) {
-	              throw Error(response.statusText);
-	        }
-    		// Read the response as json.
-	              return response.json();
-	        })
-	        .then(function(responseAsJson) {
-				if (id){
-					setStore({ user: responseAsJson });
-	                console.log(responseAsJson);
-				}		
-	        })
-            .catch(function(error) {
-	             console.log('Looks like there was a problem: \n', error);
-                 });
-			},
-
-			register: async data => {
-				const opt = {
-					method: 'POST',
-					headers: new Headers({
-						'Content-Type': 'application/json'
-					}),
-					body: JSON.stringify(data)
-				};
-
-				try{
-					const resp = await fetch(getStore().baseUrl.concat("account"), opt)
-					if (resp.status !== 201) {
-						// alert("There has been some error");
-						return false;
-					}
-
-					const data = await resp.json();
-
-					localStorage.setItem("token", data.token);
-					const tokenDecoded = jwt_decode(data.token);
-					setStore({"loggedUser": tokenDecoded});
-
-				}
-				catch(error){
-					console.error("There was an error!!", error);
-				}
-			},
+			
 			
 			getProfile: async (id) => {
 				let token = localStorage.getItem("token");
@@ -164,8 +167,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 				.catch(error => console.log('error', error));
 
 			},
-
-
 			editProfile: async (data, id) => {
 				let token = localStorage.getItem("token");
 				const opt = {
@@ -195,7 +196,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.error("There was an error!!", error);
 				}
 			},
-
 			deleteProfile: async (data, id) => {
 				let token = localStorage.getItem("token");
 				const opt = {
@@ -220,7 +220,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.error("There was an error!!", error);
 					}
 			},
-
 			// getUser:(id)=>{
 			// 	fetch(getStore().url.concat('api/account/',id))
 	        // .then(function(response) {
@@ -240,7 +239,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 	        //      console.log('Looks like there was a problem: \n', error);
             //      });
 			// },
-			
 			addFavourites: name => {
 				if (
 					!getStore().favourites.find(favourite => {
@@ -250,20 +248,17 @@ const getState = ({ getStore, getActions, setStore }) => {
 					setStore({ favourites: [...getStore().favourites, name] });
 				}
 			},
-
 			deleteFavourites: deleted => {
 				setStore({
 					favourites: getStore().favourites.filter((_, item) => item != deleted)
 				});
 			},	
-
 			setPosition: (coords) => {
 				setStore({position: {
 					latitude: coords.latitude,
 					longitude: coords.longitude
 				}})
 			},
-
 			getOnloadWeatherData: () => {
 				console.log(process.env.FORECAST_API_KEY)
 				console.log('position', getStore().position);
@@ -333,7 +328,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 						console.log(error.message);
 					});
 			},
-
 			searchHotspot:(data)=>{
 				var myHeaders = new Headers();
 				myHeaders.append("Content-Type", "application/json");
@@ -355,7 +349,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 				})
 				.catch(error => console.log('error', error));
 			},
-
 			addNewHotspot:(data,image)=>{
 				var myHeaders = new Headers();
 				myHeaders.append("Content-Type", "application/json");
@@ -392,14 +385,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 				.catch(error => console.log('error', error));
 			},
 			
-			verifylogin:()=>{
-				const token=localStorage.getItem('token')
-				if (token) {
-					return true
-				} else{
-					return false
-				}
-			}
 			
 		}
 

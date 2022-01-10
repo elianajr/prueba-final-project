@@ -123,10 +123,10 @@ svg{
 
 .comments__counter{
     font-family:'Roboto Condensed', sans-serif;
-    margin-left: 2rem; 
-    position: absolute;
-    left: 8rem;
-    top: 78rem;
+    display: flex;
+    align-items: flex-start;
+    margin-left: 8rem;
+    margin-bottom: -6.5%
 }
 
 .backbutton{

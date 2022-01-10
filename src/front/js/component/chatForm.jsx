@@ -63,11 +63,11 @@ const ChatForm = () => {
 
 	useEffect( async()=>{
 		const decoded=(jwt_decode(localStorage.getItem('token')))
-		
+	
+			
         await actions.getUser(decoded.sub.id)
         await actions.getUsers()
 		
-        
 		
     },[])
 
