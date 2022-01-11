@@ -4,6 +4,7 @@ import { Context } from "../store/appContext.js";
 import "../../styles/navbar.scss";
 import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import jwt_decode from "jwt-decode";
 
 
 
