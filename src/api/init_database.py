@@ -50,7 +50,14 @@ def load_seed_data():
 
 if __name__ == "__main__":
     app = Flask(__name__)
-    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
+    if ENV =="development":
+        if os.getenv("DATABASE_URL") is not None:
+            app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
+    else:
+        uri = os.getenv("DATABASE_URL")  # or other relevant config var
+        if uri.startswith("postgres://"):
+            uri = uri.replace("postgres://", "postgresql://", 1)
+        app.config['SQLALCHEMY_DATABASE_URI'] = uri
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     models.db.init_app(app)
     MIGRATE = Migrate(app, models.db)
