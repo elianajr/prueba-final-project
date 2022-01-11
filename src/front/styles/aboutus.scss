@@ -6,9 +6,11 @@
     align-items: center;
     width: 100vw;
 }
+
 .aboutUs-topBody{
     display: flex;
     flex-direction: column;
+    width:100vw;
 }
 
 .aboutUs-topBody__who{
@@ -22,20 +24,20 @@
     align-items: center;
     justify-content: center;
     width: 34.5rem;
-    height: 21rem;
+    height: auto;
     background: rgba(44, 177, 170, 0.3);
     box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.363);
     font-family: "Righteous";
     font-style: normal;
     font-weight: normal;
-    font-size: 45px;
     line-height: 56px;
     text-align: center;
     color: #FFFFFF;
 }
 
 .aboutUs-topBody__who__Q>h3{
-    font-size: 45px;
+    font-size: 2.2rem;
+    
 }
 
 .aboutUs-topBody__who__T{
@@ -46,8 +48,8 @@
     height: 21rem;
     font-family: "Roboto";
     font-style: normal;
-    font-weight: bold;
-    font-size: 45px;
+    // font-weight: bold;
+    font-size: 1.4rem;
     text-align: center;
 }
 
@@ -58,12 +60,14 @@
 .aboutUs-topBody__what{
     display: flex;
     flex-direction: row;
-    height: 29.1rem;
+    height: 22rem;
+    width:100vw;
 }
 
 .aboutUs-topBody__what>img{
-    height: 29.1rem;
-    width: 34.5rem;
+    height: auto;
+    max-width: 34.5rem;
+    width:38.5vw;
 }
 
 .aboutUs-topBody__what__T{
@@ -71,12 +75,11 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 29.1rem;
-    width: 55.4rem;
+    height: auto;
+    // width: 51rem;
+    padding:2rem;
     font-family: "Roboto";
     font-style: normal;
-    font-weight: bold;
-    font-size: 45px;
     text-align: center;
     color: #FFFFFF;
     background: rgba(44, 177, 170, 0.3);
@@ -86,20 +89,23 @@
 .aboutUs-topBody__what__T>h3{
     font-family: "Righteous";
     font-style: normal;
-    font-weight: bold;
-    font-size: 45px;
+    // font-weight: bold;
+    font-size: 2.2rem;
     text-align: center;
     color: #FFFFFF;
 }
 
 .aboutUs-topBody__what__T>p{
-    width: 95%;
+    margin-left: 2rem;
+    margin-right: 2rem;
+    width: 80%;
+    font-size: 1.4rem;
 }
 
 .aboutUs-midBody{
     display: flex;
     flex-direction: column;
-    width: 90rem;
+    width: 90vw;
 }
 
 .aboutUs-midBody>h2{
@@ -107,10 +113,11 @@
     justify-content: center;
     font-family: "Righteous";
     font-style: normal;
-    font-weight: bold;
-    font-size: 45px;
+    // font-weight: bold;
+    font-size: 2rem;
     padding-top: 3rem;
     padding-bottom: 3rem;
+    margin-top:2rem;
 }
 
 .aboutUs-midBody__infoBox{
@@ -125,27 +132,32 @@
     width: 22.25rem;
     font-family: "Roboto";
     font-weight: normal;
-    font-size: 40px;
+    font-size: 1.2rem;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
+    margin-left:2rem;
+    margin-right:2rem;
+    margin-bottom: 4rem;
     color: rgba(0, 0, 0, 0.61);
 }
 
 .aboutUs-midBody__info>h2{
-    font-family: "Righteous";
+    font-family: "Roboto";
     font-style: normal;
-    font-weight: bold;
-    font-size: 45px;
+    margin-left:4rem;
+    margin-right:4rem;
+    // font-weight: bold;
+    font-size: 1.4rem;
     color: rgb(0, 0, 0);
 }
 
 .aboutUs-botBody{
-    width: 90rem;
+    width: 100vw;
     display: flex;
     flex-direction: row;
-    height: 30.25rem;
+    height: 25rem;
     background: rgba(44, 177, 170, 0.3);
     box-shadow: inset 0px 4px 4px rgba(44, 177, 170, 0.45);
     align-items: center;
@@ -164,73 +176,80 @@
     font-family: "Roboto";
     font-style: normal;
     font-weight: bold;
-    font-size: 45px;
+    font-size: 1.4rem;
+    padding-bottom: 1rem;
+    margin-bottom:0;
 }
 
 .aboutUs-botBody__text>p{
     font-family: "Roboto";
     font-style: normal;
     font-weight: normal;
-    font-size: 30px;
+    font-size: 1.4rem;
 }
 
 .aboutUs-botBody__send{
     display: flex;
-    height: 10.4rem;
+    height: 6rem;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    font-size: 30px;
-    font-weight: bold;
+    font-size: 1rem;
+   
 }
 
 .aboutUs-botBody__send>input{
-    width: 22.5rem;
-    height: 4.4rem;
+    width: 17rem;
+    height: 2.5rem;
     background: #FFFFFF;
-    border-radius: 15px;
+    border-radius: 0.2rem;
+    border-radius: 0.2rem;
+    border: 0;
+    font-size: 1rem;
+    margin-left:0.2rem;
 }
 
 .aboutUs-botBody__send>button{
     color: white;
     font-family: "Roboto";
-    width: 22.5rem;
-    height: 4.4rem;
-    background: rgba(0, 0, 0, 0.8);
-    border-radius: 15px;    
-    box-shadow:
-    -7px -7px 20px 0px rgba(255, 255, 255, 0.575),
-    -4px -4px 5px 0px rgba(255, 255, 255, 0.561),
-    7px 7px 20px 0px rgba(0, 0, 0, 0.253),
-    4px 4px 5px 0px rgba(0, 0, 0, 0.24);
+    width: 17rem;
+    height: 2.5rem;
+    background: black;
+    border:none;
+    border-radius: 5px;    
+//     box-shadow:
+//     -7px -7px 20px 0px rgba(255, 255, 255, 0.575),
+//     -4px -4px 5px 0px rgba(255, 255, 255, 0.561),
+//     7px 7px 20px 0px rgba(0, 0, 0, 0.253),
+//     4px 4px 5px 0px rgba(0, 0, 0, 0.24);
 }
 
-.aboutUs-botBody__send>button:after {
-    position: absolute;
-    content: "";
-    width: 100%;
-    height: 0;
-    bottom: 0;
-    left: 0;
-    z-index: -1;
-    border-radius: 5px;
+// .aboutUs-botBody__send>button:after {
+//     position: absolute;
+//     content: "";
+//     width: 100%;
+//     height: 0;
+//     bottom: 0;
+//     left: 0;
+//     z-index: -1;
+//     border-radius: 5px;
    
-}
-.aboutUs-botBody__send>button:hover {
-    color: #57ddd6;
-    background-color: #4dccc6;
-    background-image: linear-gradient(315deg, #255f5c 0%, #3f5f5d 74%);
-    box-shadow:
-     -7px -7px 20px 0px rgba(255, 255, 255, 0.384),
-     -4px -4px 5px 0px rgba(255, 255, 255, 0.384),
-     7px 7px 20px 0px #0002,
-     4px 4px 5px 0px #0001;
-    transition: all 0.3s ease;
-}
-.aboutUs-botBody__send>button:hover:after {
-    top: 0;
-    height: 100%;
-}
-.aboutUs-botBody__send>button:active {
-    top: 2px;
-}
+// }
+// .aboutUs-botBody__send>button:hover {
+//     color: #57ddd6;
+//     background-color: #4dccc6;
+//     background-image: linear-gradient(315deg, #255f5c 0%, #3f5f5d 74%);
+//     box-shadow:
+//      -7px -7px 20px 0px rgba(255, 255, 255, 0.384),
+//      -4px -4px 5px 0px rgba(255, 255, 255, 0.384),
+//      7px 7px 20px 0px #0002,
+//      4px 4px 5px 0px #0001;
+//     transition: all 0.3s ease;
+// }
+// .aboutUs-botBody__send>button:hover:after {
+//     top: 0;
+//     height: 100%;
+// }
+// .aboutUs-botBody__send>button:active {
+//     top: 2px;
+// }

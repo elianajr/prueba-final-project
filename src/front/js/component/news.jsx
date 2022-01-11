@@ -25,9 +25,8 @@ const News = () => {
    return (
       <div>
 
-         <Container >
-            <Row >
-               <Col>
+         <Container>
+            <Row className="cardnews_row">
                   <Card className='cardnews border-0'>
                      <Card.Img variant="top" src={img3} />
                      <Card.Body className='cardnews__main'>
@@ -43,9 +42,7 @@ const News = () => {
                         <small className="cardnews__date">06/12/2021</small>
                      </Card.Footer>
                   </Card>
-               </Col>
-
-               <Col>
+               
                   <Card className='cardnews border-0'>
                      <Card.Img variant="top" src={img4} />
                      <Card.Body className='cardnews__main'>
@@ -60,8 +57,7 @@ const News = () => {
                         <small className="cardnews__date">02/12/2021</small>
                      </Card.Footer>
                   </Card>
-               </Col>
-               <Col>
+              
                   <Card className='cardnews border-0'>
                      <Card.Img variant="top" src={img5} />
                      <Card.Body className='cardnews__main'>
@@ -76,10 +72,7 @@ const News = () => {
                         <small className="cardnews__date">30/11/2021</small>
                      </Card.Footer>
                   </Card>
-               </Col>
-            </Row>
-            <Row>
-               <Col>
+            
                   <Card className='cardnews border-0'>
                      <Card.Img variant="top" src={img6} />
                      <Card.Body className='cardnews__main'>
@@ -94,9 +87,7 @@ const News = () => {
                         <small className="cardnews__date">27/11/2021</small>
                      </Card.Footer>
                   </Card>
-               </Col>
-
-               <Col>
+               
                   <Card className='cardnews border-0'>
                      <Card.Img variant="top" src={img7} />
                      <Card.Body className='cardnews__main'>
@@ -112,8 +103,7 @@ const News = () => {
                         <small className="cardnews__date">24/11/2021</small>
                      </Card.Footer>
                   </Card>
-               </Col>
-               <Col>
+               
                   <Card className='cardnews border-0'>
                      <Card.Img variant="top" src={img8} />
                      <Card.Body className='cardnews__main'>
@@ -128,10 +118,11 @@ const News = () => {
                         <small className="cardnews__date">20/11/2021</small>
                      </Card.Footer>
                   </Card>
-               </Col>
+               
             </Row>
          </Container>
-      </div>)
+      </div>
+   )
 }
 
 

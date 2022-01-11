@@ -30,6 +30,11 @@
 }
 
 
+.player__wrapper {
+    // position: relative;
+    top: -1rem;
+    
+}
 
   
 .reactplayer {
@@ -39,6 +44,8 @@
     right: 0;
     bottom: 0;
     top: 5rem;
+    // left: 12.5rem;
+    // box-sizing: border-box;
     filter: drop-shadow(0.2rem 0.25rem 1.8rem #FFFFFF);box-sizing: border-box;
     filter: drop-shadow(0.2rem 0.25rem 1.8rem #FFFFFF);
     
