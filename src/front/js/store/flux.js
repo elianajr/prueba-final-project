@@ -1,17 +1,22 @@
 import jwt_decode from "jwt-decode";
 
 
-const PORT = 3001;
-const [PROTOCOL, HOST] = process.env.GITPOD_WORKSPACE_URL.split("://");
-
 
 const getState = ({ getStore, getActions, setStore }) => {
+	let BACKEND_URL = "";
+	if (process.env.GITPOD_WORKSPACE_URL) {
+		const PORT = 3001;
+		const [PROTOCOL, HOST] = process.env.GITPOD_WORKSPACE_URL.split("://");
+		BACKEND_URL = `${PROTOCOL}://${PORT}-${HOST}`;
+	} else {
+		BACKEND_URL = process.env.BACKEND_URL;
+	}
 	return {
 		store: {
 			message: null,
 			users: [],
 			user: {},
-			baseUrl: `${PROTOCOL}://${PORT}-${HOST}/api/`,
+			baseUrl: `${BACKEND_URL}/api/`,
 			currentUser: {},
 			loggedUser: {},
 			favourites: [],
@@ -24,7 +29,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			nextDaysWeather: {},
 			hotspots: [],
 			hotspotsDetails: {},
-			hotspotURL: `https://3001-pink-rook-7fv35jqw.ws-eu25.gitpod.io/api/hotspots/`
+			hotspotURL: `https://3001-pink-rook-7fv35jqw.ws-eu25.gitpod.io/api/hotspots/`,
+			centers:[]
 		},
 
 		actions: {
@@ -434,7 +440,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 					.then(function (responseAsJson) {
 						setStore({ centers: responseAsJson });
+
 						console.log(responseAsJson);
+
 					})
 					.catch(function (error) {
 						console.log('Looks like there was a problem: \n', error);
