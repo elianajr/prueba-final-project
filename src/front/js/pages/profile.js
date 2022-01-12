@@ -51,7 +51,7 @@ const Profile = () => {
 
 
     useEffect(()=>{
-        console.log("aquii", user.favourite_spot);
+        console.log("aquii", store.loggedUser);
         setIsWaterdropper(result._is_waterdropper);
         if(result.id == store.loggedUser.id) {
             setEditButton(<Button><i className="fas fa-pen"></i> Edit profile</Button>);
@@ -95,7 +95,9 @@ const Profile = () => {
 
                                 <div className="profile-sports">
                                     <ul>
-                                        {result.sports.map(sport => (
+                                        <li>|Scuba|</li>
+                                        <li>|Surf|</li>
+                                        {/* {result.sports.map(sport => (
                                             <li key={sport.id}>| {sport.name} |</li>
                                         ))}
                                         {/* {
@@ -104,7 +106,7 @@ const Profile = () => {
                                             : esult.sports.map(sport => (
                                                 <li key={sport.id}>{sport.name}</li>
                                             ))
-                                        } */}
+                                        } */} 
                                     </ul>
                                 </div>
                                 <div>
@@ -129,12 +131,24 @@ const Profile = () => {
                     <div className="col-4">
                         <div className="profile-fav">
                             <h5 className="fav-title">My fav spots</h5>
-                            <FavHotspots />
+                            {/* <FavHotspots /> */}
+                            <ul className="fav-list-profile">
+                                <li>Blue Hole, Gozo, MALTA</li>
+                                <li>Barracuda Point, isla Sipadan, Mar de Clebes, MALASIA</li>
+                                <li>Castle Rock, Komodo, INDONESIA</li>
+                                <li>Elphinstone Reef, Rojo, EGIPTO</li>
+                            </ul>
                         </div>
 
                         <div className="profile-fav">
                             <h5 className="fav-title">My fav centers</h5>
-                            <FavCenters />
+                            {/* <FavCenters /> */}
+                            <ul className="fav-list-profile">
+                                <li><Link className="link-profile" to='/profile/2'>Pura Vida Diving</Link></li>
+                                <li><Link className="link-profile" to='/profile/4'>In Da Surf</Link></li>
+                                <li><Link className="link-profile" to='/profile/6'>C2Sky</Link></li>
+                                <li><Link className="link-profile" to='/profile/7'>Dive.is</Link></li>
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -176,13 +190,15 @@ const Profile = () => {
     
                                 <div className="profile-sports">
                                     <ul>
-                                        {
+                                        <li>|Scuba|</li>
+                                        <li>|Snorkel|</li>
+                                        {/* {
                                             result.sports
                                             ? result.sports.map(sport => (
                                                 <li key={sport.id}>| {sport.name} |</li>
                                             ))
                                             : (<span></span>)
-                                        }
+                                        } */}
                                     </ul>
                                 </div>
                                 
@@ -210,6 +226,12 @@ const Profile = () => {
                         <div className="profile-fav">
                             <h5 className="fav-title">Spots where we go</h5>
                             <ul className="fav-list-profile">
+                                <li>Crystal Bay, Bali, Mar de Java, INDONESIA</li>
+                                <li>Lembeh Strait, isla Sulawesi, INDONESIA</li>
+                                <li>Castle Rock, Komodo, INDONESIA</li>
+                                <li>Cape Kri, Raja Ampat, INDONESIA</li>
+                            </ul>
+                            {/* <ul className="fav-list-profile">
                                 {
                                     user.favourite_spot
                                     ? user.favourite_spot.map(fav => (
@@ -226,7 +248,7 @@ const Profile = () => {
                                     : (<span></span>)
                                 }
                             </ul>
-                            {/* <FavHotspots /> */}
+                            <FavHotspots /> */}
                         </div>
                         
                     </div>
